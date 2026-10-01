@@ -1,7 +1,10 @@
 # Testing 33 Student-Designed Interventions to Reduce Affective Polarization
 
-Yamil Velez. Online survey experiment (Columbia IRB AAAU3946) testing 33 interventions designed by
-students in an Experimental Design course against a control, among partisans.
+Yamil Velez. Adaptive online survey experiment (Lucid Theorem, November 9–25, 2022; Columbia IRB
+AAAU3946) testing 33 interventions designed by students in a Fall 2022 Experimental Design course against a
+pure control, among partisans. Interventions include videos (e.g. a perception-gap video, a Brené Brown
+empathy video), articles (e.g. a meta-dehumanization correction, bipartisan legislation examples), images
+and interactive quizzes; the report lists each one.
 
 No single intervention reliably reduced affective polarization or support for undemocratic practices
 (two-sided tests); pooled across arms, polarization fell about 1 point on a 0–100 scale.

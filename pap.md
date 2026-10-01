@@ -6,9 +6,15 @@ hoc; "registered" tags in the report only mean "matches this reconstructed plan"
 
 ## Design
 
-Online survey experiment (Columbia IRB AAAU3946) testing 33 interventions designed by students in an
-Experimental Design course. Respondents were assigned to one arm (`arm`, T0–T33). T0 is the control.
-Assignment shares changed across fielding batches (`batch`).
+Online survey experiment (Columbia IRB AAAU3946) fielded on Lucid Theorem, November 9–25, 2022, testing
+33 interventions designed by students in a Fall 2022 Experimental Design course. Respondents were assigned
+to one arm (`arm`, T0–T33); T0 is a pure control ("Please continue."). The design was adaptive
+(Offer-Westort, Coppock & Green 2021): assignment shares changed across fielding batches (`batch`).
+Interventions span four modalities: video (e.g. a perception-gap video, a Brené Brown empathy video,
+Jubilee panels), text/articles (e.g. meta-dehumanization correction, bipartisan legislation examples,
+scandals from both parties), images (e.g. a cooperation infographic, a media-profits-from-division image)
+and interactive tasks (e.g. a perception-gap quiz, the iSideWith quiz). T33, a GPT-3 chatbot, failed
+technically.
 
 ## Sample and exclusions
 
