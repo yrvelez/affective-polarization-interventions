@@ -13,7 +13,7 @@ import pandas as pd
 warnings.filterwarnings("ignore")
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
-OUTCOMES = json.loads("[{\"name\": \"post_ap\", \"label\": \"Affective polarization after treatment\", \"kind\": \"single_item\", \"columns\": [\"post_ap\"], \"reverse\": [], \"scale\": [-100, 100], \"construction\": \"In-party minus out-party thermometer\"}, {\"name\": \"post_udp\", \"label\": \"Support for undemocratic practices\", \"kind\": \"mean_items\", \"columns\": [\"post_udp_scores_1\", \"post_udp_scores_2\", \"post_udp_scores_3\", \"post_udp_scores_4\"], \"reverse\": [], \"scale\": [1, 7], \"construction\": \"Mean of four items\"}]")
+OUTCOMES = json.loads("[{\"name\": \"post_ap\", \"label\": \"Affective polarization after treatment\", \"kind\": \"single_item\", \"columns\": [\"post_ap\"], \"reverse\": [], \"scale\": [-100, 100], \"construction\": \"In-party minus out-party thermometer\"}, {\"name\": \"post_udp\", \"label\": \"Support for undemocratic practices\", \"kind\": \"single_item\", \"columns\": [\"post_udp\"], \"reverse\": [], \"scale\": [1, 7], \"construction\": \"Mean of the four items answered\"}]")
 EXCLUSIONS = ["partisan in ['Democrat','Republican']", "arm != 'T33'"]
 DERIVED = json.loads("{}")
 ARM_COL = "arm"

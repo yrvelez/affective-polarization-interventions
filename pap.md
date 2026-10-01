@@ -1,7 +1,7 @@
 # Analysis plan (reconstructed post hoc — NOT pre-registered)
 
 No pre-registration for this study was found. This plan was written on 2026-10-01, after data collection,
-from the existing analysis (`replication_script.R`), so the pipeline can run. Every analysis below is post
+from the original analysis behind the published results, so the pipeline can run. Every analysis below is post
 hoc; "registered" tags in the report only mean "matches this reconstructed plan".
 
 ## Design
@@ -18,7 +18,9 @@ technically.
 
 ## Sample and exclusions
 
-- Partisans only, including leaners: keep `partisan` in `Democrat`, `Republican`.
+- Finished responses only (`Finished == 1`).
+- Partisans only: keep `partisan` in `Democrat`, `Republican`, where party is the in-party the survey
+  assigned each respondent (`group1`), as in the original analysis.
 - Exclude `arm == 'T33'` (broken intervention).
 - Complete cases on the outcome and its pre-treatment measure.
 
@@ -26,7 +28,7 @@ technically.
 
 - Primary: `post_ap`, affective polarization after treatment = in-party minus out-party feeling
   thermometer (0–100 scales). Lower = less polarized. Pre-treatment covariate: `pre_ap`.
-- Secondary: `post_udp`, mean of four items on support for undemocratic practices (1–7). Pre-treatment
+- Secondary: `post_udp`, mean of the answered items among four on support for undemocratic practices (1–7). Pre-treatment
   covariate: `pre_udp`.
 
 ## Hypotheses

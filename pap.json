@@ -154,19 +154,16 @@
       {
         "name": "post_udp",
         "label": "Support for undemocratic practices",
-        "kind": "mean_items",
+        "kind": "single_item",
         "columns": [
-          "post_udp_scores_1",
-          "post_udp_scores_2",
-          "post_udp_scores_3",
-          "post_udp_scores_4"
+          "post_udp"
         ],
         "reverse": [],
         "scale": [
           1,
           7
         ],
-        "construction": "Mean of four items"
+        "construction": "Mean of the four items answered"
       }
     ],
     "hypotheses": [
@@ -228,6 +225,7 @@
         "pooled": true,
         "subgroup": null,
         "exclusions": [
+          "Finished == 1",
           "partisan in ['Democrat','Republican']",
           "arm != 'T33'",
           "post_ap.notna() and pre_ap.notna()"
@@ -291,6 +289,7 @@
         "pooled": true,
         "subgroup": null,
         "exclusions": [
+          "Finished == 1",
           "partisan in ['Democrat','Republican']",
           "arm != 'T33'",
           "post_udp.notna() and pre_udp.notna()"
@@ -324,19 +323,16 @@
       {
         "name": "post_udp",
         "label": "Support for undemocratic practices",
-        "kind": "mean_items",
+        "kind": "single_item",
         "columns": [
-          "post_udp_scores_1",
-          "post_udp_scores_2",
-          "post_udp_scores_3",
-          "post_udp_scores_4"
+          "post_udp"
         ],
         "reverse": [],
         "scale": [
           1,
           7
         ],
-        "construction": "Mean of four items"
+        "construction": "Mean of the four items answered"
       }
     ],
     "hypotheses": [
@@ -398,6 +394,7 @@
         "pooled": true,
         "subgroup": null,
         "exclusions": [
+          "Finished == 1",
           "partisan in ['Democrat','Republican']",
           "arm != 'T33'",
           "post_ap.notna() and pre_ap.notna()"
@@ -461,6 +458,7 @@
         "pooled": true,
         "subgroup": null,
         "exclusions": [
+          "Finished == 1",
           "partisan in ['Democrat','Republican']",
           "arm != 'T33'",
           "post_udp.notna() and pre_udp.notna()"
