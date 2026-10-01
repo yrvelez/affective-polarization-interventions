@@ -1,0 +1,2228 @@
+{
+  "survey": {
+    "name": "Affective Polarization",
+    "id": "SV_3aSvLQVIfvVTHsa",
+    "source": "qsf",
+    "n_blocks": 9,
+    "randomizers": [],
+    "branches": [
+      "{\"0\": {\"0\": {\"LogicType\": \"Question\", \"QuestionID\": \"QID6\", \"QuestionIsInLoop\": \"no\", \"ChoiceLocator\": \"q://QID6/SelectableChoice/1\", \"Operator\": \"NotSelected\", \"QuestionIDFromLocator\": \"QID6\", \"LeftOperand\": \"q://QID6/SelectableChoice/1\", \"Type\": \"Expression\", \"Description\": \"<span class=\\\"ConjDesc\\\">If</span> <span class=\\\"QuestionDesc\\\">People are very busy these days and many do not have time to follow what goes on in the governmen...</span> <span class=\\\"LeftOpDesc\\\">Extremely interested</s",
+      "{\"0\": {\"0\": {\"LogicType\": \"Question\", \"QuestionID\": \"QID7\", \"QuestionIsInLoop\": \"no\", \"ChoiceLocator\": \"q://QID7/SelectableChoice/1\", \"Operator\": \"Selected\", \"QuestionIDFromLocator\": \"QID7\", \"LeftOperand\": \"q://QID7/SelectableChoice/1\", \"Type\": \"Expression\", \"Description\": \"<span class=\\\"ConjDesc\\\">If</span> <span class=\\\"QuestionDesc\\\">Generally speaking, do you usually think of yourself as a Republican, a Democrat, an Independent,...</span> <span class=\\\"LeftOpDesc\\\">Republican</span> <span cl",
+      "{\"0\": {\"0\": {\"LogicType\": \"Question\", \"QuestionID\": \"QID7\", \"QuestionIsInLoop\": \"no\", \"ChoiceLocator\": \"q://QID7/SelectableChoice/2\", \"Operator\": \"Selected\", \"QuestionIDFromLocator\": \"QID7\", \"LeftOperand\": \"q://QID7/SelectableChoice/2\", \"Type\": \"Expression\", \"Description\": \"<span class=\\\"ConjDesc\\\">If</span> <span class=\\\"QuestionDesc\\\">Generally speaking, do you usually think of yourself as a Republican, a Democrat, an Independent,...</span> <span class=\\\"LeftOpDesc\\\">Democrat</span> <span clas",
+      "{\"0\": {\"0\": {\"LogicType\": \"Question\", \"QuestionID\": \"QID10\", \"QuestionIsInLoop\": \"no\", \"ChoiceLocator\": \"q://QID10/SelectableChoice/3\", \"Operator\": \"Selected\", \"QuestionIDFromLocator\": \"QID10\", \"LeftOperand\": \"q://QID10/SelectableChoice/3\", \"Type\": \"Expression\", \"Description\": \"<span class=\\\"ConjDesc\\\">If</span> <span class=\\\"QuestionDesc\\\">Do you think of yourself as closer to the Republican Party or to the Democratic Party?</span> <span class=\\\"LeftOpDesc\\\">Neither</span> <span class=\\\"OpDesc\\"
+    ]
+  },
+  "questions": [
+    {
+      "qid": "QID1",
+      "tag": "dem_int",
+      "type": "DB",
+      "selector": "TB",
+      "text": "${e://Field/dem_intervention}",
+      "block": "Intervention",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID10",
+      "tag": "pidlean",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "Do you think of yourself as closer to the Republican Party or to the Democratic Party?",
+      "block": "Screener",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "pidlean"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Closer to the Republican Party",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Closer to the Democratic Party",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Neither",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": "TX"
+    },
+    {
+      "qid": "QID11",
+      "tag": "pre_ap_scores",
+      "type": "Slider",
+      "selector": "HSLIDER",
+      "text": "We would like you to rate them using something we call the feeling thermometer. Ratings between 50 degrees and 100 degrees mean that you feel favorable and warm toward them. Ratings between 0 degrees and 50 degrees mean that you don't feel favorable toward them and that you don't care too much for them. You would rate them at the 50 degree mark if you don't feel particularly warm or cold toward them.",
+      "block": "Pre-treatment measures",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "pre_ap_scores_1",
+        "pre_ap_scores_2"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "How would you rate Republicans?",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "How would you rate Democrats?",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID12",
+      "tag": "pre_udp_scores",
+      "type": "Matrix",
+      "selector": "Likert",
+      "text": "Please indicate your agreement and disagreement with the following statements.",
+      "block": "Pre-treatment measures",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "pre_udp_scores_1",
+        "pre_udp_scores_2",
+        "pre_udp_scores_3",
+        "pre_udp_scores_4"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Strongly disagree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Disagree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Somewhat disagree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Neither agree nor disagree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "5",
+          "label": "Somewhat agree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "6",
+          "label": "Agree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "7",
+          "label": "Strongly agree",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [
+        {
+          "id": "1",
+          "label": "${e://Field/group1_plural} should reduce the number of polling stations in areas that support ${e://Field/group2_plural}.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "${e://Field/group1} governors should ignore unfavorable court rulings by ${e://Field/group2_alt}-appointed judges.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "${e://Field/group1} governors should prosecute journalists who accuse ${e://Field/group1} politicians of misconduct without revealing sources.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "${e://Field/group1_plural} should not accept the results of elections if they lose.",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "sub_selector": "SingleAnswer"
+    },
+    {
+      "qid": "QID13",
+      "tag": "interest",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "Generally, how interested are you in politics?",
+      "block": "Distractors",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "interest"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Extremely interested",
+          "recode": "5",
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Very interested",
+          "recode": "4",
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Somewhat interested",
+          "recode": "3",
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Not very interested",
+          "recode": "2",
+          "text_entry": false
+        },
+        {
+          "id": "5",
+          "label": "Not at all interested",
+          "recode": "1",
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": "TX"
+    },
+    {
+      "qid": "QID14",
+      "tag": "news_intro",
+      "type": "DB",
+      "selector": "TB",
+      "text": "We'd like to ask you some questions about your news and information diet.",
+      "block": "Distractors",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID15",
+      "tag": "news_trust",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "In general, how much trust and confidence do you have in the news media when it comes to reporting the news fully, accurately and fairly?",
+      "block": "Distractors",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "news_trust"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "A great deal",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "A fair amount",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Not very much",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "None at all",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": "TX"
+    },
+    {
+      "qid": "QID16",
+      "tag": "factchecks",
+      "type": "MC",
+      "selector": "SAHR",
+      "text": "Many news organizations issue \"fact checks\" in which they investigate whether an important news item is true or false. About how often would you say you encounter fact checks?",
+      "block": "Distractors",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "factchecks"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Never",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Sometimes",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Frequently",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": "TX"
+    },
+    {
+      "qid": "QID17",
+      "tag": "Q17",
+      "type": "Timing",
+      "selector": "PageTimer",
+      "text": "Timing",
+      "block": "Distractors",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "Q17_First Click",
+        "Q17_Last Click",
+        "Q17_Page Submit",
+        "Q17_Click Count"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "First Click",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Last Click",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Page Submit",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Click Count",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID18",
+      "tag": "pk_intro",
+      "type": "DB",
+      "selector": "TB",
+      "text": "The next set of questions helps us learn what types of information are commonly known to the public. Please answer these questions on your own without asking anyone or looking up the answers. Many people don’t know the answers to these questions, but we’d be grateful if you would please answer every question even if you're not sure what the right answer is.",
+      "block": "Distractors",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID19",
+      "tag": "pk1",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "For how many years is a United States Senator elected - that is, how many years are there in one full term of oﬃce for a U.S. Senator?",
+      "block": "Distractors",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "pk1"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Two years",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Four years",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Six years",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Eight years",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "5",
+          "label": "None of these",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "6",
+          "label": "Don't know",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": "TX"
+    },
+    {
+      "qid": "QID2",
+      "tag": "provide_int",
+      "type": "TE",
+      "selector": "SL",
+      "text": "Enter intervention number",
+      "block": "Tester",
+      "in_randomizer": false,
+      "free_text": true,
+      "columns": [
+        "provide_int"
+      ],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID20",
+      "tag": "pk2",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "How many times can an individual be elected President of the United States under current laws?",
+      "block": "Distractors",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "pk2"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Once",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Twice",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Four times",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Unlimited number of terms",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "5",
+          "label": "Don't know",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": "TX"
+    },
+    {
+      "qid": "QID21",
+      "tag": "pk3",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "Who is currently the Prime Minister of the United Kingdom?",
+      "block": "Distractors",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "pk3"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Richi Sunak",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Boris Johnson",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "David Cameron",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Theresa May",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "5",
+          "label": "Margaret Thatcher",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "6",
+          "label": "Don't know",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": "TX"
+    },
+    {
+      "qid": "QID22",
+      "tag": "Q16",
+      "type": "Timing",
+      "selector": "PageTimer",
+      "text": "Timing",
+      "block": "Distractors",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "Q16_First Click",
+        "Q16_Last Click",
+        "Q16_Page Submit",
+        "Q16_Click Count"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "First Click",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Last Click",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Page Submit",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Click Count",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID23",
+      "tag": "irb",
+      "type": "DB",
+      "selector": "TB",
+      "text": "COLUMBIA UNIVERSITY Interventions to Reduce Affective Polarization Protocol #: AAAU3946 Investigators: Dr. Yamil Velez (Columbia University) Investigators' statement We are asking you to be in a research study. The purpose of this consent form is to give you the information you will need to help you decide whether or not to be in the study. Please read the form carefully. You may ask questions about the purpose of the research, what we would ask you to do, the possible risks and benefits, your rights as a volunteer, and anything else about the research or this form that is not clear. When all your questions have been answered, you can decide if you want to be in the study or not. This process is called ‘informed consent.’ PURPOSE The purpose of this study is to examine how the presentation of information affects your opinion about political parties and electoral systems. BENEFITS There are no personal benefits to participating in this study. However, this study could produce positive benefits for society by increasing our knowledge about how critical information should be communicated to the public. PROCEDURES Throughout the study, we will ask you your opinions regarding government and public officials. You may be asked to read 1 short vignette that is 2-3 paragraphs long or watch a brief video (< 3 min) and answer questions about political groups. The study will conclude with a demographic battery. RISKS, STRESS, OR DISCOMFORT Emotional stress is a potential risk. OTHER INFORMATION None of the data will be linked to you personally, as we will not collect identifying information. You may refuse to participate or withdraw from the study at any time without penalty or loss of benefits to which you are otherwise entitled. PARTICIPATION Participation in research is entirely voluntary. You may refuse to participate or withdraw from participation at any time without jeopardizing your employment, student status or any other entitlements. The investigator may withdraw you at his/her professional discretion. PRIVATE INFORMATION Any information derived from this research project that personally identifies you will not be voluntarily released or disclosed without your separate consent, except as specifically required by law. CU Human Research Protection Office may obtain access to the data collected for this study. No private information or identifiers will be collected. COMPENSATION You will be compensated by Lucid. CONTACT INFORMATION If at any time you have questions regarding the research or your participation, you should contact the principal investigator, Yamil Velez, who will answer all questions. His telephone number is (212) 8514274. You should also contact the investigator or a member of the research staff if you have any concerns or complaints about the research. If at any time you have comments regarding the conduct of this research or questions about your rights as a research participant, you should contact the Institutional Review Board (IRB) Administrator at (212) 305-5883 or email them at askirb@columbia.edu. PARTICIPANT’S STATEMENT I have read the above purpose of the study, and understand my role in participating in the research. I volunteer to take part in this research. I have had a chance to ask questions. If I have questions later, about the research, I can ask the investigator listed above. I understand that I may refuse to participate or withdraw from participation at any time without jeopardizing my employment, student status or other rights to which I am entitled. The investigator may withdraw me at his/her professional discretion. If I have questions about my rights as a research participant, I can call the Institutional Review Board office at (212) 3055883 or email them at askirb@columbia.edu. I certify that I am 18 years of age or older and freely give my consent to participate in this study. I will either print the form or write down the researcher's contact information before proceeding to the study in case I have any questions. Please click Next to continue if you agree with these terms.",
+      "block": "Consent",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID24",
+      "tag": "Q24",
+      "type": "DB",
+      "selector": "TB",
+      "text": "Click to write the question text",
+      "block": "Trash / Unused Questions",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID25",
+      "tag": "captcha",
+      "type": "Captcha",
+      "selector": "V2",
+      "text": "Please verify you are not a robot.",
+      "block": "CAPTCHA",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "captcha"
+      ],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID26",
+      "tag": "Q26",
+      "type": "DB",
+      "selector": "TB",
+      "text": "Please click here.",
+      "block": "Trash / Unused Questions",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID27",
+      "tag": "Q27",
+      "type": "DB",
+      "selector": "TB",
+      "text": "Click to write the question text",
+      "block": "Trash / Unused Questions",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID28",
+      "tag": "post_ap_scores",
+      "type": "Slider",
+      "selector": "HSLIDER",
+      "text": "We would like you to rate them using something we call the feeling thermometer. Ratings between 50 degrees and 100 degrees mean that you feel favorable and warm toward them. Ratings between 0 degrees and 50 degrees mean that you don't feel favorable toward them and that you don't care too much for them. You would rate them at the 50 degree mark if you don't feel particularly warm or cold toward them.",
+      "block": "Post-treatment measures",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "post_ap_scores_1",
+        "post_ap_scores_2"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "How would you rate Republicans?",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "How would you rate Democrats?",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID29",
+      "tag": "post_udp_scores",
+      "type": "Matrix",
+      "selector": "Likert",
+      "text": "Please indicate your agreement and disagreement with the following statements.",
+      "block": "Post-treatment measures",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "post_udp_scores_1",
+        "post_udp_scores_2",
+        "post_udp_scores_3",
+        "post_udp_scores_4"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Strongly disagree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Disagree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Somewhat disagree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Neither agree nor disagree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "5",
+          "label": "Somewhat agree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "6",
+          "label": "Agree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "7",
+          "label": "Strongly agree",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [
+        {
+          "id": "1",
+          "label": "${e://Field/group1_plural} should reduce the number of polling stations in areas that support ${e://Field/group2_plural}.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "${e://Field/group1} governors should ignore unfavorable court rulings by ${e://Field/group2_alt}-appointed judges.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "${e://Field/group1} governors should prosecute journalists who accuse ${e://Field/group1} politicians of misconduct without revealing sources.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "${e://Field/group1_plural} should not accept the results of elections if they lose.",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "sub_selector": "SingleAnswer"
+    },
+    {
+      "qid": "QID3",
+      "tag": "rep_int",
+      "type": "DB",
+      "selector": "TB",
+      "text": "${e://Field/rep_intervention}",
+      "block": "Intervention",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID30",
+      "tag": "rep_timer",
+      "type": "Timing",
+      "selector": "PageTimer",
+      "text": "Timing",
+      "block": "Intervention",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "rep_timer_First Click",
+        "rep_timer_Last Click",
+        "rep_timer_Page Submit",
+        "rep_timer_Click Count"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "First Click",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Last Click",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Page Submit",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Click Count",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID31",
+      "tag": "manip_check",
+      "type": "TE",
+      "selector": "SL",
+      "text": "What did you just see, read, or watch?",
+      "block": "Intervention",
+      "in_randomizer": false,
+      "free_text": true,
+      "columns": [
+        "manip_check"
+      ],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID32",
+      "tag": "dem_timer",
+      "type": "Timing",
+      "selector": "PageTimer",
+      "text": "Timing",
+      "block": "Intervention",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "dem_timer_First Click",
+        "dem_timer_Last Click",
+        "dem_timer_Page Submit",
+        "dem_timer_Click Count"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "First Click",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Last Click",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Page Submit",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Click Count",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID4",
+      "tag": "Q4",
+      "type": "DB",
+      "selector": "TB",
+      "text": "Click to write the question text",
+      "block": "Trash / Unused Questions",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID5",
+      "tag": "Q5",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "Click to write the question text",
+      "block": "Trash / Unused Questions",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "Q5"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Click to write Choice 1",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Click to write Choice 2",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Click to write Choice 3",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": "TX"
+    },
+    {
+      "qid": "QID6",
+      "tag": "screener",
+      "type": "MC",
+      "selector": "MAVR",
+      "text": "People are very busy these days and many do not have time to follow what goes on in the government. We are testing whether people read questions. To show that you've read this much, answer both \"extremely interested\" and \"very interested.\"",
+      "block": "Screener",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "screener_1",
+        "screener_2",
+        "screener_3",
+        "screener_4",
+        "screener_5"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Extremely interested",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Very interested",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Moderately interested",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Slightly interested",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "5",
+          "label": "Not interested at all",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": "TX"
+    },
+    {
+      "qid": "QID7",
+      "tag": "pid3",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "Generally speaking, do you usually think of yourself as a Republican, a Democrat, an Independent, or something else?",
+      "block": "Screener",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "pid3"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Republican",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Democrat",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Independent",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Something else",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": "TX"
+    },
+    {
+      "qid": "QID8",
+      "tag": "dem_strength",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "Would you call yourself a strong Democrat or not very strong Democrat?",
+      "block": "Screener",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "dem_strength"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Strong Democrat",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Not very strong Democrat",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": "TX"
+    },
+    {
+      "qid": "QID9",
+      "tag": "rep_strength",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "Would you call yourself a strong Republican or not a very strong Republican?",
+      "block": "Screener",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "rep_strength"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Strong Republican",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Not very strong Republican",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": "TX"
+    }
+  ],
+  "arms": {
+    "column": "arm",
+    "values": [
+      "T0",
+      "T1",
+      "T10",
+      "T11",
+      "T12",
+      "T13",
+      "T14",
+      "T15",
+      "T16",
+      "T17",
+      "T18",
+      "T19",
+      "T2",
+      "T20",
+      "T21",
+      "T22",
+      "T23",
+      "T24",
+      "T25",
+      "T26",
+      "T27",
+      "T28",
+      "T29",
+      "T3",
+      "T30",
+      "T31",
+      "T32",
+      "T33",
+      "T4",
+      "T5",
+      "T6",
+      "T7",
+      "T8",
+      "T9"
+    ],
+    "stimuli": {},
+    "source": "pap",
+    "blocks": {}
+  },
+  "embedded_data": [
+    "age",
+    "batch",
+    "education",
+    "ethnicity",
+    "gender",
+    "group1",
+    "group1_alt",
+    "group1_plural",
+    "group2",
+    "group2_alt",
+    "group2_plural",
+    "hhi",
+    "hispanic",
+    "political_party",
+    "region",
+    "rid",
+    "zip"
+  ],
+  "columns": [
+    {
+      "name": "StartDate",
+      "qid": "",
+      "kind": "system",
+      "dtype": "text",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": true,
+      "pii_reason": "known_identifier_column",
+      "dropped": true
+    },
+    {
+      "name": "EndDate",
+      "qid": "",
+      "kind": "system",
+      "dtype": "text",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": true,
+      "pii_reason": "known_identifier_column",
+      "dropped": true
+    },
+    {
+      "name": "Status",
+      "qid": "",
+      "kind": "system",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "Progress",
+      "qid": "",
+      "kind": "system",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "Duration (in seconds)",
+      "qid": "",
+      "kind": "system",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "Finished",
+      "qid": "",
+      "kind": "system",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "RecordedDate",
+      "qid": "",
+      "kind": "system",
+      "dtype": "text",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": true,
+      "pii_reason": "known_identifier_column",
+      "dropped": true
+    },
+    {
+      "name": "DistributionChannel",
+      "qid": "",
+      "kind": "system",
+      "dtype": "text",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "UserLanguage",
+      "qid": "",
+      "kind": "system",
+      "dtype": "text",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "screener_1",
+      "qid": "QID6",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "People are very busy these days and many do not have time to follow what goes on in the government. We are testing whether people read questions. To show that you've read this much, answer both \"extremely interested\" and \"very interested.\"",
+      "values": {
+        "1": "Extremely interested",
+        "2": "Very interested",
+        "3": "Moderately interested",
+        "4": "Slightly interested",
+        "5": "Not interested at all"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "screener_2",
+      "qid": "QID6",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "People are very busy these days and many do not have time to follow what goes on in the government. We are testing whether people read questions. To show that you've read this much, answer both \"extremely interested\" and \"very interested.\"",
+      "values": {
+        "1": "Extremely interested",
+        "2": "Very interested",
+        "3": "Moderately interested",
+        "4": "Slightly interested",
+        "5": "Not interested at all"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "screener_3",
+      "qid": "QID6",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "People are very busy these days and many do not have time to follow what goes on in the government. We are testing whether people read questions. To show that you've read this much, answer both \"extremely interested\" and \"very interested.\"",
+      "values": {
+        "1": "Extremely interested",
+        "2": "Very interested",
+        "3": "Moderately interested",
+        "4": "Slightly interested",
+        "5": "Not interested at all"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "screener_4",
+      "qid": "QID6",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "People are very busy these days and many do not have time to follow what goes on in the government. We are testing whether people read questions. To show that you've read this much, answer both \"extremely interested\" and \"very interested.\"",
+      "values": {
+        "1": "Extremely interested",
+        "2": "Very interested",
+        "3": "Moderately interested",
+        "4": "Slightly interested",
+        "5": "Not interested at all"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "screener_5",
+      "qid": "QID6",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "People are very busy these days and many do not have time to follow what goes on in the government. We are testing whether people read questions. To show that you've read this much, answer both \"extremely interested\" and \"very interested.\"",
+      "values": {
+        "1": "Extremely interested",
+        "2": "Very interested",
+        "3": "Moderately interested",
+        "4": "Slightly interested",
+        "5": "Not interested at all"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "pid3",
+      "qid": "QID7",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Generally speaking, do you usually think of yourself as a Republican, a Democrat, an Independent, or something else?",
+      "values": {
+        "1": "Republican",
+        "2": "Democrat",
+        "3": "Independent",
+        "4": "Something else"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "dem_strength",
+      "qid": "QID8",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Would you call yourself a strong Democrat or not very strong Democrat?",
+      "values": {
+        "1": "Strong Democrat",
+        "2": "Not very strong Democrat"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "rep_strength",
+      "qid": "QID9",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Would you call yourself a strong Republican or not a very strong Republican?",
+      "values": {
+        "1": "Strong Republican",
+        "2": "Not very strong Republican"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "pidlean",
+      "qid": "QID10",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Do you think of yourself as closer to the Republican Party or to the Democratic Party?",
+      "values": {
+        "1": "Closer to the Republican Party",
+        "2": "Closer to the Democratic Party",
+        "3": "Neither"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "pre_ap_scores_1",
+      "qid": "QID11",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "We would like you to rate them using something we call the feeling thermometer. Ratings between 50 degrees and 100 degrees mean that you feel favorable and warm toward them. Ratings between 0 degrees and 50 degrees mean that you don't feel favorable toward them and that you don't care too much for them. You would rate them at the 50 degree mark if you don't feel particularly warm or cold toward them.",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "pre_ap_scores_2",
+      "qid": "QID11",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "We would like you to rate them using something we call the feeling thermometer. Ratings between 50 degrees and 100 degrees mean that you feel favorable and warm toward them. Ratings between 0 degrees and 50 degrees mean that you don't feel favorable toward them and that you don't care too much for them. You would rate them at the 50 degree mark if you don't feel particularly warm or cold toward them.",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "pre_udp_scores_1",
+      "qid": "QID12",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please indicate your agreement and disagreement with the following statements. — ${e://Field/group1_plural} should reduce the number of polling stations in areas that support ${e://Field/group2_plural}.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Disagree",
+        "3": "Somewhat disagree",
+        "4": "Neither agree nor disagree",
+        "5": "Somewhat agree",
+        "6": "Agree",
+        "7": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "pre_udp_scores_2",
+      "qid": "QID12",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please indicate your agreement and disagreement with the following statements. — ${e://Field/group1} governors should ignore unfavorable court rulings by ${e://Field/group2_alt}-appointed judges.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Disagree",
+        "3": "Somewhat disagree",
+        "4": "Neither agree nor disagree",
+        "5": "Somewhat agree",
+        "6": "Agree",
+        "7": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "pre_udp_scores_3",
+      "qid": "QID12",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please indicate your agreement and disagreement with the following statements. — ${e://Field/group1} governors should prosecute journalists who accuse ${e://Field/group1} politicians of misconduct without revealing sources.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Disagree",
+        "3": "Somewhat disagree",
+        "4": "Neither agree nor disagree",
+        "5": "Somewhat agree",
+        "6": "Agree",
+        "7": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "pre_udp_scores_4",
+      "qid": "QID12",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please indicate your agreement and disagreement with the following statements. — ${e://Field/group1_plural} should not accept the results of elections if they lose.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Disagree",
+        "3": "Somewhat disagree",
+        "4": "Neither agree nor disagree",
+        "5": "Somewhat agree",
+        "6": "Agree",
+        "7": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "dem_timer_First Click",
+      "qid": "QID32",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Timing",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "dem_timer_Last Click",
+      "qid": "QID32",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Timing",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "dem_timer_Page Submit",
+      "qid": "QID32",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Timing",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "dem_timer_Click Count",
+      "qid": "QID32",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Timing",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "rep_timer_First Click",
+      "qid": "QID30",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Timing",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "rep_timer_Last Click",
+      "qid": "QID30",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Timing",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "rep_timer_Page Submit",
+      "qid": "QID30",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Timing",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "rep_timer_Click Count",
+      "qid": "QID30",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Timing",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "interest",
+      "qid": "QID13",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Generally, how interested are you in politics?",
+      "values": {
+        "5": "Extremely interested",
+        "4": "Very interested",
+        "3": "Somewhat interested",
+        "2": "Not very interested",
+        "1": "Not at all interested"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "news_trust",
+      "qid": "QID15",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "In general, how much trust and confidence do you have in the news media when it comes to reporting the news fully, accurately and fairly?",
+      "values": {
+        "1": "A great deal",
+        "2": "A fair amount",
+        "3": "Not very much",
+        "4": "None at all"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "factchecks",
+      "qid": "QID16",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Many news organizations issue \"fact checks\" in which they investigate whether an important news item is true or false. About how often would you say you encounter fact checks?",
+      "values": {
+        "1": "Never",
+        "2": "Sometimes",
+        "3": "Frequently"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "Q17_First Click",
+      "qid": "QID17",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Timing",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "Q17_Last Click",
+      "qid": "QID17",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Timing",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "Q17_Page Submit",
+      "qid": "QID17",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Timing",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "Q17_Click Count",
+      "qid": "QID17",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Timing",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "pk1",
+      "qid": "QID19",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "For how many years is a United States Senator elected - that is, how many years are there in one full term of oﬃce for a U.S. Senator?",
+      "values": {
+        "1": "Two years",
+        "2": "Four years",
+        "3": "Six years",
+        "4": "Eight years",
+        "5": "None of these",
+        "6": "Don't know"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "pk2",
+      "qid": "QID20",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "How many times can an individual be elected President of the United States under current laws?",
+      "values": {
+        "1": "Once",
+        "2": "Twice",
+        "3": "Four times",
+        "4": "Unlimited number of terms",
+        "5": "Don't know"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "pk3",
+      "qid": "QID21",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Who is currently the Prime Minister of the United Kingdom?",
+      "values": {
+        "1": "Richi Sunak",
+        "2": "Boris Johnson",
+        "3": "David Cameron",
+        "4": "Theresa May",
+        "5": "Margaret Thatcher",
+        "6": "Don't know"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "Q16_First Click",
+      "qid": "QID22",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Timing",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "Q16_Last Click",
+      "qid": "QID22",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Timing",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "Q16_Page Submit",
+      "qid": "QID22",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Timing",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "Q16_Click Count",
+      "qid": "QID22",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Timing",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "post_ap_scores_1",
+      "qid": "QID28",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "We would like you to rate them using something we call the feeling thermometer. Ratings between 50 degrees and 100 degrees mean that you feel favorable and warm toward them. Ratings between 0 degrees and 50 degrees mean that you don't feel favorable toward them and that you don't care too much for them. You would rate them at the 50 degree mark if you don't feel particularly warm or cold toward them.",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "post_ap_scores_2",
+      "qid": "QID28",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "We would like you to rate them using something we call the feeling thermometer. Ratings between 50 degrees and 100 degrees mean that you feel favorable and warm toward them. Ratings between 0 degrees and 50 degrees mean that you don't feel favorable toward them and that you don't care too much for them. You would rate them at the 50 degree mark if you don't feel particularly warm or cold toward them.",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "post_udp_scores_1",
+      "qid": "QID29",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please indicate your agreement and disagreement with the following statements. — ${e://Field/group1_plural} should reduce the number of polling stations in areas that support ${e://Field/group2_plural}.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Disagree",
+        "3": "Somewhat disagree",
+        "4": "Neither agree nor disagree",
+        "5": "Somewhat agree",
+        "6": "Agree",
+        "7": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "post_udp_scores_2",
+      "qid": "QID29",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please indicate your agreement and disagreement with the following statements. — ${e://Field/group1} governors should ignore unfavorable court rulings by ${e://Field/group2_alt}-appointed judges.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Disagree",
+        "3": "Somewhat disagree",
+        "4": "Neither agree nor disagree",
+        "5": "Somewhat agree",
+        "6": "Agree",
+        "7": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "post_udp_scores_3",
+      "qid": "QID29",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please indicate your agreement and disagreement with the following statements. — ${e://Field/group1} governors should prosecute journalists who accuse ${e://Field/group1} politicians of misconduct without revealing sources.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Disagree",
+        "3": "Somewhat disagree",
+        "4": "Neither agree nor disagree",
+        "5": "Somewhat agree",
+        "6": "Agree",
+        "7": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "post_udp_scores_4",
+      "qid": "QID29",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please indicate your agreement and disagreement with the following statements. — ${e://Field/group1_plural} should not accept the results of elections if they lose.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Disagree",
+        "3": "Somewhat disagree",
+        "4": "Neither agree nor disagree",
+        "5": "Somewhat agree",
+        "6": "Agree",
+        "7": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "age",
+      "qid": "",
+      "kind": "embedded",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "gender",
+      "qid": "",
+      "kind": "embedded",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "hhi",
+      "qid": "",
+      "kind": "embedded",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "ethnicity",
+      "qid": "",
+      "kind": "embedded",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "hispanic",
+      "qid": "",
+      "kind": "embedded",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "education",
+      "qid": "",
+      "kind": "embedded",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "political_party",
+      "qid": "",
+      "kind": "embedded",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "region",
+      "qid": "",
+      "kind": "embedded",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "batch",
+      "qid": "",
+      "kind": "embedded",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "id",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "dem_intervention",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "text",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "rep_intervention",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "text",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "group1",
+      "qid": "",
+      "kind": "embedded",
+      "dtype": "text",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "group2",
+      "qid": "",
+      "kind": "embedded",
+      "dtype": "text",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "group1_plural",
+      "qid": "",
+      "kind": "embedded",
+      "dtype": "text",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "group2_plural",
+      "qid": "",
+      "kind": "embedded",
+      "dtype": "text",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "group1_alt",
+      "qid": "",
+      "kind": "embedded",
+      "dtype": "text",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "group2_alt",
+      "qid": "",
+      "kind": "embedded",
+      "dtype": "text",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "partisan",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "text",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "pre_ap",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "pre_udp",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "post_ap",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "post_udp",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "arm",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "text",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "ipw_weight",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    }
+  ]
+}

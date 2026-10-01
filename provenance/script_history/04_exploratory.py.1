@@ -1,0 +1,253 @@
+"""
+Exploratory analyses for the Affective Polarization survey experiment.
+Three analyses:
+  E1: Heterogeneity by partisan identity (Democrat vs Republican) on post_ap
+  E2: Robustness to attention-check failures (exclude fail >=2/3 knowledge Qs)
+  E3: Heterogeneity by pre-polarization level (above vs below median pre_ap)
+"""
+
+import pandas as pd
+import numpy as np
+import statsmodels.formula.api as smf
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import os
+
+# ─── Setup ───────────────────────────────────────────────────────────────────
+os.makedirs('results', exist_ok=True)
+os.makedirs('figures', exist_ok=True)
+
+ACCENT = '#2171b5'
+INK = '#1a1a1a'
+
+def style_ax(ax):
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['left'].set_visible(False)
+    ax.spines['bottom'].set_visible(True)
+    ax.spines['bottom'].set_color(INK)
+    ax.tick_params(colors=INK)
+    ax.set_facecolor('white')
+    fig = ax.get_figure()
+    fig.patch.set_facecolor('white')
+
+# ─── Load & filter ───────────────────────────────────────────────────────────
+df = pd.read_csv('data/clean.csv')
+df_elig = df.dropna(subset=['post_ap', 'pre_ap']).copy()
+print(f"Eligible sample (post_ap & pre_ap non-missing): N={len(df_elig)}")
+
+FORMULA = 'post_ap ~ C(arm_code, Treatment(reference="T0")) + pre_ap'
+
+def extract_arm_effects(model):
+    """Extract arm-level coefficients from a Treatment-contrast OLS model."""
+    rows = []
+    for term in model.params.index:
+        if term.startswith('C(arm_code'):
+            arm = term.split('[')[1].split(']')[0].replace('T.', '')
+            rows.append({
+                'arm': arm,
+                'estimate': model.params[term],
+                'std_error': model.bse[term],
+                'p_value': model.pvalues[term],
+                'conf_low': model.conf_int().loc[term, 0],
+                'conf_high': model.conf_int().loc[term, 1],
+            })
+    return pd.DataFrame(rows)
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# E1: Heterogeneity by partisan identity
+# Rationale: Affective polarization is a between-party phenomenon; the
+# intervention may differentially affect Democrats vs Republicans.
+# ═══════════════════════════════════════════════════════════════════════════════
+print("\n--- E1: Partisan heterogeneity ---")
+e1_rows = []
+for party in ['Democrat', 'Republican']:
+    sub = df_elig[df_elig['partisan'] == party].copy()
+    if len(sub) < 100:
+        print(f"  Skipping {party}: n={len(sub)}")
+        continue
+    model = smf.ols(FORMULA, data=sub).fit(
+        cov_type='HC2',
+        use_weights=True,
+        weights=sub['ipw_weight']
+    )
+    arm_eff = extract_arm_effects(model)
+    arm_eff['party'] = party
+    arm_eff['n'] = int(model.nobs)
+    e1_rows.append(arm_eff)
+
+e1_df = pd.concat(e1_rows, ignore_index=True)
+e1_df.to_csv('results/E1_partisan_heterogeneity.csv', index=False)
+
+# Summary: mean effect across arms per party
+e1_summary = e1_df.groupby('party').agg(
+    mean_effect=('estimate', 'mean'),
+    sd_effect=('estimate', 'std'),
+    k_arms=('arm', 'count')
+).reset_index()
+e1_summary['se_mean'] = e1_summary['sd_effect'] / np.sqrt(e1_summary['k_arms'])
+e1_summary['ci_low'] = e1_summary['mean_effect'] - 1.96 * e1_summary['se_mean']
+e1_summary['ci_high'] = e1_summary['mean_effect'] + 1.96 * e1_summary['se_mean']
+
+dem_eff = e1_summary.loc[e1_summary.party == 'Democrat', 'mean_effect'].values
+rep_eff = e1_summary.loc[e1_summary.party == 'Republican', 'mean_effect'].values
+dem_ci = e1_summary.loc[e1_summary.party == 'Democrat', ['ci_low', 'ci_high']].values
+rep_ci = e1_summary.loc[e1_summary.party == 'Republican', ['ci_low', 'ci_high']].values
+
+print(f"E1: Mean arm effect on post_ap — Democrats: {dem_eff[0]:.3f} (95% CI [{dem_ci[0][0]:.3f}, {dem_ci[0][1]:.3f}]), "
+      f"Republicans: {rep_eff[0]:.3f} (95% CI [{rep_ci[0][0]:.3f}, {rep_ci[0][1]:.3f}])")
+
+# Figure E1: bar chart of mean effects by party
+fig, ax = plt.subplots(figsize=(6, 4))
+labels = ['Democrats', 'Republicans']
+means = [dem_eff[0], rep_eff[0]]
+ci_lo = [dem_ci[0][0], rep_ci[0][0]]
+ci_hi = [dem_ci[0][1], rep_ci[0][1]]
+ypos = [1, 0]
+colors = [ACCENT, INK]
+
+for i, (y, m, lo, hi, c) in enumerate(zip(ypos, means, ci_lo, ci_hi, colors)):
+    ax.barh(y, m, height=0.5, color=c, alpha=0.85, edgecolor='none')
+    ax.plot([lo, hi], [y, y], color=c, linewidth=1.5, solid_capstyle='round')
+    ax.plot([lo, lo], [y-0.08, y+0.08], color=c, linewidth=1.5)
+    ax.plot([hi, hi], [y-0.08, y+0.08], color=c, linewidth=1.5)
+    # Direct label
+    ax.text(m + 0.15 if m >= 0 else m - 0.15, y,
+            f'{m:.2f}', va='center', ha='left' if m >= 0 else 'right',
+            fontsize=11, color=INK)
+
+ax.axvline(0, color=INK, linewidth=0.8, linestyle='--', alpha=0.5)
+ax.set_yticks(ypos)
+ax.set_yticklabels(labels, fontsize=11, color=INK)
+ax.set_xlabel('Mean treatment effect on post_ap (feeling thermometer)', fontsize=10, color=INK)
+ax.set_title('E1: Effect by Partisan Identity', fontsize=12, color=INK, pad=10)
+style_ax(ax)
+fig.tight_layout()
+fig.savefig('figures/E1_partisan_heterogeneity.png', dpi=200, bbox_inches='tight')
+plt.close(fig)
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# E2: Robustness to attention-check failures
+# Rationale: Excluding respondents who fail ≥2 of 3 knowledge questions tests
+# whether null results are driven by inattentive respondents.
+# ═══════════════════════════════════════════════════════════════════════════════
+print("\n--- E2: Attention-check robustness ---")
+
+# Knowledge questions: pk1 correct=3 (Six years), pk2 correct=2 (Twice), pk3 correct=1 (Sunak)
+df_elig['pk1_fail'] = (df_elig['pk1'] != 3).astype(int)
+df_elig['pk2_fail'] = (df_elig['pk2'] != 2).astype(int)
+df_elig['pk3_fail'] = (df_elig['pk3'] != 1).astype(int)
+df_elig['n_fail'] = df_elig['pk1_fail'] + df_elig['pk2_fail'] + df_elig['pk3_fail']
+
+n_before = len(df_elig)
+df_robust = df_elig[df_elig['n_fail'] < 2].copy()
+n_after = len(df_robust)
+n_excluded = n_before - n_after
+
+model_robust = smf.ols(FORMULA, data=df_robust).fit(
+    cov_type='HC2',
+    use_weights=True,
+    weights=df_robust['ipw_weight']
+)
+e2_df = extract_arm_effects(model_robust)
+e2_df['n'] = int(model_robust.nobs)
+e2_df.to_csv('results/E2_attention_robustness.csv', index=False)
+
+# Compare with original
+model_orig = smf.ols(FORMULA, data=df_elig).fit(
+    cov_type='HC2',
+    use_weights=True,
+    weights=df_elig['ipw_weight']
+)
+e2_orig = extract_arm_effects(model_orig)
+
+# Merge for comparison
+e2_compare = e2_orig[['arm', 'estimate']].merge(
+    e2_df[['arm', 'estimate', 'p_value']], on='arm', suffixes=('_full', '_robust')
+)
+e2_compare['delta'] = e2_compare['estimate_robust'] - e2_compare['estimate_full']
+e2_compare.to_csv('results/E2_attention_robustness.csv', index=False)
+
+max_t_robust = max(abs(model_robust.tvalues[model_robust.tvalues.index.str.startswith('C(arm_code)')]))
+min_p_robust = model_robust.pvalues[model_robust.pvalues.index.str.startswith('C(arm_code)')].min()
+
+print(f"E2: Excluded {n_excluded} respondents (fail ≥2/3 knowledge Qs); N={n_after}. "
+      f"Min p-value across arms: {min_p_robust:.3f}; max |t|: {max_t_robust:.2f}. "
+      f"Conclusion: {'no arm significant' if min_p_robust > 0.05 else 'some arms significant'}")
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# E3: Heterogeneity by pre-polarization level
+# Rationale: If the intervention reduces polarization, effects should be larger
+# among those with higher pre-treatment polarization (room to move).
+# ═══════════════════════════════════════════════════════════════════════════════
+print("\n--- E3: Pre-polarization heterogeneity ---")
+
+median_pre_ap = df_elig['pre_ap'].median()
+df_elig['high_polar'] = (df_elig['pre_ap'] > median_pre_ap).astype(int)
+
+e3_rows = []
+for pol_level, label in [(0, 'Low'), (1, 'High')]:
+    sub = df_elig[df_elig['high_polar'] == pol_level].copy()
+    if len(sub) < 100:
+        print(f"  Skipping {label}: n={len(sub)}")
+        continue
+    model = smf.ols(FORMULA, data=sub).fit(
+        cov_type='HC2',
+        use_weights=True,
+        weights=sub['ipw_weight']
+    )
+    arm_eff = extract_arm_effects(model)
+    arm_eff['polarization'] = label
+    arm_eff['n'] = int(model.nobs)
+    e3_rows.append(arm_eff)
+
+e3_df = pd.concat(e3_rows, ignore_index=True)
+e3_df.to_csv('results/E3_polarization_heterogeneity.csv', index=False)
+
+e3_summary = e3_df.groupby('polarization').agg(
+    mean_effect=('estimate', 'mean'),
+    sd_effect=('estimate', 'std'),
+    k_arms=('arm', 'count')
+).reset_index()
+e3_summary['se_mean'] = e3_summary['sd_effect'] / np.sqrt(e3_summary['k_arms'])
+e3_summary['ci_low'] = e3_summary['mean_effect'] - 1.96 * e3_summary['se_mean']
+e3_summary['ci_high'] = e3_summary['mean_effect'] + 1.96 * e3_summary['se_mean']
+
+low_eff = e3_summary.loc[e3_summary.polarization == 'Low', 'mean_effect'].values
+high_eff = e3_summary.loc[e3_summary.polarization == 'High', 'mean_effect'].values
+low_ci = e3_summary.loc[e3_summary.polarization == 'Low', ['ci_low', 'ci_high']].values
+high_ci = e3_summary.loc[e3_summary.polarization == 'High', ['ci_low', 'ci_high']].values
+
+print(f"E3: Mean arm effect on post_ap — Low pre-polarization: {low_eff[0]:.3f} (95% CI [{low_ci[0][0]:.3f}, {low_ci[0][1]:.3f}]), "
+      f"High pre-polarization: {high_eff[0]:.3f} (95% CI [{high_ci[0][0]:.3f}, {high_ci[0][1]:.3f}])")
+
+# Figure E3: bar chart
+fig, ax = plt.subplots(figsize=(6, 4))
+labels3 = ['Low pre-polarization', 'High pre-polarization']
+means3 = [low_eff[0], high_eff[0]]
+ci_lo3 = [low_ci[0][0], high_ci[0][0]]
+ci_hi3 = [low_ci[0][1], high_ci[0][1]]
+ypos3 = [1, 0]
+colors3 = [INK, ACCENT]
+
+for i, (y, m, lo, hi, c) in enumerate(zip(ypos3, means3, ci_lo3, ci_hi3, colors3)):
+    ax.barh(y, m, height=0.5, color=c, alpha=0.85, edgecolor='none')
+    ax.plot([lo, hi], [y, y], color=c, linewidth=1.5, solid_capstyle='round')
+    ax.plot([lo, lo], [y-0.08, y+0.08], color=c, linewidth=1.5)
+    ax.plot([hi, hi], [y-0.08, y+0.08], color=c, linewidth=1.5)
+    ax.text(m + 0.15 if m >= 0 else m - 0.15, y,
+            f'{m:.2f}', va='center', ha='left' if m >= 0 else 'right',
+            fontsize=11, color=INK)
+
+ax.axvline(0, color=INK, linewidth=0.8, linestyle='--', alpha=0.5)
+ax.set_yticks(ypos3)
+ax.set_yticklabels(labels3, fontsize=11, color=INK)
+ax.set_xlabel('Mean treatment effect on post_ap (feeling thermometer)', fontsize=10, color=INK)
+ax.set_title('E3: Effect by Pre-Polarization Level', fontsize=12, color=INK, pad=10)
+style_ax(ax)
+fig.tight_layout()
+fig.savefig('figures/E3_polarization_heterogeneity.png', dpi=200, bbox_inches='tight')
+plt.close(fig)
+
+print("\nDone. All exploratory analyses complete.")

@@ -1,0 +1,420 @@
+{
+  "title": "Affective polarization interventions from student-designed experiments",
+  "constructs": [
+    "affective_polarization",
+    "democratic_norms",
+    "persuasion"
+  ],
+  "keywords": [
+    "affective polarization",
+    "feeling thermometer",
+    "undemocratic practices",
+    "interventions",
+    "multi-arm"
+  ],
+  "registration": {
+    "status": "none",
+    "url": "",
+    "note": "Reconstructed post hoc on 2026-10-01 from replication_script.R; not pre-registered."
+  },
+  "design": {
+    "type": "survey_experiment",
+    "arms": {
+      "column": "arm",
+      "treatment": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7",
+        "T8",
+        "T9",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16",
+        "T17",
+        "T18",
+        "T19",
+        "T20",
+        "T21",
+        "T22",
+        "T23",
+        "T24",
+        "T25",
+        "T26",
+        "T27",
+        "T28",
+        "T29",
+        "T30",
+        "T31",
+        "T32"
+      ],
+      "control": "T0"
+    },
+    "population": {
+      "country": "US",
+      "sample": "online_panel"
+    },
+    "outcome_type": "feeling thermometer and attitude scale"
+  },
+  "registered": {
+    "outcomes": [
+      {
+        "name": "post_ap",
+        "label": "Affective polarization after treatment",
+        "kind": "single_item",
+        "columns": [
+          "post_ap"
+        ],
+        "reverse": [],
+        "scale": [
+          -100,
+          100
+        ],
+        "construction": "In-party minus out-party thermometer"
+      },
+      {
+        "name": "post_udp",
+        "label": "Support for undemocratic practices",
+        "kind": "mean_items",
+        "columns": [
+          "post_udp_scores_1",
+          "post_udp_scores_2",
+          "post_udp_scores_3",
+          "post_udp_scores_4"
+        ],
+        "reverse": [],
+        "scale": [
+          1,
+          7
+        ],
+        "construction": "Mean of four items"
+      }
+    ],
+    "hypotheses": [
+      {
+        "id": "H1",
+        "text": "Each intervention reduces post_ap relative to control.",
+        "outcome": "post_ap",
+        "treatment": {
+          "column": "arm",
+          "arms": [
+            "T1",
+            "T2",
+            "T3",
+            "T4",
+            "T5",
+            "T6",
+            "T7",
+            "T8",
+            "T9",
+            "T10",
+            "T11",
+            "T12",
+            "T13",
+            "T14",
+            "T15",
+            "T16",
+            "T17",
+            "T18",
+            "T19",
+            "T20",
+            "T21",
+            "T22",
+            "T23",
+            "T24",
+            "T25",
+            "T26",
+            "T27",
+            "T28",
+            "T29",
+            "T30",
+            "T31",
+            "T32"
+          ],
+          "control": "T0"
+        },
+        "direction": "negative",
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC2",
+          "cluster": null,
+          "weights": "ipw_weight",
+          "covariates": [
+            "pre_ap"
+          ],
+          "continuous": [
+            "pre_ap"
+          ]
+        },
+        "pooled": true,
+        "subgroup": null,
+        "exclusions": [
+          "partisan in ['Democrat','Republican']",
+          "arm != 'T33'",
+          "post_ap.notna() and pre_ap.notna()"
+        ]
+      },
+      {
+        "id": "H2",
+        "text": "Each intervention reduces post_udp relative to control.",
+        "outcome": "post_udp",
+        "treatment": {
+          "column": "arm",
+          "arms": [
+            "T1",
+            "T2",
+            "T3",
+            "T4",
+            "T5",
+            "T6",
+            "T7",
+            "T8",
+            "T9",
+            "T10",
+            "T11",
+            "T12",
+            "T13",
+            "T14",
+            "T15",
+            "T16",
+            "T17",
+            "T18",
+            "T19",
+            "T20",
+            "T21",
+            "T22",
+            "T23",
+            "T24",
+            "T25",
+            "T26",
+            "T27",
+            "T28",
+            "T29",
+            "T30",
+            "T31",
+            "T32"
+          ],
+          "control": "T0"
+        },
+        "direction": "negative",
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC2",
+          "cluster": null,
+          "weights": "ipw_weight",
+          "covariates": [
+            "pre_udp"
+          ],
+          "continuous": [
+            "pre_udp"
+          ]
+        },
+        "pooled": true,
+        "subgroup": null,
+        "exclusions": [
+          "partisan in ['Democrat','Republican']",
+          "arm != 'T33'",
+          "post_udp.notna() and pre_udp.notna()"
+        ]
+      }
+    ],
+    "subgroups": [],
+    "sample_exclusions": [
+      "partisan in ['Democrat','Republican']",
+      "arm != 'T33'"
+    ],
+    "multiple_testing": "none",
+    "alpha": 0.05
+  },
+  "implemented": {
+    "outcomes": [
+      {
+        "name": "post_ap",
+        "label": "Affective polarization after treatment",
+        "kind": "single_item",
+        "columns": [
+          "post_ap"
+        ],
+        "reverse": [],
+        "scale": [
+          -100,
+          100
+        ],
+        "construction": "In-party minus out-party thermometer"
+      },
+      {
+        "name": "post_udp",
+        "label": "Support for undemocratic practices",
+        "kind": "mean_items",
+        "columns": [
+          "post_udp_scores_1",
+          "post_udp_scores_2",
+          "post_udp_scores_3",
+          "post_udp_scores_4"
+        ],
+        "reverse": [],
+        "scale": [
+          1,
+          7
+        ],
+        "construction": "Mean of four items"
+      }
+    ],
+    "hypotheses": [
+      {
+        "id": "H1",
+        "text": "Each intervention reduces post_ap relative to control.",
+        "outcome": "post_ap",
+        "treatment": {
+          "column": "arm",
+          "arms": [
+            "T1",
+            "T2",
+            "T3",
+            "T4",
+            "T5",
+            "T6",
+            "T7",
+            "T8",
+            "T9",
+            "T10",
+            "T11",
+            "T12",
+            "T13",
+            "T14",
+            "T15",
+            "T16",
+            "T17",
+            "T18",
+            "T19",
+            "T20",
+            "T21",
+            "T22",
+            "T23",
+            "T24",
+            "T25",
+            "T26",
+            "T27",
+            "T28",
+            "T29",
+            "T30",
+            "T31",
+            "T32"
+          ],
+          "control": "T0"
+        },
+        "direction": "negative",
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC2",
+          "cluster": null,
+          "weights": "ipw_weight",
+          "covariates": [
+            "pre_ap"
+          ],
+          "continuous": [
+            "pre_ap"
+          ]
+        },
+        "pooled": true,
+        "subgroup": null,
+        "exclusions": [
+          "partisan in ['Democrat','Republican']",
+          "arm != 'T33'",
+          "post_ap.notna() and pre_ap.notna()"
+        ]
+      },
+      {
+        "id": "H2",
+        "text": "Each intervention reduces post_udp relative to control.",
+        "outcome": "post_udp",
+        "treatment": {
+          "column": "arm",
+          "arms": [
+            "T1",
+            "T2",
+            "T3",
+            "T4",
+            "T5",
+            "T6",
+            "T7",
+            "T8",
+            "T9",
+            "T10",
+            "T11",
+            "T12",
+            "T13",
+            "T14",
+            "T15",
+            "T16",
+            "T17",
+            "T18",
+            "T19",
+            "T20",
+            "T21",
+            "T22",
+            "T23",
+            "T24",
+            "T25",
+            "T26",
+            "T27",
+            "T28",
+            "T29",
+            "T30",
+            "T31",
+            "T32"
+          ],
+          "control": "T0"
+        },
+        "direction": "negative",
+        "estimator": {
+          "kind": "ols",
+          "robust": "HC2",
+          "cluster": null,
+          "weights": "ipw_weight",
+          "covariates": [
+            "pre_udp"
+          ],
+          "continuous": [
+            "pre_udp"
+          ]
+        },
+        "pooled": true,
+        "subgroup": null,
+        "exclusions": [
+          "partisan in ['Democrat','Republican']",
+          "arm != 'T33'",
+          "post_udp.notna() and pre_udp.notna()"
+        ]
+      }
+    ],
+    "subgroups": [],
+    "sample_exclusions": [
+      "partisan in ['Democrat','Republican']",
+      "arm != 'T33'"
+    ],
+    "multiple_testing": "none",
+    "alpha": 0.05
+  },
+  "ambiguities": [
+    {
+      "hypothesis": "H1",
+      "field": "outcomes.post_ap",
+      "kind": "interpretation",
+      "pap_text": "post_ap, affective polarization after treatment = in-party minus out-party feeling thermometer",
+      "interpretation": "Used the precomputed post_ap column",
+      "alternatives": [
+        "Rebuild from post_ap_scores_1/2 using partisan"
+      ],
+      "reason": "Derived column exists in the data"
+    }
+  ],
+  "source": "pap.md"
+}

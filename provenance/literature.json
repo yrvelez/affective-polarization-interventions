@@ -1,0 +1,154 @@
+{
+ "text": "The retrieved works are largely off-topic relative to the stated hypotheses concerning reductions in post_ap and post_udp; none directly address these specific outcome measures or the intervention paradigm under study.",
+ "works": [
+  {
+   "id": "https://openalex.org/W3038067977",
+   "title": "Quantum cryptography",
+   "authors": [
+    "Nicolas Gisin",
+    "G. Ribordy",
+    "Wolfgang Tittel",
+    "Hugo Zbinden"
+   ],
+   "year": 2002,
+   "doi": "10.1103/revmodphys.74.145",
+   "venue": "Reviews of Modern Physics",
+   "cited_by": 8460,
+   "abstract": "Quantum cryptography could well be the first application of quantum mechanics at the single-quantum level. The rapid progress in both theory and experiment in recent years is reviewed, with emphasis on open questions and technological issues."
+  },
+  {
+   "id": "https://openalex.org/W3109746568",
+   "title": "Engineering precision nanoparticles for drug delivery",
+   "authors": [
+    "Michael J. Mitchell",
+    "Margaret M. Billingsley",
+    "Rebecca M. Haley",
+    "Marissa E. Wechsler"
+   ],
+   "year": 2020,
+   "doi": "10.1038/s41573-020-0090-8",
+   "venue": "Nature Reviews Drug Discovery",
+   "cited_by": 7909,
+   "abstract": ""
+  },
+  {
+   "id": "https://openalex.org/W2110999179",
+   "title": "The automated computation of tree-level and next-to-leading order differential cross sections, and their matching to parton shower simulations",
+   "authors": [
+    "Johan Alwall",
+    "Rikkert Frederix",
+    "Stefano Frixione",
+    "Valentin Hirschi"
+   ],
+   "year": 2014,
+   "doi": "10.1007/jhep07(2014)079",
+   "venue": "Journal of High Energy Physics",
+   "cited_by": 7612,
+   "abstract": "We discuss the theoretical bases that underpin the automation of the computations of tree-level and next-to-leading order cross sections, of their matching to parton shower simulations, and of the merging of matched samples that differ by light-parton multiplicities. We present a computer program, MadGraph5 aMC@NLO, capable of handling all these computations — parton-level fixed order, shower-matc"
+  },
+  {
+   "id": "https://openalex.org/W2760944227",
+   "title": "Beyond misinformation: Understanding and coping with the “post-truth” era.",
+   "authors": [
+    "Stephan Lewandowsky",
+    "Ullrich K. H. Ecker",
+    "John Cook"
+   ],
+   "year": 2017,
+   "doi": "10.1016/j.jarmac.2017.07.008",
+   "venue": "Journal of Applied Research in Memory and Cognition",
+   "cited_by": 2021,
+   "abstract": "The terms \"post-truth\" and \"fake news\" have become increasingly prevalent in public discourse over the last year. This article explores the growing abundance of misinformation, how it influences people, and how to counter it. We examine the ways in which misinformation can have an adverse impact on society. We summarize how people respond to corrections of misinformation, and what kinds of correct"
+  },
+  {
+   "id": "https://openalex.org/W2797202416",
+   "title": "Social Media, Political Polarization, and Political Disinformation: A Review of the Scientific Literature",
+   "authors": [
+    "Joshua Aaron Tucker",
+    "Andrew M. Guess",
+    "Pablo Barberá",
+    "Cristian Vaccari"
+   ],
+   "year": 2018,
+   "doi": "10.2139/ssrn.3144139",
+   "venue": "SSRN Electronic Journal",
+   "cited_by": 1237,
+   "abstract": ""
+  },
+  {
+   "id": "https://openalex.org/W2136223053",
+   "title": "Radicalization into Violent Extremism I: A Review of Social Science Theories",
+   "authors": [
+    "Randy Borum"
+   ],
+   "year": 2011,
+   "doi": "10.5038/1944-0472.4.4.1",
+   "venue": "Journal of Strategic Security",
+   "cited_by": 833,
+   "abstract": "In discourse about countering terrorism, the term \"radicalization\" is widely used, but remains poorly defined. To focus narrowly on ideological radicalization risks implying that radical beliefs are a proxy—or at least a necessary precursor—for terrorism, though we know this not to be true.Different pathways and mechanisms of terrorism involvement operate in different ways for different people at "
+  },
+  {
+   "id": "https://openalex.org/W1990869665",
+   "title": "Recent developments in Geant4",
+   "authors": [
+    "J. Allison",
+    "K. Amako",
+    "J. Apostolakis",
+    "Pedro Arce"
+   ],
+   "year": 2016,
+   "doi": "10.1016/j.nima.2016.06.125",
+   "venue": "Nuclear Instruments and Methods in Physics Research Section A Accelerators Spectrometers Detectors and Associated Equipment",
+   "cited_by": 4200,
+   "abstract": "Geant4 is a software toolkit for the simulation of the passage of particles through matter. It is used by a large number of experiments and projects in a variety of application domains, including high energy physics, astrophysics and space science, medical physics and radiation protection. Over the past several years, major changes have been made to the toolkit in order to accommodate the needs of"
+  },
+  {
+   "id": "https://openalex.org/W3039484069",
+   "title": "The history and advances in cancer immunotherapy: understanding the characteristics of tumor-infiltrating immune cells and their therapeutic implications",
+   "authors": [
+    "Yuanyuan Zhang",
+    "Zemin Zhang"
+   ],
+   "year": 2020,
+   "doi": "10.1038/s41423-020-0488-6",
+   "venue": "Cellular and Molecular Immunology",
+   "cited_by": 2905,
+   "abstract": "Immunotherapy has revolutionized cancer treatment and rejuvenated the field of tumor immunology. Several types of immunotherapy, including adoptive cell transfer (ACT) and immune checkpoint inhibitors (ICIs), have obtained durable clinical responses, but their efficacies vary, and only subsets of cancer patients can benefit from them. Immune infiltrates in the tumor microenvironment (TME) have bee"
+  },
+  {
+   "id": "https://openalex.org/W2402202411",
+   "title": "Challenges in the Treatment of Chronic Wounds",
+   "authors": [
+    "Robert G. Frykberg",
+    "Jaminelli Banks"
+   ],
+   "year": 2015,
+   "doi": "10.1089/wound.2015.0635",
+   "venue": "Advances in Wound Care",
+   "cited_by": 2688,
+   "abstract": "Significance: Chronic wounds include, but are not limited, to diabetic foot ulcers, venous leg ulcers, and pressure ulcers. They are a challenge to wound care professionals and consume a great deal of healthcare resources around the globe. This review discusses the pathophysiology of complex chronic wounds and the means and modalities currently available to achieve healing in such patients. Recent"
+  },
+  {
+   "id": "https://openalex.org/W3085414015",
+   "title": "Prejudice Reduction: Progress and Challenges",
+   "authors": [
+    "Elizabeth Levy Paluck",
+    "Roni Porat",
+    "Chelsey S. Clark",
+    "DONALD PHILIP GREEN"
+   ],
+   "year": 2020,
+   "doi": "10.1146/annurev-psych-071620-030619",
+   "venue": "Annual Review of Psychology",
+   "cited_by": 714,
+   "abstract": "The past decade has seen rapid growth in research that evaluates methods for reducing prejudice. This essay reviews 418 experiments reported in 309 manuscripts from 2007 to 2019 to assess which approaches work best and why. Our quantitative assessment uses meta-analysis to estimate average effects. Our qualitative assessment calls attention to landmark studies that are noteworthy for sustained int"
+  }
+ ],
+ "queries": [
+  "affective polarization intervention experiment",
+  "affective polarization democratic norms undemocratic practices",
+  "reducing affective polarization multi-arm treatment",
+  "feeling thermometer polarization intervention"
+ ],
+ "degraded": null
+}
