@@ -33,14 +33,14 @@ technically.
 
 ## Hypotheses
 
-- H1: Each intervention (T1–T32) reduces `post_ap` relative to control (T0).
-- H2: Each intervention (T1–T32) reduces `post_udp` relative to control (T0).
+- H1: Each intervention (T1–T32) changes `post_ap` relative to control (T0); the expected direction is a reduction, tested two-sided.
+- H2: Each intervention (T1–T32) changes `post_udp` relative to control (T0); the expected direction is a reduction, tested two-sided.
 
 ## Estimation
 
 WLS of the outcome on arm indicators (T0 = reference) plus the pre-treatment measure, weighted by
-`ipw_weight` (1 / the arm's share of the analysis sample), HC2 robust standard errors, two-sided tests at
-α = 0.05, no multiple-testing correction.
+`ipw_weight` (1 / the arm's share among all finished respondents, as in the published analysis), HC2 robust
+standard errors, normal-based two-sided tests at α = 0.05, no multiple-testing correction.
 
 ## Robustness
 

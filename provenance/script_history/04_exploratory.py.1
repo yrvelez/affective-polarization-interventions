@@ -1,11 +1,10 @@
 """
 Exploratory analyses for the Affective Polarization survey experiment.
 Three analyses:
-  E1: Heterogeneity by partisan identity (Democrat vs Republican)
+  E1: Heterogeneity by party for T15 (only significant registered arm)
   E2: Robustness to attention-check failures
-  E3: Pooled average treatment effect (all arms vs control)
+  E3: Component feeling-thermometer items for T15
 """
-
 import pandas as pd
 import numpy as np
 import statsmodels.formula.api as smf
@@ -14,217 +13,168 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import os
 
-# ── Setup ──────────────────────────────────────────────────────────────────────
 os.makedirs('results', exist_ok=True)
 os.makedirs('figures', exist_ok=True)
 
-ACCENT = '#2171b5'
-ACCENT2 = '#cb181d'
-INK = '#222222'
-
-def style_ax(ax):
-    ax.spines['top'].set_visible(False)
-    ax.spines['right'].set_visible(False)
-    ax.spines['left'].set_visible(False)
-    ax.grid(False)
-    ax.tick_params(colors=INK)
-    for label in ax.get_xticklabels() + ax.get_yticklabels():
-        label.set_color(INK)
-
-# ── Load data ──────────────────────────────────────────────────────────────────
+# ── Load & clean ──────────────────────────────────────────────────────────────
 df = pd.read_csv('data/clean.csv')
-
-# Exclude T33 (GPT-3 chatbot, technical failures)
-df = df[df['arm_code'] != 'T33'].copy()
-
-# Binary treated indicator
-df['treated'] = (df['arm_code'] != 'T0').astype(int)
-
-# Attention-check correctness
-df['pk1_correct'] = (df['pk1'] == 3).astype(int)
-df['pk2_correct'] = (df['pk2'] == 2).astype(int)
-df['pk3_correct'] = (df['pk3'] == 1).astype(int)
-df['n_correct'] = df[['pk1_correct', 'pk2_correct', 'pk3_correct']].sum(axis=1)
-df['failed_all'] = (df['n_correct'] == 0)
-
-# Analysis subsets (drop rows missing key vars or weights)
-df_ap = df.dropna(subset=['post_ap', 'pre_ap', 'ipw_weight']).copy()
-df_udp = df.dropna(subset=['post_udp', 'pre_udp', 'ipw_weight']).copy()
+df_elig = df.dropna(subset=['post_ap', 'ipw_weight', 'pre_ap']).copy()
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# E1: Heterogeneity by partisan identity
-# Rationale: Affective polarization is a between-party phenomenon; the average
-#       treatment effect may differ for Democrats vs Republicans.
+# E1: Heterogeneity by party for T15
+# Rationale: T15 (perception-gap video) was the only arm with a significant
+# effect on post_ap (p=.019); testing whether the effect differs by party
+# identity helps interpret the mechanism.
 # ═══════════════════════════════════════════════════════════════════════════════
-rows_e1 = []
-for partisan in ['Democrat', 'Republican']:
-    for outcome, pre, data in [('post_ap', 'pre_ap', df_ap), ('post_udp', 'pre_udp', df_udp)]:
-        sub = data[data['partisan'] == partisan].copy()
-        m = smf.wls(f'{outcome} ~ treated + {pre}', data=sub,
-                    weights=sub['ipw_weight']).fit(cov_type='HC2')
-        ci = m.conf_int().loc['treated']
-        rows_e1.append({
-            'partisan': partisan,
-            'outcome': outcome,
-            'estimate': m.params['treated'],
-            'std_error': m.bse['treated'],
-            'p_value': m.pvalues['treated'],
-            'conf_low': ci[0],
-            'conf_high': ci[1],
-            'n': len(sub),
-            'n_treated': int(sub['treated'].sum()),
-            'n_control': int((sub['treated'] == 0).sum()),
+df_e1 = df_elig[df_elig['arm_code'].isin(['T0', 'T15'])].copy()
+
+results_e1 = []
+for party in ['Democrat', 'Republican']:
+    sub = df_e1[df_e1['partisan'] == party]
+    formula = 'post_ap ~ C(arm_code, Treatment(reference="T0")) + pre_ap'
+    model = smf.wls(formula, data=sub, weights=sub['ipw_weight']).fit(cov_type='HC2')
+    term = 'C(arm_code, Treatment(reference="T0"))[T.T15]'
+    if term in model.params.index:
+        ci = model.conf_int().loc[term]
+        results_e1.append({
+            'party': party,
+            'estimate': round(model.params[term], 4),
+            'std_error': round(model.bse[term], 4),
+            'p_value': round(model.pvalues[term], 4),
+            'conf_low': round(ci[0], 4),
+            'conf_high': round(ci[1], 4),
+            'n': int(model.nobs)
         })
 
-e1_df = pd.DataFrame(rows_e1)
-e1_df.to_csv('results/E1_partisan_heterogeneity.csv', index=False)
+# Interaction model
+df_e1['is_t15'] = (df_e1['arm_code'] == 'T15').astype(int)
+df_e1['is_rep'] = (df_e1['partisan'] == 'Republican').astype(int)
+formula_int = 'post_ap ~ is_t15 * is_rep + pre_ap'
+model_int = smf.wls(formula_int, data=df_e1, weights=df_e1['ipw_weight']).fit(cov_type='HC2')
+int_term = 'is_t15:is_rep'
+ci_int = model_int.conf_int().loc[int_term]
+results_e1.append({
+    'party': 'Interaction (T15 x Republican)',
+    'estimate': round(model_int.params[int_term], 4),
+    'std_error': round(model_int.bse[int_term], 4),
+    'p_value': round(model_int.pvalues[int_term], 4),
+    'conf_low': round(ci_int[0], 4),
+    'conf_high': round(ci_int[1], 4),
+    'n': int(model_int.nobs)
+})
 
-# Print summary
-dem_ap = e1_df[(e1_df.partisan == 'Democrat') & (e1_df.outcome == 'post_ap')].iloc[0]
-rep_ap = e1_df[(e1_df.partisan == 'Republican') & (e1_df.outcome == 'post_ap')].iloc[0]
-print(f"E1: Pooled AP effect — Democrat: {dem_ap['estimate']:.3f} (p={dem_ap['p_value']:.3f}), "
-      f"Republican: {rep_ap['estimate']:.3f} (p={rep_ap['p_value']:.3f})")
+e1_df = pd.DataFrame(results_e1)
+e1_df.to_csv('results/E1_party_heterogeneity.csv', index=False)
 
-# Figure E1: coefficient plot for post_ap
-fig, ax = plt.subplots(figsize=(5.5, 2.8))
-for i, row in e1_df[e1_df.outcome == 'post_ap'].iterrows():
-    idx = list(e1_df[e1_df.outcome == 'post_ap'].index).index(i)
-    ax.errorbar(row['estimate'], idx,
-                xerr=[[row['estimate'] - row['conf_low']],
-                      [row['conf_high'] - row['estimate']]],
-                fmt='o', color=ACCENT, capsize=5, markersize=9, linewidth=1.5)
-    ax.text(row['conf_high'] + 0.25, idx,
-            f"{row['estimate']:.2f} (p={row['p_value']:.3f})",
-            va='center', fontsize=9, color=INK)
-ax.axvline(0, color='#999999', linewidth=0.7, linestyle='--')
-ax.set_yticks([0, 1])
-ax.set_yticklabels(['Democrat', 'Republican'], fontsize=10)
-ax.set_xlabel('Pooled effect on post_ap (95% CI)', fontsize=10)
-ax.set_title('E1: Treatment effect by partisan identity', fontsize=11, color=INK)
-style_ax(ax)
+# Figure E1
+fig, ax = plt.subplots(figsize=(7, 3))
+colors_e1 = ['#2171b5', '#cb181d', '#666666']
+for i, row in e1_df.iterrows():
+    ax.hlines(i, row['conf_low'], row['conf_high'], color=colors_e1[i], linewidth=2)
+    ax.plot(row['estimate'], i, 'o', color=colors_e1[i], markersize=8)
+ax.axvline(0, color='grey', linewidth=0.5, linestyle='--')
+ax.set_yticks(range(len(e1_df)))
+ax.set_yticklabels(e1_df['party'])
+ax.set_xlabel('Effect on post_ap (95% CI)')
+ax.set_title('E1: T15 Effect by Party')
+for spine in ['top', 'right', 'left']:
+    ax.spines[spine].set_visible(False)
+ax.grid(False)
 plt.tight_layout()
-plt.savefig('figures/E1_partisan_heterogeneity.png', dpi=200, facecolor='white')
+plt.savefig('figures/E1_party_heterogeneity.png', dpi=200)
 plt.close()
+
+print(f"E1: T15 Dem={e1_df.loc[0,'estimate']:.3f} (p={e1_df.loc[0,'p_value']:.3f}), "
+      f"Rep={e1_df.loc[1,'estimate']:.3f} (p={e1_df.loc[1,'p_value']:.3f}), "
+      f"interaction p={model_int.pvalues[int_term]:.3f}")
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # E2: Robustness to attention-check failures
-# Rationale: Excluding respondents who answered all three knowledge questions
-#       incorrectly tests whether null results are driven by inattentive data.
+# Rationale: Excluding respondents who failed 2+ of 3 knowledge questions tests
+# whether inattentive respondents add noise that obscures true treatment effects.
 # ═══════════════════════════════════════════════════════════════════════════════
-rows_e2 = []
-for label, mask in [('Full sample', pd.Series(True, index=df_ap.index)),
-                    ('Excl. all-fail', ~df_ap['failed_all'])]:
-    sub = df_ap[mask].copy()
-    m = smf.wls('post_ap ~ treated + pre_ap', data=sub,
-                weights=sub['ipw_weight']).fit(cov_type='HC2')
-    ci = m.conf_int().loc['treated']
-    rows_e2.append({
-        'sample': label, 'outcome': 'post_ap',
-        'estimate': m.params['treated'], 'std_error': m.bse['treated'],
-        'p_value': m.pvalues['treated'],
-        'conf_low': ci[0], 'conf_high': ci[1], 'n': len(sub),
-    })
+df_e2 = df_elig.copy()
+# Correct answers: pk1=3 (six years), pk2=2 (twice), pk3=1 (Sunak)
+df_e2['n_wrong'] = (
+    (df_e2['pk1'] != 3).astype(int) +
+    (df_e2['pk2'] != 2).astype(int) +
+    (df_e2['pk3'] != 1).astype(int)
+)
+df_e2['n_wrong'] = df_e2['n_wrong'].fillna(3)  # missing = wrong
+df_e2_pass = df_e2[df_e2['n_wrong'] <= 1]
+n_excluded = len(df_e2) - len(df_e2_pass)
 
-for label, mask in [('Full sample', pd.Series(True, index=df_udp.index)),
-                    ('Excl. all-fail', ~df_udp['failed_all'])]:
-    sub = df_udp[mask].copy()
-    m = smf.wls('post_udp ~ treated + pre_udp', data=sub,
-                weights=sub['ipw_weight']).fit(cov_type='HC2')
-    ci = m.conf_int().loc['treated']
-    rows_e2.append({
-        'sample': label, 'outcome': 'post_udp',
-        'estimate': m.params['treated'], 'std_error': m.bse['treated'],
-        'p_value': m.pvalues['treated'],
-        'conf_low': ci[0], 'conf_high': ci[1], 'n': len(sub),
-    })
+formula_e2 = 'post_ap ~ C(arm_code, Treatment(reference="T0")) + pre_ap'
+model_e2 = smf.wls(formula_e2, data=df_e2_pass, weights=df_e2_pass['ipw_weight']).fit(cov_type='HC2')
 
-e2_df = pd.DataFrame(rows_e2)
+arms = [f'T{i}' for i in range(1, 33)]
+e2_rows = []
+for arm in arms:
+    term = f'C(arm_code, Treatment(reference="T0"))[T.{arm}]'
+    if term in model_e2.params.index:
+        ci = model_e2.conf_int().loc[term]
+        e2_rows.append({
+            'arm_code': arm,
+            'estimate': round(model_e2.params[term], 4),
+            'std_error': round(model_e2.bse[term], 4),
+            'p_value': round(model_e2.pvalues[term], 4),
+            'conf_low': round(ci[0], 4),
+            'conf_high': round(ci[1], 4)
+        })
+
+e2_df = pd.DataFrame(e2_rows)
 e2_df.to_csv('results/E2_attention_check_robustness.csv', index=False)
 
-n_failed = int(df_ap['failed_all'].sum())
-full_ap = e2_df[(e2_df.sample == 'Full sample') & (e2_df.outcome == 'post_ap')].iloc[0]
-excl_ap = e2_df[(e2_df.sample == 'Excl. all-fail') & (e2_df.outcome == 'post_ap')].iloc[0]
-print(f"E2: {n_failed} respondents failed all 3 knowledge questions; "
-      f"pooled AP effect full={full_ap['estimate']:.3f} vs excl={excl_ap['estimate']:.3f}")
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# E3: Pooled average treatment effect (all arms vs control)
-# Rationale: With 32 arms each having limited per-arm power, a single pooled
-#       estimate of the average effect across all treatments provides a more
-#       precise test of whether interventions reduce polarization on average.
-# ═══════════════════════════════════════════════════════════════════════════════
-
-# Individual arm effects (for forest plot)
-m_full = smf.wls('post_ap ~ C(arm_code, Treatment(reference="T0")) + pre_ap',
-                 data=df_ap, weights=df_ap['ipw_weight']).fit(cov_type='HC2')
-
-arm_rows = []
-for arm in sorted(df_ap['arm_code'].unique()):
-    if arm == 'T0':
-        continue
-    term = f'C(arm_code, Treatment(reference="T0"))[T.{arm}]'
-    if term not in m_full.params.index:
-        continue
-    ci = m_full.conf_int().loc[term]
-    arm_rows.append({
-        'arm': arm,
-        'estimate': m_full.params[term],
-        'std_error': m_full.bse[term],
-        'p_value': m_full.pvalues[term],
-        'conf_low': ci[0],
-        'conf_high': ci[1],
-        'n': int((df_ap['arm_code'] == arm).sum()),
-    })
-arm_df = pd.DataFrame(arm_rows)
-
-# Pooled estimates
-m_pooled_ap = smf.wls('post_ap ~ treated + pre_ap', data=df_ap,
-                      weights=df_ap['ipw_weight']).fit(cov_type='HC2')
-ci_ap = m_pooled_ap.conf_int().loc['treated']
-
-m_pooled_udp = smf.wls('post_udp ~ treated + pre_udp', data=df_udp,
-                       weights=df_udp['ipw_weight']).fit(cov_type='HC2')
-ci_udp = m_pooled_udp.conf_int().loc['treated']
-
-e3_summary = pd.DataFrame([
-    {'outcome': 'post_ap', 'estimate': m_pooled_ap.params['treated'],
-     'std_error': m_pooled_ap.bse['treated'], 'p_value': m_pooled_ap.pvalues['treated'],
-     'conf_low': ci_ap[0], 'conf_high': ci_ap[1], 'n': len(df_ap)},
-    {'outcome': 'post_udp', 'estimate': m_pooled_udp.params['treated'],
-     'std_error': m_pooled_udp.bse['treated'], 'p_value': m_pooled_udp.pvalues['treated'],
-     'conf_low': ci_udp[0], 'conf_high': ci_udp[1], 'n': len(df_udp)},
-])
-e3_summary.to_csv('results/E3_pooled_ate_summary.csv', index=False)
-arm_df.to_csv('results/E3_pooled_ate_arms.csv', index=False)
-
-print(f"E3: Pooled ATE — post_ap: {m_pooled_ap.params['treated']:.3f} "
-      f"(p={m_pooled_ap.pvalues['treated']:.4f}), "
-      f"post_udp: {m_pooled_udp.params['treated']:.4f} "
-      f"(p={m_pooled_udp.pvalues['treated']:.4f})")
-
-# Figure E3: Forest plot
-fig, ax = plt.subplots(figsize=(7, 9))
-y_pos = np.arange(len(arm_df))
-ax.hlines(y_pos, arm_df['conf_low'], arm_df['conf_high'],
-          color='#888888', linewidth=1, alpha=0.8)
-ax.scatter(arm_df['estimate'], y_pos, color=ACCENT, s=28, zorder=5, linewidths=0)
-
-# Pooled diamond
-y_p = len(arm_df) + 0.5
-ax.scatter([m_pooled_ap.params['treated']], [y_p], marker='D',
-           color=ACCENT2, s=90, zorder=6, linewidths=0)
-ax.hlines([y_p], [ci_ap[0]], [ci_ap[1]], color=ACCENT2, linewidth=2.5)
-ax.text(ci_ap[1] + 0.15, y_p, f"Pooled: {m_pooled_ap.params['treated']:.2f}",
-        va='center', fontsize=9, color=ACCENT2)
-
-ax.axvline(0, color='#999999', linewidth=0.7, linestyle='--')
-ax.set_yticks(list(y_pos) + [y_p])
-ax.set_yticklabels(arm_df['arm'].tolist() + ['Pooled'], fontsize=8)
-ax.set_xlabel('Effect on post_ap (95% CI)', fontsize=10)
-ax.set_title('E3: Individual arm effects and pooled ATE on post_ap', fontsize=11, color=INK)
-style_ax(ax)
+# Figure E2
+fig, ax = plt.subplots(figsize=(8, 5))
+y_pos = range(len(e2_df))
+colors_e2 = ['#cb181d' if p < 0.05 else '#2171b5' for p in e2_df['p_value']]
+ax.hlines(y_pos, e2_df['conf_low'], e2_df['conf_high'], color=colors_e2, linewidth=1.5)
+ax.plot(e2_df['estimate'], y_pos, 'o', color=colors_e2, markersize=5)
+ax.axvline(0, color='grey', linewidth=0.5, linestyle='--')
+ax.set_yticks(list(y_pos))
+ax.set_yticklabels(e2_df['arm_code'], fontsize=7)
+ax.set_xlabel('Effect on post_ap (95% CI)')
+ax.set_title(f'E2: Attention-check passers only (n={len(df_e2_pass)}, excluded {n_excluded})')
+for spine in ['top', 'right', 'left']:
+    ax.spines[spine].set_visible(False)
+ax.grid(False)
 plt.tight_layout()
-plt.savefig('figures/E3_pooled_ate_forest.png', dpi=200, facecolor='white')
+plt.savefig('figures/E2_attention_check.png', dpi=200)
 plt.close()
 
-print("All exploratory analyses complete.")
+sig_arms = e2_df[e2_df['p_value'] < 0.05]['arm_code'].tolist()
+print(f"E2: Excluded {n_excluded} inattentive (n={len(df_e2_pass)}), "
+      f"significant arms: {sig_arms if sig_arms else 'none'}")
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# E3: Component feeling-thermometer items for T15
+# Rationale: Decomposing the composite post_ap into its two component items
+# reveals whether T15 works by increasing in-party warmth or decreasing
+# out-party warmth (or both).
+# ═══════════════════════════════════════════════════════════════════════════════
+df_e3 = df_elig[df_elig['arm_code'].isin(['T0', 'T15'])].copy()
+
+e3_rows = []
+for col in ['post_ap_scores_1', 'post_ap_scores_2']:
+    sub = df_e3.dropna(subset=[col])
+    formula_e3 = f'{col} ~ C(arm_code, Treatment(reference="T0")) + pre_ap'
+    model_e3 = smf.wls(formula_e3, data=sub, weights=sub['ipw_weight']).fit(cov_type='HC2')
+    term = 'C(arm_code, Treatment(reference="T0"))[T.T15]'
+    if term in model_e3.params.index:
+        ci = model_e3.conf_int().loc[term]
+        e3_rows.append({
+            'component': col,
+            'estimate': round(model_e3.params[term], 4),
+            'std_error': round(model_e3.bse[term], 4),
+            'p_value': round(model_e3.pvalues[term], 4),
+            'conf_low': round(ci[0], 4),
+            'conf_high': round(ci[1], 4),
+            'n': int(model_e3.nobs)
+        })
+
+e3_df = pd.DataFrame(e3_rows)
+e3_df.to_csv('results/E3_component_items.csv', index=False)
+
+print(f"E3: T15 on post_ap_scores_1={e3_df.loc[0,'estimate']:.3f} (p={e3_df.loc[0,'p_value']:.3f}), "
+      f"post_ap_scores_2={e3_df.loc[1,'estimate']:.3f} (p={e3_df.loc[1,'p_value']:.3f})")

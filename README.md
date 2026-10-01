@@ -6,8 +6,10 @@ pure control, among partisans. Interventions include videos (e.g. a perception-g
 empathy video), articles (e.g. a meta-dehumanization correction, bipartisan legislation examples), images
 and interactive quizzes; the report lists each one.
 
-No single intervention reliably reduced affective polarization or support for undemocratic practices
-(two-sided tests); pooled across arms, polarization fell about 1 point on a 0–100 scale.
+One intervention, a perception-gap video, significantly reduced affective polarization (−2.33 points on the
+0–100 thermometer gap, p = .019, uncorrected across 32 arms); pooled across arms, polarization fell 0.82
+points. No intervention changed support for undemocratic practices. Results match the published analysis
+(N = 3,825).
 
 **Read the report: [report.md](report.md).**
 

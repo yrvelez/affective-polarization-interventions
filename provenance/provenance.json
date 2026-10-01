@@ -8,13 +8,13 @@
  },
  "provider": "openrouter",
  "zero_retention_requested": true,
- "cost_usd": 0.070353,
+ "cost_usd": 0.063889,
  "tokens": {
-  "in": 110423,
-  "out": 16245
+  "in": 108465,
+  "out": 14738
  },
  "tool_version": "0.1.0",
- "created": "2026-10-01T19:58:53Z",
+ "created": "2026-10-01T20:17:43Z",
  "pap_source": "author-supplied pap.json",
  "pii": {
   "dropped": [
@@ -36,26 +36,26 @@
   "litreview: skipped by flag"
  ],
  "inputs": {
-  "raw_csv_sha256": "5b7be025b970aa4f32d3c5e4bb297cf8ecf4d896ae8743faabaa86cad4c9bb6a",
-  "pap_sha256": "e8f2464c6228faa217ffb534cecb1c8ff42a927b6410d18ba440ff484dd64650",
+  "raw_csv_sha256": "ff8f8517bd89f0a747f5b369ca0072813855f9694f554ab5aeb95d85a785be75",
+  "pap_sha256": "a24007f704bd0276d94171db6b386d23a39250e25e01e7f7f74e108fb5be0dc1",
   "qsf_sha256": "be2c72b5e68c76781776c4e75dcc2e675422bd1640fbd1737699df60a6819324",
-  "pap_json_sha256": "6cefea19d9912fb7f645558e0147e7aa79e6344f4fe46378b915f3eb5ebc8e29"
+  "pap_json_sha256": "6be28ccc1ecbbce3464e069728fec050a17d5d8c98c3347b513f78d85f280483"
  },
  "usage_by_agent": {
   "exploratory": {
    "calls": 5,
-   "in": 99083,
-   "out": 14854,
-   "cost": 0.066094457616,
+   "in": 97062,
+   "out": 13367,
+   "cost": 0.059657546124,
    "models": [
     "qwen/qwen3.8-27b"
    ]
   },
   "writer": {
    "calls": 1,
-   "in": 11340,
-   "out": 1391,
-   "cost": 0.00425890575,
+   "in": 11403,
+   "out": 1371,
+   "cost": 0.00423113625,
    "models": [
     "qwen/qwen3.8-27b"
    ]
@@ -63,40 +63,40 @@
  },
  "stage_seconds": {
   "ingest": 0.01,
-  "pii": 0.22,
+  "pii": 0.21,
   "tidy": 0.31,
   "pap": 0.0,
-  "clean": 0.6,
-  "registered": 11.56,
+  "clean": 0.59,
+  "registered": 11.64,
   "tag": 0.0,
-  "exploratory": 192.98,
+  "exploratory": 189.44,
   "silicon": 0.0,
   "litreview": 0.0,
-  "write": 16.49,
+  "write": 11.24,
   "review": 0.0,
   "package": 0.0
  },
- "total_seconds": 222.2,
+ "total_seconds": 213.4,
  "log": [
-  "2026-10-01T19:58:53Z stage ingest",
-  "2026-10-01T19:58:53Z stage pii",
-  "2026-10-01T19:58:53Z PII scan (header + first row only): flagged 3 column(s): StartDate [known_identifier_column], EndDate [known_identifier_column], RecordedDate [known_identifier_column]. Action: dropped 3, kept by whitelist 0.",
-  "2026-10-01T19:58:53Z stage tidy",
-  "2026-10-01T19:58:53Z stage pap",
-  "2026-10-01T19:58:53Z pap: loaded author-supplied /Users/yamil/Projects/filedrawer/affective_polarization/pap_labeled.json (papreader agent skipped)",
-  "2026-10-01T19:58:53Z stage clean",
-  "2026-10-01T19:58:54Z wrote data/clean.csv: 4547 rows, 77 columns",
-  "2026-10-01T19:58:54Z stage registered",
-  "2026-10-01T19:59:06Z H1: post_ap ~ C(arm_code, Treatment(reference='T0')) + pre_ap | 32 arms vs Control, N=3825, HC2 SEs, weights=ipw_weight; 3 arm(s) supported; pooled=-0.819 (SE 0.291, p=0.0049, tau2=0.0000, I2=0.00)",
-  "2026-10-01T19:59:06Z H2: post_udp ~ C(arm_code, Treatment(reference='T0')) + pre_udp | 32 arms vs Control, N=3953, HC2 SEs, weights=ipw_weight; 0 arm(s) supported; pooled=-0.015 (SE 0.015, p=0.3029, tau2=0.0000, I2=0.00)",
-  "2026-10-01T19:59:06Z wrote results/registered_summary.csv (66 rows)",
-  "2026-10-01T19:59:06Z stage tag",
-  "2026-10-01T19:59:06Z stage exploratory",
-  "2026-10-01T20:02:19Z tags: H1=unregistered, H2=unregistered, E1=exploratory, E2=exploratory, E3=exploratory",
-  "2026-10-01T20:02:19Z stage silicon",
-  "2026-10-01T20:02:19Z stage litreview",
-  "2026-10-01T20:02:19Z stage write",
-  "2026-10-01T20:02:35Z stage review",
-  "2026-10-01T20:02:35Z stage package"
+  "2026-10-01T20:17:43Z stage ingest",
+  "2026-10-01T20:17:43Z stage pii",
+  "2026-10-01T20:17:43Z PII scan (header + first row only): flagged 3 column(s): StartDate [known_identifier_column], EndDate [known_identifier_column], RecordedDate [known_identifier_column]. Action: dropped 3, kept by whitelist 0.",
+  "2026-10-01T20:17:43Z stage tidy",
+  "2026-10-01T20:17:44Z stage pap",
+  "2026-10-01T20:17:44Z pap: loaded author-supplied /Users/yamil/Projects/filedrawer/affective_polarization/pap_labeled.json (papreader agent skipped)",
+  "2026-10-01T20:17:44Z stage clean",
+  "2026-10-01T20:17:44Z wrote data/clean.csv: 4547 rows, 77 columns",
+  "2026-10-01T20:17:44Z stage registered",
+  "2026-10-01T20:17:56Z H1: post_ap ~ C(arm_code, Treatment(reference='T0')) + pre_ap | 32 arms vs Control, N=3825, HC2 SEs, weights=ipw_weight; 1 arm(s) supported; pooled=-0.819 (SE 0.291, p=0.0049, tau2=0.0000, I2=0.00)",
+  "2026-10-01T20:17:56Z H2: post_udp ~ C(arm_code, Treatment(reference='T0')) + pre_udp | 32 arms vs Control, N=3953, HC2 SEs, weights=ipw_weight; 0 arm(s) supported; pooled=-0.015 (SE 0.015, p=0.3087, tau2=0.0000, I2=0.00)",
+  "2026-10-01T20:17:56Z wrote results/registered_summary.csv (66 rows)",
+  "2026-10-01T20:17:56Z stage tag",
+  "2026-10-01T20:17:56Z stage exploratory",
+  "2026-10-01T20:21:05Z tags: H1=unregistered, H2=unregistered, E1=exploratory, E2=exploratory, E3=exploratory",
+  "2026-10-01T20:21:05Z stage silicon",
+  "2026-10-01T20:21:05Z stage litreview",
+  "2026-10-01T20:21:05Z stage write",
+  "2026-10-01T20:21:16Z stage review",
+  "2026-10-01T20:21:16Z stage package"
  ]
 }

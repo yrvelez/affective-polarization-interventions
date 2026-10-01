@@ -169,7 +169,7 @@
     "hypotheses": [
       {
         "id": "H1",
-        "text": "Each intervention reduces post_ap relative to control.",
+        "text": "Each intervention changes post_ap relative to control.",
         "outcome": "post_ap",
         "treatment": {
           "column": "arm",
@@ -209,7 +209,7 @@
           ],
           "control": "T0"
         },
-        "direction": "negative",
+        "direction": "two_sided",
         "estimator": {
           "kind": "ols",
           "robust": "HC2",
@@ -233,7 +233,7 @@
       },
       {
         "id": "H2",
-        "text": "Each intervention reduces post_udp relative to control.",
+        "text": "Each intervention changes post_udp relative to control.",
         "outcome": "post_udp",
         "treatment": {
           "column": "arm",
@@ -273,7 +273,7 @@
           ],
           "control": "T0"
         },
-        "direction": "negative",
+        "direction": "two_sided",
         "estimator": {
           "kind": "ols",
           "robust": "HC2",
@@ -338,7 +338,7 @@
     "hypotheses": [
       {
         "id": "H1",
-        "text": "Each intervention reduces post_ap relative to control.",
+        "text": "Each intervention changes post_ap relative to control.",
         "outcome": "post_ap",
         "treatment": {
           "column": "arm",
@@ -378,7 +378,7 @@
           ],
           "control": "T0"
         },
-        "direction": "negative",
+        "direction": "two_sided",
         "estimator": {
           "kind": "ols",
           "robust": "HC2",
@@ -402,7 +402,7 @@
       },
       {
         "id": "H2",
-        "text": "Each intervention reduces post_udp relative to control.",
+        "text": "Each intervention changes post_udp relative to control.",
         "outcome": "post_udp",
         "treatment": {
           "column": "arm",
@@ -442,7 +442,7 @@
           ],
           "control": "T0"
         },
-        "direction": "negative",
+        "direction": "two_sided",
         "estimator": {
           "kind": "ols",
           "robust": "HC2",

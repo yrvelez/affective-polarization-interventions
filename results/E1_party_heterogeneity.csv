@@ -1,0 +1,4 @@
+party,estimate,std_error,p_value,conf_low,conf_high,n
+Democrat,-2.9092,1.1586,0.012,-5.18,-0.6384,541
+Republican,-1.4137,1.7229,0.4119,-4.7906,1.9632,329
+Interaction (T15 x Republican),1.4062,2.1037,0.5039,-2.717,5.5293,870
