@@ -18,12 +18,6 @@ for col in ['post_ap', 'pre_ap', 'post_udp', 'pre_udp', 'ipw_weight', 'pk1', 'pk
     if col in df.columns:
         df[col] = pd.to_numeric(df[col], errors='coerce')
 
-# Add attention check failure flag to df before slicing
-df['failed_all_pk'] = (
-    (df['pk1'].notna()) & (df['pk2'].notna()) & (df['pk3'].notna()) &
-    (df['pk1'] != 3) & (df['pk2'] != 2) & (df['pk3'] != 1)
-).astype(int)
-
 h1 = [h for h in reg.HYPOTHESES if h['id'] == 'H1'][0]
 est = h1['estimator']
 outcome = 'post_ap'
@@ -87,6 +81,11 @@ plt.close()
 # E2: Robustness excluding attention-check failures
 # Rationale: Respondents who fail all knowledge checks may not have engaged, potentially biasing estimates.
 # ============================================================
+
+df['failed_all_pk'] = (
+    (df['pk1'].notna()) & (df['pk2'].notna()) & (df['pk3'].notna()) &
+    (df['pk1'] != 3) & (df['pk2'] != 2) & (df['pk3'] != 1)
+).astype(int)
 
 n_failed = int(df_elig['failed_all_pk'].sum())
 n_total = len(df_elig)

@@ -1,0 +1,26 @@
+[filedrawer] stage ingest
+[filedrawer] stage pii
+[filedrawer] PII scan (header + first row only): flagged 3 column(s): StartDate [known_identifier_column], EndDate [known_identifier_column], RecordedDate [known_identifier_column]. Action: dropped 3, kept by whitelist 0.
+[filedrawer] stage tidy
+[filedrawer] stage pap
+[filedrawer] pap: loaded author-supplied /Users/yamil/Projects/filedrawer/affective_polarization/pap_labeled.json (papreader agent skipped)
+[filedrawer] cleared 8 file(s) from the previous run
+[filedrawer] stage clean
+[filedrawer] wrote data/clean.csv: 4547 rows, 77 columns
+[filedrawer] stage registered
+[filedrawer] H1: post_ap ~ C(arm_code, Treatment(reference='T0')) + pre_ap | 32 arms vs Control, N=3825, HC2 SEs, weights=ipw_weight; 1 arm(s) supported; pooled=-0.819 (SE 0.291, p=0.0049, tau2=0.0000, I2=0.00)
+[filedrawer] H2: post_udp ~ C(arm_code, Treatment(reference='T0')) + pre_udp | 32 arms vs Control, N=3953, HC2 SEs, weights=ipw_weight; 0 arm(s) supported; pooled=-0.015 (SE 0.015, p=0.3087, tau2=0.0000, I2=0.00)
+[filedrawer] wrote results/registered_summary.csv (66 rows)
+[filedrawer] stage tag
+[filedrawer] stage exploratory
+[filedrawer] tags: H1=unregistered, H2=unregistered, E1=exploratory, E2=exploratory, E3=exploratory
+[filedrawer] stage litreview
+[filedrawer] stage write
+[filedrawer] stage review
+[filedrawer] reviewer: 8 issue(s)
+[filedrawer] stage package
+[filedrawer] done: . (tokens in/out 214587/20193, cost $0.1549)
+
+Study package written to .
+  report: report.md
+  next: filedrawer attest/release, then filedrawer build-index

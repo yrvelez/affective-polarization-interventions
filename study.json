@@ -5,8 +5,8 @@
  "authors": [
   "Yamil Velez"
  ],
- "summary": "We tested 32 student-designed interventions against a control condition in a US online panel survey experiment (N = 3,825 finished partisan respondents in the primary analysis; control group n = 229). The primary outcome was affective polarization measured by a feeling-thermometer composite; the secondary outcome was support for undemocratic practices on a 1-to-7 scale. Pooled across all 32 arms, the average effect on affective polarization was a 0.82-point reduction (95% CI [−1.39, −0.25], p = .005). One arm, the perception-gap video, produced a statistically significant 2.33-point reduction (95% CI [−4.28, −0.38], p = .019). No arm significantly affected support for undemocratic practices. The study was not pre-registered; all tests are post hoc and uncorrected for multiple comparisons.",
- "created": "2026-10-01",
+ "summary": "",
+ "created": "2026-10-02",
  "synthetic": false,
  "design": {
   "type": "survey_experiment",
@@ -1036,7 +1036,7 @@
   },
   {
    "id": "E1",
-   "text": "Heterogeneity by party for T15 (perception-gap video)",
+   "text": "Heterogeneity by party (Democrat vs Republican)",
    "tag": "exploratory",
    "estimate": null,
    "se": null,
@@ -1046,7 +1046,7 @@
   },
   {
    "id": "E2",
-   "text": "Robustness to excluding low-knowledge respondents",
+   "text": "Robustness to attention-check failures",
    "tag": "exploratory",
    "estimate": null,
    "se": null,
@@ -1056,7 +1056,7 @@
   },
   {
    "id": "E3",
-   "text": "Component feeling-thermometer items for T15",
+   "text": "Placebo test on pre-treatment affective polarization",
    "tag": "exploratory",
    "estimate": null,
    "se": null,
@@ -1065,7 +1065,7 @@
    "supported": null
   }
  ],
- "release_status": "released",
+ "release_status": "draft",
  "license": {
   "code": "MIT",
   "content": "CC-BY-4.0"
@@ -1073,20 +1073,20 @@
  "provenance": {
   "mode": "fully_agentic",
   "human_steps": [],
-  "reviewer_pass": false,
+  "reviewer_pass": true,
   "models": {
    "strong": "anthropic/claude-sonnet-5.5",
    "fast": "qwen/qwen3.8-27b"
   },
   "provider": "openrouter",
   "zero_retention_requested": true,
-  "cost_usd": 0.063889,
+  "cost_usd": 0.154859,
   "tokens": {
-   "in": 108465,
-   "out": 14738
+   "in": 214587,
+   "out": 20193
   },
   "tool_version": "0.1.0",
-  "created": "2026-10-01T20:17:43Z",
+  "created": "2026-10-02T02:44:33Z",
   "pap_source": "author-supplied pap.json",
   "pii": {
    "dropped": [
@@ -1103,10 +1103,7 @@
    },
    "scan": "header + first data row only, local regex"
   },
-  "degraded": [
-   "silicon sampling skipped",
-   "litreview: skipped by flag"
-  ],
+  "degraded": [],
   "inputs": {
    "raw_csv_sha256": "ff8f8517bd89f0a747f5b369ca0072813855f9694f554ab5aeb95d85a785be75",
    "pap_sha256": "a24007f704bd0276d94171db6b386d23a39250e25e01e7f7f74e108fb5be0dc1",
@@ -1115,68 +1112,85 @@
   },
   "usage_by_agent": {
    "exploratory": {
-    "calls": 5,
-    "in": 97062,
-    "out": 13367,
-    "cost": 0.059657546124,
+    "calls": 9,
+    "in": 189306,
+    "out": 16704,
+    "cost": 0.07577514331200001,
+    "models": [
+     "qwen/qwen3.8-27b"
+    ]
+   },
+   "litreview": {
+    "calls": 2,
+    "in": 1522,
+    "out": 338,
+    "cost": 0.0008463015,
     "models": [
      "qwen/qwen3.8-27b"
     ]
    },
    "writer": {
     "calls": 1,
-    "in": 11403,
-    "out": 1371,
-    "cost": 0.00423113625,
+    "in": 13105,
+    "out": 1647,
+    "cost": 0.0422532,
     "models": [
-     "qwen/qwen3.8-27b"
+     "anthropic/claude-sonnet-5.5"
+    ]
+   },
+   "reviewer": {
+    "calls": 1,
+    "in": 10654,
+    "out": 1504,
+    "cost": 0.03598452,
+    "models": [
+     "anthropic/claude-sonnet-5.5"
     ]
    }
   },
   "stage_seconds": {
-   "ingest": 0.01,
-   "pii": 0.21,
+   "ingest": 0.02,
+   "pii": 0.22,
    "tidy": 0.31,
    "pap": 0.0,
-   "clean": 0.59,
-   "registered": 11.64,
+   "clean": 0.57,
+   "registered": 11.65,
    "tag": 0.0,
-   "exploratory": 189.44,
-   "silicon": 0.0,
-   "litreview": 0.0,
-   "write": 11.24,
-   "review": 0.0,
+   "exploratory": 264.21,
+   "litreview": 7.86,
+   "write": 14.62,
+   "review": 13.15,
    "package": 0.0
   },
-  "total_seconds": 213.4,
+  "total_seconds": 312.6,
   "log": [
-   "2026-10-01T20:17:43Z stage ingest",
-   "2026-10-01T20:17:43Z stage pii",
-   "2026-10-01T20:17:43Z PII scan (header + first row only): flagged 3 column(s): StartDate [known_identifier_column], EndDate [known_identifier_column], RecordedDate [known_identifier_column]. Action: dropped 3, kept by whitelist 0.",
-   "2026-10-01T20:17:43Z stage tidy",
-   "2026-10-01T20:17:44Z stage pap",
-   "2026-10-01T20:17:44Z pap: loaded author-supplied /Users/yamil/Projects/filedrawer/affective_polarization/pap_labeled.json (papreader agent skipped)",
-   "2026-10-01T20:17:44Z stage clean",
-   "2026-10-01T20:17:44Z wrote data/clean.csv: 4547 rows, 77 columns",
-   "2026-10-01T20:17:44Z stage registered",
-   "2026-10-01T20:17:56Z H1: post_ap ~ C(arm_code, Treatment(reference='T0')) + pre_ap | 32 arms vs Control, N=3825, HC2 SEs, weights=ipw_weight; 1 arm(s) supported; pooled=-0.819 (SE 0.291, p=0.0049, tau2=0.0000, I2=0.00)",
-   "2026-10-01T20:17:56Z H2: post_udp ~ C(arm_code, Treatment(reference='T0')) + pre_udp | 32 arms vs Control, N=3953, HC2 SEs, weights=ipw_weight; 0 arm(s) supported; pooled=-0.015 (SE 0.015, p=0.3087, tau2=0.0000, I2=0.00)",
-   "2026-10-01T20:17:56Z wrote results/registered_summary.csv (66 rows)",
-   "2026-10-01T20:17:56Z stage tag",
-   "2026-10-01T20:17:56Z stage exploratory",
-   "2026-10-01T20:21:05Z tags: H1=unregistered, H2=unregistered, E1=exploratory, E2=exploratory, E3=exploratory",
-   "2026-10-01T20:21:05Z stage silicon",
-   "2026-10-01T20:21:05Z stage litreview",
-   "2026-10-01T20:21:05Z stage write",
-   "2026-10-01T20:21:16Z stage review",
-   "2026-10-01T20:21:16Z stage package"
+   "2026-10-02T02:44:33Z stage ingest",
+   "2026-10-02T02:44:33Z stage pii",
+   "2026-10-02T02:44:33Z PII scan (header + first row only): flagged 3 column(s): StartDate [known_identifier_column], EndDate [known_identifier_column], RecordedDate [known_identifier_column]. Action: dropped 3, kept by whitelist 0.",
+   "2026-10-02T02:44:33Z stage tidy",
+   "2026-10-02T02:44:34Z stage pap",
+   "2026-10-02T02:44:34Z pap: loaded author-supplied /Users/yamil/Projects/filedrawer/affective_polarization/pap_labeled.json (papreader agent skipped)",
+   "2026-10-02T02:44:34Z cleared 8 file(s) from the previous run",
+   "2026-10-02T02:44:34Z stage clean",
+   "2026-10-02T02:44:34Z wrote data/clean.csv: 4547 rows, 77 columns",
+   "2026-10-02T02:44:34Z stage registered",
+   "2026-10-02T02:44:46Z H1: post_ap ~ C(arm_code, Treatment(reference='T0')) + pre_ap | 32 arms vs Control, N=3825, HC2 SEs, weights=ipw_weight; 1 arm(s) supported; pooled=-0.819 (SE 0.291, p=0.0049, tau2=0.0000, I2=0.00)",
+   "2026-10-02T02:44:46Z H2: post_udp ~ C(arm_code, Treatment(reference='T0')) + pre_udp | 32 arms vs Control, N=3953, HC2 SEs, weights=ipw_weight; 0 arm(s) supported; pooled=-0.015 (SE 0.015, p=0.3087, tau2=0.0000, I2=0.00)",
+   "2026-10-02T02:44:46Z wrote results/registered_summary.csv (66 rows)",
+   "2026-10-02T02:44:46Z stage tag",
+   "2026-10-02T02:44:46Z stage exploratory",
+   "2026-10-02T02:49:10Z tags: H1=unregistered, H2=unregistered, E1=exploratory, E2=exploratory, E3=exploratory",
+   "2026-10-02T02:49:10Z stage litreview",
+   "2026-10-02T02:49:18Z stage write",
+   "2026-10-02T02:49:33Z stage review",
+   "2026-10-02T02:49:46Z reviewer: 8 issue(s)",
+   "2026-10-02T02:49:46Z stage package"
   ]
  },
  "links": {
-  "folder": "https://github.com/yrvelez/filedrawer/tree/main",
-  "report": "https://github.com/yrvelez/filedrawer/blob/main/report.md",
-  "data": "https://github.com/yrvelez/filedrawer/tree/main/data"
+  "folder": "https://github.com/yrvelez/affective-polarization-interventions/tree/main",
+  "report": "https://github.com/yrvelez/affective-polarization-interventions/blob/main/report.md",
+  "data": "https://github.com/yrvelez/affective-polarization-interventions/tree/main/data"
  },
- "related": [],
- "released": "2026-10-01"
+ "related": []
 }

@@ -1,0 +1,203 @@
+import importlib.util, pathlib
+_spec = importlib.util.spec_from_file_location('reg', pathlib.Path(__file__).with_name('03_registered.py'))
+reg = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(reg)
+
+import pandas as pd
+import numpy as np
+import statsmodels.formula.api as smf
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
+# Ensure output dirs exist
+pathlib.Path('results').mkdir(exist_ok=True)
+pathlib.Path('figures').mkdir(exist_ok=True)
+
+# Load data
+df = pd.read_csv('data/clean.csv')
+
+# Ensure numeric types
+for col in ['post_ap', 'pre_ap', 'post_udp', 'pre_udp', 'ipw_weight', 'pk1', 'pk2', 'pk3']:
+    if col in df.columns:
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+
+# Get H1 hypothesis info
+h1 = [h for h in reg.HYPOTHESES if h['id'] == 'H1'][0]
+est = h1['estimator']
+outcome = 'post_ap'
+covariates = ['pre_ap']
+
+# Eligible sample: non-missing outcome and weight
+df_elig = df.dropna(subset=['post_ap', 'ipw_weight']).copy()
+
+# ============================================================
+# E1: Heterogeneity by party (Democrat vs Republican)
+# Rationale: Affective polarization is inherently partisan; intervention effects may differ by party.
+# ============================================================
+
+results_e1 = []
+for party in ['Democrat', 'Republican']:
+    df_sub = df_elig[df_elig['partisan'] == party].copy()
+    if len(df_sub) < 100:
+        continue
+    formula, d2 = reg.build_formula(outcome, est, covariates, df_sub)
+    res = reg.fit(d2, formula, est)
+
+    for arm_code in sorted([a for a in d2['arm_code'].unique() if a != 'T0']):
+        term = f"C(arm_code, Treatment(reference='T0'))[T.{arm_code}]"
+        if term in res.params.index:
+            ci = res.conf_int().loc[term]
+            results_e1.append({
+                'party': party,
+                'arm_code': arm_code,
+                'estimate': round(float(res.params[term]), 4),
+                'std_error': round(float(res.bse[term]), 4),
+                'p_value': round(float(res.pvalues[term]), 4),
+                'conf_low': round(float(ci.iloc[0]), 4),
+                'conf_high': round(float(ci.iloc[1]), 4),
+                'n': int(res.nobs)
+            })
+
+e1_df = pd.DataFrame(results_e1)
+e1_df.to_csv('results/E1_party_heterogeneity.csv', index=False)
+
+# Figure 1: Forest plot for E1
+fig, ax = plt.subplots(figsize=(11, 10))
+accent = '#2171b5'
+ink = '#333333'
+
+arms = sorted(e1_df['arm_code'].unique())
+y_pos = {arm: i for i, arm in enumerate(arms)}
+
+for _, row in e1_df.iterrows():
+    y = y_pos[row['arm_code']]
+    offset = 0.22 if row['party'] == 'Democrat' else -0.22
+    color = accent if row['party'] == 'Democrat' else ink
+    ax.errorbar(row['estimate'], y + offset,
+                xerr=[[row['estimate'] - row['conf_low']], [row['conf_high'] - row['estimate']]],
+                fmt='o', color=color, capsize=3, markersize=4, linewidth=1.2)
+    label = f"{row['party'][:4]} {row['estimate']:+.2f}"
+    ax.text(row['conf_high'] + 0.4, y + offset, label, va='center', fontsize=6.5, color=color)
+
+ax.set_yticks(range(len(arms)))
+ax.set_yticklabels(arms, fontsize=8)
+ax.axvline(0, color='grey', linewidth=0.5, linestyle='--')
+ax.set_xlabel('Treatment effect on post_ap (95% CI)', fontsize=10)
+ax.set_title('E1: Heterogeneity by Party — Effect on Affective Polarization', fontsize=11, color=ink)
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['left'].set_visible(False)
+plt.tight_layout()
+plt.savefig('figures/E1_party_heterogeneity.png', dpi=200, bbox_inches='tight')
+plt.close()
+
+# ============================================================
+# E2: Robustness excluding attention-check failures
+# Rationale: Respondents who fail all knowledge checks may not have engaged with the survey, potentially biasing estimates.
+# ============================================================
+
+# pk1 correct=3 (Six years), pk2 correct=2 (Twice), pk3 correct=1 (Richi Sunak)
+df['failed_all_pk'] = (
+    (df['pk1'].notna()) & (df['pk2'].notna()) & (df['pk3'].notna()) &
+    (df['pk1'] != 3) & (df['pk2'] != 2) & (df['pk3'] != 1)
+).astype(int)
+
+n_failed = int(df_elig['failed_all_pk'].sum())
+n_total = len(df_elig)
+pct_failed = 100 * n_failed / n_total
+
+# Original sample
+formula_orig, d2_orig = reg.build_formula(outcome, est, covariates, df_elig)
+res_orig = reg.fit(d2_orig, formula_orig, est)
+
+# Excluded sample
+df_excl = df_elig[df_elig['failed_all_pk'] == 0].copy()
+formula_excl, d2_excl = reg.build_formula(outcome, est, covariates, df_excl)
+res_excl = reg.fit(d2_excl, formula_excl, est)
+
+results_e2 = []
+for arm_code in sorted([a for a in d2_orig['arm_code'].unique() if a != 'T0']):
+    term = f"C(arm_code, Treatment(reference='T0'))[T.{arm_code}]"
+    if term in res_orig.params.index and term in res_excl.params.index:
+        results_e2.append({
+            'arm_code': arm_code,
+            'est_original': round(float(res_orig.params[term]), 4),
+            'se_original': round(float(res_orig.bse[term]), 4),
+            'est_excl': round(float(res_excl.params[term]), 4),
+            'se_excl': round(float(res_excl.bse[term]), 4),
+            'n_original': int(res_orig.nobs),
+            'n_excl': int(res_excl.nobs)
+        })
+
+e2_df = pd.DataFrame(results_e2)
+e2_df.to_csv('results/E2_attention_check_robustness.csv', index=False)
+
+# Check SE ratio (flag if >2x while sample change <10%)
+se_ratios = e2_df['se_excl'] / e2_df['se_original']
+max_se_ratio = float(se_ratios.max())
+sample_change_pct = 100 * (1 - len(df_excl) / len(df_elig))
+
+# ============================================================
+# E3: Placebo test on pre_ap
+# Rationale: If randomization is valid, treatment assignment should not predict pre-treatment outcomes.
+# ============================================================
+
+df_pre = df.dropna(subset=['pre_ap', 'ipw_weight']).copy()
+formula_pre, d2_pre = reg.build_formula('pre_ap', est, [], df_pre)
+res_pre = reg.fit(d2_pre, formula_pre, est)
+
+results_e3 = []
+for arm_code in sorted([a for a in d2_pre['arm_code'].unique() if a != 'T0']):
+    term = f"C(arm_code, Treatment(reference='T0'))[T.{arm_code}]"
+    if term in res_pre.params.index:
+        ci = res_pre.conf_int().loc[term]
+        results_e3.append({
+            'arm_code': arm_code,
+            'estimate': round(float(res_pre.params[term]), 4),
+            'std_error': round(float(res_pre.bse[term]), 4),
+            'p_value': round(float(res_pre.pvalues[term]), 4),
+            'conf_low': round(float(ci.iloc[0]), 4),
+            'conf_high': round(float(ci.iloc[1]), 4)
+        })
+
+e3_df = pd.DataFrame(results_e3)
+e3_df.to_csv('results/E3_placebo_pre_ap.csv', index=False)
+
+# Figure 2: Placebo coefficient plot
+fig, ax = plt.subplots(figsize=(10, 7))
+arms3 = sorted(e3_df['arm_code'].unique())
+y_pos3 = {arm: i for i, arm in enumerate(arms3)}
+
+for _, row in e3_df.iterrows():
+    y = y_pos3[row['arm_code']]
+    ax.errorbar(row['estimate'], y,
+                xerr=[[row['estimate'] - row['conf_low']], [row['conf_high'] - row['estimate']]],
+                fmt='o', color=ink, capsize=3, markersize=4, linewidth=1.2)
+    ax.text(row['conf_high'] + 0.3, y, f"{row['estimate']:+.2f}", va='center', fontsize=7, color=ink)
+
+ax.set_yticks(range(len(arms3)))
+ax.set_yticklabels(arms3, fontsize=8)
+ax.axvline(0, color='grey', linewidth=0.5, linestyle='--')
+ax.set_xlabel('Effect on pre_ap (placebo, 95% CI)', fontsize=10)
+ax.set_title('E3: Placebo Test — Treatment Effect on Pre-treatment Affective Polarization', fontsize=11, color=ink)
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['left'].set_visible(False)
+plt.tight_layout()
+plt.savefig('figures/E3_placebo_pre_ap.png', dpi=200, bbox_inches='tight')
+plt.close()
+
+# ============================================================
+# Summary lines
+# ============================================================
+sig_e1 = e1_df[e1_df['p_value'] < 0.05]
+n_dem = e1_df[e1_df['party'] == 'Democrat']['n'].iloc[0] if len(e1_df[e1_df['party'] == 'Democrat']) > 0 else 0
+n_rep = e1_df[e1_df['party'] == 'Republican']['n'].iloc[0] if len(e1_df[e1_df['party'] == 'Republican']) > 0 else 0
+print(f"E1: Party heterogeneity on post_ap — {len(sig_e1)} of {len(e1_df)} arm×party estimates significant at p<0.05 (Democrat n={n_dem}, Republican n={n_rep})")
+
+print(f"E2: Attention-check robustness — excluded {n_failed} respondents ({pct_failed:.1f}%); max SE ratio={max_se_ratio:.2f}; sample change={sample_change_pct:.1f}%")
+
+sig_e3 = e3_df[e3_df['p_value'] < 0.05]
+max_abs_est = float(e3_df['estimate'].abs().max())
+print(f"E3: Placebo on pre_ap — {len(sig_e3)} of {len(e3_df)} arm estimates significant at p<0.05; max |estimate|={max_abs_est:.3f}")

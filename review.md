@@ -1,0 +1,20 @@
+# Reviewer pass (automated, single pass)
+
+Model: `anthropic/claude-sonnet-5.5`. The report is mostly transparent about being post hoc, but it contains a few numerical inconsistencies, an incomplete exploratory section, and some overclaiming or unsupported inferences.
+
+- **high** — E2 / E1 / pooled estimates: Three different pooled estimates (-0.82 random-effects, -0.68 'original' in E2, E1 subgroup estimates) are reported without a clear explanation. The E2 'original' pooled estimate is not significant (p=0.43), while the main pooled estimate is significant (p=0.005). This casts doubt on the headline pooled result. The E2 prose also says inattentive respondents 'contribute to the negative point estimate' even though both estimates are non-significant.
+  - Suggested fix: Explain what each pooled model is (random-effects meta-analysis vs. a pooled treatment dummy). Report the pooled-dummy result in the abstract or flag its non-significance. Remove the causal interpretation of inattentive respondents.
+- **high** — Abstract / Key findings / H1: The 'pooled across arms' effect (p=0.005) is highlighted, yet the random-effects model has tau²=0 and I²=0 and a SE the report itself calls approximate because the arms share a control group. Pooling the arms with the shared control ignores their correlation, so the SE is probably too small. Calling the shift 'small average' also treats it as real.
+  - Suggested fix: Use a correlation-aware pooled estimate (a single pooled treatment dummy, which E2 suggests is non-significant) or caveat the pooled p-value heavily. Downweight the pooled claim in the abstract.
+- **medium** — Abstract / H1 multiplicity: The report says 64 uncorrected tests were run and that the lone p=0.019 result 'may be chance'. It does not give a corrected p-value, although one arm out of 32 at p=0.019 clearly would not survive Bonferroni or Holm. Calling it 'lowered' states a causal effect more strongly than the evidence supports.
+  - Suggested fix: Report adjusted p-values (Holm/FDR) and word the finding as 'was associated with a nominally significant reduction'.
+- **medium** — E3: The placebo test is read as 'confirming valid randomization', but with SE=2.59 and a CI of about ±5 it is very uninformative. The section also ends with an empty 'Exploratory and unreviewed:' line. Also, n=3869 differs from the H1 N=3825.
+  - Suggested fix: Use an omnibus F-test of balance across arms, soften the claim to 'no detectable imbalance', and complete the truncated text. Explain the difference in N.
+- **medium** — Design and data / sample: The exclusion of arm T33 and the restriction to partisans cut 6,086 to 4,547, and a further drop to 3,825 and 3,953 is not explained. The control group has only 229 respondents and arm sizes are as small as 48, so power is low. The 'zero data retention' and 'removed columns' notes are irrelevant here and none of this is reconciled. The reader cannot tell how many were dropped for missing outcomes or why the N differs between H1 and H2.
+  - Suggested fix: Add a flow table of exclusions and attrition by step and arm. State the minimum detectable effect.
+- **medium** — E1: The prose says the Republican estimate is 'roughly three times larger', which invites a subgroup difference conclusion. Yet no interaction test is given, and both CIs are wide and include zero.
+  - Suggested fix: Remove the magnitude comparison or add a formal interaction test.
+- **low** — Key findings: The bullet 'Exploratory ... checks ... do not alter these results' is overstated, because E2 shows the pooled point estimate changing by almost half. 'Placebo' and 'attention' are also loosely labelled; the E2 check uses political knowledge items, not attention checks.
+  - Suggested fix: Describe E2 accurately as a political-knowledge exclusion and say the estimate changed but remained imprecise.
+- **low** — H2: The H2 outcome scale is never defined (units, range), so effects such as −0.015 and ±0.15 cannot be interpreted. The same applies to the H1 thermometer-based scale.
+  - Suggested fix: State the range and SD of both outcomes and give standardized effects.

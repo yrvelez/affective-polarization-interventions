@@ -43,7 +43,6 @@ def fmt_est(e, lo, hi, d=3):
 HYPOTHESES = json.loads("[{\"id\": \"H1\", \"text\": \"Each intervention changes post_ap relative to control.\", \"outcome\": \"post_ap\", \"treatment\": {\"column\": \"arm\", \"arms\": [\"T1\", \"T2\", \"T3\", \"T4\", \"T5\", \"T6\", \"T7\", \"T8\", \"T9\", \"T10\", \"T11\", \"T12\", \"T13\", \"T14\", \"T15\", \"T16\", \"T17\", \"T18\", \"T19\", \"T20\", \"T21\", \"T22\", \"T23\", \"T24\", \"T25\", \"T26\", \"T27\", \"T28\", \"T29\", \"T30\", \"T31\", \"T32\"], \"control\": \"T0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"ols\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw_weight\", \"covariates\": [\"pre_ap\"], \"continuous\": [\"pre_ap\"]}, \"pooled\": true, \"subgroup\": null, \"exclusions\": [\"Finished == 1\", \"partisan in ['Democrat','Republican']\", \"arm != 'T33'\", \"post_ap.notna() and pre_ap.notna()\"]}, {\"id\": \"H2\", \"text\": \"Each intervention changes post_udp relative to control.\", \"outcome\": \"post_udp\", \"treatment\": {\"column\": \"arm\", \"arms\": [\"T1\", \"T2\", \"T3\", \"T4\", \"T5\", \"T6\", \"T7\", \"T8\", \"T9\", \"T10\", \"T11\", \"T12\", \"T13\", \"T14\", \"T15\", \"T16\", \"T17\", \"T18\", \"T19\", \"T20\", \"T21\", \"T22\", \"T23\", \"T24\", \"T25\", \"T26\", \"T27\", \"T28\", \"T29\", \"T30\", \"T31\", \"T32\"], \"control\": \"T0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"ols\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw_weight\", \"covariates\": [\"pre_udp\"], \"continuous\": [\"pre_udp\"]}, \"pooled\": true, \"subgroup\": null, \"exclusions\": [\"Finished == 1\", \"partisan in ['Democrat','Republican']\", \"arm != 'T33'\", \"post_udp.notna() and pre_udp.notna()\"]}]")
 SUBGROUPS = json.loads("[]")
 MULTIARM = json.loads("{\"H1\": {\"arms\": [\"T1\", \"T2\", \"T3\", \"T4\", \"T5\", \"T6\", \"T7\", \"T8\", \"T9\", \"T10\", \"T11\", \"T12\", \"T13\", \"T14\", \"T15\", \"T16\", \"T17\", \"T18\", \"T19\", \"T20\", \"T21\", \"T22\", \"T23\", \"T24\", \"T25\", \"T26\", \"T27\", \"T28\", \"T29\", \"T30\", \"T31\", \"T32\"], \"control\": \"T0\", \"labels\": {\"T1\": \"Cooperation infographic\", \"T2\": \"Bipartisan bills graph\", \"T3\": \"Bipartisan elite quotes\", \"T4\": \"Shared values exercise\", \"T5\": \"Cross-partisan dialogue guide\", \"T6\": \"Meta-dehumanization correction\", \"T7\": \"Perception survey (form)\", \"T8\": \"Common-ground articles\", \"T9\": \"Patriotic article\", \"T10\": \"14th Amendment video\", \"T11\": \"Congressional softball video\", \"T12\": \"iSideWith quiz\", \"T13\": \"Rick and Morty perspective-taking\", \"T14\": \"Bren\\u00e9 Brown empathy video\", \"T15\": \"Perception gap video\", \"T16\": \"'What makes an American' video\", \"T17\": \"McCain defends Obama video\", \"T18\": \"Egyptian revolution video\", \"T19\": \"Cross-partisan friendship TED talk\", \"T20\": \"American history video\", \"T21\": \"Party-tailored videos\", \"T22\": \"Jubilee free speech panel\", \"T23\": \"Jubilee video\", \"T24\": \"Media-profits-from-division image\", \"T25\": \"Shared priorities (Pew) table\", \"T26\": \"Bipartisan legislation examples\", \"T27\": \"Common threat (Russia)\", \"T28\": \"Pro-democracy excerpt\", \"T29\": \"Biden\\u2013DeSantis cooperation\", \"T30\": \"Scandals, both parties (labeled)\", \"T31\": \"Scandals (labels revealed later)\", \"T32\": \"Perception gap quiz\", \"T0\": \"Control\"}, \"pooled\": true}, \"H2\": {\"arms\": [\"T1\", \"T2\", \"T3\", \"T4\", \"T5\", \"T6\", \"T7\", \"T8\", \"T9\", \"T10\", \"T11\", \"T12\", \"T13\", \"T14\", \"T15\", \"T16\", \"T17\", \"T18\", \"T19\", \"T20\", \"T21\", \"T22\", \"T23\", \"T24\", \"T25\", \"T26\", \"T27\", \"T28\", \"T29\", \"T30\", \"T31\", \"T32\"], \"control\": \"T0\", \"labels\": {\"T1\": \"Cooperation infographic\", \"T2\": \"Bipartisan bills graph\", \"T3\": \"Bipartisan elite quotes\", \"T4\": \"Shared values exercise\", \"T5\": \"Cross-partisan dialogue guide\", \"T6\": \"Meta-dehumanization correction\", \"T7\": \"Perception survey (form)\", \"T8\": \"Common-ground articles\", \"T9\": \"Patriotic article\", \"T10\": \"14th Amendment video\", \"T11\": \"Congressional softball video\", \"T12\": \"iSideWith quiz\", \"T13\": \"Rick and Morty perspective-taking\", \"T14\": \"Bren\\u00e9 Brown empathy video\", \"T15\": \"Perception gap video\", \"T16\": \"'What makes an American' video\", \"T17\": \"McCain defends Obama video\", \"T18\": \"Egyptian revolution video\", \"T19\": \"Cross-partisan friendship TED talk\", \"T20\": \"American history video\", \"T21\": \"Party-tailored videos\", \"T22\": \"Jubilee free speech panel\", \"T23\": \"Jubilee video\", \"T24\": \"Media-profits-from-division image\", \"T25\": \"Shared priorities (Pew) table\", \"T26\": \"Bipartisan legislation examples\", \"T27\": \"Common threat (Russia)\", \"T28\": \"Pro-democracy excerpt\", \"T29\": \"Biden\\u2013DeSantis cooperation\", \"T30\": \"Scandals, both parties (labeled)\", \"T31\": \"Scandals (labels revealed later)\", \"T32\": \"Perception gap quiz\", \"T0\": \"Control\"}, \"pooled\": true}}")     # hypothesis id -> {arms, control, labels, pooled}
-OUTCOME_LABELS = json.loads("{\"post_ap\": \"Affective polarization after treatment\", \"post_udp\": \"Support for undemocratic practices\"}")
 CATEGORICAL = set(["dem_strength", "factchecks", "interest", "news_trust", "pid3", "pidlean", "pk1", "pk2", "pk3", "post_udp_scores_1", "post_udp_scores_2", "post_udp_scores_3", "post_udp_scores_4", "pre_udp_scores_1", "pre_udp_scores_2", "pre_udp_scores_3", "pre_udp_scores_4", "rep_strength", "screener_1", "screener_2", "screener_3", "screener_4", "screener_5"])
 ALPHA = 0.05
 RES = ROOT / "results"; FIG = ROOT / "figures"
@@ -151,10 +150,9 @@ def forest(hid, arms_df, pooled, outcome):
     extra = 1 if pooled is not None else 0
     fig, ax = plt.subplots(figsize=(7.4, 1.3 + 0.36 * (k + extra)))
     ys = np.arange(k) + (1.6 if pooled is not None else 0.5)
-    # filled = two-sided p < ALPHA, so a filled dot always has a 95% CI that excludes zero
-    for y, (e, lo, hi, p) in zip(ys, zip(a["estimate"], a["conf_low"], a["conf_high"], a["p_value"])):
+    for y, (e, lo, hi, sup) in zip(ys, zip(a["estimate"], a["conf_low"], a["conf_high"], a["supported"])):
         ax.plot([lo, hi], [y, y], color=INK, lw=1.0, solid_capstyle="butt", zorder=2)
-        ax.plot(e, y, "o", ms=5, color=INK if p < ALPHA else "white", markeredgecolor=INK, markeredgewidth=1.0, zorder=3)
+        ax.plot(e, y, "o", ms=5, color=INK if sup else "white", markeredgecolor=INK, markeredgewidth=1.0, zorder=3)
     labels = [f"{l}  (n = {int(n)})" for l, n in zip(a["arm_label"], a["n_arm"])]
     ticks = list(ys)
     xmin = min(a["conf_low"].min(), pooled["conf_low"] if pooled is not None else 0, 0)
@@ -173,11 +171,10 @@ def forest(hid, arms_df, pooled, outcome):
     ax.set_yticks(ticks); ax.set_yticklabels(labels)
     ax.set_xlim(xmin - 0.04 * span, xmax + 0.42 * span)
     ax.set_ylim(-0.2, ys[-1] + 0.8)
-    label = OUTCOME_LABELS.get(outcome, outcome)
-    ax.set_xlabel(f"Difference from control in {label.lower()} (95% CI).\nFilled dots: two-sided p < {ALPHA}.")
-    ax.set_title(f"{hid}. Effect of each arm on {label.lower()}")
+    ax.set_xlabel(f"Difference from control in {outcome} (95% CI). Filled dots: p < {ALPHA}.")
+    ax.set_title(f"{hid}. Effect of each arm on {outcome}")
     tufte(ax)
-    fig.tight_layout(); fig.savefig(FIG / f"{hid}_arms.png", bbox_inches="tight", pad_inches=0.15); plt.close(fig)
+    fig.tight_layout(); fig.savefig(FIG / f"{hid}_arms.png"); plt.close(fig)
 
 def run_multiarm(h, d, est, covs):
     spec = MULTIARM[h["id"]]
@@ -322,14 +319,14 @@ def main():
         xmin, xmax = min(los + [0]), max(his + [0]); span = (xmax - xmin) or 1.0
         for y, r, e, lo, hi in zip(ys, main_rows, ests, los, his):
             ax.plot([lo, hi], [y, y], color=INK, lw=1.0, zorder=2)
-            ax.plot(e, y, "o", ms=5, color=INK if float(r["p_value"]) < ALPHA else "white", markeredgecolor=INK, zorder=3)
+            ax.plot(e, y, "o", ms=5, color=INK if r.get("supported") else "white", markeredgecolor=INK, zorder=3)
             ax.text(xmax + 0.06 * span, y, fmt_est(e, lo, hi), va="center", ha="left", fontsize=8, color=MUTED, family="monospace")
-        ax.set_yticks(ys); ax.set_yticklabels([f"{r['analysis_id']}: {OUTCOME_LABELS.get(r['outcome'], r['outcome'])}" for r in main_rows])
+        ax.set_yticks(ys); ax.set_yticklabels([f"{r['analysis_id']}: {r['outcome']}" for r in main_rows])
         ax.set_xlim(xmin - 0.04 * span, xmax + 0.42 * span)
-        ax.set_xlabel(f"Treatment effect (95% CI). Filled dots: two-sided p < {ALPHA}.")
+        ax.set_xlabel(f"Treatment effect (95% CI). Filled dots: p < {ALPHA}.")
         ax.set_title("Planned treatment effects")
         tufte(ax)
-        fig.tight_layout(); fig.savefig(FIG / "registered_effects.png", bbox_inches="tight", pad_inches=0.15); plt.close(fig)
+        fig.tight_layout(); fig.savefig(FIG / "registered_effects.png"); plt.close(fig)
     print(f"wrote results/registered_summary.csv ({len(summary)} rows)")
 
 if __name__ == "__main__":
