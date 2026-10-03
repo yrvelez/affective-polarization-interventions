@@ -1,0 +1,6 @@
+# Run-specific overrides (merged over filedrawer's config.yaml). The advanced referee pass reads 32 arms x 2 outcomes;
+# the fast-tier worker exhausted its output budget on hidden reasoning, so that pass runs on the strong tier with room.
+budgets:
+  advanced:            {turns: 1, max_tokens: 20000, tier: strong}
+  advanced_statistics: {turns: 1, max_tokens: 20000, tier: strong}
+  advanced_methodology: {turns: 1, max_tokens: 20000, tier: strong}

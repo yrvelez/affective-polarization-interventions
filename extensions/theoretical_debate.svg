@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320" width="100%" role="img" aria-labelledby="fd-title fd-desc"><title id="fd-title">Proposed follow-up: Perception-Gap Correction vs. Superordinate Identity: A 2×2 Factorial Test of Additive vs. Substitutive Mechanisms for Reducing Affective Polarization</title><desc id="fd-desc">Perception-Gap Correction vs. Superordinate Identity: A 2×2 Factorial Test of Additive vs. Substitutive Mechanisms for Reducing Affective Polarization. Individual US adults (self-identified partisans or leaners) recruited from an online panel; the unit of analysis is the person, with 4 experimental cells (control, perception-gap only, superordinate-identity only, both). Exposure: A 2×2 factorial manipulation: Factor A = perception-gap correction (Perception-gap video vs. no video); Factor B = superordinate identity (What-makes-an-American video vs. no video). Variation is induced by random assignment to one of four conditions: (1) control (no video), (2) perception-gap video only, (3) superordinate-identity video only, (4) both videos. The &#x27;both&#x27; condition presents the two videos in a counterbalanced order. Outcome: Post-treatment affective polarization measured as the mean of the two party-thermometer scores (0–100), lower = less polarized. Secondary outcome: support for undemocratic practices (same scale as source study). Measured immediately after the video manipulation, before any delay. Identification: Compare the four cell means in a 2×2 ANOVA / OLS regression. The main effect of Factor A (perception-gap) is the average effect of the perception-gap video across both levels of Factor B; the main effect of Factor B is analogous. The interaction term tests whether the two interventions&#x27; effects are additive (interaction ≈ 0) or substitutive (interaction &lt; 0, meaning the combined effect is less than the sum of the individual effects, implying they draw on the same psychological resource). Identification requires that randomization balances observed and unobserved confounders across the four cells, and that the two videos differ only in their intended theoretical mechanism (no systematic differences in length, tone, or production quality).</desc><style>
+:root{--fd-ink:#1c1b19;--fd-muted:#8a877f;--fd-rule:#d9d5cc;--fd-accent:#8b1e2d;--fd-bg:#ffffff}
+@media (prefers-color-scheme: dark){:root{--fd-ink:#ecebe6;--fd-muted:#b4b1a9;--fd-rule:#4a4a52;--fd-accent:#e08a96;--fd-bg:#1d1d23}}
+.box{fill:var(--fd-bg,#fff);stroke:var(--fd-ink,#1c1b19);stroke-width:1.2}
+.arm{fill:var(--fd-bg,#fff);stroke:var(--fd-accent,#8b1e2d);stroke-width:1.4}
+.soft{fill:var(--fd-bg,#fff);stroke:var(--fd-rule,#d9d5cc);stroke-width:1.2}
+text{font-family:Inter,Helvetica,Arial,sans-serif;fill:var(--fd-ink,#1c1b19);font-size:14px}
+.cap{font-size:12px;fill:var(--fd-muted,#8a877f)}
+.kicker{font-size:11px;letter-spacing:.08em;fill:var(--fd-muted,#8a877f);text-transform:uppercase}
+.edge{stroke:var(--fd-ink,#1c1b19);stroke-width:1.2;fill:none;marker-end:url(#fd-arrow)}
+.assoc{stroke-dasharray:5 4}
+#fd-arrow path{fill:var(--fd-ink,#1c1b19)}
+</style>
+<defs><marker id="fd-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker></defs><text class="kicker" x="20" y="16">Proposed follow-up: Perception-Gap Correction vs. Superordinate Identity: A 2×2 Factorial Test of Additive vs. Substitutive Mechanisms for Reducing Affective Polarization</text>
+<g id="arm-exposure" data-text="A 2×2 factorial manipulation: Factor A = perception-gap correction (Perception-gap video vs. no video); Factor B = superordinate identity (What-makes-an-American video vs. no video). Variation is induced by random assignment to one of four conditions: (1) control (no video), (2) perception-gap video only, (3) superordinate-identity video only, (4) both videos. The &#x27;both&#x27; condition presents the two videos in a counterbalanced order.">
+<rect class="arm" x="20" y="40" width="300" height="120" rx="6"/>
+<text class="kicker" x="32" y="62">Exposure</text>
+<text x="32" y="80">A 2×2 factorial manipulation:</text>
+<text x="32" y="98">Factor A = perception-gap</text>
+<text x="32" y="116">correction (Perception-gap video</text>
+<text x="32" y="134">vs. no video); Factor B =</text>
+</g>
+<g>
+<rect class="box" x="640" y="40" width="300" height="120" rx="6"/>
+<text class="kicker" x="652" y="62">Outcome</text>
+<text x="652" y="80">Post-treatment affective</text>
+<text x="652" y="98">polarization measured as the mean</text>
+<text x="652" y="116">of the two party-thermometer scores</text>
+<text x="652" y="134">(0–100), lower = less polarized.</text>
+</g>
+<path class="edge assoc" d="M320,100.0 L636,100.0"/><text class="cap" x="478.0" y="94.0" text-anchor="middle">association</text>
+<g>
+<rect class="soft" x="180" y="180" width="600" height="120" rx="6"/>
+<text class="kicker" x="192" y="202">Data</text>
+<text x="192" y="220">Pew Research Center American Trends Panel (ATP) or Qualtrics Panel (US</text>
+<text x="192" y="238">adult sample, opt-in, demographically weighted): provides the respondent</text>
+<text x="192" y="256">pool, pre-treatment affective-polarization thermometer scores, and</text>
+<text x="192" y="274">demographic covariates.; Source-study intervention videos: the</text>
+</g></svg>

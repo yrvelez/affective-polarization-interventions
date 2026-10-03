@@ -15,130 +15,117 @@ df = pd.read_csv('data/clean.csv')
 for col in ['post_ap', 'post_udp', 'pre_ap', 'pre_udp', 'ipw_weight']:
     df[col] = pd.to_numeric(df[col], errors='coerce')
 
+# Create T15-specific binary treatment indicator (1=T15, 0=everything else)
+df['treat_t15'] = (df['arm_code'] == 'T15').astype(int)
+
 # ── E1: Heterogeneity by partisan identity (Democrat vs Republican) ───────────
 # Rationale: The interventions target cross-partisan attitudes, so effects may
 # differ by whether respondents identify as Democrats or Republicans.
 # We test the T15 (Perception gap video) effect separately for each partisan group.
 
-partisan_col = 'partisan'  # 'Democrat' or 'Republican'
-
-# Get the H1 hypothesis for T15
-h1 = [h for h in reg.HYPOTHESES if h['outcome'] == 'post_ap'][0]
-est = h1['estimator']
-
-# Build formula for the full model (same as registered)
-formula, d2 = reg.build_formula('post_ap', est, ['pre_ap'], df)
-
-# Check if partisan is in d2; if not, merge it back
-if partisan_col not in d2.columns:
-    d2 = d2.merge(df[['row_id', partisan_col]], on='row_id', how='left')
-
-# Split by partisan group
 results_e1 = []
 for partisan in ['Democrat', 'Republican']:
-    sub = d2[d2[partisan_col] == partisan].copy()
-    if len(sub) < 50:
-        continue
-    res = reg.fit(sub, formula, est)
-    # Extract T15 coefficient
-    t15_term = "C(arm_code, Treatment(reference='T0'))[T.T15]"
-    if t15_term in res.params.index:
+    sub = df[df['partisan'] == partisan].copy()
+    sub['treat'] = sub['treat_t15']
+    formula, d2 = reg.build_formula('post_ap', 'treat', ['pre_ap'], sub)
+    res = reg.fit(d2, formula, 'treat')
+    if 'treat' in res.params.index:
         results_e1.append({
             'partisan': partisan,
-            'estimate': res.params[t15_term],
-            'std_error': res.bse[t15_term],
-            'p_value': res.pvalues[t15_term],
+            'estimate': res.params['treat'],
+            'std_error': res.bse['treat'],
+            'p_value': res.pvalues['treat'],
             'n': int(res.nobs),
-            'conf_low': res.conf_int().loc[t15_term, 0],
-            'conf_high': res.conf_int().loc[t15_term, 1],
+            'conf_low': res.conf_int().loc['treat', 0],
+            'conf_high': res.conf_int().loc['treat', 1],
         })
 
 e1_df = pd.DataFrame(results_e1)
 e1_df.to_csv('results/E1_heterogeneity_partisan.csv', index=False)
 
 # Figure: forest plot of T15 effect by partisan group
-fig, ax = plt.subplots(figsize=(6, 3))
-colors = ['#2171b5', '#cb181d']
-for i, row in e1_df.iterrows():
-    ax.plot([row['conf_low'], row['conf_high']], [i, i], color=colors[i], lw=2)
-    ax.plot(row['estimate'], i, 'o', color=colors[i], ms=8)
-    ax.annotate(f"{row['estimate']:.2f} (p={row['p_value']:.3f})",
-                xy=(row['estimate'], i), xytext=(8, 0),
-                textcoords='offset points', va='center', fontsize=9)
-ax.axvline(0, color='grey', lw=0.8, ls='--')
-ax.set_yticks(range(len(e1_df)))
-ax.set_yticklabels([f"{r['partisan']} (n={r['n']})" for _, r in e1_df.iterrows()])
-ax.set_xlabel('ATE on post_ap (T15 vs Control)')
-ax.set_title('E1: T15 Effect by Partisan Identity')
-for spine in ['top', 'right', 'left']:
-    ax.spines[spine].set_visible(False)
-ax.spines['bottom'].set_visible(True)
-plt.tight_layout()
-plt.savefig('figures/E1_heterogeneity_partisan.png', dpi=200, bbox_inches='tight')
-plt.close()
+if len(e1_df) > 0:
+    fig, ax = plt.subplots(figsize=(6, 3))
+    colors = ['#2171b5', '#cb181d']
+    for i, row in e1_df.iterrows():
+        c = colors[i % len(colors)]
+        ax.plot([row['conf_low'], row['conf_high']], [i, i], color=c, lw=2)
+        ax.plot(row['estimate'], i, 'o', color=c, ms=8)
+        ax.annotate(f"{row['estimate']:.2f} (p={row['p_value']:.3f})",
+                    xy=(row['estimate'], i), xytext=(8, 0),
+                    textcoords='offset points', va='center', fontsize=9)
+    ax.axvline(0, color='grey', lw=0.8, ls='--')
+    ax.set_yticks(range(len(e1_df)))
+    ax.set_yticklabels([f"{r['partisan']} (n={r['n']})" for _, r in e1_df.iterrows()])
+    ax.set_xlabel('ATE on post_ap (T15 vs Control)')
+    ax.set_title('E1: T15 Effect by Partisan Identity')
+    for spine in ['top', 'right', 'left']:
+        ax.spines[spine].set_visible(False)
+    ax.spines['bottom'].set_visible(True)
+    plt.tight_layout()
+    plt.savefig('figures/E1_heterogeneity_partisan.png', dpi=200, bbox_inches='tight')
+    plt.close()
 
 if len(e1_df) >= 2:
     print(f"E1: T15 effect by partisan — Democrat: {e1_df.iloc[0]['estimate']:.3f} (SE={e1_df.iloc[0]['std_error']:.3f}, p={e1_df.iloc[0]['p_value']:.3f}); "
           f"Republican: {e1_df.iloc[1]['estimate']:.3f} (SE={e1_df.iloc[1]['std_error']:.3f}, p={e1_df.iloc[1]['p_value']:.3f})")
+elif len(e1_df) == 1:
+    r = e1_df.iloc[0]
+    print(f"E1: T15 effect by partisan — {r['partisan']}: {r['estimate']:.3f} (SE={r['std_error']:.3f}, p={r['p_value']:.3f}, n={r['n']})")
 else:
-    print(f"E1: T15 effect by partisan — insufficient data in one or both groups (n_dem={len(d2[d2[partisan_col]=='Democrat'])}, n_rep={len(d2[d2[partisan_col]=='Republican'])})")
+    print("E1: T15 effect by partisan — no results")
 
 # ── E2: Robustness of T15 effect excluding attention-check failures ───────────
 # Rationale: T15 is the only significant H1 result; we verify it is not driven
 # by inattentive respondents by re-estimating the same model after excluding
 # those who failed any of the three political-knowledge attention checks.
 
-# Attention checks: pk1 (senator term), pk2 (president terms), pk3 (UK PM)
-# Correct answers: pk1=3 (six years), pk2=2 (twice), pk3=1 (Rishi Sunak)
-# We exclude respondents who got any wrong (including "Don't know")
-
+# Attention checks: pk1 (senator term=3), pk2 (president terms=2), pk3 (UK PM=1)
 df['ac_fail'] = (
     (df['pk1'] != 3) |
     (df['pk2'] != 2) |
     (df['pk3'] != 1)
 )
-# Only flag as fail if they answered (not missing)
 df['ac_fail'] = df['ac_fail'].where(df[['pk1','pk2','pk3']].notna().any(axis=1), False)
 
 n_total = len(df)
 n_excluded = int(df['ac_fail'].sum())
 df_clean = df[~df['ac_fail']].copy()
-n_clean = len(df_clean)
+df_clean['treat'] = df_clean['treat_t15']
 
 # Re-fit the SAME registered model on the cleaned sample
-formula2, d2_clean = reg.build_formula('post_ap', est, ['pre_ap'], df_clean)
-res_clean = reg.fit(d2_clean, formula2, est)
+formula2, d2_clean = reg.build_formula('post_ap', 'treat', ['pre_ap'], df_clean)
+res_clean = reg.fit(d2_clean, formula2, 'treat')
 
-t15_term = "C(arm_code, Treatment(reference='T0'))[T.T15]"
 # Original estimate from registered results
 orig_est = -2.333
 orig_se = 0.995
 
-e2_df = pd.DataFrame([{
-    'analysis': 'T15 effect on post_ap',
-    'sample': 'full',
-    'estimate': orig_est,
-    'std_error': orig_se,
-    'n': 3825,
-}, {
-    'analysis': 'T15 effect on post_ap',
-    'sample': 'excl_ac_fail',
-    'estimate': res_clean.params[t15_term],
-    'std_error': res_clean.bse[t15_term],
-    'n': int(res_clean.nobs),
-}])
-e2_df.to_csv('results/E2_robustness_attention.csv', index=False)
-
-print(f"E2: T15 robustness — full sample: {orig_est:.3f} (SE={orig_se:.3f}, n={3825}); "
-      f"excl. AC failures: {res_clean.params[t15_term]:.3f} (SE={res_clean.bse[t15_term]:.3f}, n={int(res_clean.nobs)}); "
-      f"excluded {n_excluded}/{n_total} ({100*n_excluded/n_total:.1f}%)")
+if 'treat' in res_clean.params.index:
+    e2_df = pd.DataFrame([{
+        'analysis': 'T15 effect on post_ap',
+        'sample': 'full',
+        'estimate': orig_est,
+        'std_error': orig_se,
+        'n': 3825,
+    }, {
+        'analysis': 'T15 effect on post_ap',
+        'sample': 'excl_ac_fail',
+        'estimate': res_clean.params['treat'],
+        'std_error': res_clean.bse['treat'],
+        'n': int(res_clean.nobs),
+    }])
+    e2_df.to_csv('results/E2_robustness_attention.csv', index=False)
+    print(f"E2: T15 robustness — full sample: {orig_est:.3f} (SE={orig_se:.3f}, n=3825); "
+          f"excl. AC failures: {res_clean.params['treat']:.3f} (SE={res_clean.bse['treat']:.3f}, n={int(res_clean.nobs)}); "
+          f"excluded {n_excluded}/{n_total} ({100*n_excluded/n_total:.1f}%)")
+else:
+    print(f"E2: T15 robustness — 'treat' not in model params (n={int(res_clean.nobs)})")
 
 # ── E3: Dose check — correlation between pre_ap and post_ap by arm ───────────
 # Rationale: If the intervention works by shifting the level of affective
 # polarization, we expect the pre-post correlation to be similar across arms;
 # a markedly different pattern in T15 would suggest a different mechanism.
-# We compute the Pearson correlation between pre_ap and post_ap for control
-# vs T15, and test the difference with a Fisher z-test.
 
 def fisher_z_diff(r1, r2, n1, n2):
     z1 = 0.5 * np.log((1+r1)/(1-r1))

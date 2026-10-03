@@ -1,0 +1,1 @@
+Does the Perception gap effect hold across partisanship and baseline polarization?. 2 conditions: Perception gap video, Control. Primary outcome: Post-treatment in-party minus out-party thermometer difference (for independents, absolute difference between party thermometers).. Population: US adults from an online panel, including independents and leaners, quota-sampled on party.

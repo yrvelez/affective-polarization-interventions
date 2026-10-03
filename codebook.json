@@ -1164,9 +1164,9 @@
       "label": "",
       "values": {},
       "free_text": false,
-      "pii_flag": true,
-      "pii_reason": "known_identifier_column",
-      "dropped": true
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
     },
     {
       "name": "EndDate",
@@ -1176,9 +1176,9 @@
       "label": "",
       "values": {},
       "free_text": false,
-      "pii_flag": true,
-      "pii_reason": "known_identifier_column",
-      "dropped": true
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
     },
     {
       "name": "Status",

@@ -1,5 +1,5 @@
 {
- "text": "The retrieved works are largely off-topic relative to the stated hypotheses. The closest matches are (Voelkel et al., 2024), which tested 25 interventions on antidemocratic attitudes and partisan animosity and found that many treatments reduced partisan animosity, and (Druckman et al., 2023), which showed that correcting misperceptions of out-partisans decreased legislators' support for undemocratic practices. However, neither study reports on the specific outcome variables post_ap or post_udp, so their findings cannot be directly mapped onto H1 or H2.",
+ "text": "The retrieved works are entirely off-topic relative to the study's hypotheses about interventions changing post_ap and post_udp relative to control; none of them address the relevant outcome variables or intervention framework, so no prior findings can be drawn on to support or contest H1 or H2.",
  "works": [
   {
    "id": "https://openalex.org/W3038067977",
@@ -13,8 +13,10 @@
    "year": 2002,
    "doi": "10.1103/revmodphys.74.145",
    "venue": "Reviews of Modern Physics",
-   "cited_by": 8460,
-   "abstract": "Quantum cryptography could well be the first application of quantum mechanics at the single-quantum level. The rapid progress in both theory and experiment in recent years is reviewed, with emphasis on open questions and technological issues."
+   "cited_by": 8463,
+   "abstract": "Quantum cryptography could well be the first application of quantum mechanics at the single-quantum level. The rapid progress in both theory and experiment in recent years is reviewed, with emphasis on open questions and technological issues.",
+   "stance": "supporting",
+   "query": "affective polarization intervention reduction experiment"
   },
   {
    "id": "https://openalex.org/W3109746568",
@@ -28,8 +30,10 @@
    "year": 2020,
    "doi": "10.1038/s41573-020-0090-8",
    "venue": "Nature Reviews Drug Discovery",
-   "cited_by": 7909,
-   "abstract": ""
+   "cited_by": 7927,
+   "abstract": "",
+   "stance": "supporting",
+   "query": "affective polarization intervention reduction experiment"
   },
   {
    "id": "https://openalex.org/W2110999179",
@@ -43,79 +47,10 @@
    "year": 2014,
    "doi": "10.1007/jhep07(2014)079",
    "venue": "Journal of High Energy Physics",
-   "cited_by": 7612,
-   "abstract": "We discuss the theoretical bases that underpin the automation of the computations of tree-level and next-to-leading order cross sections, of their matching to parton shower simulations, and of the merging of matched samples that differ by light-parton multiplicities. We present a computer program, MadGraph5 aMC@NLO, capable of handling all these computations — parton-level fixed order, shower-matc"
-  },
-  {
-   "id": "https://openalex.org/W4403510391",
-   "title": "Megastudy testing 25 treatments to reduce antidemocratic attitudes and partisan animosity",
-   "authors": [
-    "Jan Gerrit Voelkel",
-    "Michael Nicholas Stagnaro",
-    "James Chu",
-    "Sophia Lerner Pink"
-   ],
-   "year": 2024,
-   "doi": "10.1126/science.adh4764",
-   "venue": "Science",
-   "cited_by": 129,
-   "abstract": "= 32,059 participants) testing 25 treatments designed by academics and practitioners to reduce Americans' partisan animosity and antidemocratic attitudes. We find that many treatments reduced partisan animosity, most strongly by highlighting relatable sympathetic individuals with different political beliefs or by emphasizing common identities shared by rival partisans. We also identify several tre"
-  },
-  {
-   "id": "https://openalex.org/W4378782550",
-   "title": "Correcting misperceptions of out-partisans decreases American legislators’ support for undemocratic practices",
-   "authors": [
-    "James N. Druckman",
-    "Suji Kang",
-    "James Chu",
-    "Michael Nicholas Stagnaro"
-   ],
-   "year": 2023,
-   "doi": "10.1073/pnas.2301836120",
-   "venue": "Proceedings of the National Academy of Sciences",
-   "cited_by": 59,
-   "abstract": "There is substantial concern about democratic backsliding in the United States. Evidence includes notably high levels of animosity toward out-partisans and support for undemocratic practices (SUP) among the general public. Much less is known, however, about the views of elected officials—even though they influence democratic outcomes more directly. In a survey experiment conducted with state legis"
-  },
-  {
-   "id": "https://openalex.org/W4382774791",
-   "title": "How citizens’ conceptions of democracy relate to positive and negative partisanship towards populist parties",
-   "authors": [
-    "Carsten Wegscheider",
-    "Cristóbal Rovira Kaltwasser",
-    "Steven M. Van Hauwaert"
-   ],
-   "year": 2023,
-   "doi": "10.1080/01402382.2023.2199376",
-   "venue": "West European Politics",
-   "cited_by": 45,
-   "abstract": "Although scholars emphasise the contentious relationship of populist forces to (liberal) democracy, less attention has been paid to whether this extends to those who support or oppose populist parties. This article utilises a public opinion dataset from ten Western European countries to analyse how citizens’ conceptions of democracy relate to the behavioural intention to vote for or against populi"
-  },
-  {
-   "id": "https://openalex.org/W2760944227",
-   "title": "Beyond misinformation: Understanding and coping with the “post-truth” era.",
-   "authors": [
-    "Stephan Lewandowsky",
-    "Ullrich K. H. Ecker",
-    "John Cook"
-   ],
-   "year": 2017,
-   "doi": "10.1016/j.jarmac.2017.07.008",
-   "venue": "Journal of Applied Research in Memory and Cognition",
-   "cited_by": 2021,
-   "abstract": "The terms \"post-truth\" and \"fake news\" have become increasingly prevalent in public discourse over the last year. This article explores the growing abundance of misinformation, how it influences people, and how to counter it. We examine the ways in which misinformation can have an adverse impact on society. We summarize how people respond to corrections of misinformation, and what kinds of correct"
-  },
-  {
-   "id": "https://openalex.org/W2123972665",
-   "title": "The Globalization of Liberalization: Policy Diffusion in the International Political Economy",
-   "authors": [
-    "Beth A. Simmons",
-    "Zachary Elkins"
-   ],
-   "year": 2004,
-   "doi": "10.1017/s0003055404001078",
-   "venue": "American Political Science Review",
-   "cited_by": 1635,
-   "abstract": "One of the most important developments over the past three decades has been the spread of liberal economic ideas and policies throughout the world. These policies have affected the lives of millions of people, yet our most sophisticated political economy models do not adequately capture influences on these policy choices. Evidence suggests that the adoption of liberal economic practices is highly "
+   "cited_by": 7617,
+   "abstract": "We discuss the theoretical bases that underpin the automation of the computations of tree-level and next-to-leading order cross sections, of their matching to parton shower simulations, and of the merging of matched samples that differ by light-parton multiplicities. We present a computer program, MadGraph5 aMC@NLO, capable of handling all these computations — parton-level fixed order, shower-matc",
+   "stance": "supporting",
+   "query": "affective polarization intervention reduction experiment"
   },
   {
    "id": "https://openalex.org/W2170739705",
@@ -128,13 +63,123 @@
    "doi": "10.1016/s0065-2601(06)38004-5",
    "venue": "Advances in experimental social psychology",
    "cited_by": 1607,
-   "abstract": ""
+   "abstract": "",
+   "stance": "contesting",
+   "query": "affective polarization stability identity motivated reasoning resistant"
+  },
+  {
+   "id": "https://openalex.org/W2023041445",
+   "title": "Self-Enhancement: Food for Thought",
+   "authors": [
+    "Constantine Sedikides",
+    "Aiden P. Gregg"
+   ],
+   "year": 2008,
+   "doi": "10.1111/j.1745-6916.2008.00068.x",
+   "venue": "Perspectives on Psychological Science",
+   "cited_by": 886,
+   "abstract": "Self-enhancement denotes a class of psychological phenomena that involve taking a tendentiously positive view of oneself. We distinguish between four levels of self-enhancement-an observed effect, an ongoing process, a personality trait, and an underlying motive-and then use these distinctions to organize the wealth of relevant research. Furthermore, to render these distinctions intuitive, we draw",
+   "stance": "contesting",
+   "query": "affective polarization stability identity motivated reasoning resistant"
+  },
+  {
+   "id": "https://openalex.org/W2034144524",
+   "title": "Differences in negativity bias underlie variations in political ideology",
+   "authors": [
+    "John R. Hibbing",
+    "Kevin B. Smith",
+    "John R. Alford"
+   ],
+   "year": 2014,
+   "doi": "10.1017/s0140525x13001192",
+   "venue": "Behavioral and Brain Sciences",
+   "cited_by": 631,
+   "abstract": "Disputes between those holding differing political views are ubiquitous and deep-seated, and they often follow common, recognizable lines. The supporters of tradition and stability, sometimes referred to as conservatives, do battle with the supporters of innovation and reform, sometimes referred to as liberals. Understanding the correlates of those distinct political orientations is probably a pre",
+   "stance": "contesting",
+   "query": "affective polarization stability identity motivated reasoning resistant"
+  },
+  {
+   "id": "https://openalex.org/W2524520248",
+   "title": "Encyclopedia of Quality of Life and Well-Being Research",
+   "authors": [
+    "Filomena Maggino"
+   ],
+   "year": 2023,
+   "doi": "10.1007/978-3-031-17299-1",
+   "venue": "",
+   "cited_by": 427,
+   "abstract": "",
+   "stance": "method",
+   "query": "multi-arm experimental design feeling thermometer affective polarization"
+  },
+  {
+   "id": "https://openalex.org/W2894827933",
+   "title": "Physics and financial economics (1776–2014): puzzles, Ising and agent-based models",
+   "authors": [
+    "Didier Sornette"
+   ],
+   "year": 2014,
+   "doi": "10.1088/0034-4885/77/6/062001",
+   "venue": "Reports on Progress in Physics",
+   "cited_by": 225,
+   "abstract": "This short review presents a selected history of the mutual fertilization between physics and economics--from Isaac Newton and Adam Smith to the present. The fundamentally different perspectives embraced in theories developed in financial economics compared with physics are dissected with the examples of the volatility smile and of the excess volatility puzzle. The role of the Ising model of phase",
+   "stance": "method",
+   "query": "multi-arm experimental design feeling thermometer affective polarization"
+  },
+  {
+   "id": "https://openalex.org/W2097760619",
+   "title": "Body‐Monitoring and Health Supervision by Means of Optical Fiber‐Based Sensing Systems in Medical Textiles",
+   "authors": [
+    "Brit M. Quandt",
+    "Lukas J. Scherer",
+    "Luciano Fernandes Boesel",
+    "Martin Wolf"
+   ],
+   "year": 2014,
+   "doi": "10.1002/adhm.201400463",
+   "venue": "Advanced Healthcare Materials",
+   "cited_by": 149,
+   "abstract": "Long-term monitoring with optical fibers has moved into the focus of attention due to the applicability for medical measurements. Within this Review, setups of flexible, unobtrusive body-monitoring systems based on optical fibers and the respective measured vital parameters are in focus. Optical principles are discussed as well as the interaction of light with tissue. Optical fiber-based sensors t",
+   "stance": "method",
+   "query": "multi-arm experimental design feeling thermometer affective polarization"
+  },
+  {
+   "id": "https://openalex.org/W3037447387",
+   "title": "Quantum sensing",
+   "authors": [
+    "Christian Lukas Degen",
+    "Friedemann Reinhard",
+    "Paola Cappellaro"
+   ],
+   "year": 2017,
+   "doi": "10.1103/revmodphys.89.035002",
+   "venue": "Reviews of Modern Physics",
+   "cited_by": 4039,
+   "abstract": "Quantum technologies are increasingly driving the field of precision metrology. While current techniques for sensing and recording time rely on classical devices, quantum sensors exploit quantum systems to reach unprecedented levels of precision. The working part of the sensor contains one or a few qubits, and resources like quantum entanglement are chosen and tailored to maximize sensitivity. Thi",
+   "stance": "citing",
+   "query": "cites:W3038067977"
   }
  ],
  "queries": [
-  "affective polarization intervention experiment",
-  "feeling thermometer undemocratic practices intervention",
-  "affective polarization reduction persuasion democratic norms"
+  "affective polarization intervention reduction experiment",
+  "democratic norms malleability persuasion intervention",
+  "affective polarization stability identity motivated reasoning resistant",
+  "backfire effect political attitudes persuasion failure",
+  "multi-arm experimental design feeling thermometer affective polarization"
  ],
+ "query_sets": {
+  "supporting": [
+   "affective polarization intervention reduction experiment",
+   "democratic norms malleability persuasion intervention"
+  ],
+  "contesting": [
+   "affective polarization stability identity motivated reasoning resistant",
+   "backfire effect political attitudes persuasion failure"
+  ],
+  "method": [
+   "multi-arm experimental design feeling thermometer affective polarization"
+  ]
+ },
+ "debate_hint": "",
  "degraded": null
 }

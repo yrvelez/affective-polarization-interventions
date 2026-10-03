@@ -5,8 +5,8 @@
  "authors": [
   "Yamil Velez"
  ],
- "summary": "",
- "created": "2026-10-02",
+ "summary": "This study asks whether short, student-designed interventions can reduce affective polarization or support for undemocratic practices among US adults. In an online survey experiment, 32 interventions (videos, articles, images, quizzes) were each compared with a pure control; a 33rd arm, a GPT-3 chatbot, was excluded after technical failures. Of 6,086 raw respondents, 4,547 passed the sample filters, and the models use fewer because of missing data. One intervention was nominally significant for affective polarization: the Perception gap video lowered the post-treatment thermometer-based measure by 2.3 points (95% CI [−4.3, −0.4], p = 0.019, two-sided), in an uncorrected, post hoc analysis, so the estimate is likely inflated. An approximate pooled estimate across arms was 0.8 points lower t",
+ "created": "2026-10-03",
  "synthetic": false,
  "design": {
   "type": "survey_experiment",
@@ -84,7 +84,16 @@
   "n_raw": 6086,
   "n_analysis": 4547,
   "outcome_type": "feeling thermometer and attitude scale",
-  "cluster": null
+  "causal": true,
+  "sample_kind": "human",
+  "synthetic": null,
+  "features": null,
+  "diagram": "figures/design.svg",
+  "diagram_text": "figures/design.txt",
+  "cluster": null,
+  "weights": [
+   "ipw_weight"
+  ]
  },
  "population": {
   "country": "US",
@@ -1033,36 +1042,6 @@
    "i2": 0.0,
    "k_arms": 32,
    "supported": false
-  },
-  {
-   "id": "E1",
-   "text": "Heterogeneity by party (Democrat vs Republican)",
-   "tag": "exploratory",
-   "estimate": null,
-   "se": null,
-   "p": null,
-   "n": null,
-   "supported": null
-  },
-  {
-   "id": "E2",
-   "text": "Robustness to attention-check failures",
-   "tag": "exploratory",
-   "estimate": null,
-   "se": null,
-   "p": null,
-   "n": null,
-   "supported": null
-  },
-  {
-   "id": "E3",
-   "text": "Placebo test on pre-treatment affective polarization",
-   "tag": "exploratory",
-   "estimate": null,
-   "se": null,
-   "p": null,
-   "n": null,
-   "supported": null
   }
  ],
  "release_status": "draft",
@@ -1080,111 +1059,203 @@
   },
   "provider": "openrouter",
   "zero_retention_requested": true,
-  "cost_usd": 0.154859,
+  "cost_usd": 0.82175,
   "tokens": {
-   "in": 214587,
-   "out": 20193
+   "in": 418465,
+   "out": 57822
   },
   "tool_version": "0.1.0",
-  "created": "2026-10-02T02:44:33Z",
+  "created": "2026-10-03T11:56:37Z",
   "pap_source": "author-supplied pap.json",
   "pii": {
    "dropped": [
-    "StartDate",
-    "EndDate",
     "RecordedDate"
    ],
    "kept_with_override": [],
    "allow_pii": false,
    "flagged": {
-    "StartDate": "known_identifier_column",
-    "EndDate": "known_identifier_column",
     "RecordedDate": "known_identifier_column"
    },
    "scan": "header + first data row only, local regex"
   },
-  "degraded": [],
+  "degraded": [
+   "exploratory agent produced no analyses; its draft script/tables were removed: scripts/04_exploratory.py, results/E1_heterogeneity_partisan.csv",
+   "extensions: advance_design: Unreachable block End."
+  ],
   "inputs": {
    "raw_csv_sha256": "ff8f8517bd89f0a747f5b369ca0072813855f9694f554ab5aeb95d85a785be75",
    "pap_sha256": "a24007f704bd0276d94171db6b386d23a39250e25e01e7f7f74e108fb5be0dc1",
    "qsf_sha256": "be2c72b5e68c76781776c4e75dcc2e675422bd1640fbd1737699df60a6819324",
    "pap_json_sha256": "6be28ccc1ecbbce3464e069728fec050a17d5d8c98c3347b513f78d85f280483"
   },
+  "review_mode": "light,advanced",
+  "review_rounds": [
+   {
+    "round": 1,
+    "decision": "major_revision",
+    "k_issues": 7,
+    "revised": true
+   }
+  ],
   "usage_by_agent": {
    "exploratory": {
-    "calls": 9,
-    "in": 189306,
-    "out": 16704,
-    "cost": 0.07577514331200001,
+    "calls": 10,
+    "in": 229611,
+    "out": 20551,
+    "cost": 0.115732496088,
     "models": [
      "qwen/qwen3.8-27b"
     ]
    },
    "litreview": {
     "calls": 2,
-    "in": 1522,
-    "out": 338,
-    "cost": 0.0008463015,
+    "in": 1601,
+    "out": 1035,
+    "cost": 0.0027282123,
     "models": [
      "qwen/qwen3.8-27b"
     ]
    },
    "writer": {
     "calls": 1,
-    "in": 13105,
-    "out": 1647,
-    "cost": 0.0422532,
+    "in": 7427,
+    "out": 1455,
+    "cost": 0.02910996,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    },
    "reviewer": {
     "calls": 1,
-    "in": 10654,
-    "out": 1504,
-    "cost": 0.03598452,
+    "in": 15383,
+    "out": 1379,
+    "cost": 0.04411044,
     "models": [
      "anthropic/claude-sonnet-5.5"
+    ]
+   },
+   "advanced_methodology": {
+    "calls": 1,
+    "in": 15673,
+    "out": 1497,
+    "cost": 0.04585284,
+    "models": [
+     "anthropic/claude-sonnet-5.5"
+    ]
+   },
+   "advanced_statistics": {
+    "calls": 1,
+    "in": 15866,
+    "out": 1347,
+    "cost": 0.04474998,
+    "models": [
+     "anthropic/claude-sonnet-5.5"
+    ]
+   },
+   "review_orchestrator": {
+    "calls": 1,
+    "in": 20798,
+    "out": 3041,
+    "cost": 0.07128594,
+    "models": [
+     "anthropic/claude-sonnet-5.5"
+    ]
+   },
+   "writer_revise": {
+    "calls": 1,
+    "in": 11761,
+    "out": 2408,
+    "cost": 0.04712598,
+    "models": [
+     "anthropic/claude-sonnet-5.5"
+    ]
+   },
+   "review_signoff": {
+    "calls": 1,
+    "in": 17873,
+    "out": 1510,
+    "cost": 0.05033754,
+    "models": [
+     "anthropic/claude-sonnet-5.5"
+    ]
+   },
+   "potential": {
+    "calls": 1,
+    "in": 18038,
+    "out": 2751,
+    "cost": 0.06295014,
+    "models": [
+     "anthropic/claude-sonnet-5.5"
+    ]
+   },
+   "extensions": {
+    "calls": 4,
+    "in": 61340,
+    "out": 17212,
+    "cost": 0.291852,
+    "models": [
+     "anthropic/claude-sonnet-5.5"
+    ]
+   },
+   "extensions_obs": {
+    "calls": 2,
+    "in": 3094,
+    "out": 3636,
+    "cost": 0.015914379888,
+    "models": [
+     "qwen/qwen3.8-27b"
     ]
    }
   },
   "stage_seconds": {
-   "ingest": 0.02,
+   "ingest": 0.01,
    "pii": 0.22,
-   "tidy": 0.31,
-   "pap": 0.0,
-   "clean": 0.57,
-   "registered": 11.65,
+   "tidy": 0.33,
+   "pap": 0.01,
+   "clean": 0.61,
+   "registered": 2.18,
    "tag": 0.0,
-   "exploratory": 264.21,
-   "litreview": 7.86,
-   "write": 14.62,
-   "review": 13.15,
+   "exploratory": 719.89,
+   "litreview": 13.76,
+   "write": 12.48,
+   "review": 58.89,
+   "revise": 17.37,
+   "signoff": 10.12,
+   "extensions": 484.61,
    "package": 0.0
   },
-  "total_seconds": 312.6,
+  "total_seconds": 1320.5,
   "log": [
-   "2026-10-02T02:44:33Z stage ingest",
-   "2026-10-02T02:44:33Z stage pii",
-   "2026-10-02T02:44:33Z PII scan (header + first row only): flagged 3 column(s): StartDate [known_identifier_column], EndDate [known_identifier_column], RecordedDate [known_identifier_column]. Action: dropped 3, kept by whitelist 0.",
-   "2026-10-02T02:44:33Z stage tidy",
-   "2026-10-02T02:44:34Z stage pap",
-   "2026-10-02T02:44:34Z pap: loaded author-supplied /Users/yamil/Projects/filedrawer/affective_polarization/pap_labeled.json (papreader agent skipped)",
-   "2026-10-02T02:44:34Z cleared 8 file(s) from the previous run",
-   "2026-10-02T02:44:34Z stage clean",
-   "2026-10-02T02:44:34Z wrote data/clean.csv: 4547 rows, 77 columns",
-   "2026-10-02T02:44:34Z stage registered",
-   "2026-10-02T02:44:46Z H1: post_ap ~ C(arm_code, Treatment(reference='T0')) + pre_ap | 32 arms vs Control, N=3825, HC2 SEs, weights=ipw_weight; 1 arm(s) supported; pooled=-0.819 (SE 0.291, p=0.0049, tau2=0.0000, I2=0.00)",
-   "2026-10-02T02:44:46Z H2: post_udp ~ C(arm_code, Treatment(reference='T0')) + pre_udp | 32 arms vs Control, N=3953, HC2 SEs, weights=ipw_weight; 0 arm(s) supported; pooled=-0.015 (SE 0.015, p=0.3087, tau2=0.0000, I2=0.00)",
-   "2026-10-02T02:44:46Z wrote results/registered_summary.csv (66 rows)",
-   "2026-10-02T02:44:46Z stage tag",
-   "2026-10-02T02:44:46Z stage exploratory",
-   "2026-10-02T02:49:10Z tags: H1=unregistered, H2=unregistered, E1=exploratory, E2=exploratory, E3=exploratory",
-   "2026-10-02T02:49:10Z stage litreview",
-   "2026-10-02T02:49:18Z stage write",
-   "2026-10-02T02:49:33Z stage review",
-   "2026-10-02T02:49:46Z reviewer: 8 issue(s)",
-   "2026-10-02T02:49:46Z stage package"
+   "2026-10-03T11:56:37Z stage ingest",
+   "2026-10-03T11:56:37Z stage pii",
+   "2026-10-03T11:56:38Z PII scan (header + first row only): flagged 1 column(s): RecordedDate [known_identifier_column]. Action: dropped 1, kept by whitelist 0.",
+   "2026-10-03T11:56:38Z stage tidy",
+   "2026-10-03T11:56:38Z stage pap",
+   "2026-10-03T11:56:38Z pap: loaded author-supplied /Users/yamil/Projects/filedrawer/affective_polarization/pap_labeled.json (papreader agent skipped)",
+   "2026-10-03T11:56:38Z cleared 22 file(s) from the previous run",
+   "2026-10-03T11:56:38Z stage clean",
+   "2026-10-03T11:56:39Z wrote data/clean.csv: 4547 rows, 79 columns",
+   "2026-10-03T11:56:39Z stage registered",
+   "2026-10-03T11:56:41Z H1: post_ap ~ C(arm_code, Treatment(reference='T0')) + pre_ap | 32 arms vs Control, N=3825, HC2 SEs, weights=ipw_weight; 1 arm(s) supported; pooled=-0.819 (SE 0.291, p=0.0049, tau2=0.0000, I2=0.00)",
+   "2026-10-03T11:56:41Z H2: post_udp ~ C(arm_code, Treatment(reference='T0')) + pre_udp | 32 arms vs Control, N=3953, HC2 SEs, weights=ipw_weight; 0 arm(s) supported; pooled=-0.015 (SE 0.015, p=0.3087, tau2=0.0000, I2=0.00)",
+   "2026-10-03T11:56:41Z wrote results/registered_summary.csv (66 rows)",
+   "2026-10-03T11:56:41Z stage tag",
+   "2026-10-03T11:56:41Z stage exploratory",
+   "2026-10-03T12:08:41Z exploratory: no analyses recorded; removed scripts/04_exploratory.py, results/E1_heterogeneity_partisan.csv",
+   "2026-10-03T12:08:41Z tags: H1=unregistered, H2=unregistered",
+   "2026-10-03T12:08:41Z stage litreview",
+   "2026-10-03T12:08:54Z stage write",
+   "2026-10-03T12:08:54Z diagram: template (figures/design.svg)",
+   "2026-10-03T12:09:07Z stage review",
+   "2026-10-03T12:10:06Z review (light,advanced): 25 issue(s); provisional decision: major_revision",
+   "2026-10-03T12:10:06Z stage revise",
+   "2026-10-03T12:10:23Z revise: 22 change note(s) from the decision letter",
+   "2026-10-03T12:10:23Z stage signoff",
+   "2026-10-03T12:10:33Z sign-off: major_revision (12/12 claims supported on the revised text)",
+   "2026-10-03T12:10:33Z stage extensions",
+   "2026-10-03T12:10:57Z research potential: 5 cause(s), 0 debate(s), 4 brief(s)",
+   "2026-10-03T12:18:38Z extensions: 3 proposal(s) validated by autoexperiment; dropped: advance_design: Unreachable block End.",
+   "2026-10-03T12:18:38Z stage package"
   ]
  },
  "links": {
@@ -1192,5 +1263,170 @@
   "report": "https://github.com/yrvelez/affective-polarization-interventions/blob/main/report.md",
   "data": "https://github.com/yrvelez/affective-polarization-interventions/tree/main/data"
  },
- "related": []
+ "related": [],
+ "addenda": [],
+ "responses": null,
+ "extensions": [
+  {
+   "id": "generalizability_conditional",
+   "kind": "boundary",
+   "label": "Generalizability",
+   "brief_id": "generalizability_conditional",
+   "mode": "survey_experiment",
+   "debate": null,
+   "why": "Addresses the sample failure: independents were dropped and no moderator was examined.",
+   "title": "Does the Perception gap effect hold across partisanship and baseline polarization?",
+   "hypothesis": "The video lowers affective polarization relative to control, more among strong partisans and the high baseline tercile; the effect is smaller or null among pure independents.",
+   "primary_outcome": "Post-treatment in-party minus out-party thermometer difference (for independents, absolute difference between party thermometers).",
+   "conditions": [
+    "Perception gap video",
+    "Control"
+   ],
+   "status": "proposed",
+   "built_at": null,
+   "qsf": "extensions/generalizability_conditional.qsf",
+   "svg": "extensions/generalizability_conditional.svg",
+   "text": "extensions/generalizability_conditional.txt",
+   "addresses": [
+    "U2"
+   ]
+  },
+  {
+   "id": "theoretical_debate",
+   "kind": "observational",
+   "label": "Theoretical debate",
+   "brief_id": "theoretical_debate",
+   "mode": "survey_experiment",
+   "debate": null,
+   "why": "It fixes nothing yet. A debate brief needs a new literature search on correcting misperceptions versus superordinate identity or empathy.",
+   "title": "Perception-Gap Correction vs. Superordinate Identity: A 2×2 Factorial Test of Additive vs. Substitutive Mechanisms for Reducing Affective Polarization",
+   "hypothesis": "The perception-gap correction and superordinate-identity interventions have substitutive (negative interaction) effects on affective polarization, indicating they operate through a shared psychological mechanism rather than independent channels.",
+   "primary_outcome": "Post-treatment affective polarization measured as the mean of the two party-thermometer scores (0–100), lower = less polarized. Secondary outcome: support for undemocratic practices (same scale as source study). Measured immediately after the video manipulation, before any delay.",
+   "conditions": [],
+   "status": "proposed",
+   "built_at": null,
+   "qsf": null,
+   "svg": "extensions/theoretical_debate.svg",
+   "text": "extensions/theoretical_debate.txt",
+   "addresses": []
+  },
+  {
+   "id": "data_to_collect",
+   "kind": "observational",
+   "label": "Data to collect",
+   "brief_id": "data_to_collect",
+   "mode": "data_collection",
+   "debate": null,
+   "why": "Addresses the sample failure and U2 at no fielding cost.",
+   "title": "Sample-flow and attrition audit from existing data",
+   "hypothesis": "Attrition from 6,086 to 3,825 is balanced across arms, and the Perception gap coefficient of −2.3 points (95% CI [−4.3, −0.4]) remains statistically distinguishable from zero under inverse-probability weighting for differential attrition.",
+   "primary_outcome": "Two outcomes: (1) Affective polarization, measured as the post-treatment average thermometer score toward the out-party (the H1 outcome); (2) Support for undemocratic practices (the H2 outcome). Additionally, the attrition indicator itself is treated as an outcome in the balance tests: a binary flag for whether a respondent is present in the final H1 analysis sample (N=3,825) versus dropped at any stage.",
+   "conditions": [],
+   "status": "proposed",
+   "built_at": null,
+   "qsf": null,
+   "svg": "extensions/data_to_collect.svg",
+   "text": "extensions/data_to_collect.txt",
+   "addresses": [
+    "U2"
+   ]
+  }
+ ],
+ "potential": {
+  "verdict": "Run one follow-up, and run the preregistered replication of the Perception gap video first. The current evidence is one uncorrected hit (-2.3, p=0.019) among 64 tests, most arms are underpowered, and H2 shows nothing. Run the zero-cost attrition audit first, since it determines whether the existing contrasts can be trusted. The retrieved literature is off-topic, so no genuine debate can be named; the theoretical brief is a placeholder pending a proper search. The moderator study on party and baseline polarization only makes sense if the replication holds.",
+  "causes": [
+   "power",
+   "analysis",
+   "design",
+   "sample",
+   "measurement"
+  ],
+  "debates": [],
+  "briefs": [
+   {
+    "id": "advance_design",
+    "mode": "survey_experiment",
+    "title": "Preregistered, powered replication of the Perception gap video with a manipulated mechanism",
+    "needs_qsf": true
+   },
+   {
+    "id": "theoretical_debate",
+    "mode": "survey_experiment",
+    "title": "No debate visible in the retrieved works",
+    "needs_qsf": false
+   },
+   {
+    "id": "generalizability_conditional",
+    "mode": "survey_experiment",
+    "title": "Does the Perception gap effect hold across partisanship and baseline polarization?",
+    "needs_qsf": true
+   },
+   {
+    "id": "data_to_collect",
+    "mode": "data_collection",
+    "title": "Sample-flow and attrition audit from existing data",
+    "needs_qsf": false
+   }
+  ]
+ },
+ "review": "review.json",
+ "review_claims": {
+  "supported": 12,
+  "total": 12,
+  "open_analytical": 8,
+  "on_revised_text": true
+ },
+ "review_round": 1,
+ "review_rounds": 1,
+ "badges": [
+  {
+   "name": "provenance",
+   "label": "provenance",
+   "value": "fully agentic",
+   "color": "indigo",
+   "href": null
+  },
+  {
+   "name": "review",
+   "label": "review",
+   "value": "12/12 claims supported",
+   "color": "green",
+   "href": null
+  },
+  {
+   "name": "registration",
+   "label": "plan",
+   "value": "reconstructed",
+   "color": "amber",
+   "href": null
+  },
+  {
+   "name": "release",
+   "label": "status",
+   "value": "draft",
+   "color": "amber",
+   "href": null
+  },
+  {
+   "name": "design",
+   "label": "design",
+   "value": "survey experiment",
+   "color": "slate",
+   "href": null
+  },
+  {
+   "name": "data",
+   "label": "data",
+   "value": "open data",
+   "color": "green",
+   "href": null
+  },
+  {
+   "name": "cost",
+   "label": "model calls",
+   "value": "$0.82",
+   "color": "slate",
+   "href": null
+  }
+ ]
 }

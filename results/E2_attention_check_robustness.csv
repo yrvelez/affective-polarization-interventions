@@ -1,3 +1,0 @@
-sample,estimate,std_error,p_value,conf_low,conf_high,n
-original,-0.683,0.8621,0.4282,-2.3726,1.0067,3825
-excl_failed_pk,-0.3723,0.8959,0.6777,-2.1281,1.3836,3508
