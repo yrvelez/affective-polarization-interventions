@@ -1,3 +1,4 @@
+"""Exploratory analyses for the Affective Polarization survey experiment."""
 import importlib.util, pathlib
 _spec = importlib.util.spec_from_file_location('reg', pathlib.Path(__file__).with_name('03_registered.py'))
 reg = importlib.util.module_from_spec(_spec)
@@ -12,161 +13,209 @@ import matplotlib.pyplot as plt
 
 # ── Load data ──────────────────────────────────────────────────────────────────
 df = pd.read_csv('data/clean.csv')
-for col in ['post_ap', 'post_udp', 'pre_ap', 'pre_udp', 'ipw_weight']:
-    df[col] = pd.to_numeric(df[col], errors='coerce')
+for c in ['post_ap', 'post_udp', 'pre_ap', 'pre_udp', 'ipw_weight']:
+    df[c] = pd.to_numeric(df[c], errors='coerce')
 
-# ── E1: Heterogeneity by partisan identity (Democrat vs Republican) ───────────
-# Rationale: The interventions target cross-partisan attitudes, so effects may
-# differ by whether respondents identify as Democrats or Republicans.
-# We test the T15 (Perception gap video) effect separately for each partisan group.
+# Ensure arm_code exists (registered script creates it)
+if 'arm_code' not in df.columns:
+    df['arm_code'] = df['arm']
 
-partisan_col = 'partisan'  # 'Democrat' or 'Republican'
+# ── Output dirs ────────────────────────────────────────────────────────────────
+pathlib.Path('results').mkdir(exist_ok=True)
+pathlib.Path('figures').mkdir(exist_ok=True)
 
-# Get the H1 hypothesis for T15
-h1 = [h for h in reg.HYPOTHESES if h['outcome'] == 'post_ap'][0]
+# ── Style helper ───────────────────────────────────────────────────────────────
+def style_ax(ax):
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['left'].set_visible(False)
+    ax.spines['bottom'].set_visible(True)
+    ax.grid(False)
+    ax.tick_params(left=False)
+
+ACCENT = '#2171b5'
+INK = '#1a1a1a'
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# E1: Heterogeneity by respondent party (Democrat vs Republican)
+# Rationale: The interventions target cross-partisan attitudes; effects may
+#       differ for Democrats vs Republicans, which the pooled estimate masks.
+# ═══════════════════════════════════════════════════════════════════════════════
+h1 = reg.HYPOTHESES[0]  # H1: post_ap
 est = h1['estimator']
+outcome = 'post_ap'
+covariates = ['pre_ap']
 
-# Build formula for the full model (same as registered)
-formula, d2 = reg.build_formula('post_ap', est, ['pre_ap'], df)
+# Build partisan groups
+df['is_dem'] = (df['pid3'] == 2).astype(int)
+df['is_rep'] = (df['pid3'] == 1).astype(int)
 
-# Split by partisan group
-results_e1 = []
-for partisan in ['Democrat', 'Republican']:
-    sub = d2[d2[partisan_col] == partisan].copy()
-    if len(sub) < 50:
-        continue
-    res = reg.fit(sub, formula, est)
-    # Extract T15 coefficient
-    t15_term = "C(arm_code, Treatment(reference='T0'))[T.T15]"
-    if t15_term in res.params.index:
-        results_e1.append({
-            'partisan': partisan,
-            'estimate': res.params[t15_term],
-            'std_error': res.bse[t15_term],
-            'p_value': res.pvalues[t15_term],
-            'n': int(res.nobs),
-            'conf_low': res.conf_int().loc[t15_term, 0],
-            'conf_high': res.conf_int().loc[t15_term, 1],
-        })
+rows = []
+for label, mask in [('Democrat', df['is_dem'] == 1), ('Republican', df['is_rep'] == 1)]:
+    d_sub = df[mask].dropna(subset=[outcome, 'pre_ap', 'ipw_weight']).copy()
+    formula, d2 = reg.build_formula(outcome, est, covariates, d_sub)
+    res = reg.fit(d2, formula, est)
+    # Extract arm-level estimates
+    for arm in sorted(d2['arm_code'].unique()):
+        if arm == 'T0':
+            continue
+        term = f"C(arm_code, Treatment(reference='T0'))[T.{arm}]"
+        if term in res.params.index:
+            rows.append({
+                'arm': arm,
+                'group': label,
+                'estimate': res.params[term],
+                'std_error': res.bse[term],
+                'p_value': res.pvalues[term],
+                'n': int(d2.shape[0]),
+            })
 
-e1_df = pd.DataFrame(results_e1)
-e1_df.to_csv('results/E1_heterogeneity_partisan.csv', index=False)
+e1 = pd.DataFrame(rows)
+e1.to_csv('results/E1_heterogeneity_party.csv', index=False)
 
-# Figure: forest plot of T15 effect by partisan group
-fig, ax = plt.subplots(figsize=(6, 3))
-colors = ['#2171b5', '#cb181d']
-for i, row in e1_df.iterrows():
-    ax.plot([row['conf_low'], row['conf_high']], [i, i], color=colors[i], lw=2)
-    ax.plot(row['estimate'], i, 'o', color=colors[i], ms=8)
-    ax.annotate(f"{row['estimate']:.2f} (p={row['p_value']:.3f})",
-                xy=(row['estimate'], i), xytext=(8, 0),
-                textcoords='offset points', va='center', fontsize=9)
-ax.axvline(0, color='grey', lw=0.8, ls='--')
-ax.set_yticks(range(len(e1_df)))
-ax.set_yticklabels([f"{r['partisan']} (n={r['n']})" for _, r in e1_df.iterrows()])
-ax.set_xlabel('ATE on post_ap (T15 vs Control)')
-ax.set_title('E1: T15 Effect by Partisan Identity')
-for spine in ['top', 'right', 'left']:
-    ax.spines[spine].set_visible(False)
-ax.spines['bottom'].set_visible(True)
-plt.tight_layout()
-plt.savefig('figures/E1_heterogeneity_partisan.png', dpi=200, bbox_inches='tight')
-plt.close()
+# Figure: forest plot for Democrats vs Republicans (post_ap)
+fig, axes = plt.subplots(1, 2, figsize=(12, 7), sharey=True)
+for ax, grp in zip(axes, ['Democrat', 'Republican']):
+    sub = e1[e1['group'] == grp].sort_values('arm')
+    y = np.arange(len(sub))
+    ax.errorbar(sub['estimate'], y,
+                xerr=1.96 * sub['std_error'],
+                fmt='o', color=INK, ms=4, capsize=3, lw=1)
+    ax.axvline(0, color='grey', lw=0.5, ls='--')
+    ax.set_yticks(y)
+    ax.set_yticklabels(sub['arm'], fontsize=8)
+    ax.set_xlabel('ATE (post_ap)', fontsize=10)
+    ax.set_title(grp, fontsize=11, color=INK)
+    style_ax(ax)
+fig.tight_layout()
+fig.savefig('figures/E1_heterogeneity_party.png', dpi=200, bbox_inches='tight')
+plt.close(fig)
 
-print(f"E1: T15 effect by partisan — Democrat: {e1_df.loc[0,'estimate']:.3f} (SE={e1_df.loc[0,'std_error']:.3f}, p={e1_df.loc[0,'p_value']:.3f}); "
-      f"Republican: {e1_df.loc[1,'estimate']:.3f} (SE={e1_df.loc[1,'std_error']:.3f}, p={e1_df.loc[1,'p_value']:.3f})")
+# Summary
+n_sig_dem = (e1[e1['group'] == 'Democrat']['p_value'] < 0.05).sum()
+n_sig_rep = (e1[e1['group'] == 'Republican']['p_value'] < 0.05).sum()
+print(f"E1: Heterogeneity by party — {n_sig_dem} significant arms for Democrats, {n_sig_rep} for Republicans (out of {len(e1)//2} each).")
 
-# ── E2: Robustness of T15 effect excluding attention-check failures ───────────
-# Rationale: T15 is the only significant H1 result; we verify it is not driven
-# by inattentive respondents by re-estimating the same model after excluding
-# those who failed any of the three political-knowledge attention checks.
+# ═══════════════════════════════════════════════════════════════════════════════
+# E2: Robustness — exclude respondents who failed all 3 knowledge checks
+# Rationale: Respondents who failed all knowledge checks may not have
+#       engaged with the survey; excluding them tests whether results are
+#       driven by inattentive respondents.
+# ═══════════════════════════════════════════════════════════════════════════════
+# Knowledge check correctness
+df['pk1_correct'] = (df['pk1'] == 3).astype(int)   # 6 years
+df['pk2_correct'] = (df['pk2'] == 2).astype(int)   # Twice
+df['pk3_correct'] = (df['pk3'] == 1).astype(int)   # Rishi Sunak
+df['failed_all_kc'] = ((df['pk1_correct'] == 0) &
+                       (df['pk2_correct'] == 0) &
+                       (df['pk3_correct'] == 0)).astype(int)
 
-# Attention checks: pk1 (senator term), pk2 (president terms), pk3 (UK PM)
-# Correct answers: pk1=3 (six years), pk2=2 (twice), pk3=1 (Rishi Sunak)
-# We exclude respondents who got any wrong (including "Don't know")
-
-df['ac_fail'] = (
-    (df['pk1'] != 3) |
-    (df['pk2'] != 2) |
-    (df['pk3'] != 1)
-)
-# Only flag as fail if they answered (not missing)
-df['ac_fail'] = df['ac_fail'].where(df[['pk1','pk2','pk3']].notna().any(axis=1), False)
-
+n_failed = int(df['failed_all_kc'].sum())
 n_total = len(df)
-n_excluded = int(df['ac_fail'].sum())
-df_clean = df[~df['ac_fail']].copy()
-n_clean = len(df_clean)
+pct_failed = 100 * n_failed / n_total
 
-# Re-fit the SAME registered model on the cleaned sample
-formula2, d2_clean = reg.build_formula('post_ap', est, ['pre_ap'], df_clean)
-res_clean = reg.fit(d2_clean, formula2, est)
+# Re-fit H1 (post_ap) on full sample and on sample excluding all-KC-failures
+rows_e2 = []
+for outcome in ['post_ap', 'post_udp']:
+    h = reg.HYPOTHESES[0] if outcome == 'post_ap' else reg.HYPOTHESES[1]
+    est_h = h['estimator']
+    covs = ['pre_ap'] if outcome == 'post_ap' else ['pre_udp']
 
-t15_term = "C(arm_code, Treatment(reference='T0'))[T.T15]"
-# Original estimate from registered results
-orig_est = -2.333
-orig_se = 0.995
+    # Full sample
+    d_full = df.dropna(subset=[outcome, covs[0], 'ipw_weight']).copy()
+    formula_f, d2_f = reg.build_formula(outcome, est_h, covs, d_full)
+    res_f = reg.fit(d2_f, formula_f, est_h)
 
-e2_df = pd.DataFrame([{
-    'analysis': 'T15 effect on post_ap',
-    'sample': 'full',
-    'estimate': orig_est,
-    'std_error': orig_se,
-    'n': 3825,
-}, {
-    'analysis': 'T15 effect on post_ap',
-    'sample': 'excl_ac_fail',
-    'estimate': res_clean.params[t15_term],
-    'std_error': res_clean.bse[t15_term],
-    'n': int(res_clean.nobs),
-}])
-e2_df.to_csv('results/E2_robustness_attention.csv', index=False)
+    # Excluding all-KC-failures
+    d_excl = df[(df['failed_all_kc'] == 0)].dropna(subset=[outcome, covs[0], 'ipw_weight']).copy()
+    formula_e, d2_e = reg.build_formula(outcome, est_h, covs, d_excl)
+    res_e = reg.fit(d2_e, formula_e, est_h)
 
-print(f"E2: T15 robustness — full sample: {orig_est:.3f} (SE={orig_se:.3f}, n={3825}); "
-      f"excl. AC failures: {res_clean.params[t15_term]:.3f} (SE={res_clean.bse[t15_term]:.3f}, n={int(res_clean.nobs)}); "
-      f"excluded {n_excluded}/{n_total} ({100*n_excluded/n_total:.1f}%)")
+    for arm in sorted(d2_f['arm_code'].unique()):
+        if arm == 'T0':
+            continue
+        term = f"C(arm_code, Treatment(reference='T0'))[T.{arm}]"
+        if term in res_f.params.index and term in res_e.params.index:
+            rows_e2.append({
+                'outcome': outcome,
+                'arm': arm,
+                'est_full': res_f.params[term],
+                'se_full': res_f.bse[term],
+                'p_full': res_f.pvalues[term],
+                'est_excl': res_e.params[term],
+                'se_excl': res_e.bse[term],
+                'p_excl': res_e.pvalues[term],
+                'n_full': int(d2_f.shape[0]),
+                'n_excl': int(d2_e.shape[0]),
+            })
 
-# ── E3: Dose check — correlation between pre_ap and post_ap by arm ───────────
-# Rationale: If the intervention works by shifting the level of affective
-# polarization, we expect the pre-post correlation to be similar across arms;
-# a markedly different pattern in T15 would suggest a different mechanism.
-# We compute the Pearson correlation between pre_ap and post_ap for control
-# vs T15, and test the difference with a Fisher z-test.
+e2 = pd.DataFrame(rows_e2)
+e2.to_csv('results/E2_robustness_kc.csv', index=False)
 
-def fisher_z_diff(r1, r2, n1, n2):
-    z1 = 0.5 * np.log((1+r1)/(1-r1))
-    z2 = 0.5 * np.log((1+r2)/(1-r2))
-    se = np.sqrt(1/(n1-3) + 1/(n2-3))
-    z = (z1 - z2) / se
-    p = 2 * (1 - 0.5*(1 + np.math.erf(abs(z)/np.sqrt(2))))
-    return z, p
+# Check SE stability
+se_ratio = (e2['se_excl'] / e2['se_full']).clip(lower=0.01)
+max_se_ratio = se_ratio.max()
+n_sample_change = 100 * (1 - e2['n_excl'].iloc[0] / e2['n_full'].iloc[0])
+print(f"E2: KC robustness — excluded {n_failed} respondents ({pct_failed:.1f}%), max SE ratio = {max_se_ratio:.2f}, sample change = {n_sample_change:.1f}%.")
 
-ctrl = df[df['arm_code'] == 'T0']
-t15 = df[df['arm_code'] == 'T15']
+# ═══════════════════════════════════════════════════════════════════════════════
+# E3: Heterogeneity by political interest (high vs low)
+# Rationale: Politically interested respondents may be more responsive to
+#       cross-partisan interventions; this tests whether null pooled results
+#       mask a subgroup effect among the highly interested.
+# ═══════════════════════════════════════════════════════════════════════════════
+df['interest'] = pd.to_numeric(df['interest'], errors='coerce')
+# High interest: 4 or 5; Low interest: 1 or 2
+df['hi_interest'] = (df['interest'] >= 4).astype(int)
+df['lo_interest'] = (df['interest'] <= 2).astype(int)
 
-r_ctrl = ctrl[['pre_ap','post_ap']].dropna().corr().iloc[0,1]
-r_t15 = t15[['pre_ap','post_ap']].dropna().corr().iloc[0,1]
-n_ctrl = ctrl[['pre_ap','post_ap']].dropna().shape[0]
-n_t15 = t15[['pre_ap','post_ap']].dropna().shape[0]
+rows_e3 = []
+for outcome in ['post_ap', 'post_udp']:
+    h = reg.HYPOTHESES[0] if outcome == 'post_ap' else reg.HYPOTHESES[1]
+    est_h = h['estimator']
+    covs = ['pre_ap'] if outcome == 'post_ap' else ['pre_udp']
 
-z_stat, p_diff = fisher_z_diff(r_ctrl, r_t15, n_ctrl, n_t15)
+    for label, mask in [('High interest', df['hi_interest'] == 1),
+                        ('Low interest', df['lo_interest'] == 1)]:
+        d_sub = df[mask].dropna(subset=[outcome, covs[0], 'ipw_weight']).copy()
+        formula, d2 = reg.build_formula(outcome, est_h, covs, d_sub)
+        res = reg.fit(d2, formula, est_h)
+        for arm in sorted(d2['arm_code'].unique()):
+            if arm == 'T0':
+                continue
+            term = f"C(arm_code, Treatment(reference='T0'))[T.{arm}]"
+            if term in res.params.index:
+                rows_e3.append({
+                    'outcome': outcome,
+                    'arm': arm,
+                    'group': label,
+                    'estimate': res.params[term],
+                    'std_error': res.bse[term],
+                    'p_value': res.pvalues[term],
+                    'n': int(d2.shape[0]),
+                })
 
-e3_df = pd.DataFrame([{
-    'group': 'Control (T0)',
-    'r_pre_post': r_ctrl,
-    'n': n_ctrl,
-}, {
-    'group': 'T15 (Perception gap video)',
-    'r_pre_post': r_t15,
-    'n': n_t15,
-}, {
-    'group': 'Difference (Fisher z)',
-    'r_pre_post': np.nan,
-    'n': np.nan,
-    'z': z_stat,
-    'p_value': p_diff,
-}])
-e3_df.to_csv('results/E3_dose_pre_post_corr.csv', index=False)
+e3 = pd.DataFrame(rows_e3)
+e3.to_csv('results/E3_heterogeneity_interest.csv', index=False)
 
-print(f"E3: Pre-post correlation — Control: r={r_ctrl:.3f} (n={n_ctrl}); "
-      f"T15: r={r_t15:.3f} (n={n_t15}); Fisher z={z_stat:.3f}, p={p_diff:.4f}")
+# Figure: forest plot for post_ap, high vs low interest
+fig, axes = plt.subplots(1, 2, figsize=(12, 7), sharey=True)
+for ax, grp in zip(axes, ['High interest', 'Low interest']):
+    sub = e3[(e3['outcome'] == 'post_ap') & (e3['group'] == grp)].sort_values('arm')
+    y = np.arange(len(sub))
+    ax.errorbar(sub['estimate'], y,
+                xerr=1.96 * sub['std_error'],
+                fmt='o', color=INK, ms=4, capsize=3, lw=1)
+    ax.axvline(0, color='grey', lw=0.5, ls='--')
+    ax.set_yticks(y)
+    ax.set_yticklabels(sub['arm'], fontsize=8)
+    ax.set_xlabel('ATE (post_ap)', fontsize=10)
+    ax.set_title(grp, fontsize=11, color=INK)
+    style_ax(ax)
+fig.tight_layout()
+fig.savefig('figures/E3_heterogeneity_interest.png', dpi=200, bbox_inches='tight')
+plt.close(fig)
+
+n_sig_hi = ((e3['outcome'] == 'post_ap') & (e3['group'] == 'High interest') & (e3['p_value'] < 0.05)).sum()
+n_sig_lo = ((e3['outcome'] == 'post_ap') & (e3['group'] == 'Low interest') & (e3['p_value'] < 0.05)).sum()
+print(f"E3: Heterogeneity by interest — {n_sig_hi} significant arms (post_ap) for high-interest, {n_sig_lo} for low-interest.")

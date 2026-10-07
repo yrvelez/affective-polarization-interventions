@@ -3,43 +3,41 @@
   "qsf": "extensions/generalizability_conditional.qsf",
   "qsf_errors": [],
   "media": [
-   "video1: video stimulus to supply (Perception gap video showing misperceptions of the other party, about 5 minutes)",
+   "video1: video stimulus to supply (Perception gap video showing how much partisans misperceive the other party, abo)",
    "pre_ap_scores: set the matrix recode values after import 0-20 (very cold)=10, 21-40=30, 41-60=50, 61-80=70, 81-100 (very warm)=90",
    "post_ap_scores: set the matrix recode values after import 0-20 (very cold)=10, 21-40=30, 41-60=50, 61-80=70, 81-100 (very warm)=90"
   ],
   "id": "generalizability_conditional",
   "kind": "boundary",
-  "title": "Does the Perception gap effect hold across partisanship and baseline polarization?",
+  "title": "Partisanship and political interest as moderators of the video effect",
   "brief_id": "generalizability_conditional",
   "mode": "survey_experiment",
   "debate": null,
-  "why": "Addresses the sample failure: independents were dropped and no moderator was examined.",
+  "why": "Fixes missing_moderator: E1 and E3 showed opposing signs by interest (-1.5 vs +1.1) but no interaction test and little power.",
   "power_target": {
-   "n_per_arm": 1500,
-   "mde": 2.4,
-   "basis": "Interaction tests need about twice the n of the main effect; 1500 per arm gives subgroup cells of about 500, and an MDE of roughly 2.4 points per subgroup, near the observed -2.3."
+   "n_per_arm": 1600,
+   "mde": 2.5,
+   "basis": "Interaction SE is roughly double the main-effect SE (~1.0), so detecting a difference near 2.5-3 between subgroups needs about 1,600 per arm."
   },
-  "rationale": "The source found one nominal hit, the Perception gap video (-2.3 points, 95% CI [-4.3, -0.4], p = 0.019, uncorrected), after partisan filters removed independents and with no moderator examined. Of 6,086 raw respondents only 4,547 passed filters, with reasons unexamined. This design reruns video vs control including independents and leaners, stratifies on party and baseline thermometer tercile, and tracks attrition by arm.",
-  "contribution": "Tests whether the Perception gap video effect differs by party identification and baseline affective polarization, includes independents, and reports attrition by arm.",
-  "addresses": [
-   "U2"
-  ],
+  "rationale": "The Perception gap video lowered affective polarization by 2.3 points (p=0.019), but subgroup estimates by interest had opposing signs (high -1.502, SE 1.382; low +1.090, SE 0.912) and by party were similar (Dem -1.671, Rep -1.309), with no interaction test. This design tests the interactions with adequate power.",
+  "contribution": "Provides a pre-registered, adequately powered test of whether the Perception gap video effect differs by party and political interest.",
+  "addresses": [],
   "validated_by": "autoexperiment",
   "status": "proposed",
   "built_at": null,
   "survey_id": null,
   "survey_url": null,
-  "hypothesis": "The video lowers affective polarization relative to control, more among strong partisans and the high baseline tercile; the effect is smaller or null among pure independents.",
-  "primary_outcome": "Post-treatment in-party minus out-party thermometer difference (for independents, absolute difference between party thermometers).",
-  "comparison": "Video vs control, with preregistered interactions by party group (Democrat, Republican, independent) and baseline tercile; differential attrition by arm.",
+  "hypothesis": "The video effect on post_ap differs by political interest (treatment x interest) and by party (treatment x party). Pre-registered as the primary two-sided interaction tests.",
+  "primary_outcome": "post_ap: in-party minus out-party feeling thermometer after treatment, adjusting for pre_ap.",
+  "comparison": "Perception gap video vs control, with treatment-by-interest and treatment-by-party interaction terms, controlling for pre_ap.",
   "conditions": [
-   "Perception gap video",
-   "Control"
+   "Control",
+   "Perception gap video"
   ],
   "unresolved": [
-   "Hosting of the Perception gap video file and its exact length.",
-   "IRB approval number and participant compensation.",
-   "Platform implementation of stratified randomization."
+   "The Perception gap video file must be supplied and hosted by the research team.",
+   "IRB approval number and compensation amount.",
+   "Quota implementation details on the panel."
   ],
   "label": "Generalizability",
   "text": "extensions/generalizability_conditional.txt",
@@ -51,105 +49,56 @@
   "media": [],
   "id": "theoretical_debate",
   "kind": "observational",
-  "title": "Perception-Gap Correction vs. Superordinate Identity: A 2×2 Factorial Test of Additive vs. Substitutive Mechanisms for Reducing Affective Polarization",
+  "title": "Disentangling Misperception Correction from Cross-Party Exposure: A Mechanism Test of the Perception Gap Intervention",
   "brief_id": "theoretical_debate",
-  "mode": "survey_experiment",
+  "mode": "data_collection",
   "debate": null,
-  "why": "It fixes nothing yet. A debate brief needs a new literature search on correcting misperceptions versus superordinate identity or empathy.",
+  "why": "Fixes design: arms differ in many ways, so the mechanism cannot be separated.",
   "power_target": null,
-  "rationale": "The source study's single nominally significant arm (Perception-gap video, −2.3 points, p = 0.019 uncorrected) and a second near-significant arm (a superordinate-identity / 'What makes an American' video, −2.647, p = 0.059) point to two distinct theoretical mechanisms—correcting intergroup misperceptions versus activating a shared national identity—that the literature treats as competing explanations for reducing affective polarization. Because the source study ran each arm independently against a shared control, it cannot tell whether these mechanisms operate on the same psychological resource (substitutive) or on independent channels (additive), which is the core unresolved question in the intergroup-contact and misperception-correction literatures.",
-  "contribution": "A pre-registered 2×2 factorial that crosses the two most promising intervention contents from the source study, enabling a direct test of whether perception-gap correction and superordinate-identity activation produce additive, substitutive, or redundant effects on affective polarization.",
+  "rationale": "The Perception gap video was the only arm in the source study with a confidence interval excluding zero on affective polarization (−2.3 points, p = 0.019), but the video simultaneously presents out-party members in a warm light and conveys statistics showing that out-party views are less extreme than partisans believe. Because these two elements are bundled in a single stimulus, the study cannot determine whether the effect operates through correcting a specific misperception or through generic cross-party exposure that reduces hostility regardless of content.",
+  "contribution": "By decomposing the Perception gap video into its misperception-correction content and its cross-party exposure format, this study identifies which mechanism drives the observed reduction in affective polarization, a distinction the original design cannot make.",
   "addresses": [],
   "validated_by": "autoexperiment",
   "status": "proposed",
   "built_at": null,
   "survey_id": null,
   "survey_url": null,
-  "hypothesis": "The perception-gap correction and superordinate-identity interventions have substitutive (negative interaction) effects on affective polarization, indicating they operate through a shared psychological mechanism rather than independent channels.",
-  "primary_outcome": "Post-treatment affective polarization measured as the mean of the two party-thermometer scores (0–100), lower = less polarized. Secondary outcome: support for undemocratic practices (same scale as source study). Measured immediately after the video manipulation, before any delay.",
-  "comparison": "A 2×2 factorial manipulation: Factor A = perception-gap correction (Perception-gap video vs. no video); Factor B = superordinate identity (What-makes-an-American video vs. no video). Variation is induced by random assignment to one of four conditions: (1) control (no video), (2) perception-gap video only, (3) superordinate-identity video only, (4) both videos. The 'both' condition presents the two videos in a counterbalanced order.",
+  "hypothesis": "The Perception gap video reduces affective polarization significantly more than a matched cross-party warmth video without misperception statistics (contrast 1), indicating that the mechanism is correction of the extremity misperception rather than generic cross-party exposure.",
+  "primary_outcome": "Primary outcome: post-treatment affective polarization, measured as the mean of feeling-thermometer ratings (0–100) for the out-party (e.g., 'How warm or cold do you feel toward the typical Republican?' for Democrats, and vice versa), administered immediately after the treatment. Secondary outcome: perceived out-party extremity, measured by the item 'How extreme are the typical [out-party] members?' on a 0–10 scale (0 = not extreme at all, 10 = extremely extreme), administered immediately after the treatment. Both outcomes are measured at the same time point as in the source study.",
+  "comparison": "Random assignment to one of four arms: (1) Control: a neutral 90-second video about a non-political topic (e.g., a nature documentary clip) matched in length and production quality; (2) Perception gap video: the original intervention video containing both cross-party warmth and misperception-correcting statistics; (3) Matched warmth video: identical in format, length, and emotional tone to the Perception gap video but with all misperception statistics removed, showing only cross-party warmth; (4) Statistics-only text: the same misperception-correcting data presented as plain text with no video or warmth framing. The key active contrast is between arms 2 and 3 (isolating misperception content) and between arms 2 and 4 (isolating video/warmth format).",
   "conditions": [],
   "unresolved": [
-   "Differential video quality or length between the two student-produced videos could confound the content manipulation; mitigation: pre-test both videos for perceived quality and length, and trim or re-edit if they differ by more than 15 seconds.",
-   "Order effects in the 'both' cell: the first video may prime the response to the second; mitigation: counterbalance video order within the 'both' cell and include order as a covariate.",
-   "Demand characteristics: participants may guess the hypothesis and respond accordingly; mitigation: use a cover story ('we are testing how different types of short videos affect political attitudes') and include attention checks.",
-   "Multiple testing: with two primary outcomes and a 2×2 design (4 tests per outcome), a Bonferroni or FDR correction is needed; the interaction test is the primary hypothesis and should be tested first.",
-   "Panel attrition between pre- and post-treatment waves; mitigation: track and report attrition by cell, and use inverse-probability weighting if differential."
+   "Differential engagement: the video arms may hold attention longer than the text arm, making the Perception gap vs. statistics-only text contrast confounded by format engagement rather than warmth content.",
+   "Imperfect matching of the warmth video: if the matched video is less engaging, less warm, or shorter in effective content than the original, the Perception gap vs. matched warmth contrast is biased toward finding a misperception effect.",
+   "Demand effects: participants who guess the study's purpose may respond differently; the four-arm design partially mitigates this (participants cannot know which specific contrast is of interest), but the presence of a 'warmth' arm may prime political content.",
+   "Original video unavailability: if the source authors cannot share the video, recreation introduces uncontrolled variation in voice, pacing, and visual quality that could attenuate or inflate the effect.",
+   "Online panel selection: Prolific panelists are more educated and politically engaged than the US population, potentially limiting external validity.",
+   "Multiple outcomes: two outcomes (AP and perceived extremity) are tested; while the primary analysis focuses on AP, the secondary outcome invites post hoc interpretation if it diverges from the primary."
   ],
   "plan": {
    "data_sources": [
-    "Pew Research Center American Trends Panel (ATP) or Qualtrics Panel (US adult sample, opt-in, demographically weighted): provides the respondent pool, pre-treatment affective-polarization thermometer scores, and demographic covariates.",
-    "Source-study intervention videos: the 'Perception gap' video (student-produced, ~2 min, shows how partisans misperceive each other's views) and the 'What makes an American' video (student-produced, ~2 min, emphasizes shared national identity and common values). Both are available from the source study's supplementary materials or the research team's repository.",
-    "Pre-treatment affective-polarization thermometer (0–100) for both parties, measured in the survey before randomization, to serve as a baseline covariate and to define the sample (e.g., exclude those with no partisan identification)."
+    "Prolific (prolific.com): recruitment platform for US adult panelists; provides self-reported party identification, prior affective polarization measures, and demographic covariates at screening.",
+    "Qualtrics: survey administration platform hosting the experiment, randomization, and post-treatment measures.",
+    "Original Perception gap video: to be obtained directly from the source study authors (the student-designed intervention from 'Testing 33 Student-Designed Interventions to Reduce Affective Polarization'); if unavailable, recreated from the published script using the same narration, footage, and on-screen text.",
+    "Newly produced matched cross-party warmth video: a 90-second video showing the same out-party members (or demographically matched actors) in warm, cooperative contexts (e.g., volunteering, family activities) with identical narration tone and length as the Perception gap video, but with all misperception statistics and extremity data removed.",
+    "Newly produced statistics-only text: a 200-word written passage presenting the same misperception-correcting data (e.g., 'The median Republican supports X, which is closer to the median Democrat than you might think') in plain prose, with no video, no images of out-party members, and no warmth framing."
    ],
-   "units": "Individual US adults (self-identified partisans or leaners) recruited from an online panel; the unit of analysis is the person, with 4 experimental cells (control, perception-gap only, superordinate-identity only, both).",
-   "exposure": "A 2×2 factorial manipulation: Factor A = perception-gap correction (Perception-gap video vs. no video); Factor B = superordinate identity (What-makes-an-American video vs. no video). Variation is induced by random assignment to one of four conditions: (1) control (no video), (2) perception-gap video only, (3) superordinate-identity video only, (4) both videos. The 'both' condition presents the two videos in a counterbalanced order.",
-   "outcome": "Post-treatment affective polarization measured as the mean of the two party-thermometer scores (0–100), lower = less polarized. Secondary outcome: support for undemocratic practices (same scale as source study). Measured immediately after the video manipulation, before any delay.",
-   "identification": "Compare the four cell means in a 2×2 ANOVA / OLS regression. The main effect of Factor A (perception-gap) is the average effect of the perception-gap video across both levels of Factor B; the main effect of Factor B is analogous. The interaction term tests whether the two interventions' effects are additive (interaction ≈ 0) or substitutive (interaction < 0, meaning the combined effect is less than the sum of the individual effects, implying they draw on the same psychological resource). Identification requires that randomization balances observed and unobserved confounders across the four cells, and that the two videos differ only in their intended theoretical mechanism (no systematic differences in length, tone, or production quality).",
+   "units": "Individual US adult partisans (self-identified Democrats or Republicans) recruited via Prolific. Target N = 2,800 (700 per arm × 4 arms). Screening: US resident, age 18+, self-identified partisan (not independent), no prior participation in affective polarization experiments (tracked via Prolific's participant history).",
+   "exposure": "Random assignment to one of four arms: (1) Control: a neutral 90-second video about a non-political topic (e.g., a nature documentary clip) matched in length and production quality; (2) Perception gap video: the original intervention video containing both cross-party warmth and misperception-correcting statistics; (3) Matched warmth video: identical in format, length, and emotional tone to the Perception gap video but with all misperception statistics removed, showing only cross-party warmth; (4) Statistics-only text: the same misperception-correcting data presented as plain text with no video or warmth framing. The key active contrast is between arms 2 and 3 (isolating misperception content) and between arms 2 and 4 (isolating video/warmth format).",
+   "outcome": "Primary outcome: post-treatment affective polarization, measured as the mean of feeling-thermometer ratings (0–100) for the out-party (e.g., 'How warm or cold do you feel toward the typical Republican?' for Democrats, and vice versa), administered immediately after the treatment. Secondary outcome: perceived out-party extremity, measured by the item 'How extreme are the typical [out-party] members?' on a 0–10 scale (0 = not extreme at all, 10 = extremely extreme), administered immediately after the treatment. Both outcomes are measured at the same time point as in the source study.",
+   "identification": "Random assignment to four arms. The identification strategy rests on two pre-specified contrasts: (A) Perception gap video vs. matched warmth video — both arms provide cross-party exposure (seeing out-party members in a warm light), but only the Perception gap video contains misperception-correcting statistics; a significant difference here indicates the misperception content does the work. (B) Perception gap video vs. statistics-only text — both arms contain the misperception-correcting data, but only the video embeds it in a cross-party warmth context; a significant difference here indicates the warmth/exposure format does the work. If neither contrast is significant, the effect is attributable to the combination (interaction). What must hold: randomization is valid (no differential attrition), the matched warmth video is truly equivalent to the Perception gap video in all respects except the statistics, and the statistics-only text conveys the same factual content as the video.",
    "threats": [
-    "Differential video quality or length between the two student-produced videos could confound the content manipulation; mitigation: pre-test both videos for perceived quality and length, and trim or re-edit if they differ by more than 15 seconds.",
-    "Order effects in the 'both' cell: the first video may prime the response to the second; mitigation: counterbalance video order within the 'both' cell and include order as a covariate.",
-    "Demand characteristics: participants may guess the hypothesis and respond accordingly; mitigation: use a cover story ('we are testing how different types of short videos affect political attitudes') and include attention checks.",
-    "Multiple testing: with two primary outcomes and a 2×2 design (4 tests per outcome), a Bonferroni or FDR correction is needed; the interaction test is the primary hypothesis and should be tested first.",
-    "Panel attrition between pre- and post-treatment waves; mitigation: track and report attrition by cell, and use inverse-probability weighting if differential."
+    "Differential engagement: the video arms may hold attention longer than the text arm, making the Perception gap vs. statistics-only text contrast confounded by format engagement rather than warmth content.",
+    "Imperfect matching of the warmth video: if the matched video is less engaging, less warm, or shorter in effective content than the original, the Perception gap vs. matched warmth contrast is biased toward finding a misperception effect.",
+    "Demand effects: participants who guess the study's purpose may respond differently; the four-arm design partially mitigates this (participants cannot know which specific contrast is of interest), but the presence of a 'warmth' arm may prime political content.",
+    "Original video unavailability: if the source authors cannot share the video, recreation introduces uncontrolled variation in voice, pacing, and visual quality that could attenuate or inflate the effect.",
+    "Online panel selection: Prolific panelists are more educated and politically engaged than the US population, potentially limiting external validity.",
+    "Multiple outcomes: two outcomes (AP and perceived extremity) are tested; while the primary analysis focuses on AP, the secondary outcome invites post hoc interpretation if it diverges from the primary."
    ],
-   "analysis_plan": "Primary estimator: OLS regression of post-treatment affective polarization on the two binary treatment indicators (perception-gap, superordinate-identity) and their interaction, plus pre-treatment polarization, party identification, age, sex, and education as covariates. Standard errors clustered at the individual level (no clustering needed for a simple RCT). Pre-specified tests: (1) the interaction term (perception-gap × superordinate-identity) — the primary test of additivity vs. substitutivity; (2) the main effect of the perception-gap factor, averaged across levels of the superordinate-identity factor. Both tested at α = 0.05 two-sided, with the interaction as the primary hypothesis. A secondary analysis will repeat the model with the undemocratic-practices outcome. Power: with n ≈ 600 per cell (2,400 total), SE ≈ 1.0 for a cell mean, the design has 80% power to detect a 2.3-point difference in a main effect and approximately 60% power to detect a 2.3-point interaction (substitutive effect), given the larger SE of the interaction term. If the true effects are smaller than the inflated source-study estimates, power for the interaction will be lower; a sensitivity analysis at 1.5-point effects will be reported."
+   "analysis_plan": "Estimator: OLS regression of post-treatment affective polarization on four arm dummies (control as reference), with pre-treatment affective polarization (collected at screening) as a covariate (ANCOVA). The same model is run for perceived out-party extremity. Pre-specified contrasts (tested via linear combinations of the arm coefficients): (1) Perception gap video minus matched warmth video; (2) Perception gap video minus statistics-only text. Standard errors: heteroskedasticity-robust (HC3). Pre-specified tests: the two contrasts above, with a Bonferroni correction for the two pre-specified contrasts (alpha = 0.025 per contrast). A supplementary interaction test (Perception gap video minus the average of the other two active arms) is reported descriptively but not treated as a formal test. All analyses are pre-registered on AsPredicted before data collection begins."
   },
   "label": "Theoretical debate",
   "text": "extensions/theoretical_debate.txt",
   "svg": "extensions/theoretical_debate.svg"
- },
- {
-  "qsf": null,
-  "qsf_errors": [],
-  "media": [],
-  "id": "data_to_collect",
-  "kind": "observational",
-  "title": "Sample-flow and attrition audit from existing data",
-  "brief_id": "data_to_collect",
-  "mode": "data_collection",
-  "debate": null,
-  "why": "Addresses the sample failure and U2 at no fielding cost.",
-  "power_target": null,
-  "rationale": "The source study reports that 6,086 raw respondents were reduced to 4,547 after filters and further to 3,825 in the H1 model, but the reasons for these losses are never examined. If attrition is differential across the 33 arms—e.g., if the Perception gap video arm loses a disproportionate share of high-polarization respondents—the 2.3-point estimate could be an artifact of who remained rather than a treatment effect.",
-  "contribution": "Establishes whether the nominally significant Perception gap estimate and the pooled 0.8-point effect survive a complete-case analysis that accounts for differential attrition, at zero fielding cost.",
-  "addresses": [
-   "U2"
-  ],
-  "validated_by": "autoexperiment",
-  "status": "proposed",
-  "built_at": null,
-  "survey_id": null,
-  "survey_url": null,
-  "hypothesis": "Attrition from 6,086 to 3,825 is balanced across arms, and the Perception gap coefficient of −2.3 points (95% CI [−4.3, −0.4]) remains statistically distinguishable from zero under inverse-probability weighting for differential attrition.",
-  "primary_outcome": "Two outcomes: (1) Affective polarization, measured as the post-treatment average thermometer score toward the out-party (the H1 outcome); (2) Support for undemocratic practices (the H2 outcome). Additionally, the attrition indicator itself is treated as an outcome in the balance tests: a binary flag for whether a respondent is present in the final H1 analysis sample (N=3,825) versus dropped at any stage.",
-  "comparison": "Arm assignment (which of the 33 interventions the respondent was randomized to). Variation comes from the original randomization in the fielded experiment.",
-  "conditions": [],
-  "unresolved": [
-   "If the raw data file does not include the pre-filter 6,086 rows (only the 4,547 filtered), the audit cannot examine the partisan-filter stage and is limited to the 4,547-to-3,825 reduction.",
-   "If the replication script applies filters sequentially without saving intermediate flags, it may be impossible to decompose attrition into its component stages (partisan filter, T33 exclusion, missing pre-treatment, missing post-treatment).",
-   "With 33 arms and some arms having fewer than 100 respondents, the attrition balance tests will have low power to detect moderate differential attrition in small arms.",
-   "The audit cannot rule out that attrition is driven by the treatment itself (e.g., a respondent who watched the Perception gap video dropped out because the video was unpleasant), which would be a post-randomization selection problem that no reweighting can fully fix."
-  ],
-  "plan": {
-   "data_sources": [
-    "The replication script and associated data files from the source study (available via the authors' OSF or GitHub repository, or by direct request to the lead author). Specifically: the raw respondent-level dataset containing arm assignment, all filter flags (partisan self-ID, attention-check pass/fail, T33 chatbot exclusion flag), pre-treatment and post-treatment thermometer scores, and the undemocratic-practices scale.",
-    "The analysis script (R or Python) that produced the H1 and H2 models, which encodes the exact filter logic and missing-data handling used to arrive at N=3,825 and N=3,953."
-   ],
-   "units": "The unit of analysis is the individual respondent. The sample is the full set of 6,086 raw respondents (or 4,547 if only the filtered file is available), stratified by the 33 arms (32 interventions + 1 control).",
-   "exposure": "Arm assignment (which of the 33 interventions the respondent was randomized to). Variation comes from the original randomization in the fielded experiment.",
-   "outcome": "Two outcomes: (1) Affective polarization, measured as the post-treatment average thermometer score toward the out-party (the H1 outcome); (2) Support for undemocratic practices (the H2 outcome). Additionally, the attrition indicator itself is treated as an outcome in the balance tests: a binary flag for whether a respondent is present in the final H1 analysis sample (N=3,825) versus dropped at any stage.",
-   "identification": "Compare attrition rates and pre-treatment covariate means across arms. If attrition is independent of arm (i.e., the probability of being in the final sample does not depend on which intervention was received, conditional on passing filters), then the complete-case H1 estimate is unbiased. The audit tests this by (a) comparing attrition proportions across arms with a chi-square or logistic regression, and (b) comparing pre-treatment covariates (baseline polarization, partisanship, demographics) between those retained and those dropped, within each arm. If attrition is balanced, the original estimate stands; if not, the complete-case estimate is reinterpreted as a local effect on the retained subpopulation.",
-   "threats": [
-    "If the raw data file does not include the pre-filter 6,086 rows (only the 4,547 filtered), the audit cannot examine the partisan-filter stage and is limited to the 4,547-to-3,825 reduction.",
-    "If the replication script applies filters sequentially without saving intermediate flags, it may be impossible to decompose attrition into its component stages (partisan filter, T33 exclusion, missing pre-treatment, missing post-treatment).",
-    "With 33 arms and some arms having fewer than 100 respondents, the attrition balance tests will have low power to detect moderate differential attrition in small arms.",
-    "The audit cannot rule out that attrition is driven by the treatment itself (e.g., a respondent who watched the Perception gap video dropped out because the video was unpleasant), which would be a post-randomization selection problem that no reweighting can fully fix."
-   ],
-   "analysis_plan": "Step 1: Reconstruct the sample-flow table. For each of the 33 arms, tabulate: (a) raw N, (b) N after partisan filter, (c) N after T33 exclusion, (d) N with non-missing pre-treatment score, (e) N with non-missing post-treatment score (final H1 N). This yields a 33-row table with cumulative attrition at each stage. Step 2: Test balance in attrition. Fit a logistic regression: I(in final H1 sample) ~ arm + pre-treatment polarization + partisanship + age + gender + education. The arm coefficients test whether attrition differs by arm beyond what is explained by pre-treatment covariates. Report the maximum absolute standardized difference in attrition rates across arms. Step 3: Rerun H1 two ways. (i) Unweighted OLS: post-treatment polarization ~ arm dummies + pre-treatment polarization, using all 3,825 complete cases (this is the original estimate). (ii) Complete-case with attrition weights: inverse-probability weights where the propensity to be in the final sample is estimated from the logistic model in Step 2; re-estimate the arm effects with these weights. Step 4: Compare the Perception gap coefficient across the three specifications (original, unweighted complete-case, IPW-weighted). Pre-specified decision rule: if the IPW-weighted Perception gap coefficient's 95% CI includes zero, conclude the original estimate is not robust to differential attrition. If the coefficient shifts by more than 1.0 point between unweighted and IPW, flag the estimate as attrition-sensitive. Standard errors: cluster by arm (33 clusters) to account for the shared control group. Pre-specified tests: (1) the logistic attrition-balance test (Step 2), (2) the IPW-weighted Perception gap coefficient with its 95% CI (Step 4)."
-  },
-  "label": "Data to collect",
-  "text": "extensions/data_to_collect.txt",
-  "svg": "extensions/data_to_collect.svg"
  }
 ]

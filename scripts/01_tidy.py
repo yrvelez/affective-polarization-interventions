@@ -14,7 +14,7 @@ warnings.filterwarnings("ignore")
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 RAW = ROOT / "raw_export.csv"
-DROP = ["RecordedDate"]
+DROP = ["RecordedDate", "dem_intervention", "rep_intervention"]
 SKIP = []
 
 def main():

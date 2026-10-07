@@ -1,34 +1,34 @@
 {
  "id": "generalizability_conditional",
  "kind": "boundary",
- "title": "Does the Perception gap effect hold across partisanship and baseline polarization?",
- "rationale": "The source found one nominal hit, the Perception gap video (-2.3 points, 95% CI [-4.3, -0.4], p = 0.019, uncorrected), after partisan filters removed independents and with no moderator examined. Of 6,086 raw respondents only 4,547 passed filters, with reasons unexamined. This design reruns video vs control including independents and leaners, stratifies on party and baseline thermometer tercile, and tracks attrition by arm.",
- "contribution": "Tests whether the Perception gap video effect differs by party identification and baseline affective polarization, includes independents, and reports attrition by arm.",
+ "title": "Partisanship and political interest as moderators of the video effect",
+ "rationale": "The Perception gap video lowered affective polarization by 2.3 points (p=0.019), but subgroup estimates by interest had opposing signs (high -1.502, SE 1.382; low +1.090, SE 0.912) and by party were similar (Dem -1.671, Rep -1.309), with no interaction test. This design tests the interactions with adequate power.",
+ "contribution": "Provides a pre-registered, adequately powered test of whether the Perception gap video effect differs by party and political interest.",
  "limitations": [
-  "Single video and immediate outcome only",
-  "Online panel; leaner classification may be noisy",
-  "Subgroup tests are underpowered for small interactions",
-  "Pre-treatment thermometer may prime respondents"
+  "Immediate outcome only; durability unknown",
+  "Interest and party measured by self-report; independents excluded",
+  "Single video; online panel may not be representative",
+  "Measuring interest pre-treatment could prime respondents"
  ],
  "design": {
-  "title": "Perception gap video vs control across party and baseline polarization",
-  "overview": "Participants consent, report party identification and a pre-treatment thermometer, are randomized (stratified by party group and thermometer tercile) to the Perception gap video or a control page, then complete the post thermometer and a debrief. Attrition is logged by arm.",
-  "hypothesis": "The video lowers affective polarization relative to control, more among strong partisans and the high baseline tercile; the effect is smaller or null among pure independents.",
-  "primaryOutcome": "Post-treatment in-party minus out-party thermometer difference (for independents, absolute difference between party thermometers).",
-  "comparison": "Video vs control, with preregistered interactions by party group (Democrat, Republican, independent) and baseline tercile; differential attrition by arm.",
-  "population": "US adults from an online panel, including independents and leaners, quota-sampled on party.",
+  "title": "Partisanship and political interest as moderators of the Perception gap video effect",
+  "overview": "US online-panel respondents who are Democrats or Republicans with high or low political interest are randomized to control or the Perception gap video, within party-by-interest strata. Affective polarization is measured before and after.",
+  "hypothesis": "The video effect on post_ap differs by political interest (treatment x interest) and by party (treatment x party). Pre-registered as the primary two-sided interaction tests.",
+  "primaryOutcome": "post_ap: in-party minus out-party feeling thermometer after treatment, adjusting for pre_ap.",
+  "comparison": "Perception gap video vs control, with treatment-by-interest and treatment-by-party interaction terms, controlling for pre_ap.",
+  "population": "US adults from an online panel, Democrats and Republicans (including leaners), with high interest (very or extremely interested) or low interest (not very or not at all interested). Somewhat interested respondents are screened out.",
   "conditions": [
-   {
-    "id": "c_video",
-    "title": "Perception gap video",
-    "description": "Watch the Perception gap video.",
-    "nodeId": "arm_video"
-   },
    {
     "id": "c_control",
     "title": "Control",
-    "description": "Pure control page.",
+    "description": "Sees a neutral page: Please continue.",
     "nodeId": "arm_control"
+   },
+   {
+    "id": "c_video",
+    "title": "Perception gap video",
+    "description": "Watches the Perception gap video with misperception data.",
+    "nodeId": "arm_video"
    }
   ],
   "blocks": [
@@ -39,18 +39,18 @@
      {
       "id": "q_consent",
       "type": "MC",
-      "text": "You are invited to a research study on political attitudes. It takes about 10 minutes and is voluntary. You may stop at any time. Do you consent to participate?",
+      "text": "You are invited to take part in a research study on political attitudes. It takes about 10 minutes, is voluntary, and your answers are confidential. Do you consent to participate?",
       "tag": "consent",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "c1",
+        "id": "yes",
         "text": "I consent",
         "recode": "1"
        },
        {
-        "id": "c2",
+        "id": "no",
         "text": "I do not consent",
         "recode": "0"
        }
@@ -65,39 +65,7 @@
     "title": "Pre-treatment",
     "questions": [
      {
-      "id": "q_pid3",
-      "type": "MC",
-      "text": "Generally speaking, do you usually think of yourself as a Republican, a Democrat, an Independent, or something else?",
-      "tag": "pid3",
-      "multiple": false,
-      "required": true,
-      "choices": [
-       {
-        "id": "p1",
-        "text": "Republican",
-        "recode": "1"
-       },
-       {
-        "id": "p2",
-        "text": "Democrat",
-        "recode": "2"
-       },
-       {
-        "id": "p3",
-        "text": "Independent",
-        "recode": "3"
-       },
-       {
-        "id": "p4",
-        "text": "Something else",
-        "recode": "4"
-       }
-      ],
-      "rows": [],
-      "sourceQuestionId": "QID7"
-     },
-     {
-      "id": "q_lean",
+      "id": "q_pid",
       "type": "MC",
       "text": "Do you think of yourself as closer to the Republican Party or to the Democratic Party?",
       "tag": "pidlean",
@@ -105,17 +73,17 @@
       "required": true,
       "choices": [
        {
-        "id": "l1",
+        "id": "rep",
         "text": "Closer to the Republican Party",
         "recode": "1"
        },
        {
-        "id": "l2",
+        "id": "dem",
         "text": "Closer to the Democratic Party",
         "recode": "2"
        },
        {
-        "id": "l3",
+        "id": "neither",
         "text": "Neither",
         "recode": "3"
        }
@@ -124,9 +92,46 @@
       "sourceQuestionId": "QID10"
      },
      {
+      "id": "q_int",
+      "type": "MC",
+      "text": "Generally, how interested are you in politics?",
+      "tag": "interest",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "i5",
+        "text": "Extremely interested",
+        "recode": "5"
+       },
+       {
+        "id": "i4",
+        "text": "Very interested",
+        "recode": "4"
+       },
+       {
+        "id": "i3",
+        "text": "Somewhat interested",
+        "recode": "3"
+       },
+       {
+        "id": "i2",
+        "text": "Not very interested",
+        "recode": "2"
+       },
+       {
+        "id": "i1",
+        "text": "Not at all interested",
+        "recode": "1"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": "QID13"
+     },
+     {
       "id": "q_pre",
       "type": "Matrix",
-      "text": "Please rate each group on a feeling thermometer from 0 (cold) to 100 (warm); 50 is neutral. Choose the point closest to your rating.",
+      "text": "Please rate each group on the feeling thermometer, from 0 (cold) to 100 (warm). Choose the point on the scale closest to your feeling.",
       "tag": "pre_ap_scores",
       "multiple": false,
       "required": true,
@@ -172,23 +177,6 @@
     ]
    },
    {
-    "id": "b_video",
-    "title": "Video",
-    "questions": [
-     {
-      "id": "q_video",
-      "type": "DB",
-      "text": "{{ed:video1}}",
-      "tag": "video_display",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     }
-    ]
-   },
-   {
     "id": "b_control",
     "title": "Control",
     "questions": [
@@ -196,7 +184,7 @@
       "id": "q_ctrl",
       "type": "DB",
       "text": "Please continue.",
-      "tag": "control_display",
+      "tag": "control_text",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -206,39 +194,67 @@
     ]
    },
    {
+    "id": "b_video",
+    "title": "Video",
+    "questions": [
+     {
+      "id": "q_vid",
+      "type": "DB",
+      "text": "Please watch this video. {{ed:video1}}",
+      "tag": "video_stim",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_manip",
+      "type": "TE",
+      "text": "What did you just see, read, or watch?",
+      "tag": "manip_check",
+      "multiple": false,
+      "required": true,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": "QID31"
+     }
+    ]
+   },
+   {
     "id": "b_post",
-    "title": "Outcome",
+    "title": "Post-treatment",
     "questions": [
      {
       "id": "q_post",
       "type": "Matrix",
-      "text": "Please rate each group on a feeling thermometer from 0 (cold) to 100 (warm); 50 is neutral. Choose the point closest to your rating.",
+      "text": "Please rate each group on the feeling thermometer, from 0 (cold) to 100 (warm). Choose the point on the scale closest to your feeling.",
       "tag": "post_ap_scores",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "o0",
+        "id": "t0",
         "text": "0-20 (very cold)",
         "recode": "10"
        },
        {
-        "id": "o1",
+        "id": "t1",
         "text": "21-40",
         "recode": "30"
        },
        {
-        "id": "o2",
+        "id": "t2",
         "text": "41-60",
         "recode": "50"
        },
        {
-        "id": "o3",
+        "id": "t3",
         "text": "61-80",
         "recode": "70"
        },
        {
-        "id": "o4",
+        "id": "t4",
         "text": "81-100 (very warm)",
         "recode": "90"
        }
@@ -254,29 +270,18 @@
        }
       ],
       "sourceQuestionId": "QID28"
-     },
-     {
-      "id": "q_debrief",
-      "type": "DB",
-      "text": "Thank you. This study tested whether a short video about how Americans misperceive the other party changes attitudes. Please contact the research team with any questions.",
-      "tag": "debrief",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
      }
     ]
    },
    {
-    "id": "b_end",
-    "title": "End",
+    "id": "b_debrief",
+    "title": "Debrief",
     "questions": [
      {
-      "id": "q_end",
+      "id": "q_debrief",
       "type": "DB",
-      "text": "Thank you. You did not consent, so the survey ends here.",
-      "tag": "noconsent",
+      "text": "Thank you. This study examined how short videos affect views of political groups. The video presented survey data on how partisans perceive each other. Contact the research team with any questions.",
+      "tag": "debrief",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -300,31 +305,18 @@
     "operator": "equals"
    },
    {
-    "id": "n_br",
+    "id": "n_noconsent",
     "type": "branch",
     "label": "No consent",
     "children": [
-     "n_endblk",
      "n_end"
     ],
     "blockId": "",
     "field": "",
     "value": "",
     "questionId": "q_consent",
-    "choiceId": "c2",
+    "choiceId": "no",
     "operator": "selected"
-   },
-   {
-    "id": "n_endblk",
-    "type": "block",
-    "label": "End message",
-    "children": [],
-    "blockId": "b_end",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
    },
    {
     "id": "n_end",
@@ -355,62 +347,10 @@
     "type": "randomizer",
     "label": "Randomize",
     "children": [
-     "arm_video",
-     "arm_control"
+     "arm_control",
+     "arm_video"
     ],
     "blockId": "",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "arm_video",
-    "type": "group",
-    "label": "Video arm",
-    "children": [
-     "e_cond_v",
-     "e_video",
-     "n_video"
-    ],
-    "blockId": "",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "e_cond_v",
-    "type": "embedded",
-    "label": "cond",
-    "children": [],
-    "blockId": "",
-    "field": "condition",
-    "value": "video",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "e_video",
-    "type": "embedded",
-    "label": "video",
-    "children": [],
-    "blockId": "",
-    "field": "video1",
-    "value": "[VIDEO: Perception gap video showing misperceptions of the other party, about 5 minutes]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_video",
-    "type": "block",
-    "label": "Video",
-    "children": [],
-    "blockId": "b_video",
     "field": "",
     "value": "",
     "questionId": "",
@@ -422,7 +362,7 @@
     "type": "group",
     "label": "Control arm",
     "children": [
-     "e_cond_c",
+     "set_control",
      "n_control"
     ],
     "blockId": "",
@@ -433,9 +373,9 @@
     "operator": "equals"
    },
    {
-    "id": "e_cond_c",
+    "id": "set_control",
     "type": "embedded",
-    "label": "cond",
+    "label": "Set condition",
     "children": [],
     "blockId": "",
     "field": "condition",
@@ -457,6 +397,58 @@
     "operator": "equals"
    },
    {
+    "id": "arm_video",
+    "type": "group",
+    "label": "Video arm",
+    "children": [
+     "set_video",
+     "set_video1",
+     "n_video"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_video",
+    "type": "embedded",
+    "label": "Set condition",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "video",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_video1",
+    "type": "embedded",
+    "label": "Video stimulus",
+    "children": [],
+    "blockId": "",
+    "field": "video1",
+    "value": "[VIDEO: Perception gap video showing how much partisans misperceive the other party, about 5 minutes]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_video",
+    "type": "block",
+    "label": "Video",
+    "children": [],
+    "blockId": "b_video",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
     "id": "n_post",
     "type": "block",
     "label": "Post",
@@ -467,34 +459,46 @@
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
+   },
+   {
+    "id": "n_debrief",
+    "type": "block",
+    "label": "Debrief",
+    "children": [],
+    "blockId": "b_debrief",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
    }
   ],
   "roots": [
    "n_consent",
-   "n_br",
+   "n_noconsent",
    "n_pre",
    "r1",
-   "n_post"
+   "n_post",
+   "n_debrief"
   ],
   "assumptions": [
-   "Power: about 1500 per arm to detect 2.4 points at 80% power; interaction tests need about twice the n of the main effect; subgroup cells of about 500 give an MDE near 2.4, close to the observed -2.3.",
-   "Randomization stratified on party group and pre-treatment thermometer tercile (implemented in the platform).",
-   "Thermometers are collected as 5-point banded matrices because the schema has no slider type; a platform slider would be used if available.",
-   "Attrition logged by arm: starts, completions and drop-off page, to address U2.",
-   "Heterogeneity tests by party and tercile preregistered; Holm correction across subgroup tests.",
-   "Online panel with party quotas; leaners coded with their lean."
+   "Power target: about 1600 per arm to detect a 2.5-point subgroup difference at 80% power, since the interaction SE is roughly double the main-effect SE (~1.0).",
+   "Randomization is pre-stratified by party x interest; quotas fill the four cells roughly equally, with the survey platform enforcing quotas.",
+   "Analysis: OLS with HC2 errors, pre_ap covariate, and interaction terms; high interest is >=4 and low is <=2.",
+   "Thermometer is collected as 5-point banded matrix because slider type is unavailable; a slider can be used on the platform.",
+   "Compensation at standard panel rates."
   ],
   "unresolved": [
-   "Hosting of the Perception gap video file and its exact length.",
-   "IRB approval number and participant compensation.",
-   "Platform implementation of stratified randomization."
+   "The Perception gap video file must be supplied and hosted by the research team.",
+   "IRB approval number and compensation amount.",
+   "Quota implementation details on the panel."
   ],
   "evidence": [
    {
     "id": "e1",
     "title": "Source study package",
     "url": "https://github.com/yrvelez/affective-polarization-interventions",
-    "claim": "Perception gap video was the only nominal hit (-2.3, p=0.019) and independents were excluded.",
+    "claim": "Perception gap video effect -2.3; opposing-sign subgroup estimates by interest without interaction test",
     "excerpt": "",
     "origin": "supplied"
    }

@@ -2052,9 +2052,9 @@
       "label": "",
       "values": {},
       "free_text": false,
-      "pii_flag": false,
-      "pii_reason": "",
-      "dropped": false
+      "pii_flag": true,
+      "pii_reason": "value_pattern:free_text",
+      "dropped": true
     },
     {
       "name": "rep_intervention",
@@ -2064,9 +2064,9 @@
       "label": "",
       "values": {},
       "free_text": false,
-      "pii_flag": false,
-      "pii_reason": "",
-      "dropped": false
+      "pii_flag": true,
+      "pii_reason": "value_pattern:free_text",
+      "dropped": true
     },
     {
       "name": "group1",

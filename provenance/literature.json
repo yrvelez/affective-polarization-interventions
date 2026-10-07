@@ -1,5 +1,5 @@
 {
- "text": "The retrieved works are entirely off-topic relative to the study's hypotheses about interventions changing post_ap and post_udp relative to control; none of them address the relevant outcome variables or intervention framework, so no prior findings can be drawn on to support or contest H1 or H2.",
+ "text": "The retrieved works do not address the study's hypotheses. The list spans quantum cryptography (Gisin et al., 2002), nanoparticle drug delivery (Mitchell et al., 2020), high-energy-physics cross-section computation (Alwall et al., 2014), extracellular-vesicle biology and guidelines (Théry et al., 2018; Yáñez-Mó et al., 2015; Kalluri & LeBleu, 2020), surface-enhanced Raman scattering (Langer et al., 2019), quality-of-life measurement (Maggino, 2023), econophysics (Sornette, 2014), and optical-fiber medical sensing (Quandt et al., 2014). None of these works report findings on interventions changing post_ap or post_udp relative to a control condition, so no prior evidence can be marshalled for or against H1 or H2.\n\nBecause no retrieved work speaks to the specific outcome variables or intervention framework under study, there is no prior disagreement to name and no side the study's design can adjudicate.",
  "works": [
   {
    "id": "https://openalex.org/W3038067977",
@@ -13,10 +13,10 @@
    "year": 2002,
    "doi": "10.1103/revmodphys.74.145",
    "venue": "Reviews of Modern Physics",
-   "cited_by": 8463,
+   "cited_by": 8479,
    "abstract": "Quantum cryptography could well be the first application of quantum mechanics at the single-quantum level. The rapid progress in both theory and experiment in recent years is reviewed, with emphasis on open questions and technological issues.",
    "stance": "supporting",
-   "query": "affective polarization intervention reduction experiment"
+   "query": "affective polarization intervention reduction experimental"
   },
   {
    "id": "https://openalex.org/W3109746568",
@@ -30,10 +30,10 @@
    "year": 2020,
    "doi": "10.1038/s41573-020-0090-8",
    "venue": "Nature Reviews Drug Discovery",
-   "cited_by": 7927,
+   "cited_by": 7939,
    "abstract": "",
    "stance": "supporting",
-   "query": "affective polarization intervention reduction experiment"
+   "query": "affective polarization intervention reduction experimental"
   },
   {
    "id": "https://openalex.org/W2110999179",
@@ -47,56 +47,61 @@
    "year": 2014,
    "doi": "10.1007/jhep07(2014)079",
    "venue": "Journal of High Energy Physics",
-   "cited_by": 7617,
+   "cited_by": 7626,
    "abstract": "We discuss the theoretical bases that underpin the automation of the computations of tree-level and next-to-leading order cross sections, of their matching to parton shower simulations, and of the merging of matched samples that differ by light-parton multiplicities. We present a computer program, MadGraph5 aMC@NLO, capable of handling all these computations — parton-level fixed order, shower-matc",
    "stance": "supporting",
-   "query": "affective polarization intervention reduction experiment"
+   "query": "affective polarization intervention reduction experimental"
   },
   {
-   "id": "https://openalex.org/W2170739705",
-   "title": "The Psychology of Self‐defense: Self‐Affirmation Theory",
+   "id": "https://openalex.org/W2900756811",
+   "title": "Minimal information for studies of extracellular vesicles 2018 (MISEV2018): a position statement of the International Society for Extracellular Vesicles and update of the MISEV2014 guidelines",
    "authors": [
-    "David K. Sherman",
-    "Geoffrey L. Cohen"
+    "Clotilde Théry",
+    "Kenneth Whitaker Witwer",
+    "Elena Aïkawa",
+    "María José Alcaraz"
    ],
-   "year": 2006,
-   "doi": "10.1016/s0065-2601(06)38004-5",
-   "venue": "Advances in experimental social psychology",
-   "cited_by": 1607,
-   "abstract": "",
+   "year": 2018,
+   "doi": "10.1080/20013078.2018.1535750",
+   "venue": "Journal of Extracellular Vesicles",
+   "cited_by": 11587,
+   "abstract": "The last decade has seen a sharp increase in the number of scientific publications describing physiological and pathological functions of extracellular vesicles (EVs), a collective term covering various subtypes of cell-released, membranous structures, called exosomes, microvesicles, microparticles, ectosomes, oncosomes, apoptotic bodies, and many other names. However, specific issues arise when w",
    "stance": "contesting",
-   "query": "affective polarization stability identity motivated reasoning resistant"
+   "query": "affective polarization resistant change identity-based"
   },
   {
-   "id": "https://openalex.org/W2023041445",
-   "title": "Self-Enhancement: Food for Thought",
+   "id": "https://openalex.org/W2170852633",
+   "title": "Biological properties of extracellular vesicles and their physiological functions",
    "authors": [
-    "Constantine Sedikides",
-    "Aiden P. Gregg"
+    "María Yáñez‐Mó",
+    "Pia R. M. Siljander",
+    "Zoraida Andreu",
+    "Apolonija Bedina Zavec"
    ],
-   "year": 2008,
-   "doi": "10.1111/j.1745-6916.2008.00068.x",
-   "venue": "Perspectives on Psychological Science",
-   "cited_by": 886,
-   "abstract": "Self-enhancement denotes a class of psychological phenomena that involve taking a tendentiously positive view of oneself. We distinguish between four levels of self-enhancement-an observed effect, an ongoing process, a personality trait, and an underlying motive-and then use these distinctions to organize the wealth of relevant research. Furthermore, to render these distinctions intuitive, we draw",
+   "year": 2015,
+   "doi": "10.3402/jev.v4.27066",
+   "venue": "Journal of Extracellular Vesicles",
+   "cited_by": 6169,
+   "abstract": "In the past decade, extracellular vesicles (EVs) have been recognized as potent vehicles of intercellular communication, both in prokaryotes and eukaryotes. This is due to their capacity to transfer proteins, lipids and nucleic acids, thereby influencing various physiological and pathological functions of both recipient and parent cells. While intensive investigation has targeted the role of EVs i",
    "stance": "contesting",
-   "query": "affective polarization stability identity motivated reasoning resistant"
+   "query": "affective polarization resistant change identity-based"
   },
   {
-   "id": "https://openalex.org/W2034144524",
-   "title": "Differences in negativity bias underlie variations in political ideology",
+   "id": "https://openalex.org/W2971763914",
+   "title": "Present and Future of Surface-Enhanced Raman Scattering",
    "authors": [
-    "John R. Hibbing",
-    "Kevin B. Smith",
-    "John R. Alford"
+    "Judith Langer",
+    "Dorleta Jiménez de Aberasturi",
+    "Javier Aizpurua",
+    "Ramón A. Álvarez‐Puebla"
    ],
-   "year": 2014,
-   "doi": "10.1017/s0140525x13001192",
-   "venue": "Behavioral and Brain Sciences",
-   "cited_by": 631,
-   "abstract": "Disputes between those holding differing political views are ubiquitous and deep-seated, and they often follow common, recognizable lines. The supporters of tradition and stability, sometimes referred to as conservatives, do battle with the supporters of innovation and reform, sometimes referred to as liberals. Understanding the correlates of those distinct political orientations is probably a pre",
+   "year": 2019,
+   "doi": "10.1021/acsnano.9b04224",
+   "venue": "ACS Nano",
+   "cited_by": 3937,
+   "abstract": "The discovery of the enhancement of Raman scattering by molecules adsorbed on nanostructured metal surfaces is a landmark in the history of spectroscopic and analytical techniques. Significant experimental and theoretical effort has been directed toward understanding the surface-enhanced Raman scattering (SERS) effect and demonstrating its potential in various types of ultrasensitive sensing appli",
    "stance": "contesting",
-   "query": "affective polarization stability identity motivated reasoning resistant"
+   "query": "affective polarization resistant change identity-based"
   },
   {
    "id": "https://openalex.org/W2524520248",
@@ -106,8 +111,8 @@
    ],
    "year": 2023,
    "doi": "10.1007/978-3-031-17299-1",
-   "venue": "",
-   "cited_by": 427,
+   "venue": "Springer eBooks",
+   "cited_by": 428,
    "abstract": "",
    "stance": "method",
    "query": "multi-arm experimental design feeling thermometer affective polarization"
@@ -144,37 +149,36 @@
    "query": "multi-arm experimental design feeling thermometer affective polarization"
   },
   {
-   "id": "https://openalex.org/W3037447387",
-   "title": "Quantum sensing",
+   "id": "https://openalex.org/W3005104290",
+   "title": "The biology , function , and biomedical applications of exosomes",
    "authors": [
-    "Christian Lukas Degen",
-    "Friedemann Reinhard",
-    "Paola Cappellaro"
+    "Raghu K. Kalluri",
+    "Valerie S. LeBleu"
    ],
-   "year": 2017,
-   "doi": "10.1103/revmodphys.89.035002",
-   "venue": "Reviews of Modern Physics",
-   "cited_by": 4039,
-   "abstract": "Quantum technologies are increasingly driving the field of precision metrology. While current techniques for sensing and recording time rely on classical devices, quantum sensors exploit quantum systems to reach unprecedented levels of precision. The working part of the sensor contains one or a few qubits, and resources like quantum entanglement are chosen and tailored to maximize sensitivity. Thi",
+   "year": 2020,
+   "doi": "10.1126/science.aau6977",
+   "venue": "Science",
+   "cited_by": 11028,
+   "abstract": "The study of extracellular vesicles (EVs) has the potential to identify unknown cellular and molecular mechanisms in intercellular communication and in organ homeostasis and disease. Exosomes, with an average diameter of ~100 nanometers, are a subset of EVs. The biogenesis of exosomes involves their origin in endosomes, and subsequent interactions with other intracellular vesicles and organelles g",
    "stance": "citing",
-   "query": "cites:W3038067977"
+   "query": "cites:W2900756811"
   }
  ],
  "queries": [
-  "affective polarization intervention reduction experiment",
-  "democratic norms malleability persuasion intervention",
-  "affective polarization stability identity motivated reasoning resistant",
-  "backfire effect political attitudes persuasion failure",
+  "affective polarization intervention reduction experimental",
+  "democratic norms intervention attitude change undemocratic",
+  "affective polarization resistant change identity-based",
+  "affective polarization intervention ineffective null effect",
   "multi-arm experimental design feeling thermometer affective polarization"
  ],
  "query_sets": {
   "supporting": [
-   "affective polarization intervention reduction experiment",
-   "democratic norms malleability persuasion intervention"
+   "affective polarization intervention reduction experimental",
+   "democratic norms intervention attitude change undemocratic"
   ],
   "contesting": [
-   "affective polarization stability identity motivated reasoning resistant",
-   "backfire effect political attitudes persuasion failure"
+   "affective polarization resistant change identity-based",
+   "affective polarization intervention ineffective null effect"
   ],
   "method": [
    "multi-arm experimental design feeling thermometer affective polarization"
