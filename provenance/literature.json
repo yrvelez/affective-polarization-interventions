@@ -1,189 +1,125 @@
 {
- "text": "The retrieved works do not address the study's hypotheses. The list spans quantum cryptography (Gisin et al., 2002), nanoparticle drug delivery (Mitchell et al., 2020), high-energy-physics cross-section computation (Alwall et al., 2014), extracellular-vesicle biology and guidelines (Théry et al., 2018; Yáñez-Mó et al., 2015; Kalluri & LeBleu, 2020), surface-enhanced Raman scattering (Langer et al., 2019), quality-of-life measurement (Maggino, 2023), econophysics (Sornette, 2014), and optical-fiber medical sensing (Quandt et al., 2014). None of these works report findings on interventions changing post_ap or post_udp relative to a control condition, so no prior evidence can be marshalled for or against H1 or H2.\n\nBecause no retrieved work speaks to the specific outcome variables or intervention framework under study, there is no prior disagreement to name and no side the study's design can adjudicate.",
+ "text": "Prior findings on prejudice-reduction interventions bear on H1 and H2 most directly. A large meta-analytic review of 418 experiments finds that these approaches have been evaluated extensively, with meta-analysis used to estimate average effects of different methods (Paluck et al., 2020). Work on partisan prejudice and affective polarization frames the outcome side of such interventions, showing that partisan animus is broad and extends into non-political settings (Lelkes and Westwood, 2016), and that polarization is shaped by local context (Druckman et al., 2020). Evidence on the downstream consequences of affective polarization is limited and largely from the United States, with a multi-country survey experiment examining its effects in nine democracies (Harteveld et al., 2026). Work on who endorses political violence adds a related outcome domain (Armaly and Enders, 2022). The retrieved works do not directly contest the hypotheses, but the evidence base is heterogeneous in what it measures as an outcome. The meta-analytic review pools across many intervention types, so it cannot by itself indicate that any specific intervention moves a specific outcome (Paluck et al., 2020), while the cross-national experiment suggests that effects of polarization may differ outside the United States (Harteveld et al., 2026). The present design, which compares each intervention against a control on separately defined post-treatment outcomes, can speak to whether each intervention shifts each outcome within a single study, but not to the broader question of which mechanism links prejudice to downstream behaviour.",
  "works": [
   {
-   "id": "https://openalex.org/W3038067977",
-   "title": "Quantum cryptography",
+   "id": "https://openalex.org/W3085414015",
+   "title": "Prejudice Reduction: Progress and Challenges",
    "authors": [
-    "Nicolas Gisin",
-    "G. Ribordy",
-    "Wolfgang Tittel",
-    "Hugo Zbinden"
-   ],
-   "year": 2002,
-   "doi": "10.1103/revmodphys.74.145",
-   "venue": "Reviews of Modern Physics",
-   "cited_by": 8479,
-   "abstract": "Quantum cryptography could well be the first application of quantum mechanics at the single-quantum level. The rapid progress in both theory and experiment in recent years is reviewed, with emphasis on open questions and technological issues.",
-   "stance": "supporting",
-   "query": "affective polarization intervention reduction experimental"
-  },
-  {
-   "id": "https://openalex.org/W3109746568",
-   "title": "Engineering precision nanoparticles for drug delivery",
-   "authors": [
-    "Michael J. Mitchell",
-    "Margaret M. Billingsley",
-    "Rebecca M. Haley",
-    "Marissa E. Wechsler"
+    "Elizabeth Levy Paluck",
+    "Roni Porat",
+    "Chelsey S. Clark",
+    "DONALD PHILIP GREEN"
    ],
    "year": 2020,
-   "doi": "10.1038/s41573-020-0090-8",
-   "venue": "Nature Reviews Drug Discovery",
-   "cited_by": 7939,
+   "doi": "10.1146/annurev-psych-071620-030619",
+   "venue": "Annual Review of Psychology",
+   "cited_by": 707,
+   "abstract": "The past decade has seen rapid growth in research that evaluates methods for reducing prejudice. This essay reviews 418 experiments reported in 309 manuscripts from 2007 to 2019 to assess which approaches work best and why. Our quantitative assessment uses meta-analysis to estimate average effects. Our qualitative assessment calls attention to landmark studies that are noteworthy for sustained int",
+   "stance": "supporting",
+   "query": "affective polarization intervention experiment reduces partisan feeling thermometer gap"
+  },
+  {
+   "id": "https://openalex.org/W3109607089",
+   "title": "Affective polarization, local contexts and public opinion in America",
+   "authors": [
+    "James N. Druckman",
+    "Samara Klar",
+    "Yanna Krupnikov",
+    "Matthew S. Levendusky"
+   ],
+   "year": 2020,
+   "doi": "10.1038/s41562-020-01012-5",
+   "venue": "Nature Human Behaviour",
+   "cited_by": 470,
    "abstract": "",
    "stance": "supporting",
-   "query": "affective polarization intervention reduction experimental"
+   "query": "affective polarization intervention experiment reduces partisan feeling thermometer gap"
   },
   {
-   "id": "https://openalex.org/W2110999179",
-   "title": "The automated computation of tree-level and next-to-leading order differential cross sections, and their matching to parton shower simulations",
+   "id": "https://openalex.org/W2561427996",
+   "title": "The Limits of Partisan Prejudice",
    "authors": [
-    "Johan Alwall",
-    "Rikkert Frederix",
-    "Stefano Frixione",
-    "Valentin Hirschi"
+    "Yphtach Lelkes",
+    "Sean Jeremy Westwood"
    ],
-   "year": 2014,
-   "doi": "10.1007/jhep07(2014)079",
-   "venue": "Journal of High Energy Physics",
-   "cited_by": 7626,
-   "abstract": "We discuss the theoretical bases that underpin the automation of the computations of tree-level and next-to-leading order cross sections, of their matching to parton shower simulations, and of the merging of matched samples that differ by light-parton multiplicities. We present a computer program, MadGraph5 aMC@NLO, capable of handling all these computations — parton-level fixed order, shower-matc",
+   "year": 2016,
+   "doi": "10.1086/688223",
+   "venue": "The Journal of Politics",
+   "cited_by": 317,
+   "abstract": "Partisanship increasingly factors into the behavior of Americans in both political and nonpolitical situations, yet the bounds of partisan prejudice are largely unknown. In this paper, we systematically evaluate the limits of partisan prejudice using a series of five studies situated within a typology of prejudice. We find that partisan prejudice predicts suppression of hostile rhetoric toward one",
    "stance": "supporting",
-   "query": "affective polarization intervention reduction experimental"
+   "query": "affective polarization intervention experiment reduces partisan feeling thermometer gap"
   },
   {
-   "id": "https://openalex.org/W2900756811",
-   "title": "Minimal information for studies of extracellular vesicles 2018 (MISEV2018): a position statement of the International Society for Extracellular Vesicles and update of the MISEV2014 guidelines",
+   "id": "https://openalex.org/W4281967965",
+   "title": "Who Supports Political Violence?",
    "authors": [
-    "Clotilde Théry",
-    "Kenneth Whitaker Witwer",
-    "Elena Aïkawa",
-    "María José Alcaraz"
+    "Miles Armaly",
+    "Adam M Enders"
    ],
-   "year": 2018,
-   "doi": "10.1080/20013078.2018.1535750",
-   "venue": "Journal of Extracellular Vesicles",
-   "cited_by": 11587,
-   "abstract": "The last decade has seen a sharp increase in the number of scientific publications describing physiological and pathological functions of extracellular vesicles (EVs), a collective term covering various subtypes of cell-released, membranous structures, called exosomes, microvesicles, microparticles, ectosomes, oncosomes, apoptotic bodies, and many other names. However, specific issues arise when w",
-   "stance": "contesting",
-   "query": "affective polarization resistant change identity-based"
+   "year": 2022,
+   "doi": "10.1017/s1537592722001086",
+   "venue": "Perspectives on Politics",
+   "cited_by": 61,
+   "abstract": "The last few years have witnessed an increase in democratic “backsliding” in the United States—a decline in the quality of democracy, typically accompanied by an influx of non-normative behavior, such as political violence. Despite the real consequences of support for violence, fairly little is known about such an extremist attitude outside studies of terrorism or aggression. Using a unique survey",
+   "stance": "method",
+   "query": "multi-arm survey experiment feeling thermometer affective polarization outcomes"
   },
   {
-   "id": "https://openalex.org/W2170852633",
-   "title": "Biological properties of extracellular vesicles and their physiological functions",
+   "id": "https://openalex.org/W4300003029",
+   "title": "The (alleged) consequences of affective polarization: A survey experiment in nine democracies",
    "authors": [
-    "María Yáñez‐Mó",
-    "Pia R. M. Siljander",
-    "Zoraida Andreu",
-    "Apolonija Bedina Zavec"
+    "Eelco Harteveld",
+    "Lars Erik Berntzen",
+    "Andrej Kokkonen",
+    "Haylee Kelsall"
    ],
-   "year": 2015,
-   "doi": "10.3402/jev.v4.27066",
-   "venue": "Journal of Extracellular Vesicles",
-   "cited_by": 6169,
-   "abstract": "In the past decade, extracellular vesicles (EVs) have been recognized as potent vehicles of intercellular communication, both in prokaryotes and eukaryotes. This is due to their capacity to transfer proteins, lipids and nucleic acids, thereby influencing various physiological and pathological functions of both recipient and parent cells. While intensive investigation has targeted the role of EVs i",
-   "stance": "contesting",
-   "query": "affective polarization resistant change identity-based"
+   "year": 2026,
+   "doi": "10.1017/s1475676526101273",
+   "venue": "European Journal of Political Research",
+   "cited_by": 18,
+   "abstract": "Abstract Affective polarization (or antipathy between supporters of opposing political camps) is considered a threat to societal cohesion and democratic stability worldwide. However, causal evidence of its impact remains scarce, especially outside the United States. Our study examines the individual-level consequences of affective polarization by manipulating it in a survey experiment in nine coun",
+   "stance": "method",
+   "query": "multi-arm survey experiment feeling thermometer affective polarization outcomes"
   },
   {
-   "id": "https://openalex.org/W2971763914",
-   "title": "Present and Future of Surface-Enhanced Raman Scattering",
+   "id": "https://openalex.org/W4384277430",
+   "title": "The state of evidence for social and emotional learning: A contemporary meta-analysis of universal school-based SEL interventions",
    "authors": [
-    "Judith Langer",
-    "Dorleta Jiménez de Aberasturi",
-    "Javier Aizpurua",
-    "Ramón A. Álvarez‐Puebla"
-   ],
-   "year": 2019,
-   "doi": "10.1021/acsnano.9b04224",
-   "venue": "ACS Nano",
-   "cited_by": 3937,
-   "abstract": "The discovery of the enhancement of Raman scattering by molecules adsorbed on nanostructured metal surfaces is a landmark in the history of spectroscopic and analytical techniques. Significant experimental and theoretical effort has been directed toward understanding the surface-enhanced Raman scattering (SERS) effect and demonstrating its potential in various types of ultrasensitive sensing appli",
-   "stance": "contesting",
-   "query": "affective polarization resistant change identity-based"
-  },
-  {
-   "id": "https://openalex.org/W2524520248",
-   "title": "Encyclopedia of Quality of Life and Well-Being Research",
-   "authors": [
-    "Filomena Maggino"
+    "Christina Cipriano",
+    "Michael J. Strambler",
+    "Lauren Hunter Naples",
+    "Cheyeon Ha"
    ],
    "year": 2023,
-   "doi": "10.1007/978-3-031-17299-1",
-   "venue": "Springer eBooks",
-   "cited_by": 428,
-   "abstract": "",
-   "stance": "method",
-   "query": "multi-arm experimental design feeling thermometer affective polarization"
-  },
-  {
-   "id": "https://openalex.org/W2894827933",
-   "title": "Physics and financial economics (1776–2014): puzzles, Ising and agent-based models",
-   "authors": [
-    "Didier Sornette"
-   ],
-   "year": 2014,
-   "doi": "10.1088/0034-4885/77/6/062001",
-   "venue": "Reports on Progress in Physics",
-   "cited_by": 225,
-   "abstract": "This short review presents a selected history of the mutual fertilization between physics and economics--from Isaac Newton and Adam Smith to the present. The fundamentally different perspectives embraced in theories developed in financial economics compared with physics are dissected with the examples of the volatility smile and of the excess volatility puzzle. The role of the Ising model of phase",
-   "stance": "method",
-   "query": "multi-arm experimental design feeling thermometer affective polarization"
-  },
-  {
-   "id": "https://openalex.org/W2097760619",
-   "title": "Body‐Monitoring and Health Supervision by Means of Optical Fiber‐Based Sensing Systems in Medical Textiles",
-   "authors": [
-    "Brit M. Quandt",
-    "Lukas J. Scherer",
-    "Luciano Fernandes Boesel",
-    "Martin Wolf"
-   ],
-   "year": 2014,
-   "doi": "10.1002/adhm.201400463",
-   "venue": "Advanced Healthcare Materials",
-   "cited_by": 149,
-   "abstract": "Long-term monitoring with optical fibers has moved into the focus of attention due to the applicability for medical measurements. Within this Review, setups of flexible, unobtrusive body-monitoring systems based on optical fibers and the respective measured vital parameters are in focus. Optical principles are discussed as well as the interaction of light with tissue. Optical fiber-based sensors t",
-   "stance": "method",
-   "query": "multi-arm experimental design feeling thermometer affective polarization"
-  },
-  {
-   "id": "https://openalex.org/W3005104290",
-   "title": "The biology , function , and biomedical applications of exosomes",
-   "authors": [
-    "Raghu K. Kalluri",
-    "Valerie S. LeBleu"
-   ],
-   "year": 2020,
-   "doi": "10.1126/science.aau6977",
-   "venue": "Science",
-   "cited_by": 11028,
-   "abstract": "The study of extracellular vesicles (EVs) has the potential to identify unknown cellular and molecular mechanisms in intercellular communication and in organ homeostasis and disease. Exosomes, with an average diameter of ~100 nanometers, are a subset of EVs. The biogenesis of exosomes involves their origin in endosomes, and subsequent interactions with other intracellular vesicles and organelles g",
+   "doi": "10.1111/cdev.13968",
+   "venue": "Child Development",
+   "cited_by": 594,
+   "abstract": "This article provides a systematic review and meta-analysis of the current evidence for universal school-based (USB) social and emotional learning (SEL) interventions for students in kindergarten through 12th grade available from 2008 through 2020. The sample includes 424 studies from 53 countries, reflecting 252 discrete USB SEL interventions, involving 575,361 students. Results endorsed that, co",
    "stance": "citing",
-   "query": "cites:W2900756811"
+   "query": "cites:W3085414015"
   }
  ],
  "queries": [
-  "affective polarization intervention reduction experimental",
-  "democratic norms intervention attitude change undemocratic",
-  "affective polarization resistant change identity-based",
-  "affective polarization intervention ineffective null effect",
-  "multi-arm experimental design feeling thermometer affective polarization"
+  "affective polarization intervention experiment reduces partisan feeling thermometer gap",
+  "depolarization intervention undemocratic practices support partisans survey experiment",
+  "affective polarization interventions null effects durable persistence decay",
+  "partisan animosity intervention backfire ineffective demand effects",
+  "multi-arm survey experiment feeling thermometer affective polarization outcomes"
  ],
  "query_sets": {
   "supporting": [
-   "affective polarization intervention reduction experimental",
-   "democratic norms intervention attitude change undemocratic"
+   "affective polarization intervention experiment reduces partisan feeling thermometer gap",
+   "depolarization intervention undemocratic practices support partisans survey experiment"
   ],
   "contesting": [
-   "affective polarization resistant change identity-based",
-   "affective polarization intervention ineffective null effect"
+   "affective polarization interventions null effects durable persistence decay",
+   "partisan animosity intervention backfire ineffective demand effects"
   ],
   "method": [
-   "multi-arm experimental design feeling thermometer affective polarization"
+   "multi-arm survey experiment feeling thermometer affective polarization outcomes"
   ]
  },
- "debate_hint": "",
+ "debate_hint": "Whether prejudice-reduction interventions produce effects that carry through to downstream political outcomes such as support for violence, and whether such effects generalise beyond the United States.",
  "degraded": null
 }

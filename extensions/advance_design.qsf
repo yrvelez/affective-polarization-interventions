@@ -1,7 +1,7 @@
 {
  "SurveyEntry": {
   "SurveyID": "SV_filedrawer00000",
-  "SurveyName": "Perception gap video vs control across party and sample (extension of: Testing 33 Student-Designed I",
+  "SurveyName": "Perception gap correction: mechanism and persistence (extension of: Testing 33 Student-Designed Inte",
   "SurveyDescription": null,
   "SurveyOwnerID": "UR_filedrawer00000",
   "SurveyBrandID": "",
@@ -66,31 +66,17 @@
       {
        "Type": "Question",
        "QuestionID": "QID5"
-      },
-      {
-       "Type": "Page Break"
-      },
-      {
-       "Type": "Question",
-       "QuestionID": "QID6"
-      },
-      {
-       "Type": "Page Break"
-      },
-      {
-       "Type": "Question",
-       "QuestionID": "QID7"
       }
      ]
     },
     {
      "Type": "Standard",
      "Description": "Control",
-     "ID": "BL_b_control",
+     "ID": "BL_b_ctrl",
      "BlockElements": [
       {
        "Type": "Question",
-       "QuestionID": "QID8"
+       "QuestionID": "QID6"
       }
      ]
     },
@@ -101,14 +87,29 @@
      "BlockElements": [
       {
        "Type": "Question",
-       "QuestionID": "QID9"
-      },
-      {
-       "Type": "Page Break"
-      },
+       "QuestionID": "QID7"
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "Placebo video",
+     "ID": "BL_b_placebo",
+     "BlockElements": [
       {
        "Type": "Question",
-       "QuestionID": "QID10"
+       "QuestionID": "QID8"
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "Statistics text",
+     "ID": "BL_b_text",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID9"
       }
      ]
     },
@@ -119,6 +120,13 @@
      "BlockElements": [
       {
        "Type": "Question",
+       "QuestionID": "QID10"
+      },
+      {
+       "Type": "Page Break"
+      },
+      {
+       "Type": "Question",
        "QuestionID": "QID11"
       },
       {
@@ -127,6 +135,13 @@
       {
        "Type": "Question",
        "QuestionID": "QID12"
+      },
+      {
+       "Type": "Page Break"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID13"
       }
      ]
     },
@@ -137,7 +152,7 @@
      "BlockElements": [
       {
        "Type": "Question",
-       "QuestionID": "QID13"
+       "QuestionID": "QID14"
       }
      ]
     },
@@ -167,7 +182,7 @@
      {
       "Type": "Branch",
       "FlowID": "FL_3",
-      "Description": "Non-consent",
+      "Description": "No consent",
       "BranchLogic": {
        "0": {
         "0": {
@@ -207,7 +222,7 @@
        {
         "Type": "Group",
         "FlowID": "FL_7",
-        "Description": "Control arm",
+        "Description": "Control",
         "Flow": [
          {
           "Type": "EmbeddedData",
@@ -226,7 +241,7 @@
          },
          {
           "Type": "Standard",
-          "ID": "BL_b_control",
+          "ID": "BL_b_ctrl",
           "FlowID": "FL_9",
           "Autofill": []
          }
@@ -235,7 +250,7 @@
        {
         "Type": "Group",
         "FlowID": "FL_10",
-        "Description": "Video arm",
+        "Description": "Video",
         "Flow": [
          {
           "Type": "EmbeddedData",
@@ -248,7 +263,7 @@
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "perception_gap_video"
+            "Value": "pg_video"
            }
           ]
          },
@@ -257,13 +272,13 @@
           "FlowID": "FL_12",
           "EmbeddedData": [
            {
-            "Description": "video1",
+            "Description": "pgvideo",
             "Type": "Custom",
-            "Field": "video1",
+            "Field": "pgvideo",
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "[VIDEO TO SUPPLY: Perception gap video showing data on how partisans overestimate the other side's hostility, several minutes long]"
+            "Value": "[VIDEO TO SUPPLY: Perception gap video showing how partisans overestimate the other party's extremity, about 4 minutes]"
            }
           ]
          },
@@ -274,24 +289,95 @@
           "Autofill": []
          }
         ]
+       },
+       {
+        "Type": "Group",
+        "FlowID": "FL_14",
+        "Description": "Placebo",
+        "Flow": [
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_15",
+          "EmbeddedData": [
+           {
+            "Description": "condition",
+            "Type": "Custom",
+            "Field": "condition",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "placebo"
+           }
+          ]
+         },
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_16",
+          "EmbeddedData": [
+           {
+            "Description": "plvideo",
+            "Type": "Custom",
+            "Field": "plvideo",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "[VIDEO TO SUPPLY: Non-political explainer video on how bees make honey, about 4 minutes]"
+           }
+          ]
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_placebo",
+          "FlowID": "FL_17",
+          "Autofill": []
+         }
+        ]
+       },
+       {
+        "Type": "Group",
+        "FlowID": "FL_18",
+        "Description": "Text",
+        "Flow": [
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_19",
+          "EmbeddedData": [
+           {
+            "Description": "condition",
+            "Type": "Custom",
+            "Field": "condition",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "pg_text"
+           }
+          ]
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_text",
+          "FlowID": "FL_20",
+          "Autofill": []
+         }
+        ]
        }
       ]
      },
      {
       "Type": "Standard",
       "ID": "BL_b_post",
-      "FlowID": "FL_14",
+      "FlowID": "FL_21",
       "Autofill": []
      },
      {
       "Type": "Standard",
       "ID": "BL_b_debrief",
-      "FlowID": "FL_15",
+      "FlowID": "FL_22",
       "Autofill": []
      }
     ],
     "Properties": {
-     "Count": 15,
+     "Count": 22,
      "RemovedFieldsets": []
     }
    }
@@ -304,7 +390,7 @@
    "TertiaryAttribute": null,
    "Payload": {
     "PreviewType": "Brand",
-    "PreviewID": "dd1727e0-e8cb-4a7d-a6d3-7824931ffdb9"
+    "PreviewID": "0c825ca2-8fed-46eb-b999-555163ff1097"
    }
   },
   {
@@ -322,7 +408,7 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "QC",
    "PrimaryAttribute": "Survey Question Count",
-   "SecondaryAttribute": "13",
+   "SecondaryAttribute": "14",
    "TertiaryAttribute": null,
    "Payload": null
   },
@@ -372,7 +458,7 @@
     "ValidationMessage": null,
     "PreviousButton": "",
     "NextButton": "",
-    "SurveyTitle": "Perception gap video vs control across party and sample (extension of: Testing 33 Student-Designed I",
+    "SurveyTitle": "Perception gap correction: mechanism and persistence (extension of: Testing 33 Student-Designed Inte",
     "SkinLibrary": "Qualtrics",
     "SkinType": "templated",
     "Skin": {
@@ -381,7 +467,7 @@
      "overrides": null
     },
     "NewScoring": 1,
-    "SurveyMetaDescription": "Respondents from a Lucid panel and a second panel are stratified by party (Democrat, Republican,..."
+    "SurveyMetaDescription": "Partisan US adults complete pre-treatment measures, are randomized to one of four arms, complete..."
    }
   },
   {
@@ -399,10 +485,10 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID1",
-   "SecondaryAttribute": "You are invited to take part in a research study on political attitudes. Partici",
+   "SecondaryAttribute": "This is a research study about political attitudes with two surveys, today and i",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "You are invited to take part in a research study on political attitudes. Participation is voluntary and you may stop at any time. Do you consent to participate?",
+    "QuestionText": "This is a research study about political attitudes with two surveys, today and in 2-4 weeks. Participation is voluntary and you may stop at any time. Do you consent to participate?",
     "DataExportTag": "consent",
     "DataVisibility": {
      "Private": false,
@@ -411,7 +497,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "You are invited to take part in a research study on political attitudes. Participation is volunta...",
+    "QuestionDescription": "This is a research study about political attitudes with two surveys, today and in 2-4 weeks. Part...",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -448,114 +534,6 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID2",
-   "SecondaryAttribute": "Which panel are you recruited from?",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "Which panel are you recruited from?",
-    "DataExportTag": "sample_source",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "Which panel are you recruited from?",
-    "Validation": {
-     "Settings": {
-      "ForceResponse": "ON",
-      "ForceResponseType": "ON",
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID2",
-    "QuestionType": "MC",
-    "Selector": "SAVR",
-    "SubSelector": "TX",
-    "Choices": {
-     "1": {
-      "Display": "Lucid"
-     },
-     "2": {
-      "Display": "Second panel"
-     }
-    },
-    "ChoiceOrder": [
-     "1",
-     "2"
-    ],
-    "NextChoiceId": 3,
-    "NextAnswerId": 1,
-    "RecodeValues": {
-     "1": "1",
-     "2": "2"
-    }
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID3",
-   "SecondaryAttribute": "Generally speaking, do you usually think of yourself as a Republican, a Democrat",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "Generally speaking, do you usually think of yourself as a Republican, a Democrat, an Independent, or something else?",
-    "DataExportTag": "pid3",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "Generally speaking, do you usually think of yourself as a Republican, a Democrat, an Independent,...",
-    "Validation": {
-     "Settings": {
-      "ForceResponse": "ON",
-      "ForceResponseType": "ON",
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID3",
-    "QuestionType": "MC",
-    "Selector": "SAVR",
-    "SubSelector": "TX",
-    "Choices": {
-     "1": {
-      "Display": "Republican"
-     },
-     "2": {
-      "Display": "Democrat"
-     },
-     "3": {
-      "Display": "Independent"
-     },
-     "4": {
-      "Display": "Something else"
-     }
-    },
-    "ChoiceOrder": [
-     "1",
-     "2",
-     "3",
-     "4"
-    ],
-    "NextChoiceId": 5,
-    "NextAnswerId": 1,
-    "RecodeValues": {
-     "1": "1",
-     "2": "2",
-     "3": "3",
-     "4": "4"
-    }
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID4",
    "SecondaryAttribute": "Do you think of yourself as closer to the Republican Party or to the Democratic ",
    "TertiaryAttribute": null,
    "Payload": {
@@ -577,7 +555,7 @@
      }
     },
     "Language": [],
-    "QuestionID": "QID4",
+    "QuestionID": "QID2",
     "QuestionType": "MC",
     "Selector": "SAVR",
     "SubSelector": "TX",
@@ -609,65 +587,11 @@
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
-   "PrimaryAttribute": "QID5",
-   "SecondaryAttribute": "How strongly do you identify with that party?",
+   "PrimaryAttribute": "QID3",
+   "SecondaryAttribute": "Please rate each group on a feeling thermometer from 0 (cold, unfavorable) to 10",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "How strongly do you identify with that party?",
-    "DataExportTag": "pid_strength",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "How strongly do you identify with that party?",
-    "Validation": {
-     "Settings": {
-      "ForceResponse": "ON",
-      "ForceResponseType": "ON",
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID5",
-    "QuestionType": "MC",
-    "Selector": "SAVR",
-    "SubSelector": "TX",
-    "Choices": {
-     "1": {
-      "Display": "Very strongly"
-     },
-     "2": {
-      "Display": "Somewhat strongly"
-     },
-     "3": {
-      "Display": "Not strongly"
-     }
-    },
-    "ChoiceOrder": [
-     "1",
-     "2",
-     "3"
-    ],
-    "NextChoiceId": 4,
-    "NextAnswerId": 1,
-    "RecodeValues": {
-     "1": "3",
-     "2": "2",
-     "3": "1"
-    }
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID6",
-   "SecondaryAttribute": "Please rate each group on the feeling thermometer, from 0 (cold, unfavorable) to",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "Please rate each group on the feeling thermometer, from 0 (cold, unfavorable) to 100 (warm, favorable); 50 means neither warm nor cold.",
+    "QuestionText": "Please rate each group on a feeling thermometer from 0 (cold, unfavorable) to 100 (warm, favorable). Choose the point closest to your feeling.",
     "DataExportTag": "pre_ap_scores",
     "DataVisibility": {
      "Private": false,
@@ -681,7 +605,7 @@
      "WhiteSpace": "OFF",
      "MobileFirst": true
     },
-    "QuestionDescription": "Please rate each group on the feeling thermometer, from 0 (cold, unfavorable) to 100 (warm, favor...",
+    "QuestionDescription": "Please rate each group on a feeling thermometer from 0 (cold, unfavorable) to 100 (warm, favorabl...",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -690,7 +614,7 @@
      }
     },
     "Language": [],
-    "QuestionID": "QID6",
+    "QuestionID": "QID3",
     "QuestionType": "Matrix",
     "Selector": "Likert",
     "SubSelector": "SingleAnswer",
@@ -711,37 +635,19 @@
     ],
     "Answers": {
      "1": {
-      "Display": "0"
+      "Display": "0-20 (very cold)"
      },
      "2": {
-      "Display": "10"
+      "Display": "21-40"
      },
      "3": {
-      "Display": "20"
+      "Display": "41-60"
      },
      "4": {
-      "Display": "30"
+      "Display": "61-80"
      },
      "5": {
-      "Display": "40"
-     },
-     "6": {
-      "Display": "50"
-     },
-     "7": {
-      "Display": "60"
-     },
-     "8": {
-      "Display": "70"
-     },
-     "9": {
-      "Display": "80"
-     },
-     "10": {
-      "Display": "90"
-     },
-     "11": {
-      "Display": "100"
+      "Display": "81-100 (very warm)"
      }
     },
     "AnswerOrder": [
@@ -749,22 +655,16 @@
      "2",
      "3",
      "4",
-     "5",
-     "6",
-     "7",
-     "8",
-     "9",
-     "10",
-     "11"
+     "5"
     ],
     "NextChoiceId": 3,
-    "NextAnswerId": 12
+    "NextAnswerId": 6
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
-   "PrimaryAttribute": "QID7",
+   "PrimaryAttribute": "QID4",
    "SecondaryAttribute": "Please indicate your agreement and disagreement with the following statements.",
    "TertiaryAttribute": null,
    "Payload": {
@@ -791,7 +691,7 @@
      }
     },
     "Language": [],
-    "QuestionID": "QID7",
+    "QuestionID": "QID4",
     "QuestionType": "Matrix",
     "Selector": "Likert",
     "SubSelector": "SingleAnswer",
@@ -800,13 +700,13 @@
     "ChoiceDataExportTags": false,
     "Choices": {
      "1": {
-      "Display": "My party should reduce the number of polling stations in areas that support the other party."
+      "Display": "Members of my party should reduce the number of polling stations in areas that support the other party."
      },
      "2": {
       "Display": "Governors from my party should ignore unfavorable court rulings by judges appointed by the other party."
      },
      "3": {
-      "Display": "Governors from my party should prosecute journalists who accuse politicians from my party of misconduct without revealing sources."
+      "Display": "Governors from my party should prosecute journalists who accuse my party's politicians of misconduct without revealing sources."
      },
      "4": {
       "Display": "Members of my party should not accept the results of elections if they lose."
@@ -857,7 +757,71 @@
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
-   "PrimaryAttribute": "QID8",
+   "PrimaryAttribute": "QID5",
+   "SecondaryAttribute": "Out of 100 people in the other party, how many do you think would agree that vio",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Out of 100 people in the other party, how many do you think would agree that violence is sometimes justified to advance their party's goals?",
+    "DataExportTag": "pre_perceived_out",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Out of 100 people in the other party, how many do you think would agree that violence is sometime...",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID5",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "0-20"
+     },
+     "2": {
+      "Display": "21-40"
+     },
+     "3": {
+      "Display": "41-60"
+     },
+     "4": {
+      "Display": "61-80"
+     },
+     "5": {
+      "Display": "81-100"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "NextChoiceId": 6,
+    "NextAnswerId": 1,
+    "RecodeValues": {
+     "1": "10",
+     "2": "30",
+     "3": "50",
+     "4": "70",
+     "5": "90"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID6",
    "SecondaryAttribute": "Please continue.",
    "TertiaryAttribute": null,
    "Payload": {
@@ -876,7 +840,7 @@
      }
     },
     "Language": [],
-    "QuestionID": "QID8",
+    "QuestionID": "QID6",
     "QuestionType": "DB",
     "Selector": "TB",
     "DefaultChoices": false,
@@ -890,11 +854,11 @@
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
-   "PrimaryAttribute": "QID9",
-   "SecondaryAttribute": "Please watch this video carefully. {{ed:video1}}",
+   "PrimaryAttribute": "QID7",
+   "SecondaryAttribute": "Please watch this video: {{ed:pgvideo}}",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Please watch this video carefully. ${e://Field/video1}",
+    "QuestionText": "Please watch this video: ${e://Field/pgvideo}",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -902,7 +866,73 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Please watch this video carefully. ${e://Field/video1}",
+    "QuestionDescription": "Please watch this video: ${e://Field/pgvideo}",
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID7",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "DataExportTag": "q_video"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID8",
+   "SecondaryAttribute": "Please watch this video: {{ed:plvideo}}",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Please watch this video: ${e://Field/plvideo}",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Please watch this video: ${e://Field/plvideo}",
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID8",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "DataExportTag": "q_placebo"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID9",
+   "SecondaryAttribute": "Please read: Surveys show Democrats and Republicans substantially overestimate h",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Please read: Surveys show Democrats and Republicans substantially overestimate how extreme and hostile members of the other party are. On average, each side's guess about the other side's views is far more extreme than what the other side's members actually report. Most people in both parties hold more moderate views than the other side believes.",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Please read: Surveys show Democrats and Republicans substantially overestimate how extreme and ho...",
     "Validation": {
      "Settings": {
       "Type": "None"
@@ -917,18 +947,18 @@
     "GradingData": [],
     "NextChoiceId": 1,
     "NextAnswerId": 1,
-    "DataExportTag": "q_vid"
+    "DataExportTag": "q_text"
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID10",
-   "SecondaryAttribute": "What did you just see, read, or watch?",
+   "SecondaryAttribute": "Out of 100 people in the other party, how many do you think would agree that vio",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "What did you just see, read, or watch?",
-    "DataExportTag": "manip_check",
+    "QuestionText": "Out of 100 people in the other party, how many do you think would agree that violence is sometimes justified to advance their party's goals?",
+    "DataExportTag": "post_perceived_out",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -936,7 +966,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "What did you just see, read, or watch?",
+    "QuestionDescription": "Out of 100 people in the other party, how many do you think would agree that violence is sometime...",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -946,12 +976,41 @@
     },
     "Language": [],
     "QuestionID": "QID10",
-    "QuestionType": "TE",
-    "Selector": "SL",
-    "NextChoiceId": 1,
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "0-20"
+     },
+     "2": {
+      "Display": "21-40"
+     },
+     "3": {
+      "Display": "41-60"
+     },
+     "4": {
+      "Display": "61-80"
+     },
+     "5": {
+      "Display": "81-100"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "NextChoiceId": 6,
     "NextAnswerId": 1,
-    "SearchSource": {
-     "AllowFreeResponse": "false"
+    "RecodeValues": {
+     "1": "10",
+     "2": "30",
+     "3": "50",
+     "4": "70",
+     "5": "90"
     }
    }
   },
@@ -959,10 +1018,10 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID11",
-   "SecondaryAttribute": "Please rate each group on the feeling thermometer, from 0 (cold, unfavorable) to",
+   "SecondaryAttribute": "Please rate each group on a feeling thermometer from 0 (cold, unfavorable) to 10",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Please rate each group on the feeling thermometer, from 0 (cold, unfavorable) to 100 (warm, favorable); 50 means neither warm nor cold.",
+    "QuestionText": "Please rate each group on a feeling thermometer from 0 (cold, unfavorable) to 100 (warm, favorable). Choose the point closest to your feeling.",
     "DataExportTag": "post_ap_scores",
     "DataVisibility": {
      "Private": false,
@@ -976,7 +1035,7 @@
      "WhiteSpace": "OFF",
      "MobileFirst": true
     },
-    "QuestionDescription": "Please rate each group on the feeling thermometer, from 0 (cold, unfavorable) to 100 (warm, favor...",
+    "QuestionDescription": "Please rate each group on a feeling thermometer from 0 (cold, unfavorable) to 100 (warm, favorabl...",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -1006,37 +1065,19 @@
     ],
     "Answers": {
      "1": {
-      "Display": "0"
+      "Display": "0-20 (very cold)"
      },
      "2": {
-      "Display": "10"
+      "Display": "21-40"
      },
      "3": {
-      "Display": "20"
+      "Display": "41-60"
      },
      "4": {
-      "Display": "30"
+      "Display": "61-80"
      },
      "5": {
-      "Display": "40"
-     },
-     "6": {
-      "Display": "50"
-     },
-     "7": {
-      "Display": "60"
-     },
-     "8": {
-      "Display": "70"
-     },
-     "9": {
-      "Display": "80"
-     },
-     "10": {
-      "Display": "90"
-     },
-     "11": {
-      "Display": "100"
+      "Display": "81-100 (very warm)"
      }
     },
     "AnswerOrder": [
@@ -1044,16 +1085,10 @@
      "2",
      "3",
      "4",
-     "5",
-     "6",
-     "7",
-     "8",
-     "9",
-     "10",
-     "11"
+     "5"
     ],
     "NextChoiceId": 3,
-    "NextAnswerId": 12
+    "NextAnswerId": 6
    }
   },
   {
@@ -1095,13 +1130,13 @@
     "ChoiceDataExportTags": false,
     "Choices": {
      "1": {
-      "Display": "My party should reduce the number of polling stations in areas that support the other party."
+      "Display": "Members of my party should reduce the number of polling stations in areas that support the other party."
      },
      "2": {
       "Display": "Governors from my party should ignore unfavorable court rulings by judges appointed by the other party."
      },
      "3": {
-      "Display": "Governors from my party should prosecute journalists who accuse politicians from my party of misconduct without revealing sources."
+      "Display": "Governors from my party should prosecute journalists who accuse my party's politicians of misconduct without revealing sources."
      },
      "4": {
       "Display": "Members of my party should not accept the results of elections if they lose."
@@ -1153,10 +1188,11 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID13",
-   "SecondaryAttribute": "Thank you for participating. This study examined whether information about how A",
+   "SecondaryAttribute": "What did you just see, read, or watch?",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Thank you for participating. This study examined whether information about how Americans perceive the other party changes political attitudes. The video presented data on misperceptions between partisans. If you have questions, contact the research team.",
+    "QuestionText": "What did you just see, read, or watch?",
+    "DataExportTag": "manip_check",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -1164,14 +1200,48 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Thank you for participating. This study examined whether information about how Americans perceive...",
+    "QuestionDescription": "What did you just see, read, or watch?",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID13",
+    "QuestionType": "TE",
+    "Selector": "SL",
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "SearchSource": {
+     "AllowFreeResponse": "false"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID14",
+   "SecondaryAttribute": "Thank you. Some content described how partisans view each other; the perception ",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Thank you. Some content described how partisans view each other; the perception gap statistics are drawn from research surveys. We will invite you to a brief follow-up survey in 2-4 weeks.",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Thank you. Some content described how partisans view each other; the perception gap statistics ar...",
     "Validation": {
      "Settings": {
       "Type": "None"
      }
     },
     "Language": [],
-    "QuestionID": "QID13",
+    "QuestionID": "QID14",
     "QuestionType": "DB",
     "Selector": "TB",
     "DefaultChoices": false,

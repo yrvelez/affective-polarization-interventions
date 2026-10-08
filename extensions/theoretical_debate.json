@@ -1,38 +1,672 @@
 {
  "id": "theoretical_debate",
- "kind": "observational",
- "title": "Disentangling Misperception Correction from Cross-Party Exposure: A Mechanism Test of the Perception Gap Intervention",
- "rationale": "The Perception gap video was the only arm in the source study with a confidence interval excluding zero on affective polarization (−2.3 points, p = 0.019), but the video simultaneously presents out-party members in a warm light and conveys statistics showing that out-party views are less extreme than partisans believe. Because these two elements are bundled in a single stimulus, the study cannot determine whether the effect operates through correcting a specific misperception or through generic cross-party exposure that reduces hostility regardless of content.",
- "contribution": "By decomposing the Perception gap video into its misperception-correction content and its cross-party exposure format, this study identifies which mechanism drives the observed reduction in affective polarization, a distinction the original design cannot make.",
+ "kind": "alternative",
+ "title": "Affect-to-democratic-attitude transfer test",
+ "rationale": "The source found a pooled thermometer drop of -0.8 (95% CI [-1.4,-0.2]) and a Perception gap video drop of -2.3, but no change in undemocratic-practices support (-0.015, CI [-0.044,0.014]). It cannot tell whether affect fails to transfer or the interventions were too weak. This design uses a strengthened intervention to produce a larger affect shift, then tests whether downstream outcomes move in proportion to it.",
+ "contribution": "Separates failed transfer from weak dosage by testing whether randomized affect shifts predict undemocratic-practices support and a behavioural proxy.",
  "limitations": [
-  "The matched warmth video must be produced to be equivalent in length, production quality, and emotional valence to the original Perception gap video; imperfect matching could confound the contrast.",
-  "If the original Perception gap video is not available from the source authors, it must be recreated from the script, introducing uncontrolled variation in delivery.",
-  "Online panel respondents (Prolific) are not a probability sample of US partisans; results may not generalize to less politically engaged or less internet-savvy populations.",
-  "The statistics-only text arm may differ in cognitive load and engagement from the video arms, so a null result in that arm is ambiguous between 'format matters' and 'text is less engaging.'",
-  "Outcomes are measured immediately after exposure; durability of any effect is unknown."
+  "Immediate outcomes only; durability untested.",
+  "US online panel only.",
+  "Recall task may shift outcomes directly, violating the exclusion restriction for the instrumental-variable analysis.",
+  "The Patriotic article arm is weak and mainly adds a contrast in the dose of the affect shift."
  ],
  "design": {
-  "data_sources": [
-   "Prolific (prolific.com): recruitment platform for US adult panelists; provides self-reported party identification, prior affective polarization measures, and demographic covariates at screening.",
-   "Qualtrics: survey administration platform hosting the experiment, randomization, and post-treatment measures.",
-   "Original Perception gap video: to be obtained directly from the source study authors (the student-designed intervention from 'Testing 33 Student-Designed Interventions to Reduce Affective Polarization'); if unavailable, recreated from the published script using the same narration, footage, and on-screen text.",
-   "Newly produced matched cross-party warmth video: a 90-second video showing the same out-party members (or demographically matched actors) in warm, cooperative contexts (e.g., volunteering, family activities) with identical narration tone and length as the Perception gap video, but with all misperception statistics and extremity data removed.",
-   "Newly produced statistics-only text: a 200-word written passage presenting the same misperception-correcting data (e.g., 'The median Republican supports X, which is closer to the median Democrat than you might think') in plain prose, with no video, no images of out-party members, and no warmth framing."
+  "title": "Affect-to-democratic-attitude transfer test",
+  "overview": "US partisans are randomized to control, the Patriotic article, or the strengthened Perception gap intervention (video plus recall task). Participants then report thermometers, support for undemocratic practices and willingness to donate to a cross-party group. Randomized arm is used as an instrument for the thermometer change.",
+  "hypothesis": "Transfer: downstream change is proportional to the affect change induced by treatment. Independence: undemocratic-practices support and donation willingness do not change even when affect shifts substantially.",
+  "primaryOutcome": "Support for undemocratic practices (mean of four items), with the thermometer gap as the first stage.",
+  "comparison": "Each treatment arm vs control on both outcomes; 2SLS with arm as instrument for post-treatment affective polarization; compare reduced-form effect with the effect predicted from the first stage.",
+  "population": "US adult partisans (Democrats, Republicans and leaners) from an online panel.",
+  "conditions": [
+   {
+    "id": "c_control",
+    "title": "Control",
+    "description": "Neutral text, then 'Please continue'.",
+    "nodeId": "arm_control"
+   },
+   {
+    "id": "c_patriotic",
+    "title": "Patriotic article",
+    "description": "Reads the 'What Makes America Great' patriotic article.",
+    "nodeId": "arm_patriotic"
+   },
+   {
+    "id": "c_pgap",
+    "title": "Perception gap video plus recall",
+    "description": "Watches the Perception gap video, then writes about a time they misjudged someone from the other party.",
+    "nodeId": "arm_pgap"
+   }
   ],
-  "units": "Individual US adult partisans (self-identified Democrats or Republicans) recruited via Prolific. Target N = 2,800 (700 per arm × 4 arms). Screening: US resident, age 18+, self-identified partisan (not independent), no prior participation in affective polarization experiments (tracked via Prolific's participant history).",
-  "exposure": "Random assignment to one of four arms: (1) Control: a neutral 90-second video about a non-political topic (e.g., a nature documentary clip) matched in length and production quality; (2) Perception gap video: the original intervention video containing both cross-party warmth and misperception-correcting statistics; (3) Matched warmth video: identical in format, length, and emotional tone to the Perception gap video but with all misperception statistics removed, showing only cross-party warmth; (4) Statistics-only text: the same misperception-correcting data presented as plain text with no video or warmth framing. The key active contrast is between arms 2 and 3 (isolating misperception content) and between arms 2 and 4 (isolating video/warmth format).",
-  "outcome": "Primary outcome: post-treatment affective polarization, measured as the mean of feeling-thermometer ratings (0–100) for the out-party (e.g., 'How warm or cold do you feel toward the typical Republican?' for Democrats, and vice versa), administered immediately after the treatment. Secondary outcome: perceived out-party extremity, measured by the item 'How extreme are the typical [out-party] members?' on a 0–10 scale (0 = not extreme at all, 10 = extremely extreme), administered immediately after the treatment. Both outcomes are measured at the same time point as in the source study.",
-  "identification": "Random assignment to four arms. The identification strategy rests on two pre-specified contrasts: (A) Perception gap video vs. matched warmth video — both arms provide cross-party exposure (seeing out-party members in a warm light), but only the Perception gap video contains misperception-correcting statistics; a significant difference here indicates the misperception content does the work. (B) Perception gap video vs. statistics-only text — both arms contain the misperception-correcting data, but only the video embeds it in a cross-party warmth context; a significant difference here indicates the warmth/exposure format does the work. If neither contrast is significant, the effect is attributable to the combination (interaction). What must hold: randomization is valid (no differential attrition), the matched warmth video is truly equivalent to the Perception gap video in all respects except the statistics, and the statistics-only text conveys the same factual content as the video.",
-  "threats": [
-   "Differential engagement: the video arms may hold attention longer than the text arm, making the Perception gap vs. statistics-only text contrast confounded by format engagement rather than warmth content.",
-   "Imperfect matching of the warmth video: if the matched video is less engaging, less warm, or shorter in effective content than the original, the Perception gap vs. matched warmth contrast is biased toward finding a misperception effect.",
-   "Demand effects: participants who guess the study's purpose may respond differently; the four-arm design partially mitigates this (participants cannot know which specific contrast is of interest), but the presence of a 'warmth' arm may prime political content.",
-   "Original video unavailability: if the source authors cannot share the video, recreation introduces uncontrolled variation in voice, pacing, and visual quality that could attenuate or inflate the effect.",
-   "Online panel selection: Prolific panelists are more educated and politically engaged than the US population, potentially limiting external validity.",
-   "Multiple outcomes: two outcomes (AP and perceived extremity) are tested; while the primary analysis focuses on AP, the secondary outcome invites post hoc interpretation if it diverges from the primary."
+  "blocks": [
+   {
+    "id": "b_consent",
+    "title": "Consent",
+    "questions": [
+     {
+      "id": "q_consent",
+      "type": "MC",
+      "text": "You are invited to take part in a research survey on political attitudes. It takes about 10 minutes, is voluntary, and your answers are confidential. Do you consent to participate?",
+      "tag": "consent",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "yes",
+        "text": "I consent",
+        "recode": "1"
+       },
+       {
+        "id": "no",
+        "text": "I do not consent",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_pre",
+    "title": "Pre-treatment",
+    "questions": [
+     {
+      "id": "q_pid",
+      "type": "MC",
+      "text": "Do you think of yourself as closer to the Republican Party or to the Democratic Party?",
+      "tag": "pidlean",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "rep",
+        "text": "Closer to the Republican Party",
+        "recode": "1"
+       },
+       {
+        "id": "dem",
+        "text": "Closer to the Democratic Party",
+        "recode": "2"
+       },
+       {
+        "id": "neither",
+        "text": "Neither",
+        "recode": "3"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": "QID10"
+     },
+     {
+      "id": "q_pre_ap",
+      "type": "Matrix",
+      "text": "Please rate each group on the feeling thermometer, from 0 (cold) to 100 (warm). Choose the closest point.",
+      "tag": "pre_ap_scores",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "t0",
+        "text": "0-20 (very cold)",
+        "recode": "10"
+       },
+       {
+        "id": "t1",
+        "text": "21-40",
+        "recode": "30"
+       },
+       {
+        "id": "t2",
+        "text": "41-60",
+        "recode": "50"
+       },
+       {
+        "id": "t3",
+        "text": "61-80",
+        "recode": "70"
+       },
+       {
+        "id": "t4",
+        "text": "81-100 (very warm)",
+        "recode": "90"
+       }
+      ],
+      "rows": [
+       {
+        "id": "r",
+        "text": "How would you rate Republicans?"
+       },
+       {
+        "id": "d",
+        "text": "How would you rate Democrats?"
+       }
+      ],
+      "sourceQuestionId": "QID11"
+     }
+    ]
+   },
+   {
+    "id": "b_ctrl",
+    "title": "Control",
+    "questions": [
+     {
+      "id": "q_ctrl",
+      "type": "DB",
+      "text": "Please continue.",
+      "tag": "ctrl_text",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_pat",
+    "title": "Patriotic article",
+    "questions": [
+     {
+      "id": "q_pat",
+      "type": "DB",
+      "text": "Please read the following article, 'What Makes America Great', about the ideals, history and shared achievements that Americans of all parties take pride in.",
+      "tag": "pat_text",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_pat_chk",
+      "type": "TE",
+      "text": "What did you just see, read, or watch?",
+      "tag": "manip_check_pat",
+      "multiple": false,
+      "required": true,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": "QID31"
+     }
+    ]
+   },
+   {
+    "id": "b_pg",
+    "title": "Perception gap video plus recall",
+    "questions": [
+     {
+      "id": "q_pg_vid",
+      "type": "DB",
+      "text": "Please watch this video about how Americans misperceive the views of the other party. {{ed:pgvideo}}",
+      "tag": "pg_video",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_pg_recall",
+      "type": "TE",
+      "text": "Think of a time you assumed something about people from the other party that turned out to be wrong, or a person from the other party who was more reasonable than you expected. Describe it in a few sentences.",
+      "tag": "pg_recall",
+      "multiple": false,
+      "required": true,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_pg_chk",
+      "type": "TE",
+      "text": "What did you just see, read, or watch?",
+      "tag": "manip_check_pg",
+      "multiple": false,
+      "required": true,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": "QID31"
+     }
+    ]
+   },
+   {
+    "id": "b_post",
+    "title": "Outcomes",
+    "questions": [
+     {
+      "id": "q_post_ap",
+      "type": "Matrix",
+      "text": "Please rate each group on the feeling thermometer, from 0 (cold) to 100 (warm). Choose the closest point.",
+      "tag": "post_ap_scores",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "t0",
+        "text": "0-20 (very cold)",
+        "recode": "10"
+       },
+       {
+        "id": "t1",
+        "text": "21-40",
+        "recode": "30"
+       },
+       {
+        "id": "t2",
+        "text": "41-60",
+        "recode": "50"
+       },
+       {
+        "id": "t3",
+        "text": "61-80",
+        "recode": "70"
+       },
+       {
+        "id": "t4",
+        "text": "81-100 (very warm)",
+        "recode": "90"
+       }
+      ],
+      "rows": [
+       {
+        "id": "r",
+        "text": "How would you rate Republicans?"
+       },
+       {
+        "id": "d",
+        "text": "How would you rate Democrats?"
+       }
+      ],
+      "sourceQuestionId": "QID28"
+     },
+     {
+      "id": "q_post_udp",
+      "type": "Matrix",
+      "text": "Please indicate your agreement and disagreement with the following statements.",
+      "tag": "post_udp_scores",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "s1",
+        "text": "Strongly disagree",
+        "recode": "1"
+       },
+       {
+        "id": "s2",
+        "text": "Disagree",
+        "recode": "2"
+       },
+       {
+        "id": "s3",
+        "text": "Somewhat disagree",
+        "recode": "3"
+       },
+       {
+        "id": "s4",
+        "text": "Neither agree nor disagree",
+        "recode": "4"
+       },
+       {
+        "id": "s5",
+        "text": "Somewhat agree",
+        "recode": "5"
+       },
+       {
+        "id": "s6",
+        "text": "Agree",
+        "recode": "6"
+       },
+       {
+        "id": "s7",
+        "text": "Strongly agree",
+        "recode": "7"
+       }
+      ],
+      "rows": [
+       {
+        "id": "r1",
+        "text": "My party should reduce the number of polling stations in areas that support the other party."
+       },
+       {
+        "id": "r2",
+        "text": "Governors from my party should ignore unfavorable court rulings by judges appointed by the other party."
+       },
+       {
+        "id": "r3",
+        "text": "Governors from my party should prosecute journalists who accuse my party's politicians of misconduct without revealing sources."
+       },
+       {
+        "id": "r4",
+        "text": "Members of my party should not accept the results of elections if they lose."
+       }
+      ],
+      "sourceQuestionId": "QID29"
+     },
+     {
+      "id": "q_donate",
+      "type": "MC",
+      "text": "One in ten participants will be randomly chosen to receive a $10 bonus. If you are chosen, how much would you donate to a nonprofit group that brings Democrats and Republicans together for dialogue?",
+      "tag": "donate",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "d0",
+        "text": "$0",
+        "recode": "0"
+       },
+       {
+        "id": "d2",
+        "text": "$2",
+        "recode": "2"
+       },
+       {
+        "id": "d5",
+        "text": "$5",
+        "recode": "5"
+       },
+       {
+        "id": "d8",
+        "text": "$8",
+        "recode": "8"
+       },
+       {
+        "id": "d10",
+        "text": "$10",
+        "recode": "10"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_debrief",
+    "title": "Debrief",
+    "questions": [
+     {
+      "id": "q_debrief",
+      "type": "DB",
+      "text": "Thank you. This study examined whether materials about the other party change attitudes. The video and article were real examples intended to reduce hostility. No donation will be made on your behalf beyond what was described. Contact the research team with questions.",
+      "tag": "debrief",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   }
   ],
-  "analysis_plan": "Estimator: OLS regression of post-treatment affective polarization on four arm dummies (control as reference), with pre-treatment affective polarization (collected at screening) as a covariate (ANCOVA). The same model is run for perceived out-party extremity. Pre-specified contrasts (tested via linear combinations of the arm coefficients): (1) Perception gap video minus matched warmth video; (2) Perception gap video minus statistics-only text. Standard errors: heteroskedasticity-robust (HC3). Pre-specified tests: the two contrasts above, with a Bonferroni correction for the two pre-specified contrasts (alpha = 0.025 per contrast). A supplementary interaction test (Perception gap video minus the average of the other two active arms) is reported descriptively but not treated as a formal test. All analyses are pre-registered on AsPredicted before data collection begins.",
-  "hypothesis": "The Perception gap video reduces affective polarization significantly more than a matched cross-party warmth video without misperception statistics (contrast 1), indicating that the mechanism is correction of the extremity misperception rather than generic cross-party exposure.",
-  "assumptions": "Power target: approximately 700 respondents per arm (N = 2,800 total) to detect a between-arm difference of 2.4 points on the feeling thermometer at 80% power and alpha = 0.05 (two-sided). Rationale: the observed Perception gap effect in the source study was −2.3 points with SE ≈ 1.0 at n = 641; the minimum detectable effect for a contrast between two active arms at 80% power is approximately 2.8 × SE ≈ 2.8 points at n = 641 per arm, so 700 per arm provides adequate power for a difference near 2.4 points. Attrition of up to 10% is anticipated; 780 per arm will be recruited to maintain 700 per arm in the analysis sample."
+  "flow": [
+   {
+    "id": "n_consent",
+    "type": "block",
+    "label": "Consent",
+    "children": [],
+    "blockId": "b_consent",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_noconsent",
+    "type": "branch",
+    "label": "No consent",
+    "children": [
+     "n_end"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "q_consent",
+    "choiceId": "no",
+    "operator": "selected"
+   },
+   {
+    "id": "n_end",
+    "type": "end",
+    "label": "End",
+    "children": [],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_pre",
+    "type": "block",
+    "label": "Pre",
+    "children": [],
+    "blockId": "b_pre",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "r1",
+    "type": "randomizer",
+    "label": "Randomize",
+    "children": [
+     "arm_control",
+     "arm_patriotic",
+     "arm_pgap"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_control",
+    "type": "group",
+    "label": "Control",
+    "children": [
+     "set_control",
+     "n_ctrl"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_control",
+    "type": "embedded",
+    "label": "Set control",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "control",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_ctrl",
+    "type": "block",
+    "label": "Control block",
+    "children": [],
+    "blockId": "b_ctrl",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_patriotic",
+    "type": "group",
+    "label": "Patriotic",
+    "children": [
+     "set_pat",
+     "n_pat"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_pat",
+    "type": "embedded",
+    "label": "Set patriotic",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "patriotic",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_pat",
+    "type": "block",
+    "label": "Patriotic block",
+    "children": [],
+    "blockId": "b_pat",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_pgap",
+    "type": "group",
+    "label": "Perception gap plus recall",
+    "children": [
+     "set_pgap",
+     "set_pgvideo",
+     "n_pg"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_pgap",
+    "type": "embedded",
+    "label": "Set pgap",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "pgap",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_pgvideo",
+    "type": "embedded",
+    "label": "Video",
+    "children": [],
+    "blockId": "",
+    "field": "pgvideo",
+    "value": "[VIDEO: Perception gap video showing how each party overestimates the other's extremity, about 4 minutes]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_pg",
+    "type": "block",
+    "label": "Perception gap block",
+    "children": [],
+    "blockId": "b_pg",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_post",
+    "type": "block",
+    "label": "Outcomes",
+    "children": [],
+    "blockId": "b_post",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_debrief",
+    "type": "block",
+    "label": "Debrief",
+    "children": [],
+    "blockId": "b_debrief",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   }
+  ],
+  "roots": [
+   "n_consent",
+   "n_noconsent",
+   "n_pre",
+   "r1",
+   "n_post",
+   "n_debrief"
+  ],
+  "assumptions": [
+   "Power target: about 900 per arm (about 2,700 total) to detect 0.09 on the undemocratic-practices scale at 80% power, based on pooled CI [-0.044,0.014] and arm SEs of 0.05-0.12.",
+   "Online US panel; non-partisans screened out after the pidlean question; compensation per panel standard.",
+   "Thermometers are collected in five bands (midpoints recoded) because the schema has no slider type; a slider could replace this at fielding.",
+   "Analyses are pre-registered: 2SLS with arm as instrument, plus mediation as secondary analysis.",
+   "Manipulation success is a first-stage thermometer shift of at least 3 points; if smaller, the test is declared uninformative."
+  ],
+  "unresolved": [
+   "Hosting of the Perception gap video and the Patriotic article text.",
+   "IRB approval number and participant compensation.",
+   "How the bonus donation will be paid out."
+  ],
+  "evidence": [
+   {
+    "id": "e1",
+    "title": "Source study",
+    "url": "https://github.com/yrvelez/affective-polarization-interventions",
+    "claim": "Pooled thermometer -0.8, undemocratic practices -0.015 (null).",
+    "excerpt": "",
+    "origin": "supplied"
+   },
+   {
+    "id": "e2",
+    "title": "The Limits of Partisan Prejudice",
+    "url": "https://doi.org/10.1086/688223",
+    "claim": "Partisan affect may not map onto downstream behaviours.",
+    "excerpt": "",
+    "origin": "supplied"
+   },
+   {
+    "id": "e3",
+    "title": "The (alleged) consequences of affective polarization",
+    "url": "https://doi.org/10.1017/s1475676526101273",
+    "claim": "Tests whether affective polarization produces downstream consequences.",
+    "excerpt": "",
+    "origin": "supplied"
+   }
+  ]
  }
 }

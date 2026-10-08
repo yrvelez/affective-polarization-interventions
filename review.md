@@ -1,87 +1,67 @@
 # Automated review: Light Pass
 
-Models: light `anthropic/claude-sonnet-5.5`, orchestrator `anthropic/claude-sonnet-5.5`. The arm-level estimates in the tables match the prose: the Perception gap video is the only arm with an interval excluding zero (-2.333, CI [-4.283, -0.382], p=0.019), and H2 shows no arm distinguishable from control. The headline pooled affective polarization result (-0.8, CI [-1.4, -0.2], p=0.005) comes only from a random-effects pooling of arm estimates and conflicts with the single-term pooled estimate in E2 (-0.683, p=0.428). The analysis is entirely post hoc with 64 uncorrected tests. The main caveat is that the pooled effect is not robust to the pooling method, and the single significant arm is weak evidence.
+Models: light `anthropic/claude-sonnet-5.5`, orchestrator `anthropic/claude-sonnet-5.5`. The arm-level estimates in the prose match the tables: Perception gap video -2.333 (p=0.019) is the only nominal hit on H1, and no arm is distinguishable on H2. The pooled estimates (-0.819, SE 0.291; H2 -0.015, SE 0.015) appear only in the random-effects sentences, and the pooled CIs are not tabulated. The pooled SE is flagged as approximate because the arms share one control group. The main caveat is that this is a post hoc analysis with 64 uncorrected tests, so the single significant arm is weak evidence and the 'only arm that clearly differed' wording is too strong.
 
-**Review outcome (round 1): 11 of 12 claims supported by the results after the agent's corrections.**
+**Review outcome (round 1): 7 of 9 claims supported by the results after the agent's corrections.**
 
-- **high** R1 (presentational) [editorial] — E1 (party heterogeneity): The prose calls the party estimates 'the pooled effect' and the Finding calls them 'Democrat ATE' and 'Republican ATE'. The table shows these are subgroup estimates (-1.671, p=0.233 and -1.309, p=0.481). The pooled random-effects estimate is -0.819, so -1.7 and -1.3 are not pooled values.
-  - Suggested fix: Describe them as subgroup-level estimates from the party-specific fits, not as the pooled effect.
-  - Disposition: Labeling fix: the party estimates should be described as subgroup estimates.
-- **high** R2 (presentational) [editorial] — E2 (robustness): The text says the exclusion sample is 'about 8%' of the sample and that the change is 8.3%. It also gives 915 respondents (20.1%) who failed all three checks. The table shows n_full=3825 and n_excl=3506, a drop of 319 (8.3%), which does not fit 915 (20.1%). The text says 'standard errors changed little', but the table's se_ratio is 1.039 for post_ap and 1.069 for post_udp, and the Finding cites 'maximum SE ratio 1.07'. The statement that the check 'does not match the pooled −0.8 above, which uses a different sample' is wrong, because the E2 full-sample N=3825 is the same sample as H1.
-  - Suggested fix: Reconcile the 915 (20.1%) figure with the 319-row drop (8.3%), and state that the E2 full-sample estimate (-0.683, p=0.428) is a different pooling method (a single pooled treatment term) from the random-effects -0.819, not a different sample.
-  - Disposition: The sample-size figures need reconciling and the pooled-estimate discrepancy attributed to the pooling method, not the sample; no new estimate is needed.
-- **medium** R3 (presentational) [editorial] — Abstract / Key findings (pooled AP): The abstract reports a pooled estimate of -0.8 with 95% CI [-1.4, -0.2] and p=0.005. The tables show only a random-effects estimate of -0.819 (SE 0.291, p=0.005), and the registered summary shows no CI. The E2 full-sample estimate is -0.683 (SE 0.862, p=0.428), which is nowhere near significant. The two pooled values conflict and the CI is not in any table.
-  - Suggested fix: Report the pooled estimate as -0.819 (SE 0.291, p=0.005) and note the CI is derived. Acknowledge that the alternative pooled estimate is -0.683 (p=0.428).
-  - Disposition: Both pooled estimates already exist in the tables; the text needs to report them and say how the CI was derived.
-- **medium** R4 (presentational) [editorial] — Design / Details (arm sizes): The text says 641 to 662 respondents in the Perception gap video arm, but 641 is the H1 n and 662 is the H2 n. It also says the arm is 'the largest arm, with 641'. In H1 the Patriotic article has 330 and Perception gap has 641, so that is consistent, but the range '60 to 340' is not the table range (about 48 to 330 in H1).
-  - Suggested fix: State the H1 n (641) and H2 n (662) separately, and give arm sizes as roughly 48 to 330 in H1.
-  - Disposition: Arm sizes should be reported separately for H1 and H2.
-- **low** R5 (presentational) [editorial] — Limitations / Key findings (tests): The text says 'Most arms have under 100 respondents' and '64 tests'. The H1 and H2 tables each have 32 arms (64 in total), and about 22 arms are under 100, so 'most' holds. However, the abstract says 'one of 32 interventions', while the design lists 33 arms, with 'arm != T33' excluded.
-  - Suggested fix: Clarify that 32 interventions plus control were analysed and the 33rd arm was excluded.
-  - Disposition: Clarify that 32 interventions plus control were analysed and the 33rd arm was excluded.
-- **low** R6 (presentational) [editorial] — Header / Plan match: The plan-match table lists H1 and H2 as 'as planned', but the analysis tags mark both as 'unregistered' (the plan was reconstructed). 'As planned' could imply registration.
-  - Suggested fix: Label H1 and H2 as post hoc, unregistered analyses reconstructed from the replication script.
-  - Disposition: Label H1 and H2 as post hoc, unregistered analyses.
-- **medium** K1 (presentational, claims) [editorial] — Key findings: Overstated claim: "only the Perception gap video lowered affective polarization". It is the only arm with a CI excluding zero, but 'What makes an American' (-2.647, p=0.059) and others have similar or larger point estimates with wider intervals; the result is uncorrected across 32 arms.
-  - Suggested fix: Say it was the only arm with an interval excluding zero, uncorrected and post hoc.
+- **medium** R1 (presentational) [editorial] — Plan match / H1, H2: The plan-match table says 'H1: as planned' and 'H2: as planned', but the analysis tags mark both as 'unregistered' because there was no pre-registration and the plan was reconstructed post hoc. The figure 'Planned treatment effects' and the E1 and E2 wording ('planned H1 and H2') also suggest a registered plan.
+  - Suggested fix: Describe H1 and H2 as post hoc analyses reconstructed from the replication script, not as 'as planned' or 'planned'. Retitle the figure and the E1 and E2 text accordingly.
+  - Disposition: The 'planned' and 'as planned' labels wrongly imply a registered plan, so the wording and figure title need relabelling as post hoc.
+- **medium** R2 (presentational) [editorial] — Abstract / H1 pooled estimate: The pooled H1 estimate (-0.8, CI [-1.4, -0.2], p = 0.005) and the pooled H2 CI [-0.044, 0.014] appear in no provided table. The text gives only -0.819 and SE 0.291. The visible tables show no pooled row, and a CI built from that SE would be about [-1.39, -0.25].
+  - Suggested fix: Cite the pooled row from the results table, or state the pooled estimate as -0.819 (SE 0.291, p = 0.005).
+  - Disposition: The pooled estimates exist in the text; they need to be tabulated or cited with SE, not re-estimated.
+- **low** R3 (presentational) [editorial] — H1 text: The text says the Perception gap video lowered polarization by 2.3 points. The table gives -2.333, which rounds to -2.3, so this is fine. The text also says 'the largest arm at 641 respondents'. By the H2 table the arm has 662 respondents, while the H1 table shows 641 for H1, so the sample sizes differ by outcome.
+  - Suggested fix: State that n = 641 applies to the H1 sample and n = 662 to the H2 sample.
+  - Disposition: The n differs by outcome sample (641 in H1, 662 in H2), so each should be labelled to its sample.
+- **low** R4 (presentational) [editorial] — Abstract / Limitations: The text refers to '64 arm-level tests', which is 32 arms × 2 outcomes. The E1 tag says 'H1 had 1 ... of 32'. Both are consistent. However, 'No arm was distinguishable' on H2 is consistent with the table, while the 'about a quarter' of raw respondents not analysed is 1,539 of 6,086 (25.3%), which is fine.
+  - Suggested fix: No change needed.
+  - Disposition: The reviewer states that no change is needed.
+- **medium** K1 (presentational, claims) [editorial] — Abstract: Overstated claim: "Perception gap video was the only individual arm that clearly differed from control, at −2.3 points (95% CI [−4.3, −0.4], p = 0.019)". H1 table: -2.333, CI [-4.283,-0.382], p=0.0191. It is the only arm with p<0.05, but the test is uncorrected among 32, and 'What makes an American' is -2.647 (p=0.059), a larger point estimate.
+  - Suggested fix: Say it was the only arm with an uncorrected p<0.05; avoid 'clearly differed'.
   - Disposition: claim checked against the tables by the checking agent
-- **medium** K2 (presentational, claims) [editorial] — Abstract: Overstated claim: "Pooled across all arms, affective polarization was 0.8 points lower (95% CI [-1.4, -0.2], p = 0.005)". Random-effects pooled -0.819, SE 0.291, p=0.005, but the E2 full-sample single-treatment estimate is -0.683, SE 0.862, p=0.428 on the same N=3825. The CI is derived from the SE, not shown in a table.
-  - Suggested fix: Report that the pooled result depends on the method (random-effects -0.819, p=0.005 vs single pooled term -0.683, p=0.428), and call the average shift small and fragile.
-  - Disposition: claim checked against the tables by the checking agent
-- **high** K3 (presentational, claims) [editorial] — E2: Unsupported claim: "excluding failures moved the pooled estimate from -0.68 to -0.36; 'does not match the pooled -0.8 above, which uses a different sample'". E2 n_full=3825 equals the H1 N; the difference is the pooling method, not the sample.
-  - Suggested fix: Say the E2 full-sample estimate uses a single pooled treatment term, not a different sample.
-  - Disposition: claim checked against the tables by the checking agent
-- **high** K4 (presentational, claims) [editorial] — E2: Unsupported claim: "excluding all-KC-failures changes the sample by only 8.3%; 915 respondents (20.1%) failed all checks". n_full 3825 vs n_excl 3506 is a drop of 319 (8.3%), which is inconsistent with 915 (20.1%).
-  - Suggested fix: Reconcile the two figures or drop the 915 (20.1%) statement.
-  - Disposition: claim checked against the tables by the checking agent
-- **medium** K5 (presentational, claims) [editorial] — E1: Overstated claim: "Democrat -1.7 (p=0.233), Republican -1.3 (p=0.481), neither distinguishable from zero". E1 table matches the numbers, but these are party-subgroup estimates, not the pooled effect.
-  - Suggested fix: Call them subgroup estimates from party-specific fits.
+- **medium** K2 (presentational, claims) [editorial] — Key findings: Overstated claim: "Only the Perception gap video lowered affective polarization on its own". Other arms have similar or larger point estimates (-2.647, -2.629, -2.437) with wide intervals; nominal significance does not establish that the others had no effect.
+  - Suggested fix: Say it was the only arm reaching nominal significance.
   - Disposition: claim checked against the tables by the checking agent
 
 ## Claim checks (checking agent)
 
-- **supported** (Abstract): "Perception gap video lowered affective polarization by 2.3 points (95% CI [-4.3, -0.4], p = 0.019)" — H1 table, Perception gap video: -2.333, CI [-4.283, -0.382], p=0.0191.
-- **overstated** (Key findings): "only the Perception gap video lowered affective polarization" — It is the only arm with a CI excluding zero, but 'What makes an American' (-2.647, p=0.059) and others have similar or larger point estimates with wider intervals; the result is uncorrected across 32 arms.
-- **overstated** (Abstract): "Pooled across all arms, affective polarization was 0.8 points lower (95% CI [-1.4, -0.2], p = 0.005)" — Random-effects pooled -0.819, SE 0.291, p=0.005, but the E2 full-sample single-treatment estimate is -0.683, SE 0.862, p=0.428 on the same N=3825. The CI is derived from the SE, not shown in a table.
-- **supported** (Abstract): "pooled estimate on undemocratic practices -0.015, 95% CI [-0.044, +0.014]" — H2 random-effects -0.015, SE 0.015, p=0.309; the CI follows from the SE.
-- **supported** (H2): "No arm was distinguishable from control on support for undemocratic practices" — H2 table: all p>0.05; the smallest is McCain defends Obama, +0.144, p=0.082.
-- **supported** (H2): "estimates mostly within about ±0.15 of control" — H2 estimates range from -0.156 to +0.145.
-- **unsupported** (E2): "excluding failures moved the pooled estimate from -0.68 to -0.36; 'does not match the pooled -0.8 above, which uses a different sample'" — E2 n_full=3825 equals the H1 N; the difference is the pooling method, not the sample.
-- **unsupported** (E2): "excluding all-KC-failures changes the sample by only 8.3%; 915 respondents (20.1%) failed all checks" — n_full 3825 vs n_excl 3506 is a drop of 319 (8.3%), which is inconsistent with 915 (20.1%).
-- **overstated** (E1): "Democrat -1.7 (p=0.233), Republican -1.3 (p=0.481), neither distinguishable from zero" — E1 table matches the numbers, but these are party-subgroup estimates, not the pooled effect.
-- **supported** (E3): "high-interest -1.5 (p=0.277), low-interest +1.1 (p=0.232)" — E3 table: -1.502 (p=0.277) and 1.090 (p=0.232).
+- **overstated** (Abstract): "Perception gap video was the only individual arm that clearly differed from control, at −2.3 points (95% CI [−4.3, −0.4], p = 0.019)" — H1 table: -2.333, CI [-4.283,-0.382], p=0.0191. It is the only arm with p<0.05, but the test is uncorrected among 32, and 'What makes an American' is -2.647 (p=0.059), a larger point estimate.
+- **overstated** (Key findings): "Only the Perception gap video lowered affective polarization on its own" — Other arms have similar or larger point estimates (-2.647, -2.629, -2.437) with wide intervals; nominal significance does not establish that the others had no effect.
+- **supported** (Abstract): "Pooled effect on affective polarization was −0.8 points (95% CI [−1.4, −0.2], p = 0.005)" — Pooled random-effects estimate -0.819, SE 0.291, p=0.005. The implied CI is about [-1.39,-0.25]. The pooled SE is approximate because the arms share one control group.
+- **supported** (Abstract): "Support for undemocratic practices pooled −0.015, 95% CI [−0.044, 0.014]" — Pooled -0.015, SE 0.015, p=0.309. The implied CI is about [-0.044, 0.014].
+- **supported** (H2): "No arm was distinguishable from control on support for undemocratic practices; McCain +0.144, p = 0.082" — H2 table: the smallest p is 0.0817 (McCain, +0.144, CI [-0.018,0.306]); all arms are marked 'no'.
+- **supported** (E1): "Restricting to completers left every arm estimate unchanged (largest change 0.00)" — The E1 rows shown are all labelled planned_full with n=3825 and match H1. The completers rows are not visible in the excerpt.
+- **supported** (H1): "Perception gap video is the largest arm at 641 respondents" — H1 table n=641, the largest arm (next is Patriotic article at 330). The H2 sample has 662.
+
+## Corrections requested by the checking agent
+
+- Relabel 'planned' wording in E1, E2 and the figure title ('Planned treatment effects') as post hoc reconstructed.
+- Add a pooled row with CI to a results table.
+- Specify n by outcome sample for the Perception gap video.
 
 ## Corrections made by the writing agent
 
-- K1: Reworded to say the Perception gap video was the only arm with an interval excluding zero, noting it is uncorrected and post hoc.
-- K2: Abstract and results now report both pooled estimates (−0.819, p = 0.005 vs −0.683, p = 0.428) and call the shift small and fragile; the interval is flagged as derived.
-- K3: E2 now says the difference is the pooling method, not the sample.
-- K4: Dropped the 915 (20.1%) figure; kept the 319-row (8.3%) drop from the table.
-- K5: E1 now describes the estimates as subgroup estimates from party-specific fits.
-- R1: E1 no longer calls the party estimates the pooled effect.
-- R2: Reconciled the sample drop, stated the SE rise as at most 7%, and fixed the pooling-method explanation.
-- R3: Pooled estimate reported as −0.819 with the CI marked as derived; alternative −0.683 (p = 0.428) acknowledged.
-- R4: Arm sizes now given as roughly 48 to 330 in H1, with 641 (H1) and 662 (H2) stated separately for the Perception gap video.
-- R5: Clarified that 32 interventions plus control were analysed and the 33rd arm was excluded; limitations now say about two thirds of arms are under 100.
-- R6: The plan-match label is outside these sections; the text states H1 and H2 are post hoc, unregistered analyses reconstructed from the replication script.
-- F1: E2 text uses only the 319-row (8.3%) drop from 3,825 to 3,506; the 915 (20.1%) figure is not in the text, and the E2 finding line is rewritten without it.
-- F2: Fourth takeaway now says subgroup estimates were each indistinguishable from zero and no formal test of group differences was run; E1 and E3 notes and findings say the same.
-- G1: No change needed beyond F1.
-- G2: No change needed beyond F2.
+- K1: Abstract now says the Perception gap video was the only arm with an uncorrected p < 0.05, dropped 'clearly differed', and noted other arms had similar or larger point estimates.
+- K2: Takeaway now says only the Perception gap video reached nominal significance, not that it alone lowered polarization.
+- G1: E1 and E2 text now call H1 and H2 post hoc rather than planned; the figure title is in the skeleton and could not be changed here.
+- G2: Pooled estimates with CIs are cited from the Key numbers block (−0.819 [−1.389, −0.249]; −0.015 [−0.044, 0.014]); adding a table row is outside the prose sections.
+- G3: H1 note now gives n = 641 for the polarization sample and 662 for the undemocratic practices sample.
+- R1: Design notes and abstract describe H1 and H2 as post hoc analyses reconstructed from the replication script; E1 and E2 reworded.
+- R2: Pooled figures are taken from the Key numbers block, which gives CIs and p-values.
+- R3: Sample sizes by outcome are now stated in the H1 note.
+- R4: No change needed.
+- F1: E1 reworded to say the completers re-fit is unreviewed and the shown rows (full sample only) cannot confirm the comparison; removed 'unchanged' and 'not sensitive' claims.
 
 ## Claim re-check on the corrected text
 
-Only the 915 (20.1%) versus 319 (8.3%) knowledge-check figures in E2 still need an explicit reconciliation of the two samples.
+The E1 completers claim is not backed by any visible completers rows and the E2 '0 of 32' count rests on only 14 visible rows; both need rewording or the missing rows.
 
-- **supported** (Abstract, re-check of C1): "The Perception gap video lowered affective polarization by 2.3 points relative to control (95% CI [−4.3, −0.4], p = 0.019)" — H1 table, Perception gap video: -2.333, CI [-4.283, -0.382], p=0.0191.
-- **supported** (Key findings, re-check of C2): "the Perception gap video was the only arm with an interval excluding zero on affective polarization ... post hoc and uncorrected" — H1 table: only Perception gap video has a CI excluding zero; 'What makes an American' is p=0.059, CI [-5.397, 0.102]. The wording is now qualified.
-- **supported** (Abstract / Key findings, re-check of C3): "−0.819 (p = 0.005) under random-effects pooling, but −0.683 (p = 0.428) with a single pooled treatment term. It is small and fragile." — Random-effects -0.819, SE 0.291, p=0.005; E2 post_ap est_full -0.683, p=0.428, n=3825. The CI is flagged as derived from the SE.
-- **supported** (Abstract, re-check of C4): "pooled −0.015, 95% CI [−0.044, +0.014]" — H2 random-effects -0.015, SE 0.015; the CI follows from the SE (±0.029).
-- **supported** (H2, re-check of C5): "No arm was distinguishable from control on support for undemocratic practices" — H2 table: all p>0.05; the smallest is McCain defends Obama, p=0.082.
-- **supported** (H2, re-check of C6): "Estimates were mostly within about ±0.15 of control, which averaged 2.75" — H2 estimates range from -0.156 to +0.145; mean_control 2.753.
-- **supported** (E2, re-check of C7): "moved the single-pooled-term estimate from −0.68 to −0.36 (p = 0.685) ... uses a different pooling method" — E2 post_ap: est_full -0.683, est_excl -0.363, p_excl 0.685; the pooling method is now correctly identified.
-- **overstated** (E2, re-check of C8): "dropped 319 rows (8.3%, from 3,825 to 3,506) ... 915 respondents (20.1%) who failed all three knowledge checks" — The 319 (8.3%) drop matches the E2 table. The 915 (20.1%) figure is still in the setup text and is not in the tables. It is presumably computed on the full 4,547 sample, but this is not reconciled with the 319 drop.
-- **supported** (E1, re-check of C9): "−1.7 points for Democrats (p = 0.233) and −1.3 for Republicans (p = 0.481). Each was indistinguishable from zero" — E1 table: -1.671 (p=0.233) and -1.309 (p=0.481), now labelled subgroup estimates.
-- **supported** (E3, re-check of C10): "−1.5 points for high-interest (p = 0.277) and +1.1 for low-interest (p = 0.232)" — E3 table: -1.502 (p=0.277), 1.090 (p=0.232).
-- **supported** (E2): "Standard errors rose at most 7%" — E2 se_ratio 1.039 and 1.069.
-- **supported** (Limitations): "About two thirds of arms have under 100 respondents" — H1 table: about 21 of 32 arms have n<100, which is about two thirds.
+- **supported** (Abstract, re-check of C1): "The Perception gap video was the only individual arm with an uncorrected p < 0.05, at −2.3 points (95% CI [−4.3, −0.4], p = 0.019); other arms had similar or larger point estimates with wide intervals." — H1 table: Perception gap -2.333, CI [-4.283,-0.382], p=0.0191, the only 'yes'. 'What makes an American' is -2.647 and Media-profits -2.629, both larger.
+- **supported** (Key findings, re-check of C2): "Only the Perception gap video reached nominal significance on affective polarization" — Reworded to nominal significance; H1 table shows it is the only arm with p<0.05 (0.0191).
+- **supported** (Key findings, re-check of C3): "pooled effect on affective polarization (feeling thermometer) was −0.8 points (95% CI [−1.4, −0.2], p = 0.005), a small reduction" — Random-effects pooled -0.819, SE 0.291, p=0.005; the implied CI is about [-1.39,-0.25]. The text notes the pooled SE is approximate.
+- **supported** (Abstract, re-check of C4): "Support for undemocratic practices ... pooled estimate was −0.015 (95% CI [−0.044, 0.014])" — Pooled -0.015, SE 0.015, p=0.309; the implied CI is about [-0.044, 0.014].
+- **supported** (H2, re-check of C5): "No arm was distinguishable from control on support for undemocratic practices ... McCain +0.144, p = 0.082" — H2 table: smallest p is McCain 0.0817, estimate 0.144, CI [-0.018,0.306]; all arms 'no'.
+- **unsupported** (E1, re-check of C6): "Restricting to completers left every arm estimate unchanged (largest absolute change 0.00); H1 had 1 and H2 had 0 of 32 arm contrasts at p<0.05 in both samples" — Visible E1 rows are all 'planned_full' (n=3825). No completers rows are shown, and the text itself says it cannot confirm the comparison. The H2 count is also not visible.
+- **supported** (H1, re-check of C7): "The Perception gap video, the largest arm (641 respondents in the affective polarization sample; 662 in the undemocratic practices sample)" — H1 table n=641 and H2 table n=662; the next largest arm is Patriotic article at 330 (H1) and 339 (H2).
+- **supported** (H1): "The 'What makes an American' video (−2.6, p = 0.059) and the Patriotic article (−2.1, p = 0.100) were suggestive only." — H1 table: -2.647, p=0.0592; -2.101, p=0.0999.
+- **overstated** (E2): "Of 32 arm-by-Democrat interaction terms ... 0 had p<0.05" — Only 14 of 32 interaction rows are visible; the smallest shown is p=0.090 (Rick and Morty). The other 18 rows are not shown. The 'no arm's effect detectably differs' wording is also stronger than the hedged follow-up sentence.

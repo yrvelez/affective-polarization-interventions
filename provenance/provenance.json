@@ -4,17 +4,17 @@
  "reviewer_pass": true,
  "models": {
   "strong": "anthropic/claude-sonnet-5.5",
-  "fast": "qwen/qwen3.8-27b"
+  "fast": "anthropic/claude-haiku-5.5"
  },
  "provider": "openrouter",
  "zero_retention_requested": true,
- "cost_usd": 0.799587,
+ "cost_usd": 0.925932,
  "tokens": {
-  "in": 339708,
-  "out": 52512
+  "in": 340131,
+  "out": 51533
  },
  "tool_version": "0.1.0",
- "created": "2026-10-07T02:46:29Z",
+ "created": "2026-10-08T16:01:14Z",
  "pap_source": "author-supplied pap.json",
  "pii": {
   "dropped": [
@@ -31,166 +31,154 @@
   },
   "scan": "header + first data row only, local regex"
  },
- "degraded": [
-  "extensions: advance_design: Unreachable block Not consented."
- ],
+ "degraded": [],
  "inputs": {
   "raw_csv_sha256": "ff8f8517bd89f0a747f5b369ca0072813855f9694f554ab5aeb95d85a785be75",
   "pap_sha256": "a24007f704bd0276d94171db6b386d23a39250e25e01e7f7f74e108fb5be0dc1",
   "qsf_sha256": "be2c72b5e68c76781776c4e75dcc2e675422bd1640fbd1737699df60a6819324",
-  "pap_json_sha256": "6be28ccc1ecbbce3464e069728fec050a17d5d8c98c3347b513f78d85f280483"
+  "pap_json_sha256": "a13710bfb5af4d5ebc76d005344f62c90df3e4af94738bbc5c608d939e248a28"
  },
  "review_mode": "light",
  "review_rounds": [
   {
    "round": 1,
-   "decision": "minor_revision",
-   "k_issues": 5,
+   "decision": "major_revision",
+   "k_issues": 2,
    "revised": true,
    "agent_addenda": []
   }
  ],
  "usage_by_agent": {
   "exploratory": {
-   "calls": 7,
-   "in": 140915,
-   "out": 7993,
-   "cost": 0.037458241425,
+   "calls": 5,
+   "in": 104203,
+   "out": 5167,
+   "cost": 0.012873762,
    "models": [
-    "qwen/qwen3.8-27b"
+    "anthropic/claude-haiku-5.5"
    ]
   },
   "litreview": {
    "calls": 2,
-   "in": 1750,
-   "out": 1710,
-   "cost": 0.0067566819870000005,
+   "in": 2616,
+   "out": 870,
+   "cost": 0.0006896340000000001,
    "models": [
-    "qwen/qwen3.8-27b"
+    "anthropic/claude-haiku-5.5"
    ]
   },
   "writer": {
    "calls": 1,
-   "in": 8597,
-   "out": 1837,
-   "cost": 0.03520836,
+   "in": 10063,
+   "out": 1543,
+   "cost": 0.03520044,
    "models": [
     "anthropic/claude-sonnet-5.5"
    ]
   },
   "reviewer": {
    "calls": 1,
-   "in": 18604,
-   "out": 1419,
-   "cost": 0.05088402,
+   "in": 20817,
+   "out": 849,
+   "cost": 0.04962276,
    "models": [
     "anthropic/claude-sonnet-5.5"
    ]
   },
   "review_orchestrator": {
    "calls": 1,
-   "in": 21018,
-   "out": 1925,
-   "cost": 0.06067314,
+   "in": 21771,
+   "out": 1493,
+   "cost": 0.05788728,
    "models": [
     "anthropic/claude-sonnet-5.5"
    ]
   },
   "writer_revise": {
    "calls": 2,
-   "in": 24839,
-   "out": 4735,
-   "cost": 0.09605772,
+   "in": 26002,
+   "out": 3805,
+   "cost": 0.08915346,
    "models": [
     "anthropic/claude-sonnet-5.5"
    ]
   },
   "review_signoff": {
    "calls": 2,
-   "in": 41102,
-   "out": 3322,
-   "cost": 0.11426976,
+   "in": 43037,
+   "out": 2791,
+   "cost": 0.11284416,
    "models": [
     "anthropic/claude-sonnet-5.5"
    ]
   },
   "potential": {
    "calls": 1,
-   "in": 19899,
-   "out": 2571,
-   "cost": 0.06485292,
+   "in": 20213,
+   "out": 2963,
+   "cost": 0.06935544,
    "models": [
     "anthropic/claude-sonnet-5.5"
    ]
   },
   "extensions": {
-   "calls": 4,
-   "in": 59618,
-   "out": 17704,
-   "cost": 0.29331324,
+   "calls": 6,
+   "in": 91409,
+   "out": 32052,
+   "cost": 0.49830462,
    "models": [
     "anthropic/claude-sonnet-5.5"
-   ]
-  },
-  "extensions_obs": {
-   "calls": 2,
-   "in": 3366,
-   "out": 9296,
-   "cost": 0.04011320016,
-   "models": [
-    "qwen/qwen3.8-27b"
    ]
   }
  },
  "stage_seconds": {
   "ingest": 0.01,
   "pii": 0.23,
-  "tidy": 0.19,
-  "pap": 0.02,
-  "clean": 0.52,
-  "registered": 13.8,
+  "tidy": 0.18,
+  "pap": 0.0,
+  "clean": 0.48,
+  "registered": 12.34,
   "tag": 0.0,
-  "exploratory": 287.48,
-  "litreview": 64.76,
-  "write": 13.21,
-  "review": 21.93,
+  "exploratory": 31.16,
+  "litreview": 9.75,
+  "write": 11.58,
+  "review": 17.35,
   "robustness": 0.0,
-  "revise": 43.99,
-  "extensions": 377.05,
+  "revise": 37.76,
+  "extensions": 187.82,
   "package": 0.0
  },
- "total_seconds": 823.2,
+ "total_seconds": 308.7,
  "log": [
-  "2026-10-07T02:46:29Z stage ingest",
-  "2026-10-07T02:46:29Z stage pii",
-  "2026-10-07T02:46:29Z PII scan (header + first 5 rows): flagged 3 column(s): RecordedDate [known_identifier_column], dem_intervention [value_pattern:free_text], rep_intervention [value_pattern:free_text]. Action: dropped 3, kept by whitelist 0.",
-  "2026-10-07T02:46:29Z stage tidy",
-  "2026-10-07T02:46:29Z stage pap",
-  "2026-10-07T02:46:29Z pap: loaded author-supplied /Users/yamil/Projects/filedrawer/affective_polarization/pap_labeled.json (papreader agent skipped)",
-  "2026-10-07T02:46:29Z cleared 50 file(s) from the previous run",
-  "2026-10-07T02:46:29Z stage clean",
-  "2026-10-07T02:46:30Z wrote data/clean.csv: 4547 rows, 77 columns",
-  "2026-10-07T02:46:30Z stage registered",
-  "2026-10-07T02:46:43Z H1: post_ap ~ C(arm_code, Treatment(reference='T0')) + pre_ap | 32 arms vs Control, N=3825, HC2 SEs, weights=ipw_weight; 1 arm(s) supported; pooled=-0.819 (SE 0.291, p=0.0049, tau2=0.0000, I2=0.00)",
-  "2026-10-07T02:46:43Z H2: post_udp ~ C(arm_code, Treatment(reference='T0')) + pre_udp | 32 arms vs Control, N=3953, HC2 SEs, weights=ipw_weight; 0 arm(s) supported; pooled=-0.015 (SE 0.015, p=0.3087, tau2=0.0000, I2=0.00)",
-  "2026-10-07T02:46:43Z wrote results/registered_summary.csv (66 rows)",
-  "2026-10-07T02:46:43Z stage tag",
-  "2026-10-07T02:46:43Z stage exploratory",
-  "2026-10-07T02:51:31Z tags: H1=unregistered, H2=unregistered, E1=exploratory, E2=exploratory, E3=exploratory",
-  "2026-10-07T02:51:31Z stage litreview",
-  "2026-10-07T02:52:36Z stage write",
-  "2026-10-07T02:52:36Z diagram: template (figures/design.svg)",
-  "2026-10-07T02:52:49Z stage review",
-  "2026-10-07T02:53:11Z review (light): 11 issue(s); provisional decision: major_revision",
-  "2026-10-07T02:53:11Z stage robustness",
-  "2026-10-07T02:53:11Z stage revise",
-  "2026-10-07T02:53:24Z correction pass 1: 11 note(s) from the writing agent",
-  "2026-10-07T02:53:34Z claim re-check: 10/12 claims supported on the corrected text",
-  "2026-10-07T02:53:46Z correction pass 2: 4 note(s) from the writing agent",
-  "2026-10-07T02:53:55Z claim re-check: 11/12 claims supported on the corrected text",
-  "2026-10-07T02:53:55Z stage extensions",
-  "2026-10-07T02:54:14Z research potential: 5 cause(s), 0 debate(s), 3 brief(s)",
-  "2026-10-07T03:00:12Z extensions: 2 proposal(s) validated by autoexperiment; dropped: advance_design: Unreachable block Not consented.",
-  "2026-10-07T03:00:12Z stage package"
+  "2026-10-08T16:01:14Z stage ingest",
+  "2026-10-08T16:01:14Z stage pii",
+  "2026-10-08T16:01:14Z PII scan (header + first 5 rows): flagged 3 column(s): RecordedDate [known_identifier_column], dem_intervention [value_pattern:free_text], rep_intervention [value_pattern:free_text]. Action: dropped 3, kept by whitelist 0.",
+  "2026-10-08T16:01:14Z stage tidy",
+  "2026-10-08T16:01:14Z stage pap",
+  "2026-10-08T16:01:14Z pap: loaded author-supplied /Users/yamil/Projects/filedrawer/affective_polarization/pap_labeled.json (papreader agent skipped)",
+  "2026-10-08T16:01:14Z stage clean",
+  "2026-10-08T16:01:15Z wrote data/clean.csv: 4547 rows, 77 columns",
+  "2026-10-08T16:01:15Z stage registered",
+  "2026-10-08T16:01:27Z H1: post_ap ~ C(arm_code, Treatment(reference='T0')) + pre_ap | 32 arms vs Control, N=3825, HC2 SEs, weights=ipw_weight; 1 arm(s) supported; pooled=-0.819 (SE 0.291, p=0.0049, tau2=0.0000, I2=0.00)",
+  "2026-10-08T16:01:27Z H2: post_udp ~ C(arm_code, Treatment(reference='T0')) + pre_udp | 32 arms vs Control, N=3953, HC2 SEs, weights=ipw_weight; 0 arm(s) supported; pooled=-0.015 (SE 0.015, p=0.3087, tau2=0.0000, I2=0.00)",
+  "2026-10-08T16:01:27Z wrote results/registered_summary.csv (66 rows)",
+  "2026-10-08T16:01:27Z stage tag",
+  "2026-10-08T16:01:27Z stage exploratory",
+  "2026-10-08T16:01:58Z tags: H1=unregistered, H2=unregistered, E1=exploratory, E2=exploratory",
+  "2026-10-08T16:01:58Z stage litreview",
+  "2026-10-08T16:02:08Z stage write",
+  "2026-10-08T16:02:08Z diagram: template (figures/design.svg)",
+  "2026-10-08T16:02:20Z stage review",
+  "2026-10-08T16:02:37Z review (light): 6 issue(s); provisional decision: minor_revision",
+  "2026-10-08T16:02:37Z stage robustness",
+  "2026-10-08T16:02:37Z stage revise",
+  "2026-10-08T16:02:49Z correction pass 1: 9 note(s) from the writing agent",
+  "2026-10-08T16:02:57Z claim re-check: 8/9 claims supported on the corrected text",
+  "2026-10-08T16:03:06Z correction pass 2: 1 note(s) from the writing agent",
+  "2026-10-08T16:03:15Z claim re-check: 7/9 claims supported on the corrected text",
+  "2026-10-08T16:03:15Z stage extensions",
+  "2026-10-08T16:03:36Z research potential: 5 cause(s), 1 debate(s), 3 brief(s)",
+  "2026-10-08T16:06:23Z extensions: 3 proposal(s) validated by autoexperiment",
+  "2026-10-08T16:06:23Z stage package"
  ]
 }

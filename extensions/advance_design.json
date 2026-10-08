@@ -1,0 +1,818 @@
+{
+ "id": "advance_design",
+ "kind": "mechanism",
+ "title": "Perception gap correction with a mechanism manipulation and delayed follow-up",
+ "rationale": "In the source study the Perception gap video was the only arm with p<0.05 on the thermometer (-2.3 points, SE 0.995, n=641), while pooled undemocratic-practices support did not move (-0.015, CI [-0.044, 0.014]) and outcomes were measured immediately. This design tests whether the effect runs through corrected beliefs about the outparty, whether it replicates against a placebo video, and whether it persists and reaches democratic attitudes.",
+ "contribution": "Separates perception-correction from generic video and attention effects, tests mediation via perceived outparty views, and measures persistence and downstream spillover.",
+ "limitations": [
+  "Wave 2 attrition may differ by arm",
+  "Perceived outparty views measured after treatment may prime the thermometer",
+  "Only US partisans; no cross-national test",
+  "Statistics-only arm may differ from the video in more than format",
+  "Thermometer items are implemented as matrix rows with a 0-100 style scale in this instrument"
+ ],
+ "design": {
+  "title": "Perception gap correction: mechanism and persistence",
+  "overview": "Partisan US adults complete pre-treatment measures, are randomized to one of four arms, complete immediate outcomes, and are re-contacted 2-4 weeks later for the same outcomes.",
+  "hypothesis": "The Perception gap video lowers outparty animosity (thermometer gap) more than placebo or control, mediated by reduced perceived outparty extremity; the effect partly persists at follow-up, with smaller or null effects on support for undemocratic practices.",
+  "primaryOutcome": "Affective polarization (in-party minus out-party feeling thermometer) immediately and at 2-4 weeks.",
+  "comparison": "Perception gap video vs placebo video; Perception gap video vs statistics-only text; each vs control; mediation via change in perceived outparty views.",
+  "population": "US adult partisans (including leaners) from an online panel, with a recontact wave 2-4 weeks later.",
+  "conditions": [
+   {
+    "id": "c_ctrl",
+    "title": "Control",
+    "description": "No content; continue.",
+    "nodeId": "arm_ctrl"
+   },
+   {
+    "id": "c_video",
+    "title": "Perception gap video",
+    "description": "Video presenting data on how partisans overestimate outparty extremity.",
+    "nodeId": "arm_video"
+   },
+   {
+    "id": "c_placebo",
+    "title": "Placebo video",
+    "description": "Same-length, same-format non-political video.",
+    "nodeId": "arm_placebo"
+   },
+   {
+    "id": "c_text",
+    "title": "Statistics-only text",
+    "description": "Text summarizing the same perception gap statistics, with no video.",
+    "nodeId": "arm_text"
+   }
+  ],
+  "blocks": [
+   {
+    "id": "b_consent",
+    "title": "Consent",
+    "questions": [
+     {
+      "id": "q_consent",
+      "type": "MC",
+      "text": "This is a research study about political attitudes with two surveys, today and in 2-4 weeks. Participation is voluntary and you may stop at any time. Do you consent to participate?",
+      "tag": "consent",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "yes",
+        "text": "I consent",
+        "recode": "1"
+       },
+       {
+        "id": "no",
+        "text": "I do not consent",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_pre",
+    "title": "Pre-treatment",
+    "questions": [
+     {
+      "id": "q_pid",
+      "type": "MC",
+      "text": "Do you think of yourself as closer to the Republican Party or to the Democratic Party?",
+      "tag": "pidlean",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "rep",
+        "text": "Closer to the Republican Party",
+        "recode": "1"
+       },
+       {
+        "id": "dem",
+        "text": "Closer to the Democratic Party",
+        "recode": "2"
+       },
+       {
+        "id": "neither",
+        "text": "Neither",
+        "recode": "3"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": "QID10"
+     },
+     {
+      "id": "q_pre_ap",
+      "type": "Matrix",
+      "text": "Please rate each group on a feeling thermometer from 0 (cold, unfavorable) to 100 (warm, favorable). Choose the point closest to your feeling.",
+      "tag": "pre_ap_scores",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "t0",
+        "text": "0-20 (very cold)",
+        "recode": "10"
+       },
+       {
+        "id": "t1",
+        "text": "21-40",
+        "recode": "30"
+       },
+       {
+        "id": "t2",
+        "text": "41-60",
+        "recode": "50"
+       },
+       {
+        "id": "t3",
+        "text": "61-80",
+        "recode": "70"
+       },
+       {
+        "id": "t4",
+        "text": "81-100 (very warm)",
+        "recode": "90"
+       }
+      ],
+      "rows": [
+       {
+        "id": "r",
+        "text": "How would you rate Republicans?"
+       },
+       {
+        "id": "d",
+        "text": "How would you rate Democrats?"
+       }
+      ],
+      "sourceQuestionId": "QID11"
+     },
+     {
+      "id": "q_pre_udp",
+      "type": "Matrix",
+      "text": "Please indicate your agreement and disagreement with the following statements.",
+      "tag": "pre_udp_scores",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "s1",
+        "text": "Strongly disagree",
+        "recode": "1"
+       },
+       {
+        "id": "s2",
+        "text": "Disagree",
+        "recode": "2"
+       },
+       {
+        "id": "s3",
+        "text": "Somewhat disagree",
+        "recode": "3"
+       },
+       {
+        "id": "s4",
+        "text": "Neither agree nor disagree",
+        "recode": "4"
+       },
+       {
+        "id": "s5",
+        "text": "Somewhat agree",
+        "recode": "5"
+       },
+       {
+        "id": "s6",
+        "text": "Agree",
+        "recode": "6"
+       },
+       {
+        "id": "s7",
+        "text": "Strongly agree",
+        "recode": "7"
+       }
+      ],
+      "rows": [
+       {
+        "id": "r1",
+        "text": "Members of my party should reduce the number of polling stations in areas that support the other party."
+       },
+       {
+        "id": "r2",
+        "text": "Governors from my party should ignore unfavorable court rulings by judges appointed by the other party."
+       },
+       {
+        "id": "r3",
+        "text": "Governors from my party should prosecute journalists who accuse my party's politicians of misconduct without revealing sources."
+       },
+       {
+        "id": "r4",
+        "text": "Members of my party should not accept the results of elections if they lose."
+       }
+      ],
+      "sourceQuestionId": "QID12"
+     },
+     {
+      "id": "q_pre_perc",
+      "type": "MC",
+      "text": "Out of 100 people in the other party, how many do you think would agree that violence is sometimes justified to advance their party's goals?",
+      "tag": "pre_perceived_out",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "p1",
+        "text": "0-20",
+        "recode": "10"
+       },
+       {
+        "id": "p2",
+        "text": "21-40",
+        "recode": "30"
+       },
+       {
+        "id": "p3",
+        "text": "41-60",
+        "recode": "50"
+       },
+       {
+        "id": "p4",
+        "text": "61-80",
+        "recode": "70"
+       },
+       {
+        "id": "p5",
+        "text": "81-100",
+        "recode": "90"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_ctrl",
+    "title": "Control",
+    "questions": [
+     {
+      "id": "q_ctrl",
+      "type": "DB",
+      "text": "Please continue.",
+      "tag": "ctrl_text",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_video",
+    "title": "Perception gap video",
+    "questions": [
+     {
+      "id": "q_video",
+      "type": "DB",
+      "text": "Please watch this video: {{ed:pgvideo}}",
+      "tag": "pg_video",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_placebo",
+    "title": "Placebo video",
+    "questions": [
+     {
+      "id": "q_placebo",
+      "type": "DB",
+      "text": "Please watch this video: {{ed:plvideo}}",
+      "tag": "placebo_video",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_text",
+    "title": "Statistics text",
+    "questions": [
+     {
+      "id": "q_text",
+      "type": "DB",
+      "text": "Please read: Surveys show Democrats and Republicans substantially overestimate how extreme and hostile members of the other party are. On average, each side's guess about the other side's views is far more extreme than what the other side's members actually report. Most people in both parties hold more moderate views than the other side believes.",
+      "tag": "pg_text",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_post",
+    "title": "Post-treatment",
+    "questions": [
+     {
+      "id": "q_post_perc",
+      "type": "MC",
+      "text": "Out of 100 people in the other party, how many do you think would agree that violence is sometimes justified to advance their party's goals?",
+      "tag": "post_perceived_out",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "p1",
+        "text": "0-20",
+        "recode": "10"
+       },
+       {
+        "id": "p2",
+        "text": "21-40",
+        "recode": "30"
+       },
+       {
+        "id": "p3",
+        "text": "41-60",
+        "recode": "50"
+       },
+       {
+        "id": "p4",
+        "text": "61-80",
+        "recode": "70"
+       },
+       {
+        "id": "p5",
+        "text": "81-100",
+        "recode": "90"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_post_ap",
+      "type": "Matrix",
+      "text": "Please rate each group on a feeling thermometer from 0 (cold, unfavorable) to 100 (warm, favorable). Choose the point closest to your feeling.",
+      "tag": "post_ap_scores",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "t0",
+        "text": "0-20 (very cold)",
+        "recode": "10"
+       },
+       {
+        "id": "t1",
+        "text": "21-40",
+        "recode": "30"
+       },
+       {
+        "id": "t2",
+        "text": "41-60",
+        "recode": "50"
+       },
+       {
+        "id": "t3",
+        "text": "61-80",
+        "recode": "70"
+       },
+       {
+        "id": "t4",
+        "text": "81-100 (very warm)",
+        "recode": "90"
+       }
+      ],
+      "rows": [
+       {
+        "id": "r",
+        "text": "How would you rate Republicans?"
+       },
+       {
+        "id": "d",
+        "text": "How would you rate Democrats?"
+       }
+      ],
+      "sourceQuestionId": "QID28"
+     },
+     {
+      "id": "q_post_udp",
+      "type": "Matrix",
+      "text": "Please indicate your agreement and disagreement with the following statements.",
+      "tag": "post_udp_scores",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "s1",
+        "text": "Strongly disagree",
+        "recode": "1"
+       },
+       {
+        "id": "s2",
+        "text": "Disagree",
+        "recode": "2"
+       },
+       {
+        "id": "s3",
+        "text": "Somewhat disagree",
+        "recode": "3"
+       },
+       {
+        "id": "s4",
+        "text": "Neither agree nor disagree",
+        "recode": "4"
+       },
+       {
+        "id": "s5",
+        "text": "Somewhat agree",
+        "recode": "5"
+       },
+       {
+        "id": "s6",
+        "text": "Agree",
+        "recode": "6"
+       },
+       {
+        "id": "s7",
+        "text": "Strongly agree",
+        "recode": "7"
+       }
+      ],
+      "rows": [
+       {
+        "id": "r1",
+        "text": "Members of my party should reduce the number of polling stations in areas that support the other party."
+       },
+       {
+        "id": "r2",
+        "text": "Governors from my party should ignore unfavorable court rulings by judges appointed by the other party."
+       },
+       {
+        "id": "r3",
+        "text": "Governors from my party should prosecute journalists who accuse my party's politicians of misconduct without revealing sources."
+       },
+       {
+        "id": "r4",
+        "text": "Members of my party should not accept the results of elections if they lose."
+       }
+      ],
+      "sourceQuestionId": "QID29"
+     },
+     {
+      "id": "q_manip",
+      "type": "TE",
+      "text": "What did you just see, read, or watch?",
+      "tag": "manip_check",
+      "multiple": false,
+      "required": true,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": "QID31"
+     }
+    ]
+   },
+   {
+    "id": "b_debrief",
+    "title": "Debrief",
+    "questions": [
+     {
+      "id": "q_debrief",
+      "type": "DB",
+      "text": "Thank you. Some content described how partisans view each other; the perception gap statistics are drawn from research surveys. We will invite you to a brief follow-up survey in 2-4 weeks.",
+      "tag": "debrief",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   }
+  ],
+  "flow": [
+   {
+    "id": "n_consent",
+    "type": "block",
+    "label": "Consent",
+    "children": [],
+    "blockId": "b_consent",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_br",
+    "type": "branch",
+    "label": "No consent",
+    "children": [
+     "n_end"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "q_consent",
+    "choiceId": "no",
+    "operator": "selected"
+   },
+   {
+    "id": "n_end",
+    "type": "end",
+    "label": "End",
+    "children": [],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_pre",
+    "type": "block",
+    "label": "Pre",
+    "children": [],
+    "blockId": "b_pre",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "r1",
+    "type": "randomizer",
+    "label": "Arms",
+    "children": [
+     "arm_ctrl",
+     "arm_video",
+     "arm_placebo",
+     "arm_text"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_ctrl",
+    "type": "group",
+    "label": "Control",
+    "children": [
+     "set_ctrl",
+     "t_ctrl"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_ctrl",
+    "type": "embedded",
+    "label": "cond",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "control",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_ctrl",
+    "type": "block",
+    "label": "Control",
+    "children": [],
+    "blockId": "b_ctrl",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_video",
+    "type": "group",
+    "label": "Video",
+    "children": [
+     "set_video",
+     "set_pgv",
+     "t_video"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_video",
+    "type": "embedded",
+    "label": "cond",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "pg_video",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_pgv",
+    "type": "embedded",
+    "label": "pgvideo",
+    "children": [],
+    "blockId": "",
+    "field": "pgvideo",
+    "value": "[VIDEO: Perception gap video showing how partisans overestimate the other party's extremity, about 4 minutes]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_video",
+    "type": "block",
+    "label": "Video",
+    "children": [],
+    "blockId": "b_video",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_placebo",
+    "type": "group",
+    "label": "Placebo",
+    "children": [
+     "set_placebo",
+     "set_plv",
+     "t_placebo"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_placebo",
+    "type": "embedded",
+    "label": "cond",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "placebo",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_plv",
+    "type": "embedded",
+    "label": "plvideo",
+    "children": [],
+    "blockId": "",
+    "field": "plvideo",
+    "value": "[VIDEO: Non-political explainer video on how bees make honey, about 4 minutes]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_placebo",
+    "type": "block",
+    "label": "Placebo",
+    "children": [],
+    "blockId": "b_placebo",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_text",
+    "type": "group",
+    "label": "Text",
+    "children": [
+     "set_text",
+     "t_text"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_text",
+    "type": "embedded",
+    "label": "cond",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "pg_text",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_text",
+    "type": "block",
+    "label": "Text",
+    "children": [],
+    "blockId": "b_text",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_post",
+    "type": "block",
+    "label": "Post",
+    "children": [],
+    "blockId": "b_post",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_deb",
+    "type": "block",
+    "label": "Debrief",
+    "children": [],
+    "blockId": "b_debrief",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   }
+  ],
+  "roots": [
+   "n_consent",
+   "n_br",
+   "n_pre",
+   "r1",
+   "n_post",
+   "n_deb"
+  ],
+  "assumptions": [
+   "Power: about 1100 per arm (4400 total) to detect 1.7 points at 80% power; the observed effect was -2.3 (SE 0.995, n=641), and 1.7 allows for winner's-curse shrinkage.",
+   "Wave 2 is fielded 2-4 weeks later with the same thermometer, undemocratic-practices and perceived-outparty items; recruit extra for attrition.",
+   "Mediator: change in perceived outparty views, analyzed with a pre-registered mediation model.",
+   "The platform lacks a slider type, so thermometer and perceived-outparty items use banded scales; a slider can replace them if the platform allows.",
+   "Online panel, pre-registered, compensation per panel norms."
+  ],
+  "unresolved": [
+   "The actual video files, wave 2 survey instrument and link, IRB approval number, and compensation must be supplied by the research team."
+  ],
+  "evidence": [
+   {
+    "id": "e1",
+    "title": "Testing 33 Student-Designed Interventions to Reduce Affective Polarization (study package: data, code and report)",
+    "url": "https://github.com/yrvelez/affective-polarization-interventions",
+    "claim": "Perception gap video effect -2.3 points; undemocratic practices unchanged",
+    "excerpt": "",
+    "origin": "supplied"
+   },
+   {
+    "id": "e2",
+    "title": "The Limits of Partisan Prejudice",
+    "url": "https://doi.org/10.1086/688223",
+    "claim": "Partisan affect and its limits",
+    "excerpt": "",
+    "origin": "supplied"
+   }
+  ]
+ }
+}

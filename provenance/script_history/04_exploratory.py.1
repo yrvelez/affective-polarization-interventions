@@ -1,221 +1,64 @@
-"""Exploratory analyses for the Affective Polarization survey experiment."""
 import importlib.util, pathlib
+import pandas as pd
+import numpy as np
+
 _spec = importlib.util.spec_from_file_location('reg', pathlib.Path(__file__).with_name('03_registered.py'))
 reg = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(reg)
 
-import pandas as pd
-import numpy as np
-import statsmodels.formula.api as smf
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+RES = ROOT / 'results'
+RES.mkdir(exist_ok=True)
 
-# ── Load data ──────────────────────────────────────────────────────────────────
-df = pd.read_csv('data/clean.csv')
-for c in ['post_ap', 'post_udp', 'pre_ap', 'pre_udp', 'ipw_weight']:
-    df[c] = pd.to_numeric(df[c], errors='coerce')
+d = pd.read_csv(ROOT / 'data' / 'clean.csv')
+for c in ['pre_ap', 'post_ap', 'pre_udp', 'post_udp', 'Finished', 'ipw_weight']:
+    if c in d.columns:
+        d[c] = pd.to_numeric(d[c], errors='coerce')
 
-# Ensure arm_code exists (registered script creates it)
-if 'arm_code' not in df.columns:
-    df['arm_code'] = df['arm']
+H1 = reg.HYPOTHESES[0]
+H2 = reg.HYPOTHESES[1]
 
-# ── Output dirs ────────────────────────────────────────────────────────────────
-pathlib.Path('results').mkdir(exist_ok=True)
-pathlib.Path('figures').mkdir(exist_ok=True)
-
-# ── Style helper ───────────────────────────────────────────────────────────────
-def style_ax(ax):
-    ax.spines['top'].set_visible(False)
-    ax.spines['right'].set_visible(False)
-    ax.spines['left'].set_visible(False)
-    ax.spines['bottom'].set_visible(True)
-    ax.grid(False)
-    ax.tick_params(left=False)
-
-ACCENT = '#2171b5'
-INK = '#1a1a1a'
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# E1: Heterogeneity by respondent party (Democrat vs Republican)
-# Rationale: The interventions target cross-partisan attitudes; effects may
-#       differ for Democrats vs Republicans, which the pooled estimate masks.
-# ═══════════════════════════════════════════════════════════════════════════════
-h1 = reg.HYPOTHESES[0]  # H1: post_ap
-est = h1['estimator']
-outcome = 'post_ap'
-covariates = ['pre_ap']
-
-# Build partisan groups
-df['is_dem'] = (df['pid3'] == 2).astype(int)
-df['is_rep'] = (df['pid3'] == 1).astype(int)
-
+# E1: robustness of the planned H1 and H2 estimates to restricting to completed surveys.
+# Rationale: partial completers (Finished == 0) may differ in attention, so the planned estimates are re-fit on completers only to check stability.
 rows = []
-for label, mask in [('Democrat', df['is_dem'] == 1), ('Republican', df['is_rep'] == 1)]:
-    d_sub = df[mask].dropna(subset=[outcome, 'pre_ap', 'ipw_weight']).copy()
-    formula, d2 = reg.build_formula(outcome, est, covariates, d_sub)
-    res = reg.fit(d2, formula, est)
-    # Extract arm-level estimates
-    for arm in sorted(d2['arm_code'].unique()):
-        if arm == 'T0':
-            continue
-        term = f"C(arm_code, Treatment(reference='T0'))[T.{arm}]"
-        if term in res.params.index:
-            rows.append({
-                'arm': arm,
-                'group': label,
-                'estimate': res.params[term],
-                'std_error': res.bse[term],
-                'p_value': res.pvalues[term],
-                'n': int(d2.shape[0]),
-            })
+for hid, h in [('H1', H1), ('H2', H2)]:
+    orig = reg.reestimate(h, d)
+    sub = d[d['Finished'] == 1]
+    re = reg.reestimate(h, sub)
+    o = orig.assign(analysis=hid, sample='planned_full')
+    r = re.assign(analysis=hid, sample='completers_only')
+    rows.append(o)
+    rows.append(r)
+e1 = pd.concat(rows, ignore_index=True)
+e1.to_csv(RES / 'E1_completers_robustness.csv', index=False)
 
-e1 = pd.DataFrame(rows)
-e1.to_csv('results/E1_heterogeneity_party.csv', index=False)
+wide = e1.pivot_table(index=['analysis', 'arm'], columns='sample',
+                      values=['estimate', 'std_error', 'n'], aggfunc='first')
+wide.columns = [f'{a}_{b}' for a, b in wide.columns]
+wide = wide.reset_index()
+wide.to_csv(RES / 'E1_completers_robustness.csv', index=False)
+e1_ok = True
+ratio = (wide['std_error_completers_only'] / wide['std_error_planned_full'])
+n_ratio = wide['n_completers_only'] / wide['n_planned_full']
+flag = ((ratio > 2) | (ratio < 0.5)) & ((1 - n_ratio).abs() < 0.10)
+if flag.any():
+    e1_ok = False
+dev = (wide['estimate_completers_only'] - wide['estimate_planned_full']).abs()
+sig_full = e1[(e1['sample'] == 'planned_full')].groupby('analysis')['p_value'].apply(lambda s: int((s < 0.05).sum()))
+sig_sub = e1[(e1['sample'] == 'completers_only')].groupby('analysis')['p_value'].apply(lambda s: int((s < 0.05).sum()))
+print(f"E1 Completers-only re-fit of planned tests: max |estimate change| = {dev.max():.2f} points/scale units; "
+      f"arms with p<0.05 planned vs completers: H1 {sig_full.get('H1', 0)} vs {sig_sub.get('H1', 0)}, "
+      f"H2 {sig_full.get('H2', 0)} vs {sig_sub.get('H2', 0)} (of 32 arm contrasts each)")
 
-# Figure: forest plot for Democrats vs Republicans (post_ap)
-fig, axes = plt.subplots(1, 2, figsize=(12, 7), sharey=True)
-for ax, grp in zip(axes, ['Democrat', 'Republican']):
-    sub = e1[e1['group'] == grp].sort_values('arm')
-    y = np.arange(len(sub))
-    ax.errorbar(sub['estimate'], y,
-                xerr=1.96 * sub['std_error'],
-                fmt='o', color=INK, ms=4, capsize=3, lw=1)
-    ax.axvline(0, color='grey', lw=0.5, ls='--')
-    ax.set_yticks(y)
-    ax.set_yticklabels(sub['arm'], fontsize=8)
-    ax.set_xlabel('ATE (post_ap)', fontsize=10)
-    ax.set_title(grp, fontsize=11, color=INK)
-    style_ax(ax)
-fig.tight_layout()
-fig.savefig('figures/E1_heterogeneity_party.png', dpi=200, bbox_inches='tight')
-plt.close(fig)
+# E2: heterogeneity of H1 effects by partisan group (Democrat vs Republican), a dimension the plan did not register.
+# Rationale: the planned pooled test may hide opposite responses among Democrats and Republicans, so arm effects are compared across the two groups.
+d['dem'] = (d['partisan'].astype(str).str.strip() == 'Democrat').astype(int)
+m = reg.reestimate(H1, d, moderator='dem')
+m.to_csv(RES / 'E2_partisan_heterogeneity.csv', index=False)
+pcol = 'p_value'
+n_int = len(m)
+n_sig = int((m[pcol] < 0.05).sum())
+print(f"E2 Arm x partisan (Democrat vs Republican) interactions on post_ap: {n_sig} of {n_int} interaction rows have p<0.05 "
+      f"(median interaction estimate {m['estimate'].median():.2f} points)")
 
-# Summary
-n_sig_dem = (e1[e1['group'] == 'Democrat']['p_value'] < 0.05).sum()
-n_sig_rep = (e1[e1['group'] == 'Republican']['p_value'] < 0.05).sum()
-print(f"E1: Heterogeneity by party — {n_sig_dem} significant arms for Democrats, {n_sig_rep} for Republicans (out of {len(e1)//2} each).")
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# E2: Robustness — exclude respondents who failed all 3 knowledge checks
-# Rationale: Respondents who failed all knowledge checks may not have
-#       engaged with the survey; excluding them tests whether results are
-#       driven by inattentive respondents.
-# ═══════════════════════════════════════════════════════════════════════════════
-# Knowledge check correctness
-df['pk1_correct'] = (df['pk1'] == 3).astype(int)   # 6 years
-df['pk2_correct'] = (df['pk2'] == 2).astype(int)   # Twice
-df['pk3_correct'] = (df['pk3'] == 1).astype(int)   # Rishi Sunak
-df['failed_all_kc'] = ((df['pk1_correct'] == 0) &
-                       (df['pk2_correct'] == 0) &
-                       (df['pk3_correct'] == 0)).astype(int)
-
-n_failed = int(df['failed_all_kc'].sum())
-n_total = len(df)
-pct_failed = 100 * n_failed / n_total
-
-# Re-fit H1 (post_ap) on full sample and on sample excluding all-KC-failures
-rows_e2 = []
-for outcome in ['post_ap', 'post_udp']:
-    h = reg.HYPOTHESES[0] if outcome == 'post_ap' else reg.HYPOTHESES[1]
-    est_h = h['estimator']
-    covs = ['pre_ap'] if outcome == 'post_ap' else ['pre_udp']
-
-    # Full sample
-    d_full = df.dropna(subset=[outcome, covs[0], 'ipw_weight']).copy()
-    formula_f, d2_f = reg.build_formula(outcome, est_h, covs, d_full)
-    res_f = reg.fit(d2_f, formula_f, est_h)
-
-    # Excluding all-KC-failures
-    d_excl = df[(df['failed_all_kc'] == 0)].dropna(subset=[outcome, covs[0], 'ipw_weight']).copy()
-    formula_e, d2_e = reg.build_formula(outcome, est_h, covs, d_excl)
-    res_e = reg.fit(d2_e, formula_e, est_h)
-
-    for arm in sorted(d2_f['arm_code'].unique()):
-        if arm == 'T0':
-            continue
-        term = f"C(arm_code, Treatment(reference='T0'))[T.{arm}]"
-        if term in res_f.params.index and term in res_e.params.index:
-            rows_e2.append({
-                'outcome': outcome,
-                'arm': arm,
-                'est_full': res_f.params[term],
-                'se_full': res_f.bse[term],
-                'p_full': res_f.pvalues[term],
-                'est_excl': res_e.params[term],
-                'se_excl': res_e.bse[term],
-                'p_excl': res_e.pvalues[term],
-                'n_full': int(d2_f.shape[0]),
-                'n_excl': int(d2_e.shape[0]),
-            })
-
-e2 = pd.DataFrame(rows_e2)
-e2.to_csv('results/E2_robustness_kc.csv', index=False)
-
-# Check SE stability
-se_ratio = (e2['se_excl'] / e2['se_full']).clip(lower=0.01)
-max_se_ratio = se_ratio.max()
-n_sample_change = 100 * (1 - e2['n_excl'].iloc[0] / e2['n_full'].iloc[0])
-print(f"E2: KC robustness — excluded {n_failed} respondents ({pct_failed:.1f}%), max SE ratio = {max_se_ratio:.2f}, sample change = {n_sample_change:.1f}%.")
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# E3: Heterogeneity by political interest (high vs low)
-# Rationale: Politically interested respondents may be more responsive to
-#       cross-partisan interventions; this tests whether null pooled results
-#       mask a subgroup effect among the highly interested.
-# ═══════════════════════════════════════════════════════════════════════════════
-df['interest'] = pd.to_numeric(df['interest'], errors='coerce')
-# High interest: 4 or 5; Low interest: 1 or 2
-df['hi_interest'] = (df['interest'] >= 4).astype(int)
-df['lo_interest'] = (df['interest'] <= 2).astype(int)
-
-rows_e3 = []
-for outcome in ['post_ap', 'post_udp']:
-    h = reg.HYPOTHESES[0] if outcome == 'post_ap' else reg.HYPOTHESES[1]
-    est_h = h['estimator']
-    covs = ['pre_ap'] if outcome == 'post_ap' else ['pre_udp']
-
-    for label, mask in [('High interest', df['hi_interest'] == 1),
-                        ('Low interest', df['lo_interest'] == 1)]:
-        d_sub = df[mask].dropna(subset=[outcome, covs[0], 'ipw_weight']).copy()
-        formula, d2 = reg.build_formula(outcome, est_h, covs, d_sub)
-        res = reg.fit(d2, formula, est_h)
-        for arm in sorted(d2['arm_code'].unique()):
-            if arm == 'T0':
-                continue
-            term = f"C(arm_code, Treatment(reference='T0'))[T.{arm}]"
-            if term in res.params.index:
-                rows_e3.append({
-                    'outcome': outcome,
-                    'arm': arm,
-                    'group': label,
-                    'estimate': res.params[term],
-                    'std_error': res.bse[term],
-                    'p_value': res.pvalues[term],
-                    'n': int(d2.shape[0]),
-                })
-
-e3 = pd.DataFrame(rows_e3)
-e3.to_csv('results/E3_heterogeneity_interest.csv', index=False)
-
-# Figure: forest plot for post_ap, high vs low interest
-fig, axes = plt.subplots(1, 2, figsize=(12, 7), sharey=True)
-for ax, grp in zip(axes, ['High interest', 'Low interest']):
-    sub = e3[(e3['outcome'] == 'post_ap') & (e3['group'] == grp)].sort_values('arm')
-    y = np.arange(len(sub))
-    ax.errorbar(sub['estimate'], y,
-                xerr=1.96 * sub['std_error'],
-                fmt='o', color=INK, ms=4, capsize=3, lw=1)
-    ax.axvline(0, color='grey', lw=0.5, ls='--')
-    ax.set_yticks(y)
-    ax.set_yticklabels(sub['arm'], fontsize=8)
-    ax.set_xlabel('ATE (post_ap)', fontsize=10)
-    ax.set_title(grp, fontsize=11, color=INK)
-    style_ax(ax)
-fig.tight_layout()
-fig.savefig('figures/E3_heterogeneity_interest.png', dpi=200, bbox_inches='tight')
-plt.close(fig)
-
-n_sig_hi = ((e3['outcome'] == 'post_ap') & (e3['group'] == 'High interest') & (e3['p_value'] < 0.05)).sum()
-n_sig_lo = ((e3['outcome'] == 'post_ap') & (e3['group'] == 'Low interest') & (e3['p_value'] < 0.05)).sum()
-print(f"E3: Heterogeneity by interest — {n_sig_hi} significant arms (post_ap) for high-interest, {n_sig_lo} for low-interest.")
+# E3 (summary only, no extra analysis): nothing more.

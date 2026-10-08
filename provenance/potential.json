@@ -1,94 +1,120 @@
 {
  "got_right": [
-  "Many interventions (32 arms) were tested against one shared control with an identical pre-post specification (pre-treatment covariate, IPW weights, HC2 SEs). Arms are directly comparable and the screening gives a map of what does not work.",
-  "The report openly states that the plan was reconstructed post hoc, that the 64 tests were uncorrected, and that the pooled estimate depends on the pooling method (-0.819, p=0.005 vs -0.683, p=0.428).",
-  "Reporting the pooled UDP interval (-0.015, 95% CI [-0.044, +0.014]) bounds effects on democratic attitudes as small. The Perception gap video, the only arm excluding zero (-2.3, CI [-4.3, -0.4]), is the best-powered arm (n=641), so it is a candidate for replication.",
-  "The attention-check robustness (E2) moved the pooled estimate from -0.68 to -0.36 with SEs up at most 7%, so the null does not hinge on inattentive respondents."
+  "Ran 32 interventions against one shared control in a single fielding, so arms are directly comparable and the pooled estimate is not confounded by wave, panel or outcome wording.",
+  "Adjusted for the pre-treatment measure of each outcome (post_ap ~ arm + pre_ap) with HC2 robust SEs, which tightens estimates; the Perception gap video interval is the narrowest at [-4.3, -0.4].",
+  "Reported the whole arm table and hedged the lone p = 0.019 result against 64 uncorrected tests, rather than presenting one arm as a winner.",
+  "Pooled across arms (-0.8 points, 95% CI [-1.4, -0.2]) and found no pooled movement in support for undemocratic practices (-0.015, CI [-0.044, 0.014])."
  ],
  "why_it_did_not_land": [
   {
    "cause": "power",
-   "detail": "Most arms have fewer than 100 respondents against a control of 229, so arm CIs span 6-10 points. Only a very large effect could be detected, and modest true effects are indistinguishable from noise.",
-   "evidence": "H1 arm SEs are 1.3-3.2 (e.g. Cross-partisan dialogue guide SE 3.204, CI [-8.0, 4.5], n=68); only Perception gap (n=641) has SE ~1.0."
-  },
-  {
-   "cause": "analysis",
-   "detail": "With 64 uncorrected, unregistered tests, one interval excluding zero (p=0.019) is about what chance gives. The pooled effect flips from significant to null depending on method.",
-   "evidence": "Pooled -0.819 (p=0.005) random-effects vs -0.683 (p=0.428) single term; registration status 'none'."
+   "detail": "Most arms had 48-150 respondents against a control of 229, so arm-level intervals are about 6-8 points wide and cannot exclude effects larger than the pooled -0.8. Only the Perception gap video (n = 641) was estimated with any precision.",
+   "evidence": "Standard errors of 1.3-3.2 on the feeling thermometer for nearly all arms; control n = 229; Cross-partisan dialogue guide CI [-8.0, 4.5]."
   },
   {
    "cause": "design",
-   "detail": "Interventions differ in medium, mechanism and length, and there is no manipulation check or mechanism measure. Even a real effect could not be attributed to a mechanism, and pooling heterogeneous arms is hard to interpret. Outcomes are immediate only.",
-   "evidence": "32 arms span videos, articles, quizzes and images; the only measures are post_ap and post_udp, taken right after exposure."
+   "detail": "Interventions differ in format, length, topic and target, so 32 arms bundle many features. A null or a hit cannot be tied to a mechanism, and one arm clearing p < 0.05 among 32 tests is about what chance produces.",
+   "evidence": "Perception gap video p = 0.019 uncorrected; next arms are 'What makes an American' video p = 0.059 and Patriotic article p = 0.100."
+  },
+  {
+   "cause": "measurement",
+   "detail": "Outcomes were measured immediately after exposure, with a single thermometer-based measure and one undemocratic-practices scale. Durability and behaviour are unobserved, and immediate shifts may reflect demand.",
+   "evidence": "Limitations: outcomes measured right after exposure; the thermometer gap is the only affect measure."
   },
   {
    "cause": "sample",
-   "detail": "Analysis dropped about 25% of the collected sample, and the control is small relative to the number of arms. The chatbot arm was excluded and 915 respondents (20.1%) failed all knowledge checks.",
-   "evidence": "4,547 analysed of 6,086; control n=229; E2 failed-all-checks n=915."
+   "detail": "Analysis kept 4,547 of 6,086 respondents, and 3,825 and 3,953 entered the two models. Differential attrition across arms, plus the dropped chatbot arm, could bias the contrasts. Only Democrats and Republicans were retained.",
+   "evidence": "N = 3825 (H1) and N = 3953 (H2) versus 6,086 raw; arm T33 excluded after technical failures."
   },
   {
-   "cause": "missing_moderator",
-   "detail": "Subgroup estimates by party and interest point in different directions but were never formally tested and are underpowered, so possible heterogeneity stays unresolved.",
-   "evidence": "E3 high-interest -1.502 (p=0.277) vs low-interest +1.090 (p=0.232); E1 Democrat -1.671 vs Republican -1.309; no interaction test."
+   "cause": "analysis",
+   "detail": "No pre-registration, so analytic choices (weights, exclusions, pooling) are post hoc, and the robustness checks add little: the completers re-fit showed only full-sample rows and the Democrat-interaction tests are too imprecise to say anything.",
+   "evidence": "Registration status 'none'; E2 interaction SEs of 3-10 points; 0 of 32 interactions at p < 0.05."
   }
  ],
- "debates": [],
+ "debates": [
+  {
+   "id": "D1",
+   "label": "Do prejudice-reduction effects carry through to downstream political outcomes?",
+   "position_a": "Brief interventions can shift intergroup affect, and that shift should extend to political attitudes such as support for undemocratic practices or violence.",
+   "position_b": "Affective shifts are small and local, and may not transfer to democratic attitudes, or to settings beyond the United States.",
+   "what_this_study_says": "Leans to position b, weakly: a small thermometer reduction (-0.8) coexisted with no pooled change in undemocratic-practices support (-0.015). The intervals are wide and the outcomes were measured immediately, so the study cannot settle it.",
+   "works": [
+    {
+     "id": "10.1146/annurev-psych-071620-030619",
+     "side": "a"
+    },
+    {
+     "id": "10.1017/s1475676526101273",
+     "side": "b"
+    },
+    {
+     "id": "10.1017/s1537592722001086",
+     "side": "neutral"
+    },
+    {
+     "id": "10.1086/688223",
+     "side": "neutral"
+    }
+   ]
+  }
+ ],
  "briefs": [
   {
    "id": "advance_design",
    "kind_legacy": "mechanism",
    "mode": "survey_experiment",
-   "title": "Perception gap video: replication with mechanism and durability measures",
-   "question": "Does the Perception gap video reduce affective polarization by correcting misperceptions of the other party, and does the effect persist after about two weeks?",
-   "why_this_fixes_the_failure": "Fixes power and analysis (a pre-registered, single-contrast confirmation of the one post hoc hit) and design (adds a mechanism measure and a follow-up wave).",
-   "debate": null,
+   "title": "Perception gap correction with a mechanism manipulation and delayed follow-up",
+   "question": "Does correcting misperceptions of the other party reduce affective polarization through changed meta-perceptions, and does the effect persist?",
+   "why_this_fixes_the_failure": "Fixes the power and design problems by concentrating on the only arm with signal and by isolating its mechanism, adding a delayed outcome to address the immediate-measurement limit.",
+   "debate": "D1",
    "addresses": [],
-   "design_sketch": "Three arms: control, Perception gap video, and a placebo video with matched length and format but no misperception content. Measure perceived out-party extremity before and after exposure as the mediator, post_ap immediately, and post_ap again at 10-14 days. Sample US Democrats and Republicans from an online panel. Pre-register the video vs control contrast as primary, with the mediator and the follow-up wave secondary.",
+   "design_sketch": "Four arms: control, the Perception gap video, a placebo video of the same length and format on a non-political topic, and a perception-gap statistics-only text. Measure perceived out, party gap and the feeling thermometer, plus undemocratic-practices support, immediately and again after 2-4 weeks. Recruit partisan US adults with pre-treatment measures of both outcomes. Mediation is tested via the shift in perceived outparty views.",
    "moderator_or_condition": null,
    "power_target": {
     "n_per_arm": 1100,
-    "mde": 2.0,
-    "basis": "Observed H1 estimate -2.33 (SE 0.995 at n=641 vs control 229); the target is 80% power for about -2.0, allowing for winner's-curse shrinkage and wave attrition."
+    "mde": 1.7,
+    "basis": "Observed Perception gap video effect of -2.3 points (SE 0.995 at n = 641); sizing to detect about -1.7 at 80% power allows for winner's-curse shrinkage."
    },
    "needs_qsf": true
   },
   {
    "id": "theoretical_debate",
    "kind_legacy": "alternative",
-   "mode": "data_collection",
-   "title": "No usable debate in the retrieved literature",
-   "question": "Because the retrieved works are unrelated to the study (quantum cryptography, extracellular vesicles, etc.), no debate can be named, so this brief tests a competing account of the Perception gap result directly: does it work by correcting perceptions or by generic cross-party exposure?",
-   "why_this_fixes_the_failure": "Fixes design: arms differ in many ways, so the mechanism cannot be separated.",
-   "debate": null,
+   "mode": "survey_experiment",
+   "title": "Affect-to-democratic-attitude transfer test",
+   "question": "Do thermometer reductions produce changes in support for undemocratic practices, or are the two outcomes independent?",
+   "why_this_fixes_the_failure": "Addresses the measurement failure: the original had a null on undemocratic-practices support with no way to tell whether affect failed to transfer or the intervention was too weak.",
+   "debate": "D1",
    "addresses": [],
-   "design_sketch": "Four arms: control; Perception gap video; a matched video showing cross-party warmth without any misperception statistics; and a statistics-only text giving the same misperception data. Outcome: post_ap and perceived out-party extremity. Sample US partisans from an online panel. Compare the three active arms to isolate the misperception content from the format.",
+   "design_sketch": "Randomize to the Perception gap video, a Patriotic article, or control. Use a stronger intervention variant (video plus recall task) to produce a larger affect shift. Measure affect, undemocratic-practices support and a behavioural proxy (willingness to donate to a cross-party group). Test whether the affect change predicts downstream change using instrumental or mediation analysis. Positions differ: transfer predicts downstream change proportional to affect change; independence predicts none even with a large affect shift.",
    "moderator_or_condition": null,
    "power_target": {
-    "n_per_arm": 700,
-    "mde": 2.4,
-    "basis": "Observed Perception gap SE ~1.0 at n=641; MDE about 2.8 x SE, so a contrast between active arms needs about 700 per arm for a difference near 2.4."
+    "n_per_arm": 900,
+    "mde": 0.09,
+    "basis": "Undemocratic-practices pooled CI [-0.044, 0.014] and arm SEs of 0.05-0.12; 900 per arm detects about 0.09 on that scale."
    },
-   "needs_qsf": false
+   "needs_qsf": true
   },
   {
    "id": "generalizability_conditional",
    "kind_legacy": "boundary",
    "mode": "survey_experiment",
-   "title": "Partisanship and political interest as moderators of the video effect",
-   "question": "Does the Perception gap video effect differ by respondent party and political interest?",
-   "why_this_fixes_the_failure": "Fixes missing_moderator: E1 and E3 showed opposing signs by interest (-1.5 vs +1.1) but no interaction test and little power.",
+   "title": "Perception gap video across partisanship and sample",
+   "question": "Does the Perception gap video effect hold across partisan identity, strength of partisanship and a second sample source?",
+   "why_this_fixes_the_failure": "Addresses the sample and framing limits: the original was one Lucid panel, only partisans, with heterogeneity tests too imprecise to interpret.",
    "debate": null,
    "addresses": [],
-   "design_sketch": "Randomize control vs Perception gap video within pre-stratified blocks of Democrat/Republican crossed with high/low political interest. Pre-register the treatment-by-interest and treatment-by-party interactions as the primary tests. Outcome: post_ap with a pre_ap covariate.",
-   "moderator_or_condition": "Political interest (high >=4 vs low <=2) and party (Democrat vs Republican)",
+   "design_sketch": "Two-arm design (Perception gap video vs control) fielded in a Lucid and a probability-based or alternative panel, stratified by Democrat, Republican and independent leaners. Outcomes are the feeling thermometer and undemocratic-practices support, with pre-measures. Estimate treatment effects by party and sample and test interactions.",
+   "moderator_or_condition": "Party (Democrat, Republican, independent) and sample source (Lucid vs second panel)",
    "power_target": {
-    "n_per_arm": 1600,
-    "mde": 2.5,
-    "basis": "Interaction SE is roughly double the main-effect SE (~1.0), so detecting a difference near 2.5-3 between subgroups needs about 1,600 per arm."
+    "n_per_arm": 1500,
+    "mde": 2.0,
+    "basis": "Interaction contrasts need roughly 2x the SE of the main effect; observed SE 0.995 at n = 641 implies detecting about 2 points in subgroups at around 750 per cell."
    },
    "needs_qsf": true
   }
  ],
- "verdict": "A follow-up is worth running, but a narrow one. The 32-arm screen is mostly uninformative because arms are underpowered, and the single hit (Perception gap, -2.3, p=0.019) is post hoc among 64 uncorrected tests. The retrieved literature is off-topic, so no genuine debate can be named. Run the advance_design brief first: a pre-registered replication of the Perception gap video with a mediator and a two-week follow-up. If it holds, the mechanism-contrast and moderator briefs are the next steps.",
+ "verdict": "A follow-up is worth running, but narrowly. The 32-arm screen found a pooled -0.8 point shift, one nominal hit (Perception gap video, -2.3, p = 0.019, uncorrected and post hoc), and nothing on undemocratic practices. Run the Perception gap correction with a mechanism manipulation and delayed follow-up first: it replicates the single signal at adequate power, adds a placebo, and tests persistence. The affect-to-democratic-attitude transfer test and the cross-party, cross-sample test follow once the effect is confirmed.",
  "model": "anthropic/claude-sonnet-5.5"
 }

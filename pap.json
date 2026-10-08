@@ -131,7 +131,8 @@
     },
     "population": {
       "country": "US",
-      "sample": "online_panel"
+      "sample": "online_panel",
+      "description": "US adults, Lucid Theorem online panel"
     },
     "outcome_type": "feeling thermometer and attitude scale"
   },
