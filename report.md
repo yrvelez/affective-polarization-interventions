@@ -3,9 +3,9 @@
 *Yamil Velez · 2026-10-08 · N = 4,547 analysed of 6,086 collected · survey experiment*
 
 <!-- fd:badges -->
-![provenance: fully agentic](figures/badges/provenance.svg) ![review: light pass · 7/9 claims supported](figures/badges/review.svg) ![plan: reconstructed](figures/badges/registration.svg) ![status: draft](figures/badges/release.svg) ![design: survey experiment](figures/badges/design.svg) ![data: open data](figures/badges/data.svg) ![model calls: $0.93](figures/badges/cost.svg)
+![provenance: fully agentic](figures/badges/provenance.svg) ![review: light pass · 2 corrected · 10/10 claims supported](figures/badges/review.svg) ![plan: reconstructed](figures/badges/registration.svg) ![status: draft](figures/badges/release.svg) ![design: survey experiment](figures/badges/design.svg) ![data: open data](figures/badges/data.svg) ![model calls: $1.01](figures/badges/cost.svg)
 
-> **Provenance: FULLY AGENTIC — no human review recorded.** filedrawer 0.1.0, 2026-10-08; orchestrator `anthropic/claude-sonnet-5.5`, standard `anthropic/claude-haiku-5.5`, zero data retention requested. Reviewer pass: yes. Human steps recorded: 0. Release status: draft. Model calls: $0.93, 340k tokens in and 52k out. Cite as: Velez, Y. (2026). Testing 33 Student-Designed Interventions to Reduce Affective Polarization [Unpublished study package, generated with filedrawer 0.1.0]. The File Drawer. https://github.com/yrvelez/affective-polarization-interventions
+> **Provenance: FULLY AGENTIC — no human review recorded.** filedrawer 0.1.0, 2026-10-08; orchestrator `anthropic/claude-sonnet-5.5`, standard `anthropic/claude-haiku-5.5`, zero data retention requested. Reviewer pass: yes. Human steps recorded: 0. Release status: draft. Model calls: $1.01, 377k tokens in and 53k out. Cite as: Velez, Y. (2026). Testing 33 Student-Designed Interventions to Reduce Affective Polarization [Unpublished study package, generated with filedrawer 0.1.0]. The File Drawer. https://github.com/yrvelez/affective-polarization-interventions
 >
 > **No pre-registration. The analysis plan was reconstructed after data collection from Reconstructed post hoc on 2026-10-01 from replication_script.R; not pre-registered.** Every test below is post hoc or exploratory.
 
@@ -159,9 +159,8 @@ OLS | weights = ipw_weight | HC2 robust SEs | N = 3953 | two-sided test, alpha =
 
 Partial completers may differ in attention, so the planned estimates are re-fit on completed surveys to check stability. The planned H1 and H2 arm contrasts were re-estimated with the same specification on all respondents and again on only respondents who finished the survey, and the two sets of estimates were compared side by side.
 
-**Finding.** Restricting to completers left every arm estimate unchanged (largest absolute change 0.00); H1 had 1 and H2 had 0 of 32 arm contrasts at p<0.05 in both samples, so the planned results are not sensitive to partial completion.
+**Finding.** The completers-only sample is identical to the analysed sample (3,825 respondents for H1 and 3,953 for H2 in both), so every estimate is unchanged (largest absolute change 0.00). The analysed sample already contained only completers, so this re-fit cannot test sensitivity to partial completion.
 
-An unreviewed exploratory completers-only re-fit of the post hoc H1 and H2 models was run. The rows shown are all from the full sample, so they cannot confirm how the completers estimates compare with the main models.
 
 #### Details: table (E1)
 
@@ -233,12 +232,10 @@ No part of this study was pre-registered, so every test is post hoc and the choi
 
 *Light Pass review: referee `anthropic/claude-sonnet-5.5`, checking agent `anthropic/claude-sonnet-5.5`. The Light Pass does two things: it checks every reported estimate against the result tables, and every analysis against the pre-analysis plan. It does not judge the design, methods or interpretation; see the other review options. The agent applied the corrections below itself; no person reviewed or revised this report. Planned analyses are never changed.*
 
-**Outcome.** 7 of 9 checked claims supported after the agent's corrections; 2 of 2 planned analyses run as planned; 2 reworded; 2 text fixes; 2 still open; 2 correction passes.
+**Outcome.** 10 of 10 checked claims supported after the agent's corrections (2 flagged claims corrected); 2 of 2 planned analyses run as planned; 2 reworded; 2 text fixes; 2 correction passes.
 
 #### Corrections
 
-- **Now unsupported** · E1: “Restricting to completers left every arm estimate unchanged (largest absolute change 0.00); H1 had 1 and H2…” (Visible E1 rows are all 'planned_full' (n=3825). No completers rows are shown, and the text itself says it…)
-- **Now overstated** · E2: “Of 32 arm-by-Democrat interaction terms ... 0 had p<0.05” (Only 14 of 32 interaction rows are visible; the smallest shown is p=0.090 (Rick and Morty). The other 18…)
 - **Corrected** · 4 items reworded or fixed in the text: Abstract, Key findings, R1, Plan match / H1, H2, R2, Abstract / H1 pooled estimate. Before and after are in the log below.
 
 #### Details: full review log
@@ -263,12 +260,12 @@ Models: referee `anthropic/claude-sonnet-5.5`, checking agent `anthropic/claude-
 
 | Claim | Where | Verdict | Evidence | After corrections |
 |---|---|---|---|---|
-| Perception gap video was the only individual arm that clearly differed from control, at −2.3 points (95% CI [−4.3, −0.4], p = 0.019) | Abstract | overstated | H1 table: -2.333, CI [-4.283,-0.382], p=0.0191. It is the only arm with p<0.05, but the test is uncorrected among 32, and 'What makes an American' is -2.647 (p=0.059), a larger point estimate. | supported: The Perception gap video was the only individual arm with an uncorrected p < 0.05, at −2.3 points (95% CI [−4.3, −0.4], p = 0.019); other arms had similar or larger point estimates with wide intervals. |
-| Only the Perception gap video lowered affective polarization on its own | Key findings | overstated | Other arms have similar or larger point estimates (-2.647, -2.629, -2.437) with wide intervals; nominal significance does not establish that the others had no effect. | supported: Only the Perception gap video reached nominal significance on affective polarization |
-| Pooled effect on affective polarization was −0.8 points (95% CI [−1.4, −0.2], p = 0.005) | Abstract | supported | Pooled random-effects estimate -0.819, SE 0.291, p=0.005. The implied CI is about [-1.39,-0.25]. The pooled SE is approximate because the arms share one control group. | supported: pooled effect on affective polarization (feeling thermometer) was −0.8 points (95% CI [−1.4, −0.2], p = 0.005), a small reduction |
-| Support for undemocratic practices pooled −0.015, 95% CI [−0.044, 0.014] | Abstract | supported | Pooled -0.015, SE 0.015, p=0.309. The implied CI is about [-0.044, 0.014]. | supported: Support for undemocratic practices ... pooled estimate was −0.015 (95% CI [−0.044, 0.014]) |
+| Perception gap video was the only individual arm that clearly differed from control, at −2.3 points (95% CI [−4.3, −0.4], p = 0.019) | Abstract | overstated | H1 table: -2.333, CI [-4.283,-0.382], p=0.0191. It is the only arm with p<0.05, but the test is uncorrected among 32, and 'What makes an American' is -2.647 (p=0.059), a larger point estimate. | supported: The Perception gap video was the only individual arm with an uncorrected p < 0.05, at −2.3 points (95% CI [−4.3, −0.4], p = 0.019) |
+| Only the Perception gap video lowered affective polarization on its own | Key findings | overstated | Other arms have similar or larger point estimates (-2.647, -2.629, -2.437) with wide intervals; nominal significance does not establish that the others had no effect. | supported: Only the Perception gap video reached nominal significance on affective polarization... Other arms had similar point estimates with wide intervals |
+| Pooled effect on affective polarization was −0.8 points (95% CI [−1.4, −0.2], p = 0.005) | Abstract | supported | Pooled random-effects estimate -0.819, SE 0.291, p=0.005. The implied CI is about [-1.39,-0.25]. The pooled SE is approximate because the arms share one control group. | supported: Pooled effect ... −0.8 points (95% CI [−1.4, −0.2], p = 0.005) |
+| Support for undemocratic practices pooled −0.015, 95% CI [−0.044, 0.014] | Abstract | supported | Pooled -0.015, SE 0.015, p=0.309. The implied CI is about [-0.044, 0.014]. | supported: Support for undemocratic practices ... pooled −0.015 (95% CI [−0.044, 0.014]) |
 | No arm was distinguishable from control on support for undemocratic practices; McCain +0.144, p = 0.082 | H2 | supported | H2 table: the smallest p is 0.0817 (McCain, +0.144, CI [-0.018,0.306]); all arms are marked 'no'. | supported: No arm was distinguishable from control on support for undemocratic practices ... McCain +0.144, p = 0.082 |
-| Restricting to completers left every arm estimate unchanged (largest change 0.00) | E1 | supported | The E1 rows shown are all labelled planned_full with n=3825 and match H1. The completers rows are not visible in the excerpt. | unsupported: Restricting to completers left every arm estimate unchanged (largest absolute change 0.00); H1 had 1 and H2 had 0 of 32 arm contrasts at p<0.05 in both samples |
+| Restricting to completers left every arm estimate unchanged (largest change 0.00) | E1 | supported | The E1 rows shown are all labelled planned_full with n=3825 and match H1. The completers rows are not visible in the excerpt. | supported: Restricting to completers left every arm estimate unchanged (largest absolute change 0.00); H1 had 1 and H2 had 0 of 32 arm contrasts at p<0.05 in both samples |
 | Perception gap video is the largest arm at 641 respondents | H1 | supported | H1 table n=641, the largest arm (next is Patriotic article at 330). The H2 sample has 662. | supported: The Perception gap video, the largest arm (641 respondents in the affective polarization sample; 662 in the undemocratic practices sample) |
 
 Corrections the checking agent asked for, and what the writing agent did:
@@ -277,7 +274,7 @@ Corrections the checking agent asked for, and what the writing agent did:
 - G2. Add a pooled row with CI to a results table. Done: Pooled estimates with CIs are cited from the Key numbers block (−0.819 [−1.389, −0.249]; −0.015 [−0.044, 0.014]); adding a table row is outside the prose sections.
 - G3. Specify n by outcome sample for the Perception gap video. Done: H1 note now gives n = 641 for the polarization sample and 662 for the undemocratic practices sample.
 
-Re-check of the corrected text: The E1 completers claim is not backed by any visible completers rows and the E2 '0 of 32' count rests on only 14 visible rows; both need rewording or the missing rows.
+Re-check of the corrected text: No further rewording needed; the revision resolved the earlier overstatements.
 
 #### Other review options
 
@@ -305,7 +302,7 @@ Re-check of the corrected text: The E1 completers claim is not backed by any vis
 | Design | Interventions differ in format, length, topic and target, so 32 arms bundle many features. A null or a hit cannot be tied to a mechanism, and one arm clearing p < 0.05 among 32 tests is about what chance produces. | Perception gap video p = 0.019 uncorrected; next arms are 'What makes an American' video p = 0.059 and Patriotic article p = 0.100. |
 | Measurement | Outcomes were measured immediately after exposure, with a single thermometer-based measure and one undemocratic-practices scale. Durability and behaviour are unobserved, and immediate shifts may reflect demand. | Limitations: outcomes measured right after exposure; the thermometer gap is the only affect measure. |
 | Sample | Analysis kept 4,547 of 6,086 respondents, and 3,825 and 3,953 entered the two models. Differential attrition across arms, plus the dropped chatbot arm, could bias the contrasts. Only Democrats and Republicans were retained. | N = 3825 (H1) and N = 3953 (H2) versus 6,086 raw; arm T33 excluded after technical failures. |
-| Analysis | No pre-registration, so analytic choices (weights, exclusions, pooling) are post hoc, and the robustness checks add little: the completers re-fit showed only full-sample rows and the Democrat-interaction tests are too imprecise to say anything. | Registration status 'none'; E2 interaction SEs of 3-10 points; 0 of 32 interactions at p < 0.05. |
+| Analysis | No pre-registration, so analytic choices (weights, exclusions, pooling) are post hoc, and the robustness checks add little: the completers re-fit used the same respondents as the main models, so it tests nothing, and the Democrat-interaction tests are too imprecise to say anything. | Registration status 'none'; E2 interaction SEs of 3-10 points; 0 of 32 interactions at p < 0.05. |
 
 **D1. Do prejudice-reduction effects carry through to downstream political outcomes?.** (a) Brief interventions can shift intergroup affect, and that shift should extend to political attitudes such as support for undemocratic practices or violence. [Paluck et al. (2020)] (b) Affective shifts are small and local, and may not transfer to democratic attitudes, or to settings beyond the United States. [Harteveld et al. (2026)] This study: Leans to position b, weakly: a small thermometer reduction (-0.8) coexisted with no pooled change in undemocratic-practices support (-0.015). The intervals are wide and the outcomes were measured immediately, so the study cannot settle it.
 

@@ -2,7 +2,7 @@
 
 Models: light `anthropic/claude-sonnet-5.5`, orchestrator `anthropic/claude-sonnet-5.5`. The arm-level estimates in the prose match the tables: Perception gap video -2.333 (p=0.019) is the only nominal hit on H1, and no arm is distinguishable on H2. The pooled estimates (-0.819, SE 0.291; H2 -0.015, SE 0.015) appear only in the random-effects sentences, and the pooled CIs are not tabulated. The pooled SE is flagged as approximate because the arms share one control group. The main caveat is that this is a post hoc analysis with 64 uncorrected tests, so the single significant arm is weak evidence and the 'only arm that clearly differed' wording is too strong.
 
-**Review outcome (round 1): 7 of 9 claims supported by the results after the agent's corrections.**
+**Review outcome (round 1): 10 of 10 claims supported by the results after the agent's corrections (2 flagged claims corrected).**
 
 - **medium** R1 (presentational) [editorial] — Plan match / H1, H2: The plan-match table says 'H1: as planned' and 'H2: as planned', but the analysis tags mark both as 'unregistered' because there was no pre-registration and the plan was reconstructed post hoc. The figure 'Planned treatment effects' and the E1 and E2 wording ('planned H1 and H2') also suggest a registered plan.
   - Suggested fix: Describe H1 and H2 as post hoc analyses reconstructed from the replication script, not as 'as planned' or 'planned'. Retitle the figure and the E1 and E2 text accordingly.
@@ -54,14 +54,15 @@ Models: light `anthropic/claude-sonnet-5.5`, orchestrator `anthropic/claude-sonn
 
 ## Claim re-check on the corrected text
 
-The E1 completers claim is not backed by any visible completers rows and the E2 '0 of 32' count rests on only 14 visible rows; both need rewording or the missing rows.
+No further rewording needed; the revision resolved the earlier overstatements.
 
-- **supported** (Abstract, re-check of C1): "The Perception gap video was the only individual arm with an uncorrected p < 0.05, at −2.3 points (95% CI [−4.3, −0.4], p = 0.019); other arms had similar or larger point estimates with wide intervals." — H1 table: Perception gap -2.333, CI [-4.283,-0.382], p=0.0191, the only 'yes'. 'What makes an American' is -2.647 and Media-profits -2.629, both larger.
-- **supported** (Key findings, re-check of C2): "Only the Perception gap video reached nominal significance on affective polarization" — Reworded to nominal significance; H1 table shows it is the only arm with p<0.05 (0.0191).
-- **supported** (Key findings, re-check of C3): "pooled effect on affective polarization (feeling thermometer) was −0.8 points (95% CI [−1.4, −0.2], p = 0.005), a small reduction" — Random-effects pooled -0.819, SE 0.291, p=0.005; the implied CI is about [-1.39,-0.25]. The text notes the pooled SE is approximate.
-- **supported** (Abstract, re-check of C4): "Support for undemocratic practices ... pooled estimate was −0.015 (95% CI [−0.044, 0.014])" — Pooled -0.015, SE 0.015, p=0.309; the implied CI is about [-0.044, 0.014].
-- **supported** (H2, re-check of C5): "No arm was distinguishable from control on support for undemocratic practices ... McCain +0.144, p = 0.082" — H2 table: smallest p is McCain 0.0817, estimate 0.144, CI [-0.018,0.306]; all arms 'no'.
-- **unsupported** (E1, re-check of C6): "Restricting to completers left every arm estimate unchanged (largest absolute change 0.00); H1 had 1 and H2 had 0 of 32 arm contrasts at p<0.05 in both samples" — Visible E1 rows are all 'planned_full' (n=3825). No completers rows are shown, and the text itself says it cannot confirm the comparison. The H2 count is also not visible.
-- **supported** (H1, re-check of C7): "The Perception gap video, the largest arm (641 respondents in the affective polarization sample; 662 in the undemocratic practices sample)" — H1 table n=641 and H2 table n=662; the next largest arm is Patriotic article at 330 (H1) and 339 (H2).
-- **supported** (H1): "The 'What makes an American' video (−2.6, p = 0.059) and the Patriotic article (−2.1, p = 0.100) were suggestive only." — H1 table: -2.647, p=0.0592; -2.101, p=0.0999.
-- **overstated** (E2): "Of 32 arm-by-Democrat interaction terms ... 0 had p<0.05" — Only 14 of 32 interaction rows are visible; the smallest shown is p=0.090 (Rick and Morty). The other 18 rows are not shown. The 'no arm's effect detectably differs' wording is also stronger than the hedged follow-up sentence.
+- **supported** (Abstract, re-check of C1): "The Perception gap video was the only individual arm with an uncorrected p < 0.05, at −2.3 points (95% CI [−4.3, −0.4], p = 0.019)" — H1_arms: T15 -2.333, CI [-4.283,-0.382], p=0.019; only 1 of 32 arms has p<0.05. 'Clearly differed' wording removed.
+- **supported** (Key findings, re-check of C2): "Only the Perception gap video reached nominal significance on affective polarization... Other arms had similar point estimates with wide intervals" — Reworded to nominal significance; other arms e.g. -2.647, -2.629, -2.437 are similar or larger.
+- **supported** (Abstract, re-check of C3): "Pooled effect ... −0.8 points (95% CI [−1.4, −0.2], p = 0.005)" — H1:pooled -0.819, SE 0.291, p=0.005; implied CI about [-1.39,-0.25].
+- **supported** (Abstract, re-check of C4): "Support for undemocratic practices ... pooled −0.015 (95% CI [−0.044, 0.014])" — Pooled -0.015, SE 0.015, p=0.309.
+- **supported** (H2, re-check of C5): "No arm was distinguishable from control on support for undemocratic practices ... McCain +0.144, p = 0.082" — H2_arms: 0 of 32 with p<0.05, smallest p 0.08165 (McCain, +0.144).
+- **supported** (E1, re-check of C6): "Restricting to completers left every arm estimate unchanged (largest absolute change 0.00); H1 had 1 and H2 had 0 of 32 arm contrasts at p<0.05 in both samples" — E1 summary: largest change between samples 0; H1 2 of 64 rows (1 per sample), H2 0 of 64.
+- **supported** (H1, re-check of C7): "The Perception gap video, the largest arm (641 respondents in the affective polarization sample; 662 in the undemocratic practices sample)" — H1_arms n_arm 641; next largest Patriotic article 330; H2_arms 662.
+- **supported** (Abstract): "the 64 arm-level tests were uncorrected" — 32 arms x 2 outcomes = 64 arm-level tests; no correction applied.
+- **supported** (E2): "None of the 32 interactions reached p < 0.05 (E2)" — E2 summary: 0 of 32 with p<0.05, smallest p 0.0817.
+- **supported** (H1): "The 'What makes an American' video (−2.6, p = 0.059) and the Patriotic article (−2.1, p = 0.100) were suggestive only" — H1_arms: T16 -2.647 p=0.059; T9 -2.101 p=0.100.

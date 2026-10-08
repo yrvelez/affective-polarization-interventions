@@ -8,10 +8,10 @@
  },
  "provider": "openrouter",
  "zero_retention_requested": true,
- "cost_usd": 0.925932,
+ "cost_usd": 1.011345,
  "tokens": {
-  "in": 340131,
-  "out": 51533
+  "in": 376919,
+  "out": 52803
  },
  "tool_version": "0.1.0",
  "created": "2026-10-08T16:01:14Z",
@@ -104,10 +104,10 @@
    ]
   },
   "review_signoff": {
-   "calls": 2,
-   "in": 43037,
-   "out": 2791,
-   "cost": 0.11284416,
+   "calls": 3,
+   "in": 79825,
+   "out": 4061,
+   "cost": 0.1982574,
    "models": [
     "anthropic/claude-sonnet-5.5"
    ]

@@ -175,7 +175,7 @@
    "problems": 0
   }
  },
- "decision": "major_revision",
+ "decision": "accept",
  "revision_notes": [
   "K1: Abstract now says the Perception gap video was the only arm with an uncorrected p < 0.05, dropped 'clearly differed', and noted other arms had similar or larger point estimates.",
   "K2: Takeaway now says only the Perception gap video reached nominal significance, not that it alone lowered polarization.",
@@ -192,37 +192,37 @@
   "model": "anthropic/claude-sonnet-5.5",
   "claims": [
    {
-    "claim": "The Perception gap video was the only individual arm with an uncorrected p < 0.05, at −2.3 points (95% CI [−4.3, −0.4], p = 0.019); other arms had similar or larger point estimates with wide intervals.",
+    "claim": "The Perception gap video was the only individual arm with an uncorrected p < 0.05, at −2.3 points (95% CI [−4.3, −0.4], p = 0.019)",
     "location": "Abstract",
     "verdict": "supported",
-    "evidence": "H1 table: Perception gap -2.333, CI [-4.283,-0.382], p=0.0191, the only 'yes'. 'What makes an American' is -2.647 and Media-profits -2.629, both larger.",
+    "evidence": "H1_arms: T15 -2.333, CI [-4.283,-0.382], p=0.019; only 1 of 32 arms has p<0.05. 'Clearly differed' wording removed.",
     "fix": "",
     "previous": "C1",
     "resolved": true
    },
    {
-    "claim": "Only the Perception gap video reached nominal significance on affective polarization",
+    "claim": "Only the Perception gap video reached nominal significance on affective polarization... Other arms had similar point estimates with wide intervals",
     "location": "Key findings",
     "verdict": "supported",
-    "evidence": "Reworded to nominal significance; H1 table shows it is the only arm with p<0.05 (0.0191).",
+    "evidence": "Reworded to nominal significance; other arms e.g. -2.647, -2.629, -2.437 are similar or larger.",
     "fix": "",
     "previous": "C2",
     "resolved": true
    },
    {
-    "claim": "pooled effect on affective polarization (feeling thermometer) was −0.8 points (95% CI [−1.4, −0.2], p = 0.005), a small reduction",
-    "location": "Key findings",
+    "claim": "Pooled effect ... −0.8 points (95% CI [−1.4, −0.2], p = 0.005)",
+    "location": "Abstract",
     "verdict": "supported",
-    "evidence": "Random-effects pooled -0.819, SE 0.291, p=0.005; the implied CI is about [-1.39,-0.25]. The text notes the pooled SE is approximate.",
+    "evidence": "H1:pooled -0.819, SE 0.291, p=0.005; implied CI about [-1.39,-0.25].",
     "fix": "",
     "previous": "C3",
     "resolved": true
    },
    {
-    "claim": "Support for undemocratic practices ... pooled estimate was −0.015 (95% CI [−0.044, 0.014])",
+    "claim": "Support for undemocratic practices ... pooled −0.015 (95% CI [−0.044, 0.014])",
     "location": "Abstract",
     "verdict": "supported",
-    "evidence": "Pooled -0.015, SE 0.015, p=0.309; the implied CI is about [-0.044, 0.014].",
+    "evidence": "Pooled -0.015, SE 0.015, p=0.309.",
     "fix": "",
     "previous": "C4",
     "resolved": true
@@ -231,7 +231,7 @@
     "claim": "No arm was distinguishable from control on support for undemocratic practices ... McCain +0.144, p = 0.082",
     "location": "H2",
     "verdict": "supported",
-    "evidence": "H2 table: smallest p is McCain 0.0817, estimate 0.144, CI [-0.018,0.306]; all arms 'no'.",
+    "evidence": "H2_arms: 0 of 32 with p<0.05, smallest p 0.08165 (McCain, +0.144).",
     "fix": "",
     "previous": "C5",
     "resolved": true
@@ -239,42 +239,51 @@
    {
     "claim": "Restricting to completers left every arm estimate unchanged (largest absolute change 0.00); H1 had 1 and H2 had 0 of 32 arm contrasts at p<0.05 in both samples",
     "location": "E1",
-    "verdict": "unsupported",
-    "evidence": "Visible E1 rows are all 'planned_full' (n=3825). No completers rows are shown, and the text itself says it cannot confirm the comparison. The H2 count is also not visible.",
-    "fix": "Remove the finding, or show the completers rows. State that the completers comparison could not be verified.",
+    "verdict": "supported",
+    "evidence": "E1 summary: largest change between samples 0; H1 2 of 64 rows (1 per sample), H2 0 of 64.",
+    "fix": "",
     "previous": "C6",
-    "resolved": false
+    "resolved": true
    },
    {
     "claim": "The Perception gap video, the largest arm (641 respondents in the affective polarization sample; 662 in the undemocratic practices sample)",
     "location": "H1",
     "verdict": "supported",
-    "evidence": "H1 table n=641 and H2 table n=662; the next largest arm is Patriotic article at 330 (H1) and 339 (H2).",
+    "evidence": "H1_arms n_arm 641; next largest Patriotic article 330; H2_arms 662.",
     "fix": "",
     "previous": "C7",
     "resolved": true
    },
    {
-    "claim": "The 'What makes an American' video (−2.6, p = 0.059) and the Patriotic article (−2.1, p = 0.100) were suggestive only.",
-    "location": "H1",
+    "claim": "the 64 arm-level tests were uncorrected",
+    "location": "Abstract",
     "verdict": "supported",
-    "evidence": "H1 table: -2.647, p=0.0592; -2.101, p=0.0999.",
+    "evidence": "32 arms x 2 outcomes = 64 arm-level tests; no correction applied.",
     "fix": "",
     "previous": "",
     "resolved": false
    },
    {
-    "claim": "Of 32 arm-by-Democrat interaction terms ... 0 had p<0.05",
+    "claim": "None of the 32 interactions reached p < 0.05 (E2)",
     "location": "E2",
-    "verdict": "overstated",
-    "evidence": "Only 14 of 32 interaction rows are visible; the smallest shown is p=0.090 (Rick and Morty). The other 18 rows are not shown. The 'no arm's effect detectably differs' wording is also stronger than the hedged follow-up sentence.",
-    "fix": "Say none of the visible interactions reached p<0.05 and that the remaining rows were not checked; hedge the wording.",
+    "verdict": "supported",
+    "evidence": "E2 summary: 0 of 32 with p<0.05, smallest p 0.0817.",
+    "fix": "",
+    "previous": "",
+    "resolved": false
+   },
+   {
+    "claim": "The 'What makes an American' video (−2.6, p = 0.059) and the Patriotic article (−2.1, p = 0.100) were suggestive only",
+    "location": "H1",
+    "verdict": "supported",
+    "evidence": "H1_arms: T16 -2.647 p=0.059; T9 -2.101 p=0.100.",
+    "fix": "",
     "previous": "",
     "resolved": false
    }
   ],
-  "note": "The E1 completers claim is not backed by any visible completers rows and the E2 '0 of 32' count rests on only 14 visible rows; both need rewording or the missing rows.",
-  "decision": "major_revision"
+  "note": "No further rewording needed; the revision resolved the earlier overstatements.",
+  "decision": "accept"
  },
  "correction_passes": 2
 }
