@@ -10,55 +10,42 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 RES = ROOT / 'results'
 RES.mkdir(exist_ok=True)
 
-d = pd.read_csv(ROOT / 'data' / 'clean.csv')
-for c in ['pre_ap', 'post_ap', 'pre_udp', 'post_udp', 'Finished', 'ipw_weight']:
-    if c in d.columns:
-        d[c] = pd.to_numeric(d[c], errors='coerce')
+clean = pd.read_csv(ROOT / 'data' / 'clean.csv', low_memory=False)
+for c in ['Finished', 'pid3', 'interest']:
+    clean[c] = pd.to_numeric(clean[c], errors='coerce')
 
 H1 = reg.HYPOTHESES[0]
-H2 = reg.HYPOTHESES[1]
 
-# E1: robustness of the planned H1 and H2 estimates to restricting to completed surveys.
-# Rationale: partial completers (Finished == 0) may differ in attention, so the planned estimates are re-fit on completers only to check stability.
-rows = []
-for hid, h in [('H1', H1), ('H2', H2)]:
-    orig = reg.reestimate(h, d)
-    sub = d[d['Finished'] == 1]
-    re = reg.reestimate(h, sub)
-    o = orig.assign(analysis=hid, sample='planned_full')
-    r = re.assign(analysis=hid, sample='completers_only')
-    rows.append(o)
-    rows.append(r)
-e1 = pd.concat(rows, ignore_index=True)
-e1.to_csv(RES / 'E1_completers_robustness.csv', index=False)
 
-wide = e1.pivot_table(index=['analysis', 'arm'], columns='sample',
-                      values=['estimate', 'std_error', 'n'], aggfunc='first')
-wide.columns = [f'{a}_{b}' for a, b in wide.columns]
-wide = wide.reset_index()
-wide.to_csv(RES / 'E1_completers_robustness.csv', index=False)
-e1_ok = True
-ratio = (wide['std_error_completers_only'] / wide['std_error_planned_full'])
-n_ratio = wide['n_completers_only'] / wide['n_planned_full']
-flag = ((ratio > 2) | (ratio < 0.5)) & ((1 - n_ratio).abs() < 0.10)
-if flag.any():
-    e1_ok = False
-dev = (wide['estimate_completers_only'] - wide['estimate_planned_full']).abs()
-sig_full = e1[(e1['sample'] == 'planned_full')].groupby('analysis')['p_value'].apply(lambda s: int((s < 0.05).sum()))
-sig_sub = e1[(e1['sample'] == 'completers_only')].groupby('analysis')['p_value'].apply(lambda s: int((s < 0.05).sum()))
-print(f"E1 Completers-only re-fit of planned tests: max |estimate change| = {dev.max():.2f} points/scale units; "
-      f"arms with p<0.05 planned vs completers: H1 {sig_full.get('H1', 0)} vs {sig_sub.get('H1', 0)}, "
-      f"H2 {sig_full.get('H2', 0)} vs {sig_sub.get('H2', 0)} (of 32 arm contrasts each)")
+def sig_count(df):
+    p = pd.to_numeric(df['p_value'], errors='coerce')
+    return int((p < 0.05).sum()), int(p.notna().sum())
 
-# E2: heterogeneity of H1 effects by partisan group (Democrat vs Republican), a dimension the plan did not register.
-# Rationale: the planned pooled test may hide opposite responses among Democrats and Republicans, so arm effects are compared across the two groups.
-d['dem'] = (d['partisan'].astype(str).str.strip() == 'Democrat').astype(int)
-m = reg.reestimate(H1, d, moderator='dem')
-m.to_csv(RES / 'E2_partisan_heterogeneity.csv', index=False)
-pcol = 'p_value'
-n_int = len(m)
-n_sig = int((m[pcol] < 0.05).sum())
-print(f"E2 Arm x partisan (Democrat vs Republican) interactions on post_ap: {n_sig} of {n_int} interaction rows have p<0.05 "
-      f"(median interaction estimate {m['estimate'].median():.2f} points)")
 
-# E3 (summary only, no extra analysis): nothing more.
+# E1: robustness to restricting to fully completed responses (Finished == 1).
+# Rationale: the registered sample includes partial responses; completers-only is the most common alternative exclusion.
+orig = reg.reestimate(H1, clean)
+sub = clean[clean['Finished'] == 1]
+alt = reg.reestimate(H1, sub)
+m = orig[['arm', 'estimate', 'std_error', 'n']].merge(
+    alt[['arm', 'estimate', 'std_error', 'n']], on='arm', suffixes=('_planned', '_completers'))
+m.to_csv(RES / 'E1_completers_only.csv', index=False)
+n_ratio = len(sub) / len(clean)
+se_ratio = (m['std_error_completers'] / m['std_error_planned']).abs()
+print(f"E1 Completers-only robustness of planned H1: {len(m)} arms, {int(((m['estimate_completers'] - m['estimate_planned']).abs()<0.5).sum())} within 0.5 points of planned estimate; SE ratio range {se_ratio.min():.2f}-{se_ratio.max():.2f} with sample at {n_ratio:.0%} of planned (flagged if SE changes >2x with <10% sample change)")
+if ((se_ratio > 2) & (abs(1 - n_ratio) < 0.10)).any():
+    print('E1 dropped by rule')
+
+# E2: heterogeneity of planned H1 by Democratic identification (pid3 == 2) vs others.
+clean['is_dem'] = (clean['pid3'] == 2).astype(int)
+het = reg.reestimate(H1, clean, moderator='is_dem')
+het.to_csv(RES / 'E2_dem_heterogeneity.csv', index=False)
+s, n = sig_count(het)
+print(f"E2 Heterogeneity of planned H1 by Democratic identification: {s} of {n} arm-by-group interaction tests significant at p<0.05 (planned H1 family of 32 interventions)")
+
+# E3: heterogeneity by political interest (interest >= 4 vs below), the study's own item.
+clean['high_interest'] = (clean['interest'] >= 4).astype(int)
+het2 = reg.reestimate(H1, clean, moderator='high_interest')
+het2.to_csv(RES / 'E3_interest_heterogeneity.csv', index=False)
+s2, n2 = sig_count(het2)
+print(f"E3 Heterogeneity of planned H1 by high political interest: {s2} of {n2} arm-by-group interaction tests significant at p<0.05")

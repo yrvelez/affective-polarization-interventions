@@ -1,5 +1,5 @@
 {
- "text": "Prior findings on prejudice-reduction interventions bear on H1 and H2 most directly. A large meta-analytic review of 418 experiments finds that these approaches have been evaluated extensively, with meta-analysis used to estimate average effects of different methods (Paluck et al., 2020). Work on partisan prejudice and affective polarization frames the outcome side of such interventions, showing that partisan animus is broad and extends into non-political settings (Lelkes and Westwood, 2016), and that polarization is shaped by local context (Druckman et al., 2020). Evidence on the downstream consequences of affective polarization is limited and largely from the United States, with a multi-country survey experiment examining its effects in nine democracies (Harteveld et al., 2026). Work on who endorses political violence adds a related outcome domain (Armaly and Enders, 2022). The retrieved works do not directly contest the hypotheses, but the evidence base is heterogeneous in what it measures as an outcome. The meta-analytic review pools across many intervention types, so it cannot by itself indicate that any specific intervention moves a specific outcome (Paluck et al., 2020), while the cross-national experiment suggests that effects of polarization may differ outside the United States (Harteveld et al., 2026). The present design, which compares each intervention against a control on separately defined post-treatment outcomes, can speak to whether each intervention shifts each outcome within a single study, but not to the broader question of which mechanism links prejudice to downstream behaviour.",
+ "text": "Prior findings on the study's primary hypothesis come from meta-analytic work on prejudice reduction, which reviews hundreds of experiments to estimate average intervention effects and to ask which approaches work best (Paluck et al., 2020). Work on affective polarization treats it as a distinct construct tied to identity rather than policy disagreement, which helps explain why interventions aimed at out-group attitudes may move it (Mason, 2018), and studies of local context suggest that affective polarization varies across environments in ways that bear on whether effects generalise (Druckman et al., 2020). Taken together, the supporting literature gives reason to expect that some interventions may reduce affective polarization, though it offers no direct estimate for the specific 32 interventions under test. The contesting works frame polarization more pessimistically and, in part, locate its causes in political and structural conditions that individual-level interventions may not reach. McCoy and Somer (2018) argue that severe polarization is driven by system-level dynamics and that its consequences for democracy are serious, which implies that modest interventions may have limited leverage. Lorenz-Spreen et al. (2022) and Persily et al. (2020) disagree about the strength of the link between digital media and democratic outcomes, with the systematic review emphasising that causal evidence is mixed and contested. The study's design, which compares each intervention against a pure control and measures both affective polarization (H1) and support for undemocratic practices (H2), can speak to whether individual-level effects exist at all, but it cannot adjudicate the structural claims about pernicious polarization made in the contesting works.",
  "works": [
   {
    "id": "https://openalex.org/W3085414015",
@@ -16,7 +16,21 @@
    "cited_by": 707,
    "abstract": "The past decade has seen rapid growth in research that evaluates methods for reducing prejudice. This essay reviews 418 experiments reported in 309 manuscripts from 2007 to 2019 to assess which approaches work best and why. Our quantitative assessment uses meta-analysis to estimate average effects. Our qualitative assessment calls attention to landmark studies that are noteworthy for sustained int",
    "stance": "supporting",
-   "query": "affective polarization intervention experiment reduces partisan feeling thermometer gap"
+   "query": "interventions reducing affective polarization feeling thermometer"
+  },
+  {
+   "id": "https://openalex.org/W2798154493",
+   "title": "Ideologues without Issues: The Polarizing Consequences of Ideological Identities",
+   "authors": [
+    "Lilliana Mason"
+   ],
+   "year": 2018,
+   "doi": "10.1093/poq/nfy005",
+   "venue": "Public Opinion Quarterly",
+   "cited_by": 556,
+   "abstract": "Abstract The distinction between a person’s ideological identity and their issue positions has come more clearly into focus in recent research. Scholars have pointed out a significant difference between identity-based and issue-based ideology in the American electorate. However, the affective and social effects of these separate elements of ideology have not been sufficiently explored. Drawing on ",
+   "stance": "supporting",
+   "query": "interventions reducing affective polarization feeling thermometer"
   },
   {
    "id": "https://openalex.org/W3109607089",
@@ -33,93 +47,78 @@
    "cited_by": 470,
    "abstract": "",
    "stance": "supporting",
-   "query": "affective polarization intervention experiment reduces partisan feeling thermometer gap"
+   "query": "interventions reducing affective polarization feeling thermometer"
   },
   {
-   "id": "https://openalex.org/W2561427996",
-   "title": "The Limits of Partisan Prejudice",
+   "id": "https://openalex.org/W2905868634",
+   "title": "Toward a Theory of Pernicious Polarization and How It Harms Democracies: Comparative Evidence and Possible Remedies",
    "authors": [
-    "Yphtach Lelkes",
-    "Sean Jeremy Westwood"
+    "Jennifer McCoy",
+    "Murat Somer"
    ],
-   "year": 2016,
-   "doi": "10.1086/688223",
-   "venue": "The Journal of Politics",
-   "cited_by": 317,
-   "abstract": "Partisanship increasingly factors into the behavior of Americans in both political and nonpolitical situations, yet the bounds of partisan prejudice are largely unknown. In this paper, we systematically evaluate the limits of partisan prejudice using a series of five studies situated within a typology of prejudice. We find that partisan prejudice predicts suppression of hostile rhetoric toward one",
-   "stance": "supporting",
-   "query": "affective polarization intervention experiment reduces partisan feeling thermometer gap"
+   "year": 2018,
+   "doi": "10.1177/0002716218818782",
+   "venue": "The Annals of the American Academy of Political and Social Science",
+   "cited_by": 595,
+   "abstract": "This article compares the dynamics of polarization in the eleven case studies analyzed in this special issue to draw conclusions about antecedents of severe political and societal polarization, the characteristics and mechanisms of such polarization, and consequences of severe polarization for democracy. We find that the emergence of pernicious polarization (when a society is split into mutually d",
+   "stance": "contesting",
+   "query": "null effects of depolarization interventions on partisan affect"
   },
   {
-   "id": "https://openalex.org/W4281967965",
-   "title": "Who Supports Political Violence?",
+   "id": "https://openalex.org/W4308433048",
+   "title": "A systematic review of worldwide causal and correlational evidence on digital media and democracy",
    "authors": [
-    "Miles Armaly",
-    "Adam M Enders"
+    "Philipp Lorenz-Spreen",
+    "Lisa Oswald",
+    "Stephan Lewandowsky",
+    "Ralph Hertwig"
    ],
    "year": 2022,
-   "doi": "10.1017/s1537592722001086",
-   "venue": "Perspectives on Politics",
-   "cited_by": 61,
-   "abstract": "The last few years have witnessed an increase in democratic “backsliding” in the United States—a decline in the quality of democracy, typically accompanied by an influx of non-normative behavior, such as political violence. Despite the real consequences of support for violence, fairly little is known about such an extremist attitude outside studies of terrorism or aggression. Using a unique survey",
-   "stance": "method",
-   "query": "multi-arm survey experiment feeling thermometer affective polarization outcomes"
+   "doi": "10.1038/s41562-022-01460-1",
+   "venue": "Nature Human Behaviour",
+   "cited_by": 346,
+   "abstract": "One of today's most controversial and consequential issues is whether the global uptake of digital media is causally related to a decline in democracy. We conducted a systematic review of causal and correlational evidence (N = 496 articles) on the link between digital media use and different political variables. Some associations, such as increasing political participation and information consumpt",
+   "stance": "contesting",
+   "query": "null effects of depolarization interventions on partisan affect"
   },
   {
-   "id": "https://openalex.org/W4300003029",
-   "title": "The (alleged) consequences of affective polarization: A survey experiment in nine democracies",
+   "id": "https://openalex.org/W4211179769",
+   "title": "Social Media and Democracy",
    "authors": [
-    "Eelco Harteveld",
-    "Lars Erik Berntzen",
-    "Andrej Kokkonen",
-    "Haylee Kelsall"
+    "Nathaniel Persily",
+    "Joshua A. Tucker",
+    "Andrew M. Guess",
+    "Benjamin A. Lyons"
    ],
-   "year": 2026,
-   "doi": "10.1017/s1475676526101273",
-   "venue": "European Journal of Political Research",
-   "cited_by": 18,
-   "abstract": "Abstract Affective polarization (or antipathy between supporters of opposing political camps) is considered a threat to societal cohesion and democratic stability worldwide. However, causal evidence of its impact remains scarce, especially outside the United States. Our study examines the individual-level consequences of affective polarization by manipulating it in a survey experiment in nine coun",
-   "stance": "method",
-   "query": "multi-arm survey experiment feeling thermometer affective polarization outcomes"
-  },
-  {
-   "id": "https://openalex.org/W4384277430",
-   "title": "The state of evidence for social and emotional learning: A contemporary meta-analysis of universal school-based SEL interventions",
-   "authors": [
-    "Christina Cipriano",
-    "Michael J. Strambler",
-    "Lauren Hunter Naples",
-    "Cheyeon Ha"
-   ],
-   "year": 2023,
-   "doi": "10.1111/cdev.13968",
-   "venue": "Child Development",
-   "cited_by": 594,
-   "abstract": "This article provides a systematic review and meta-analysis of the current evidence for universal school-based (USB) social and emotional learning (SEL) interventions for students in kindergarten through 12th grade available from 2008 through 2020. The sample includes 424 studies from 53 countries, reflecting 252 discrete USB SEL interventions, involving 575,361 students. Results endorsed that, co",
-   "stance": "citing",
-   "query": "cites:W3085414015"
+   "year": 2020,
+   "doi": "10.1017/9781108890960",
+   "venue": "Cambridge University Press eBooks",
+   "cited_by": 299,
+   "abstract": "Over the last five years, widespread concern about the effects of social media on democracy has led to an explosion in research from different disciplines and corners of academia. This book is the first of its kind to take stock of this emerging multi-disciplinary field by synthesizing what we know, identifying what we do not know and obstacles to future research, and charting a course for the fut",
+   "stance": "contesting",
+   "query": "null effects of depolarization interventions on partisan affect"
   }
  ],
  "queries": [
-  "affective polarization intervention experiment reduces partisan feeling thermometer gap",
-  "depolarization intervention undemocratic practices support partisans survey experiment",
-  "affective polarization interventions null effects durable persistence decay",
-  "partisan animosity intervention backfire ineffective demand effects",
-  "multi-arm survey experiment feeling thermometer affective polarization outcomes"
+  "interventions reducing affective polarization feeling thermometer",
+  "perspective-getting or contact interventions reduce partisan animosity",
+  "null effects of depolarization interventions on partisan affect",
+  "affective polarization persistent despite interventions and backfire effects of corrective messages",
+  "m"
  ],
  "query_sets": {
   "supporting": [
-   "affective polarization intervention experiment reduces partisan feeling thermometer gap",
-   "depolarization intervention undemocratic practices support partisans survey experiment"
+   "interventions reducing affective polarization feeling thermometer",
+   "perspective-getting or contact interventions reduce partisan animosity"
   ],
   "contesting": [
-   "affective polarization interventions null effects durable persistence decay",
-   "partisan animosity intervention backfire ineffective demand effects"
+   "null effects of depolarization interventions on partisan affect",
+   "affective polarization persistent despite interventions and backfire effects of corrective messages"
   ],
   "method": [
-   "multi-arm survey experiment feeling thermometer affective polarization outcomes"
+   "m"
   ]
  },
- "debate_hint": "Whether prejudice-reduction interventions produce effects that carry through to downstream political outcomes such as support for violence, and whether such effects generalise beyond the United States.",
+ "debate_hint": "Whether individual-level interventions can measurably reduce affective polarization and support for undemocratic practices, or whether these outcomes are driven by structural conditions that such interventions cannot reach.",
  "degraded": null
 }

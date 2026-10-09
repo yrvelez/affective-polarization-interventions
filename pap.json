@@ -13,9 +13,9 @@
     "multi-arm"
   ],
   "registration": {
-    "status": "none",
-    "url": "",
-    "note": "Reconstructed post hoc on 2026-10-01 from replication_script.R; not pre-registered."
+    "status": "registered",
+    "url": "https://osf.io/k2nwj",
+    "note": "OSF Preregistration k2nwj (DOI 10.17605/OSF.IO/K2NWJ), registered 2022-11-15, before the adaptive batches were analysed."
   },
   "design": {
     "type": "survey_experiment",
@@ -170,7 +170,7 @@
     "hypotheses": [
       {
         "id": "H1",
-        "text": "Each intervention changes post_ap relative to control.",
+        "text": "Primary (registered): the effect of each intervention (1-32) on affective polarization, relative to the pure control.",
         "outcome": "post_ap",
         "treatment": {
           "column": "arm",
@@ -217,24 +217,27 @@
           "cluster": null,
           "weights": "ipw_weight",
           "covariates": [
-            "pre_ap"
+            "pre_ap",
+            "pre_udp"
           ],
           "continuous": [
-            "pre_ap"
+            "pre_ap",
+            "pre_udp"
           ]
         },
-        "pooled": true,
+        "pooled": false,
         "subgroup": null,
         "exclusions": [
           "Finished == 1",
+          "screener_pass == 1",
           "partisan in ['Democrat','Republican']",
           "arm != 'T33'",
-          "post_ap.notna() and pre_ap.notna()"
+          "post_ap.notna() and pre_ap.notna() and pre_udp.notna()"
         ]
       },
       {
         "id": "H2",
-        "text": "Each intervention changes post_udp relative to control.",
+        "text": "Secondary (registered): the effect of each intervention (1-32) on support for undemocratic practices, relative to the pure control.",
         "outcome": "post_udp",
         "treatment": {
           "column": "arm",
@@ -281,24 +284,28 @@
           "cluster": null,
           "weights": "ipw_weight",
           "covariates": [
+            "pre_ap",
             "pre_udp"
           ],
           "continuous": [
+            "pre_ap",
             "pre_udp"
           ]
         },
-        "pooled": true,
+        "pooled": false,
         "subgroup": null,
         "exclusions": [
           "Finished == 1",
+          "screener_pass == 1",
           "partisan in ['Democrat','Republican']",
           "arm != 'T33'",
-          "post_udp.notna() and pre_udp.notna()"
+          "post_udp.notna() and pre_ap.notna() and pre_udp.notna()"
         ]
       }
     ],
     "subgroups": [],
     "sample_exclusions": [
+      "screener_pass == 1",
       "partisan in ['Democrat','Republican']",
       "arm != 'T33'"
     ],
@@ -339,7 +346,7 @@
     "hypotheses": [
       {
         "id": "H1",
-        "text": "Each intervention changes post_ap relative to control.",
+        "text": "Primary (registered): the effect of each intervention (1-32) on affective polarization, relative to the pure control.",
         "outcome": "post_ap",
         "treatment": {
           "column": "arm",
@@ -386,24 +393,27 @@
           "cluster": null,
           "weights": "ipw_weight",
           "covariates": [
-            "pre_ap"
+            "pre_ap",
+            "pre_udp"
           ],
           "continuous": [
-            "pre_ap"
+            "pre_ap",
+            "pre_udp"
           ]
         },
-        "pooled": true,
+        "pooled": false,
         "subgroup": null,
         "exclusions": [
           "Finished == 1",
+          "screener_pass == 1",
           "partisan in ['Democrat','Republican']",
           "arm != 'T33'",
-          "post_ap.notna() and pre_ap.notna()"
+          "post_ap.notna() and pre_ap.notna() and pre_udp.notna()"
         ]
       },
       {
         "id": "H2",
-        "text": "Each intervention changes post_udp relative to control.",
+        "text": "Secondary (registered): the effect of each intervention (1-32) on support for undemocratic practices, relative to the pure control.",
         "outcome": "post_udp",
         "treatment": {
           "column": "arm",
@@ -450,24 +460,28 @@
           "cluster": null,
           "weights": "ipw_weight",
           "covariates": [
+            "pre_ap",
             "pre_udp"
           ],
           "continuous": [
+            "pre_ap",
             "pre_udp"
           ]
         },
-        "pooled": true,
+        "pooled": false,
         "subgroup": null,
         "exclusions": [
           "Finished == 1",
+          "screener_pass == 1",
           "partisan in ['Democrat','Republican']",
           "arm != 'T33'",
-          "post_udp.notna() and pre_udp.notna()"
+          "post_udp.notna() and pre_ap.notna() and pre_udp.notna()"
         ]
       }
     ],
     "subgroups": [],
     "sample_exclusions": [
+      "screener_pass == 1",
       "partisan in ['Democrat','Republican']",
       "arm != 'T33'"
     ],
@@ -476,15 +490,35 @@
   },
   "ambiguities": [
     {
-      "hypothesis": "H1",
-      "field": "outcomes.post_ap",
+      "hypothesis": "H1, H2",
+      "field": "estimator.weights",
       "kind": "interpretation",
-      "pap_text": "post_ap, affective polarization after treatment = in-party minus out-party feeling thermometer",
-      "interpretation": "Used the precomputed post_ap column",
+      "pap_text": "Regression weighted to account for differential probabilities of treatment assignment.",
+      "interpretation": "ipw_weight = 1 / the arm's share among all finished respondents, as in the authors' analysis",
       "alternatives": [
-        "Rebuild from post_ap_scores_1/2 using partisan"
+        "1 / the per-batch assignment probability"
       ],
-      "reason": "Derived column exists in the data"
+      "reason": "the registration does not give the weights, and the per-batch probabilities were not stored with the data (batch is missing for about a third of finished respondents)"
+    },
+    {
+      "hypothesis": "H1, H2",
+      "field": "estimator.covariates",
+      "kind": "interpretation",
+      "pap_text": "In the event of significant trends in the control group, will include batch fixed effects.",
+      "interpretation": "batch fixed effects are not in the main specification; they are run as a robustness check",
+      "alternatives": [
+        "batch fixed effects in the main specification"
+      ],
+      "reason": "the registration makes them conditional on a control-group trend"
+    },
+    {
+      "hypothesis": "all",
+      "field": "analysis",
+      "kind": "interpretation",
+      "pap_text": "The probability of the best-performing arm will be calculated using the simulation approach described in https://osf.io/vdr4g.",
+      "interpretation": "not computed by this pipeline; the arm-level estimates are reported",
+      "alternatives": [],
+      "reason": "the pipeline estimates registered regressions only"
     }
   ],
   "source": "pap.md"

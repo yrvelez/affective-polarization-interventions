@@ -2213,6 +2213,18 @@
       "dropped": false
     },
     {
+      "name": "screener_pass",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
       "name": "ipw_weight",
       "qid": "",
       "kind": "unknown",

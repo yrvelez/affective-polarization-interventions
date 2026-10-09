@@ -1,0 +1,33 @@
+term,arm,estimate,std_error,p_value,conf_low,conf_high,n
+"C(arm_code, Treatment(reference='T0'))[T.T1]:C(_mod)[T.1]",Cooperation infographic x high_interest=1,-3.308949061618749,3.2319282179743767,0.30591499400554734,-9.643411969467245,3.0255138462297464,3772
+"C(arm_code, Treatment(reference='T0'))[T.T2]:C(_mod)[T.1]",Bipartisan bills graph x high_interest=1,-0.839099306152548,3.068040959615295,0.7844713715245463,-6.852349090092233,5.174150477787137,3772
+"C(arm_code, Treatment(reference='T0'))[T.T3]:C(_mod)[T.1]",Bipartisan elite quotes x high_interest=1,-3.3924691867643113,2.6623026279298334,0.20257082967250528,-8.610486453453124,1.8255480799245016,3772
+"C(arm_code, Treatment(reference='T0'))[T.T4]:C(_mod)[T.1]",Shared values exercise x high_interest=1,-6.933789698508271,3.6279383631290267,0.055976267280717355,-14.04441822837236,0.17683883135581802,3772
+"C(arm_code, Treatment(reference='T0'))[T.T5]:C(_mod)[T.1]",Cross-partisan dialogue guide x high_interest=1,0.7171946519584669,6.829431339601154,0.9163636831941395,-12.66824480854893,14.102634112465864,3772
+"C(arm_code, Treatment(reference='T0'))[T.T6]:C(_mod)[T.1]",Meta-dehumanization correction x high_interest=1,-4.836394182763673,3.446956998650332,0.16058971840254588,-11.592305756376604,1.9195173908492569,3772
+"C(arm_code, Treatment(reference='T0'))[T.T7]:C(_mod)[T.1]",Perception survey (form) x high_interest=1,-2.0233845937243693,3.3550682021595346,0.5464534755984038,-8.599197435632608,4.552428248183868,3772
+"C(arm_code, Treatment(reference='T0'))[T.T8]:C(_mod)[T.1]",Common-ground articles x high_interest=1,-5.240357241514854,3.96638879120512,0.18643768073458467,-13.014336420960248,2.5336219379305414,3772
+"C(arm_code, Treatment(reference='T0'))[T.T9]:C(_mod)[T.1]",Patriotic article x high_interest=1,0.47752418968987587,2.5479430124621207,0.8513348165084478,-4.516352349396371,5.471400728776123,3772
+"C(arm_code, Treatment(reference='T0'))[T.T10]:C(_mod)[T.1]",14th Amendment video x high_interest=1,2.7793598696090775,2.957915054508445,0.34740492831967185,-3.018047106556306,8.576766845774461,3772
+"C(arm_code, Treatment(reference='T0'))[T.T11]:C(_mod)[T.1]",Congressional softball video x high_interest=1,-3.634489514821664,3.0557790901510056,0.23428926884834933,-9.623706476228211,2.3547274465848824,3772
+"C(arm_code, Treatment(reference='T0'))[T.T12]:C(_mod)[T.1]",iSideWith quiz x high_interest=1,-3.4275695305356475,2.696583858139553,0.20370075421998168,-8.712776773781238,1.857637712709943,3772
+"C(arm_code, Treatment(reference='T0'))[T.T13]:C(_mod)[T.1]",Rick and Morty perspective-taking x high_interest=1,2.9215781119607183,3.1748171192931314,0.3574499218337329,-3.300949099355024,9.14410532327646,3772
+"C(arm_code, Treatment(reference='T0'))[T.T14]:C(_mod)[T.1]",Brené Brown empathy video x high_interest=1,-1.4397705818421325,3.2188662730384725,0.6546648146032665,-7.74863254804821,4.869091384363946,3772
+"C(arm_code, Treatment(reference='T0'))[T.T15]:C(_mod)[T.1]",Perception gap video x high_interest=1,-0.2924521949832428,1.9946038349535498,0.8834306286792195,-4.201803874917674,3.616899484951189,3772
+"C(arm_code, Treatment(reference='T0'))[T.T16]:C(_mod)[T.1]",'What makes an American' video x high_interest=1,0.7677112233280949,2.8635584008162014,0.7886247069356285,-4.844760109898773,6.380182556554963,3772
+"C(arm_code, Treatment(reference='T0'))[T.T17]:C(_mod)[T.1]",McCain defends Obama video x high_interest=1,-8.405609933288662,5.254805208297724,0.10968635480384677,-18.7048388873257,1.893619020748373,3772
+"C(arm_code, Treatment(reference='T0'))[T.T18]:C(_mod)[T.1]",Egyptian revolution video x high_interest=1,-5.983094945810982,4.557350683849206,0.18923519141857936,-14.915338151074412,2.949148259452449,3772
+"C(arm_code, Treatment(reference='T0'))[T.T19]:C(_mod)[T.1]",Cross-partisan friendship TED talk x high_interest=1,-6.626601039382817,4.097192373302212,0.10580238590740784,-14.656950528787341,1.4037484500217063,3772
+"C(arm_code, Treatment(reference='T0'))[T.T20]:C(_mod)[T.1]",American history video x high_interest=1,-0.3143179902223201,5.189938976902563,0.9517072847168321,-10.486411466912,9.857775486467357,3772
+"C(arm_code, Treatment(reference='T0'))[T.T21]:C(_mod)[T.1]",Party-tailored videos x high_interest=1,4.42910796338764,3.088046163183084,0.15149375057002396,-1.623351299048303,10.481567225823582,3772
+"C(arm_code, Treatment(reference='T0'))[T.T22]:C(_mod)[T.1]",Jubilee free speech panel x high_interest=1,-1.4468063911945621,5.076207315134929,0.7756309651888851,-11.395989906917787,8.502377124528664,3772
+"C(arm_code, Treatment(reference='T0'))[T.T23]:C(_mod)[T.1]",Jubilee video x high_interest=1,-4.088472012843218,3.826734093049401,0.28534137685583394,-11.588733013631593,3.4117889879451555,3772
+"C(arm_code, Treatment(reference='T0'))[T.T24]:C(_mod)[T.1]",Media-profits-from-division image x high_interest=1,1.2007478875623443,4.089093268516971,0.7690280467899508,-6.8137276481560916,9.21522342328078,3772
+"C(arm_code, Treatment(reference='T0'))[T.T25]:C(_mod)[T.1]",Shared priorities (Pew) table x high_interest=1,0.6382128480901574,2.9020966452068855,0.825937819747197,-5.049792056169854,6.326217752350169,3772
+"C(arm_code, Treatment(reference='T0'))[T.T26]:C(_mod)[T.1]",Bipartisan legislation examples x high_interest=1,1.4641983429922067,3.6862043351494584,0.6912123847397413,-5.760629393556147,8.689026079540561,3772
+"C(arm_code, Treatment(reference='T0'))[T.T27]:C(_mod)[T.1]",Common threat (Russia) x high_interest=1,-1.2073643193085548,3.6137387374506904,0.738301133527377,-8.290162094249155,5.875433455632044,3772
+"C(arm_code, Treatment(reference='T0'))[T.T28]:C(_mod)[T.1]",Pro-democracy excerpt x high_interest=1,0.5877812818894217,2.77847437147168,0.8324595165918705,-4.8579284181626345,6.033490981941478,3772
+"C(arm_code, Treatment(reference='T0'))[T.T29]:C(_mod)[T.1]",Biden–DeSantis cooperation x high_interest=1,-4.8878466283156445,2.6877025272820676,0.0689729997519721,-10.15564678294578,0.3799535263144902,3772
+"C(arm_code, Treatment(reference='T0'))[T.T30]:C(_mod)[T.1]","Scandals, both parties (labeled) x high_interest=1",-4.157816452610061,3.630727022589587,0.25213682797173387,-11.273910654581995,2.958277749361873,3772
+"C(arm_code, Treatment(reference='T0'))[T.T31]:C(_mod)[T.1]",Scandals (labels revealed later) x high_interest=1,-0.7916617069277891,3.4328181460537834,0.8176133814699487,-7.519861638668763,5.9365382248131855,3772
+"C(arm_code, Treatment(reference='T0'))[T.T32]:C(_mod)[T.1]",Perception gap quiz x high_interest=1,-3.00357122775009,4.657633547197108,0.5190110054843097,-12.13236523344196,6.125222777941779,3772

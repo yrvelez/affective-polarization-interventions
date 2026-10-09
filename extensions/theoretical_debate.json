@@ -1,40 +1,46 @@
 {
  "id": "theoretical_debate",
  "kind": "alternative",
- "title": "Affect-to-democratic-attitude transfer test",
- "rationale": "The source found a pooled thermometer drop of -0.8 (95% CI [-1.4,-0.2]) and a Perception gap video drop of -2.3, but no change in undemocratic-practices support (-0.015, CI [-0.044,0.014]). It cannot tell whether affect fails to transfer or the interventions were too weak. This design uses a strengthened intervention to produce a larger affect shift, then tests whether downstream outcomes move in proportion to it.",
- "contribution": "Separates failed transfer from weak dosage by testing whether randomized affect shifts predict undemocratic-practices support and a behavioural proxy.",
+ "title": "Individual message versus structural cue",
+ "rationale": "Only the Perception gap video lowered affective polarization (-2.3, 95% CI [-4.3, -0.4], n=641) among 32 arms, and the study cannot test structural causes. This 2x2 crosses the video with a hostile elite/media feed prime to see whether the individual-level correction survives a hostile environment.",
+ "contribution": "Directly tests whether an individual-level perception correction is overridden by structural hostility cues rather than assuming either account.",
  "limitations": [
-  "Immediate outcomes only; durability untested.",
-  "US online panel only.",
-  "Recall task may shift outcomes directly, violating the exclusion restriction for the instrumental-variable analysis.",
-  "The Patriotic article arm is weak and mainly adds a contrast in the dose of the affect shift."
+  "A brief feed prime is a weak proxy for a sustained media environment.",
+  "Prime precedes the video, so order effects are untested.",
+  "Outcomes are measured immediately; durability is unknown.",
+  "Interaction power is limited unless the target n is reached."
  ],
  "design": {
-  "title": "Affect-to-democratic-attitude transfer test",
-  "overview": "US partisans are randomized to control, the Patriotic article, or the strengthened Perception gap intervention (video plus recall task). Participants then report thermometers, support for undemocratic practices and willingness to donate to a cross-party group. Randomized arm is used as an instrument for the thermometer change.",
-  "hypothesis": "Transfer: downstream change is proportional to the affect change induced by treatment. Independence: undemocratic-practices support and donation willingness do not change even when affect shifts substantially.",
-  "primaryOutcome": "Support for undemocratic practices (mean of four items), with the thermometer gap as the first stage.",
-  "comparison": "Each treatment arm vs control on both outcomes; 2SLS with arm as instrument for post-treatment affective polarization; compare reduced-form effect with the effect predicted from the first stage.",
-  "population": "US adult partisans (Democrats, Republicans and leaners) from an online panel.",
+  "title": "Perception gap video x hostile versus neutral feed prime",
+  "overview": "US adults first see a feed of either hostile elite and media content or neutral content. They then see the Perception gap video or a control screen. Then affective polarization and support for undemocratic practices are measured.",
+  "hypothesis": "If individual interventions have leverage, the video lowers affective polarization under both primes. If the structural account holds, the video effect shrinks or vanishes under the hostile prime (video x prime interaction > 0).",
+  "primaryOutcome": "Affective polarization: in-party minus out-party feeling thermometer.",
+  "comparison": "Video vs control within each prime; the video x prime interaction contrast; secondary outcome is support for undemocratic practices.",
+  "population": "US adults from an online panel, with party identification (including leaners) collected; pure independents screened out.",
   "conditions": [
    {
-    "id": "c_control",
-    "title": "Control",
-    "description": "Neutral text, then 'Please continue'.",
-    "nodeId": "arm_control"
+    "id": "c1",
+    "title": "Neutral feed, control",
+    "description": "Neutral feed, then a control screen.",
+    "nodeId": "arm_c1"
    },
    {
-    "id": "c_patriotic",
-    "title": "Patriotic article",
-    "description": "Reads the 'What Makes America Great' patriotic article.",
-    "nodeId": "arm_patriotic"
+    "id": "c2",
+    "title": "Neutral feed, video",
+    "description": "Neutral feed, then the Perception gap video.",
+    "nodeId": "arm_c2"
    },
    {
-    "id": "c_pgap",
-    "title": "Perception gap video plus recall",
-    "description": "Watches the Perception gap video, then writes about a time they misjudged someone from the other party.",
-    "nodeId": "arm_pgap"
+    "id": "c3",
+    "title": "Hostile feed, control",
+    "description": "Hostile elite/media feed, then a control screen.",
+    "nodeId": "arm_c3"
+   },
+   {
+    "id": "c4",
+    "title": "Hostile feed, video",
+    "description": "Hostile feed, then the Perception gap video.",
+    "nodeId": "arm_c4"
    }
   ],
   "blocks": [
@@ -45,7 +51,7 @@
      {
       "id": "q_consent",
       "type": "MC",
-      "text": "You are invited to take part in a research survey on political attitudes. It takes about 10 minutes, is voluntary, and your answers are confidential. Do you consent to participate?",
+      "text": "You are invited to a research study on political attitudes. It takes about 10 minutes, is voluntary, and responses are anonymous. Do you consent to participate?",
       "tag": "consent",
       "multiple": false,
       "required": true,
@@ -96,64 +102,69 @@
       ],
       "rows": [],
       "sourceQuestionId": "QID10"
-     },
-     {
-      "id": "q_pre_ap",
-      "type": "Matrix",
-      "text": "Please rate each group on the feeling thermometer, from 0 (cold) to 100 (warm). Choose the closest point.",
-      "tag": "pre_ap_scores",
-      "multiple": false,
-      "required": true,
-      "choices": [
-       {
-        "id": "t0",
-        "text": "0-20 (very cold)",
-        "recode": "10"
-       },
-       {
-        "id": "t1",
-        "text": "21-40",
-        "recode": "30"
-       },
-       {
-        "id": "t2",
-        "text": "41-60",
-        "recode": "50"
-       },
-       {
-        "id": "t3",
-        "text": "61-80",
-        "recode": "70"
-       },
-       {
-        "id": "t4",
-        "text": "81-100 (very warm)",
-        "recode": "90"
-       }
-      ],
-      "rows": [
-       {
-        "id": "r",
-        "text": "How would you rate Republicans?"
-       },
-       {
-        "id": "d",
-        "text": "How would you rate Democrats?"
-       }
-      ],
-      "sourceQuestionId": "QID11"
      }
     ]
    },
    {
-    "id": "b_ctrl",
+    "id": "b_pn",
+    "title": "Neutral feed",
+    "questions": [
+     {
+      "id": "q_pn",
+      "type": "DB",
+      "text": "Please read this set of posts from a news feed: local weather forecasts, a new library opening, a recipe feature, and a sports score recap. {{ed:feed_neutral}}",
+      "tag": "feed_neutral_db",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_ph",
+    "title": "Hostile feed",
+    "questions": [
+     {
+      "id": "q_ph",
+      "type": "DB",
+      "text": "Please read this set of posts from a news feed: politicians and commentators attacking the other party as dangerous and corrupt, and headlines about escalating partisan conflict. {{ed:feed_hostile}}",
+      "tag": "feed_hostile_db",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_vid",
+    "title": "Video",
+    "questions": [
+     {
+      "id": "q_vid",
+      "type": "DB",
+      "text": "Please watch this video. {{ed:video_pg}}",
+      "tag": "video_pg_db",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_ctl",
     "title": "Control",
     "questions": [
      {
-      "id": "q_ctrl",
+      "id": "q_ctl",
       "type": "DB",
       "text": "Please continue.",
-      "tag": "ctrl_text",
+      "tag": "control_db",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -163,106 +174,39 @@
     ]
    },
    {
-    "id": "b_pat",
-    "title": "Patriotic article",
-    "questions": [
-     {
-      "id": "q_pat",
-      "type": "DB",
-      "text": "Please read the following article, 'What Makes America Great', about the ideals, history and shared achievements that Americans of all parties take pride in.",
-      "tag": "pat_text",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_pat_chk",
-      "type": "TE",
-      "text": "What did you just see, read, or watch?",
-      "tag": "manip_check_pat",
-      "multiple": false,
-      "required": true,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": "QID31"
-     }
-    ]
-   },
-   {
-    "id": "b_pg",
-    "title": "Perception gap video plus recall",
-    "questions": [
-     {
-      "id": "q_pg_vid",
-      "type": "DB",
-      "text": "Please watch this video about how Americans misperceive the views of the other party. {{ed:pgvideo}}",
-      "tag": "pg_video",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_pg_recall",
-      "type": "TE",
-      "text": "Think of a time you assumed something about people from the other party that turned out to be wrong, or a person from the other party who was more reasonable than you expected. Describe it in a few sentences.",
-      "tag": "pg_recall",
-      "multiple": false,
-      "required": true,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_pg_chk",
-      "type": "TE",
-      "text": "What did you just see, read, or watch?",
-      "tag": "manip_check_pg",
-      "multiple": false,
-      "required": true,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": "QID31"
-     }
-    ]
-   },
-   {
-    "id": "b_post",
+    "id": "b_out",
     "title": "Outcomes",
     "questions": [
      {
-      "id": "q_post_ap",
+      "id": "q_ap",
       "type": "Matrix",
-      "text": "Please rate each group on the feeling thermometer, from 0 (cold) to 100 (warm). Choose the closest point.",
+      "text": "Please rate each group on a feeling thermometer from 0 to 100. Ratings of 50 to 100 mean you feel favorable and warm; ratings of 0 to 50 mean you do not feel favorable; 50 means neither warm nor cold.",
       "tag": "post_ap_scores",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "t0",
+        "id": "t1",
         "text": "0-20 (very cold)",
         "recode": "10"
        },
        {
-        "id": "t1",
-        "text": "21-40",
+        "id": "t2",
+        "text": "21-40 (cold)",
         "recode": "30"
        },
        {
-        "id": "t2",
-        "text": "41-60",
+        "id": "t3",
+        "text": "41-60 (neutral)",
         "recode": "50"
        },
        {
-        "id": "t3",
-        "text": "61-80",
+        "id": "t4",
+        "text": "61-80 (warm)",
         "recode": "70"
        },
        {
-        "id": "t4",
+        "id": "t5",
         "text": "81-100 (very warm)",
         "recode": "90"
        }
@@ -280,7 +224,7 @@
       "sourceQuestionId": "QID28"
      },
      {
-      "id": "q_post_udp",
+      "id": "q_udp",
       "type": "Matrix",
       "text": "Please indicate your agreement and disagreement with the following statements.",
       "tag": "post_udp_scores",
@@ -330,11 +274,11 @@
        },
        {
         "id": "r2",
-        "text": "Governors from my party should ignore unfavorable court rulings by judges appointed by the other party."
+        "text": "Governors of my party should ignore unfavorable court rulings by judges appointed by the other party."
        },
        {
         "id": "r3",
-        "text": "Governors from my party should prosecute journalists who accuse my party's politicians of misconduct without revealing sources."
+        "text": "Governors of my party should prosecute journalists who accuse my party's politicians of misconduct without revealing sources."
        },
        {
         "id": "r4",
@@ -344,41 +288,15 @@
       "sourceQuestionId": "QID29"
      },
      {
-      "id": "q_donate",
-      "type": "MC",
-      "text": "One in ten participants will be randomly chosen to receive a $10 bonus. If you are chosen, how much would you donate to a nonprofit group that brings Democrats and Republicans together for dialogue?",
-      "tag": "donate",
+      "id": "q_mc",
+      "type": "TE",
+      "text": "What did you just see, read, or watch?",
+      "tag": "manip_check",
       "multiple": false,
       "required": true,
-      "choices": [
-       {
-        "id": "d0",
-        "text": "$0",
-        "recode": "0"
-       },
-       {
-        "id": "d2",
-        "text": "$2",
-        "recode": "2"
-       },
-       {
-        "id": "d5",
-        "text": "$5",
-        "recode": "5"
-       },
-       {
-        "id": "d8",
-        "text": "$8",
-        "recode": "8"
-       },
-       {
-        "id": "d10",
-        "text": "$10",
-        "recode": "10"
-       }
-      ],
+      "choices": [],
       "rows": [],
-      "sourceQuestionId": ""
+      "sourceQuestionId": "QID31"
      }
     ]
    },
@@ -387,9 +305,9 @@
     "title": "Debrief",
     "questions": [
      {
-      "id": "q_debrief",
+      "id": "q_deb",
       "type": "DB",
-      "text": "Thank you. This study examined whether materials about the other party change attitudes. The video and article were real examples intended to reduce hostility. No donation will be made on your behalf beyond what was described. Contact the research team with questions.",
+      "text": "Thank you. This study examined how political information affects attitudes. The news feed posts were selected examples, and the video presented survey data on how people view the other party. Thank you for participating.",
       "tag": "debrief",
       "multiple": false,
       "required": false,
@@ -414,7 +332,19 @@
     "operator": "equals"
    },
    {
-    "id": "n_noconsent",
+    "id": "n_end",
+    "type": "end",
+    "label": "End non-consent",
+    "children": [],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_br",
     "type": "branch",
     "label": "No consent",
     "children": [
@@ -426,18 +356,6 @@
     "questionId": "q_consent",
     "choiceId": "no",
     "operator": "selected"
-   },
-   {
-    "id": "n_end",
-    "type": "end",
-    "label": "End",
-    "children": [],
-    "blockId": "",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
    },
    {
     "id": "n_pre",
@@ -454,11 +372,12 @@
    {
     "id": "r1",
     "type": "randomizer",
-    "label": "Randomize",
+    "label": "Condition",
     "children": [
-     "arm_control",
-     "arm_patriotic",
-     "arm_pgap"
+     "arm_c1",
+     "arm_c2",
+     "arm_c3",
+     "arm_c4"
     ],
     "blockId": "",
     "field": "",
@@ -468,14 +387,64 @@
     "operator": "equals"
    },
    {
-    "id": "arm_control",
+    "id": "arm_c1",
     "type": "group",
+    "label": "Neutral control",
+    "children": [
+     "e_c1",
+     "e_fn1",
+     "t_pn1",
+     "t_ctl1"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_c1",
+    "type": "embedded",
+    "label": "cond",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "c1",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_fn1",
+    "type": "embedded",
+    "label": "feed",
+    "children": [],
+    "blockId": "",
+    "field": "feed_neutral",
+    "value": "[IMAGE: a neutral news feed with weather, library opening, recipe and sports posts]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_pn1",
+    "type": "block",
+    "label": "Neutral feed",
+    "children": [],
+    "blockId": "b_pn",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_ctl1",
+    "type": "block",
     "label": "Control",
-    "children": [
-     "set_control",
-     "n_ctrl"
-    ],
-    "blockId": "",
+    "children": [],
+    "blockId": "b_ctl",
     "field": "",
     "value": "",
     "questionId": "",
@@ -483,36 +452,15 @@
     "operator": "equals"
    },
    {
-    "id": "set_control",
-    "type": "embedded",
-    "label": "Set control",
-    "children": [],
-    "blockId": "",
-    "field": "condition",
-    "value": "control",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_ctrl",
-    "type": "block",
-    "label": "Control block",
-    "children": [],
-    "blockId": "b_ctrl",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "arm_patriotic",
+    "id": "arm_c2",
     "type": "group",
-    "label": "Patriotic",
+    "label": "Neutral video",
     "children": [
-     "set_pat",
-     "n_pat"
+     "e_c2",
+     "e_fn2",
+     "t_pn2",
+     "e_v2",
+     "t_v2"
     ],
     "blockId": "",
     "field": "",
@@ -522,23 +470,35 @@
     "operator": "equals"
    },
    {
-    "id": "set_pat",
+    "id": "e_c2",
     "type": "embedded",
-    "label": "Set patriotic",
+    "label": "cond",
     "children": [],
     "blockId": "",
     "field": "condition",
-    "value": "patriotic",
+    "value": "c2",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "n_pat",
+    "id": "e_fn2",
+    "type": "embedded",
+    "label": "feed",
+    "children": [],
+    "blockId": "",
+    "field": "feed_neutral",
+    "value": "[IMAGE: a neutral news feed with weather, library opening, recipe and sports posts]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_pn2",
     "type": "block",
-    "label": "Patriotic block",
+    "label": "Neutral feed",
     "children": [],
-    "blockId": "b_pat",
+    "blockId": "b_pn",
     "field": "",
     "value": "",
     "questionId": "",
@@ -546,51 +506,23 @@
     "operator": "equals"
    },
    {
-    "id": "arm_pgap",
-    "type": "group",
-    "label": "Perception gap plus recall",
-    "children": [
-     "set_pgap",
-     "set_pgvideo",
-     "n_pg"
-    ],
-    "blockId": "",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "set_pgap",
+    "id": "e_v2",
     "type": "embedded",
-    "label": "Set pgap",
+    "label": "video",
     "children": [],
     "blockId": "",
-    "field": "condition",
-    "value": "pgap",
+    "field": "video_pg",
+    "value": "[VIDEO: Perception gap video presenting data on how each party misperceives the other, about 5 minutes]",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "set_pgvideo",
-    "type": "embedded",
+    "id": "t_v2",
+    "type": "block",
     "label": "Video",
     "children": [],
-    "blockId": "",
-    "field": "pgvideo",
-    "value": "[VIDEO: Perception gap video showing how each party overestimates the other's extremity, about 4 minutes]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_pg",
-    "type": "block",
-    "label": "Perception gap block",
-    "children": [],
-    "blockId": "b_pg",
+    "blockId": "b_vid",
     "field": "",
     "value": "",
     "questionId": "",
@@ -598,11 +530,154 @@
     "operator": "equals"
    },
    {
-    "id": "n_post",
+    "id": "arm_c3",
+    "type": "group",
+    "label": "Hostile control",
+    "children": [
+     "e_c3",
+     "e_fh3",
+     "t_ph3",
+     "t_ctl3"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_c3",
+    "type": "embedded",
+    "label": "cond",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "c3",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_fh3",
+    "type": "embedded",
+    "label": "feed",
+    "children": [],
+    "blockId": "",
+    "field": "feed_hostile",
+    "value": "[IMAGE: a news feed of elite and media posts attacking the other party and headlines about partisan conflict]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_ph3",
+    "type": "block",
+    "label": "Hostile feed",
+    "children": [],
+    "blockId": "b_ph",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_ctl3",
+    "type": "block",
+    "label": "Control",
+    "children": [],
+    "blockId": "b_ctl",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_c4",
+    "type": "group",
+    "label": "Hostile video",
+    "children": [
+     "e_c4",
+     "e_fh4",
+     "t_ph4",
+     "e_v4",
+     "t_v4"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_c4",
+    "type": "embedded",
+    "label": "cond",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "c4",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_fh4",
+    "type": "embedded",
+    "label": "feed",
+    "children": [],
+    "blockId": "",
+    "field": "feed_hostile",
+    "value": "[IMAGE: a news feed of elite and media posts attacking the other party and headlines about partisan conflict]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_ph4",
+    "type": "block",
+    "label": "Hostile feed",
+    "children": [],
+    "blockId": "b_ph",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_v4",
+    "type": "embedded",
+    "label": "video",
+    "children": [],
+    "blockId": "",
+    "field": "video_pg",
+    "value": "[VIDEO: Perception gap video presenting data on how each party misperceives the other, about 5 minutes]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_v4",
+    "type": "block",
+    "label": "Video",
+    "children": [],
+    "blockId": "b_vid",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_out",
     "type": "block",
     "label": "Outcomes",
     "children": [],
-    "blockId": "b_post",
+    "blockId": "b_out",
     "field": "",
     "value": "",
     "questionId": "",
@@ -610,7 +685,7 @@
     "operator": "equals"
    },
    {
-    "id": "n_debrief",
+    "id": "n_deb",
     "type": "block",
     "label": "Debrief",
     "children": [],
@@ -624,46 +699,44 @@
   ],
   "roots": [
    "n_consent",
-   "n_noconsent",
+   "n_br",
    "n_pre",
    "r1",
-   "n_post",
-   "n_debrief"
+   "n_out",
+   "n_deb"
   ],
   "assumptions": [
-   "Power target: about 900 per arm (about 2,700 total) to detect 0.09 on the undemocratic-practices scale at 80% power, based on pooled CI [-0.044,0.014] and arm SEs of 0.05-0.12.",
-   "Online US panel; non-partisans screened out after the pidlean question; compensation per panel standard.",
-   "Thermometers are collected in five bands (midpoints recoded) because the schema has no slider type; a slider could replace this at fielding.",
-   "Analyses are pre-registered: 2SLS with arm as instrument, plus mediation as secondary analysis.",
-   "Manipulation success is a first-stage thermometer shift of at least 3 points; if smaller, the test is declared uninformative."
+   "Power: about 800 per arm (about 3,200 total) to detect an interaction of 2.0 thermometer points at 80% power, since the observed main effect of -2.3 (SE 1.0, n=641) implies roughly 800 per cell.",
+   "Online panel of US partisans and leaners; pre-treatment thermometer is not collected, to keep the survey short; covariates are adjusted via party.",
+   "Thermometer is collected as banded Matrix categories because only MC/TE/DB/Matrix types are allowed; the platform may substitute the original slider.",
+   "Analysis: OLS with HC2 errors, video x prime interaction, two-sided."
   ],
   "unresolved": [
-   "Hosting of the Perception gap video and the Patriotic article text.",
-   "IRB approval number and participant compensation.",
-   "How the bonus donation will be paid out."
+   "Actual feed screenshots and the Perception gap video file must be supplied by the research team.",
+   "IRB approval number and compensation must be supplied."
   ],
   "evidence": [
    {
     "id": "e1",
     "title": "Source study",
     "url": "https://github.com/yrvelez/affective-polarization-interventions",
-    "claim": "Pooled thermometer -0.8, undemocratic practices -0.015 (null).",
+    "claim": "Perception gap video lowered affective polarization by 2.3 points",
     "excerpt": "",
     "origin": "supplied"
    },
    {
     "id": "e2",
-    "title": "The Limits of Partisan Prejudice",
-    "url": "https://doi.org/10.1086/688223",
-    "claim": "Partisan affect may not map onto downstream behaviours.",
+    "title": "Prejudice Reduction: Progress and Challenges",
+    "url": "https://doi.org/10.1146/annurev-psych-071620-030619",
+    "claim": "Individual-level prejudice-reduction interventions show some average effects",
     "excerpt": "",
     "origin": "supplied"
    },
    {
     "id": "e3",
-    "title": "The (alleged) consequences of affective polarization",
-    "url": "https://doi.org/10.1017/s1475676526101273",
-    "claim": "Tests whether affective polarization produces downstream consequences.",
+    "title": "Toward a Theory of Pernicious Polarization",
+    "url": "https://doi.org/10.1177/0002716218818782",
+    "claim": "Severe polarization is driven by system-level dynamics",
     "excerpt": "",
     "origin": "supplied"
    }

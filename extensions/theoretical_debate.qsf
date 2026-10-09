@@ -1,7 +1,7 @@
 {
  "SurveyEntry": {
   "SurveyID": "SV_filedrawer00000",
-  "SurveyName": "Affect-to-democratic-attitude transfer test (extension of: Testing 33 Student-Designed Interventions",
+  "SurveyName": "Perception gap video x hostile versus neutral feed prime (extension of: Testing 33 Student-Designed ",
   "SurveyDescription": null,
   "SurveyOwnerID": "UR_filedrawer00000",
   "SurveyBrandID": "",
@@ -11,9 +11,9 @@
   "SurveyStatus": "Inactive",
   "SurveyStartDate": "0000-00-00 00:00:00",
   "SurveyExpirationDate": "0000-00-00 00:00:00",
-  "SurveyCreationDate": "2026-10-08 16:06:23",
+  "SurveyCreationDate": "2026-10-09 10:21:46",
   "CreatorID": "UR_filedrawer00000",
-  "LastModified": "2026-10-08 16:06:23",
+  "LastModified": "2026-10-09 10:21:46",
   "LastAccessed": "0000-00-00 00:00:00",
   "LastActivated": "0000-00-00 00:00:00",
   "Deleted": null
@@ -45,10 +45,14 @@
       {
        "Type": "Question",
        "QuestionID": "QID2"
-      },
-      {
-       "Type": "Page Break"
-      },
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "Neutral feed",
+     "ID": "BL_b_pn",
+     "BlockElements": [
       {
        "Type": "Question",
        "QuestionID": "QID3"
@@ -57,8 +61,8 @@
     },
     {
      "Type": "Standard",
-     "Description": "Control",
-     "ID": "BL_b_ctrl",
+     "Description": "Hostile feed",
+     "ID": "BL_b_ph",
      "BlockElements": [
       {
        "Type": "Question",
@@ -68,16 +72,20 @@
     },
     {
      "Type": "Standard",
-     "Description": "Patriotic article",
-     "ID": "BL_b_pat",
+     "Description": "Video",
+     "ID": "BL_b_vid",
      "BlockElements": [
       {
        "Type": "Question",
        "QuestionID": "QID5"
-      },
-      {
-       "Type": "Page Break"
-      },
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "Control",
+     "ID": "BL_b_ctl",
+     "BlockElements": [
       {
        "Type": "Question",
        "QuestionID": "QID6"
@@ -86,8 +94,8 @@
     },
     {
      "Type": "Standard",
-     "Description": "Perception gap video plus recall",
-     "ID": "BL_b_pg",
+     "Description": "Outcomes",
+     "ID": "BL_b_out",
      "BlockElements": [
       {
        "Type": "Question",
@@ -111,37 +119,12 @@
     },
     {
      "Type": "Standard",
-     "Description": "Outcomes",
-     "ID": "BL_b_post",
-     "BlockElements": [
-      {
-       "Type": "Question",
-       "QuestionID": "QID10"
-      },
-      {
-       "Type": "Page Break"
-      },
-      {
-       "Type": "Question",
-       "QuestionID": "QID11"
-      },
-      {
-       "Type": "Page Break"
-      },
-      {
-       "Type": "Question",
-       "QuestionID": "QID12"
-      }
-     ]
-    },
-    {
-     "Type": "Standard",
      "Description": "Debrief",
      "ID": "BL_b_debrief",
      "BlockElements": [
       {
        "Type": "Question",
-       "QuestionID": "QID13"
+       "QuestionID": "QID10"
       }
      ]
     },
@@ -211,7 +194,7 @@
        {
         "Type": "Group",
         "FlowID": "FL_7",
-        "Description": "Control",
+        "Description": "Neutral control",
         "Flow": [
          {
           "Type": "EmbeddedData",
@@ -224,26 +207,47 @@
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "control"
+            "Value": "c1"
+           }
+          ]
+         },
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_9",
+          "EmbeddedData": [
+           {
+            "Description": "feed_neutral",
+            "Type": "Custom",
+            "Field": "feed_neutral",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "[IMAGE TO SUPPLY: a neutral news feed with weather, library opening, recipe and sports posts]"
            }
           ]
          },
          {
           "Type": "Standard",
-          "ID": "BL_b_ctrl",
-          "FlowID": "FL_9",
+          "ID": "BL_b_pn",
+          "FlowID": "FL_10",
+          "Autofill": []
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_ctl",
+          "FlowID": "FL_11",
           "Autofill": []
          }
         ]
        },
        {
         "Type": "Group",
-        "FlowID": "FL_10",
-        "Description": "Patriotic",
+        "FlowID": "FL_12",
+        "Description": "Neutral video",
         "Flow": [
          {
           "Type": "EmbeddedData",
-          "FlowID": "FL_11",
+          "FlowID": "FL_13",
           "EmbeddedData": [
            {
             "Description": "condition",
@@ -252,57 +256,163 @@
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "patriotic"
+            "Value": "c2"
            }
           ]
          },
-         {
-          "Type": "Standard",
-          "ID": "BL_b_pat",
-          "FlowID": "FL_12",
-          "Autofill": []
-         }
-        ]
-       },
-       {
-        "Type": "Group",
-        "FlowID": "FL_13",
-        "Description": "Perception gap plus recall",
-        "Flow": [
          {
           "Type": "EmbeddedData",
           "FlowID": "FL_14",
           "EmbeddedData": [
            {
+            "Description": "feed_neutral",
+            "Type": "Custom",
+            "Field": "feed_neutral",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "[IMAGE TO SUPPLY: a neutral news feed with weather, library opening, recipe and sports posts]"
+           }
+          ]
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_pn",
+          "FlowID": "FL_15",
+          "Autofill": []
+         },
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_16",
+          "EmbeddedData": [
+           {
+            "Description": "video_pg",
+            "Type": "Custom",
+            "Field": "video_pg",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "[VIDEO TO SUPPLY: Perception gap video presenting data on how each party misperceives the other, about 5 minutes]"
+           }
+          ]
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_vid",
+          "FlowID": "FL_17",
+          "Autofill": []
+         }
+        ]
+       },
+       {
+        "Type": "Group",
+        "FlowID": "FL_18",
+        "Description": "Hostile control",
+        "Flow": [
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_19",
+          "EmbeddedData": [
+           {
             "Description": "condition",
             "Type": "Custom",
             "Field": "condition",
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "pgap"
+            "Value": "c3"
            }
           ]
          },
          {
           "Type": "EmbeddedData",
-          "FlowID": "FL_15",
+          "FlowID": "FL_20",
           "EmbeddedData": [
            {
-            "Description": "pgvideo",
+            "Description": "feed_hostile",
             "Type": "Custom",
-            "Field": "pgvideo",
+            "Field": "feed_hostile",
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "[VIDEO TO SUPPLY: Perception gap video showing how each party overestimates the other's extremity, about 4 minutes]"
+            "Value": "[IMAGE TO SUPPLY: a news feed of elite and media posts attacking the other party and headlines about partisan conflict]"
            }
           ]
          },
          {
           "Type": "Standard",
-          "ID": "BL_b_pg",
-          "FlowID": "FL_16",
+          "ID": "BL_b_ph",
+          "FlowID": "FL_21",
+          "Autofill": []
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_ctl",
+          "FlowID": "FL_22",
+          "Autofill": []
+         }
+        ]
+       },
+       {
+        "Type": "Group",
+        "FlowID": "FL_23",
+        "Description": "Hostile video",
+        "Flow": [
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_24",
+          "EmbeddedData": [
+           {
+            "Description": "condition",
+            "Type": "Custom",
+            "Field": "condition",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "c4"
+           }
+          ]
+         },
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_25",
+          "EmbeddedData": [
+           {
+            "Description": "feed_hostile",
+            "Type": "Custom",
+            "Field": "feed_hostile",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "[IMAGE TO SUPPLY: a news feed of elite and media posts attacking the other party and headlines about partisan conflict]"
+           }
+          ]
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_ph",
+          "FlowID": "FL_26",
+          "Autofill": []
+         },
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_27",
+          "EmbeddedData": [
+           {
+            "Description": "video_pg",
+            "Type": "Custom",
+            "Field": "video_pg",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "[VIDEO TO SUPPLY: Perception gap video presenting data on how each party misperceives the other, about 5 minutes]"
+           }
+          ]
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_vid",
+          "FlowID": "FL_28",
           "Autofill": []
          }
         ]
@@ -311,19 +421,19 @@
      },
      {
       "Type": "Standard",
-      "ID": "BL_b_post",
-      "FlowID": "FL_17",
+      "ID": "BL_b_out",
+      "FlowID": "FL_29",
       "Autofill": []
      },
      {
       "Type": "Standard",
       "ID": "BL_b_debrief",
-      "FlowID": "FL_18",
+      "FlowID": "FL_30",
       "Autofill": []
      }
     ],
     "Properties": {
-     "Count": 18,
+     "Count": 30,
      "RemovedFieldsets": []
     }
    }
@@ -336,7 +446,7 @@
    "TertiaryAttribute": null,
    "Payload": {
     "PreviewType": "Brand",
-    "PreviewID": "40ccd444-5759-43e9-a56d-821ab911293a"
+    "PreviewID": "ed115442-131a-48fb-8a69-a39f9cf8bbff"
    }
   },
   {
@@ -354,7 +464,7 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "QC",
    "PrimaryAttribute": "Survey Question Count",
-   "SecondaryAttribute": "13",
+   "SecondaryAttribute": "10",
    "TertiaryAttribute": null,
    "Payload": null
   },
@@ -404,7 +514,7 @@
     "ValidationMessage": null,
     "PreviousButton": "",
     "NextButton": "",
-    "SurveyTitle": "Affect-to-democratic-attitude transfer test (extension of: Testing 33 Student-Designed Interventions",
+    "SurveyTitle": "Perception gap video x hostile versus neutral feed prime (extension of: Testing 33 Student-Designed ",
     "SkinLibrary": "Qualtrics",
     "SkinType": "templated",
     "Skin": {
@@ -413,7 +523,7 @@
      "overrides": null
     },
     "NewScoring": 1,
-    "SurveyMetaDescription": "US partisans are randomized to control, the Patriotic article, or the strengthened Perception gap..."
+    "SurveyMetaDescription": "US adults first see a feed of either hostile elite and media content or neutral content. They the..."
    }
   },
   {
@@ -431,10 +541,10 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID1",
-   "SecondaryAttribute": "You are invited to take part in a research survey on political attitudes. It tak",
+   "SecondaryAttribute": "You are invited to a research study on political attitudes. It takes about 10 mi",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "You are invited to take part in a research survey on political attitudes. It takes about 10 minutes, is voluntary, and your answers are confidential. Do you consent to participate?",
+    "QuestionText": "You are invited to a research study on political attitudes. It takes about 10 minutes, is voluntary, and responses are anonymous. Do you consent to participate?",
     "DataExportTag": "consent",
     "DataVisibility": {
      "Private": false,
@@ -443,7 +553,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "You are invited to take part in a research survey on political attitudes. It takes about 10 minut...",
+    "QuestionDescription": "You are invited to a research study on political attitudes. It takes about 10 minutes, is volunta...",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -534,83 +644,105 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID3",
-   "SecondaryAttribute": "Please rate each group on the feeling thermometer, from 0 (cold) to 100 (warm). ",
+   "SecondaryAttribute": "Please read this set of posts from a news feed: local weather forecasts, a new l",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Please rate each group on the feeling thermometer, from 0 (cold) to 100 (warm). Choose the closest point.",
-    "DataExportTag": "pre_ap_scores",
+    "QuestionText": "Please read this set of posts from a news feed: local weather forecasts, a new library opening, a recipe feature, and a sports score recap. ${e://Field/feed_neutral}",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
     },
     "Configuration": {
-     "QuestionDescriptionOption": "UseText",
-     "TextPosition": "inline",
-     "ChoiceColumnWidth": 25,
-     "RepeatHeaders": "none",
-     "WhiteSpace": "OFF",
-     "MobileFirst": true
+     "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Please rate each group on the feeling thermometer, from 0 (cold) to 100 (warm). Choose the closes...",
+    "QuestionDescription": "Please read this set of posts from a news feed: local weather forecasts, a new library opening, a...",
     "Validation": {
      "Settings": {
-      "ForceResponse": "ON",
-      "ForceResponseType": "ON",
       "Type": "None"
      }
     },
     "Language": [],
     "QuestionID": "QID3",
-    "QuestionType": "Matrix",
-    "Selector": "Likert",
-    "SubSelector": "SingleAnswer",
+    "QuestionType": "DB",
+    "Selector": "TB",
     "DefaultChoices": false,
+    "ChoiceOrder": [],
     "GradingData": [],
-    "ChoiceDataExportTags": false,
-    "Choices": {
-     "1": {
-      "Display": "How would you rate Republicans?"
-     },
-     "2": {
-      "Display": "How would you rate Democrats?"
-     }
-    },
-    "ChoiceOrder": [
-     "1",
-     "2"
-    ],
-    "Answers": {
-     "1": {
-      "Display": "0-20 (very cold)"
-     },
-     "2": {
-      "Display": "21-40"
-     },
-     "3": {
-      "Display": "41-60"
-     },
-     "4": {
-      "Display": "61-80"
-     },
-     "5": {
-      "Display": "81-100 (very warm)"
-     }
-    },
-    "AnswerOrder": [
-     "1",
-     "2",
-     "3",
-     "4",
-     "5"
-    ],
-    "NextChoiceId": 3,
-    "NextAnswerId": 6
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "DataExportTag": "q_pn"
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID4",
+   "SecondaryAttribute": "Please read this set of posts from a news feed: politicians and commentators att",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Please read this set of posts from a news feed: politicians and commentators attacking the other party as dangerous and corrupt, and headlines about escalating partisan conflict. ${e://Field/feed_hostile}",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Please read this set of posts from a news feed: politicians and commentators attacking the other...",
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID4",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "DataExportTag": "q_ph"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID5",
+   "SecondaryAttribute": "Please watch this video. {{ed:video_pg}}",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Please watch this video. ${e://Field/video_pg}",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Please watch this video. ${e://Field/video_pg}",
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID5",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "DataExportTag": "q_vid"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID6",
    "SecondaryAttribute": "Please continue.",
    "TertiaryAttribute": null,
    "Payload": {
@@ -629,196 +761,25 @@
      }
     },
     "Language": [],
-    "QuestionID": "QID4",
-    "QuestionType": "DB",
-    "Selector": "TB",
-    "DefaultChoices": false,
-    "ChoiceOrder": [],
-    "GradingData": [],
-    "NextChoiceId": 1,
-    "NextAnswerId": 1,
-    "DataExportTag": "q_ctrl"
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID5",
-   "SecondaryAttribute": "Please read the following article, 'What Makes America Great', about the ideals,",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "Please read the following article, 'What Makes America Great', about the ideals, history and shared achievements that Americans of all parties take pride in.",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "Please read the following article, 'What Makes America Great', about the ideals, history and shar...",
-    "Validation": {
-     "Settings": {
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID5",
-    "QuestionType": "DB",
-    "Selector": "TB",
-    "DefaultChoices": false,
-    "ChoiceOrder": [],
-    "GradingData": [],
-    "NextChoiceId": 1,
-    "NextAnswerId": 1,
-    "DataExportTag": "q_pat"
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID6",
-   "SecondaryAttribute": "What did you just see, read, or watch?",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "What did you just see, read, or watch?",
-    "DataExportTag": "manip_check_pat",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "What did you just see, read, or watch?",
-    "Validation": {
-     "Settings": {
-      "ForceResponse": "ON",
-      "ForceResponseType": "ON",
-      "Type": "None"
-     }
-    },
-    "Language": [],
     "QuestionID": "QID6",
-    "QuestionType": "TE",
-    "Selector": "SL",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
     "NextChoiceId": 1,
     "NextAnswerId": 1,
-    "SearchSource": {
-     "AllowFreeResponse": "false"
-    }
+    "DataExportTag": "q_ctl"
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID7",
-   "SecondaryAttribute": "Please watch this video about how Americans misperceive the views of the other p",
+   "SecondaryAttribute": "Please rate each group on a feeling thermometer from 0 to 100. Ratings of 50 to ",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Please watch this video about how Americans misperceive the views of the other party. ${e://Field/pgvideo}",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "Please watch this video about how Americans misperceive the views of the other party. ${e://Field...",
-    "Validation": {
-     "Settings": {
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID7",
-    "QuestionType": "DB",
-    "Selector": "TB",
-    "DefaultChoices": false,
-    "ChoiceOrder": [],
-    "GradingData": [],
-    "NextChoiceId": 1,
-    "NextAnswerId": 1,
-    "DataExportTag": "q_pg_vid"
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID8",
-   "SecondaryAttribute": "Think of a time you assumed something about people from the other party that tur",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "Think of a time you assumed something about people from the other party that turned out to be wrong, or a person from the other party who was more reasonable than you expected. Describe it in a few sentences.",
-    "DataExportTag": "pg_recall",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "Think of a time you assumed something about people from the other party that turned out to be wro...",
-    "Validation": {
-     "Settings": {
-      "ForceResponse": "ON",
-      "ForceResponseType": "ON",
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID8",
-    "QuestionType": "TE",
-    "Selector": "SL",
-    "NextChoiceId": 1,
-    "NextAnswerId": 1,
-    "SearchSource": {
-     "AllowFreeResponse": "false"
-    }
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID9",
-   "SecondaryAttribute": "What did you just see, read, or watch?",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "What did you just see, read, or watch?",
-    "DataExportTag": "manip_check_pg",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "What did you just see, read, or watch?",
-    "Validation": {
-     "Settings": {
-      "ForceResponse": "ON",
-      "ForceResponseType": "ON",
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID9",
-    "QuestionType": "TE",
-    "Selector": "SL",
-    "NextChoiceId": 1,
-    "NextAnswerId": 1,
-    "SearchSource": {
-     "AllowFreeResponse": "false"
-    }
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID10",
-   "SecondaryAttribute": "Please rate each group on the feeling thermometer, from 0 (cold) to 100 (warm). ",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "Please rate each group on the feeling thermometer, from 0 (cold) to 100 (warm). Choose the closest point.",
+    "QuestionText": "Please rate each group on a feeling thermometer from 0 to 100. Ratings of 50 to 100 mean you feel favorable and warm; ratings of 0 to 50 mean you do not feel favorable; 50 means neither warm nor cold.",
     "DataExportTag": "post_ap_scores",
     "DataVisibility": {
      "Private": false,
@@ -832,7 +793,7 @@
      "WhiteSpace": "OFF",
      "MobileFirst": true
     },
-    "QuestionDescription": "Please rate each group on the feeling thermometer, from 0 (cold) to 100 (warm). Choose the closes...",
+    "QuestionDescription": "Please rate each group on a feeling thermometer from 0 to 100. Ratings of 50 to 100 mean you feel...",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -841,7 +802,7 @@
      }
     },
     "Language": [],
-    "QuestionID": "QID10",
+    "QuestionID": "QID7",
     "QuestionType": "Matrix",
     "Selector": "Likert",
     "SubSelector": "SingleAnswer",
@@ -865,13 +826,13 @@
       "Display": "0-20 (very cold)"
      },
      "2": {
-      "Display": "21-40"
+      "Display": "21-40 (cold)"
      },
      "3": {
-      "Display": "41-60"
+      "Display": "41-60 (neutral)"
      },
      "4": {
-      "Display": "61-80"
+      "Display": "61-80 (warm)"
      },
      "5": {
       "Display": "81-100 (very warm)"
@@ -891,7 +852,7 @@
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
-   "PrimaryAttribute": "QID11",
+   "PrimaryAttribute": "QID8",
    "SecondaryAttribute": "Please indicate your agreement and disagreement with the following statements.",
    "TertiaryAttribute": null,
    "Payload": {
@@ -918,7 +879,7 @@
      }
     },
     "Language": [],
-    "QuestionID": "QID11",
+    "QuestionID": "QID8",
     "QuestionType": "Matrix",
     "Selector": "Likert",
     "SubSelector": "SingleAnswer",
@@ -930,10 +891,10 @@
       "Display": "My party should reduce the number of polling stations in areas that support the other party."
      },
      "2": {
-      "Display": "Governors from my party should ignore unfavorable court rulings by judges appointed by the other party."
+      "Display": "Governors of my party should ignore unfavorable court rulings by judges appointed by the other party."
      },
      "3": {
-      "Display": "Governors from my party should prosecute journalists who accuse my party's politicians of misconduct without revealing sources."
+      "Display": "Governors of my party should prosecute journalists who accuse my party's politicians of misconduct without revealing sources."
      },
      "4": {
       "Display": "Members of my party should not accept the results of elections if they lose."
@@ -984,12 +945,12 @@
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
-   "PrimaryAttribute": "QID12",
-   "SecondaryAttribute": "One in ten participants will be randomly chosen to receive a $10 bonus. If you a",
+   "PrimaryAttribute": "QID9",
+   "SecondaryAttribute": "What did you just see, read, or watch?",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "One in ten participants will be randomly chosen to receive a $10 bonus. If you are chosen, how much would you donate to a nonprofit group that brings Democrats and Republicans together for dialogue?",
-    "DataExportTag": "donate",
+    "QuestionText": "What did you just see, read, or watch?",
+    "DataExportTag": "manip_check",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -997,7 +958,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "One in ten participants will be randomly chosen to receive a $10 bonus. If you are chosen, how mu...",
+    "QuestionDescription": "What did you just see, read, or watch?",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -1006,53 +967,24 @@
      }
     },
     "Language": [],
-    "QuestionID": "QID12",
-    "QuestionType": "MC",
-    "Selector": "SAVR",
-    "SubSelector": "TX",
-    "Choices": {
-     "1": {
-      "Display": "$0"
-     },
-     "2": {
-      "Display": "$2"
-     },
-     "3": {
-      "Display": "$5"
-     },
-     "4": {
-      "Display": "$8"
-     },
-     "5": {
-      "Display": "$10"
-     }
-    },
-    "ChoiceOrder": [
-     "1",
-     "2",
-     "3",
-     "4",
-     "5"
-    ],
-    "NextChoiceId": 6,
+    "QuestionID": "QID9",
+    "QuestionType": "TE",
+    "Selector": "SL",
+    "NextChoiceId": 1,
     "NextAnswerId": 1,
-    "RecodeValues": {
-     "1": "0",
-     "2": "2",
-     "3": "5",
-     "4": "8",
-     "5": "10"
+    "SearchSource": {
+     "AllowFreeResponse": "false"
     }
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
-   "PrimaryAttribute": "QID13",
-   "SecondaryAttribute": "Thank you. This study examined whether materials about the other party change at",
+   "PrimaryAttribute": "QID10",
+   "SecondaryAttribute": "Thank you. This study examined how political information affects attitudes. The ",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Thank you. This study examined whether materials about the other party change attitudes. The video and article were real examples intended to reduce hostility. No donation will be made on your behalf beyond what was described. Contact the research team with questions.",
+    "QuestionText": "Thank you. This study examined how political information affects attitudes. The news feed posts were selected examples, and the video presented survey data on how people view the other party. Thank you for participating.",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -1060,14 +992,14 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Thank you. This study examined whether materials about the other party change attitudes. The vide...",
+    "QuestionDescription": "Thank you. This study examined how political information affects attitudes. The news feed posts w...",
     "Validation": {
      "Settings": {
       "Type": "None"
      }
     },
     "Language": [],
-    "QuestionID": "QID13",
+    "QuestionID": "QID10",
     "QuestionType": "DB",
     "Selector": "TB",
     "DefaultChoices": false,
@@ -1075,7 +1007,7 @@
     "GradingData": [],
     "NextChoiceId": 1,
     "NextAnswerId": 1,
-    "DataExportTag": "q_debrief"
+    "DataExportTag": "q_deb"
    }
   }
  ]

@@ -14,7 +14,7 @@ warnings.filterwarnings("ignore")
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 OUTCOMES = json.loads("[{\"name\": \"post_ap\", \"label\": \"Affective polarization after treatment\", \"kind\": \"single_item\", \"columns\": [\"post_ap\"], \"reverse\": [], \"scale\": [-100, 100], \"construction\": \"In-party minus out-party thermometer\"}, {\"name\": \"post_udp\", \"label\": \"Support for undemocratic practices\", \"kind\": \"single_item\", \"columns\": [\"post_udp\"], \"reverse\": [], \"scale\": [1, 7], \"construction\": \"Mean of the four items answered\"}]")
-EXCLUSIONS = ["partisan in ['Democrat','Republican']", "arm != 'T33'"]
+EXCLUSIONS = ["screener_pass == 1", "partisan in ['Democrat','Republican']", "arm != 'T33'"]
 DERIVED = json.loads("{}")
 ARM_COL = "arm"
 TREATED = ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12", "T13", "T14", "T15", "T16", "T17", "T18", "T19", "T20", "T21", "T22", "T23", "T24", "T25", "T26", "T27", "T28", "T29", "T30", "T31", "T32"]            # list of treated arm values (strings)

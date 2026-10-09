@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 305" width="100%" role="img" aria-labelledby="fd-title fd-desc"><title id="fd-title">Proposed follow-up: Affect-to-democratic-attitude transfer test</title><desc id="fd-desc">Affect-to-democratic-attitude transfer test. 3 conditions: Control, Patriotic article, Perception gap video plus recall. Primary outcome: Support for undemocratic practices (mean of four items), with the thermometer gap as the first stage.. Population: US adult partisans (Democrats, Republicans and leaners) from an online panel.</desc><style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 395" width="100%" role="img" aria-labelledby="fd-title fd-desc"><title id="fd-title">Proposed follow-up: Individual message versus structural cue</title><desc id="fd-desc">Individual message versus structural cue. 4 conditions: Neutral feed, control, Neutral feed, video, Hostile feed, control, Hostile feed, video. Primary outcome: Affective polarization: in-party minus out-party feeling thermometer.. Population: US adults from an online panel, with party identification (including leaners) collected; pure independents screened out.</desc><style>
 :root{--fd-ink:#1c1b19;--fd-muted:#8a877f;--fd-rule:#d9d5cc;--fd-accent:#8b1e2d;--fd-bg:#ffffff}
 @media (prefers-color-scheme: dark){:root{--fd-ink:#ecebe6;--fd-muted:#b4b1a9;--fd-rule:#4a4a52;--fd-accent:#e08a96;--fd-bg:#1d1d23}}
 .box{fill:var(--fd-bg,#fff);stroke:var(--fd-ink,#1c1b19);stroke-width:1.2}
@@ -11,43 +11,49 @@ text{font-family:Inter,Helvetica,Arial,sans-serif;fill:var(--fd-ink,#1c1b19);fon
 .assoc{stroke-dasharray:5 4}
 #fd-arrow path{fill:var(--fd-ink,#1c1b19)}
 </style>
-<defs><marker id="fd-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker></defs><text class="kicker" x="20" y="16">Proposed follow-up: Affect-to-democratic-attitude transfer test</text>
+<defs><marker id="fd-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker></defs><text class="kicker" x="20" y="16">Proposed follow-up: Individual message versus structural cue</text>
 <g>
-<rect class="box" x="20" y="127.5" width="200" height="60" rx="6"/>
-<text class="kicker" x="32" y="149.5">Population</text>
-<text x="32" y="167.5">US adult partisans</text>
-<text x="32" y="185.5">(Democrats,</text>
-<text x="32" y="203.5">Republicans and</text>
-<text x="32" y="221.5">leaners) from an</text>
+<rect class="box" x="20" y="172.5" width="200" height="60" rx="6"/>
+<text class="kicker" x="32" y="194.5">Population</text>
+<text x="32" y="212.5">US adults from an</text>
+<text x="32" y="230.5">online panel, with</text>
+<text x="32" y="248.5">party identification</text>
+<text x="32" y="266.5">(including leaners)</text>
 </g>
-<polygon class="box" points="280,133.5 316,157.5 280,181.5 244,157.5"/>
-<path class="edge" d="M220,157.5 L242,157.5"/><text class="cap" x="231.0" y="151.5" text-anchor="middle">randomized</text>
-<g id="arm-c_control" data-text="Neutral text, then &#x27;Please continue&#x27;.">
+<polygon class="box" points="280,178.5 316,202.5 280,226.5 244,202.5"/>
+<path class="edge" d="M220,202.5 L242,202.5"/><text class="cap" x="231.0" y="196.5" text-anchor="middle">randomized</text>
+<g id="arm-c1" data-text="Neutral feed, then a control screen.">
 <rect class="arm" x="360" y="30" width="300" height="63" rx="6"/>
-<text x="372" y="52">Control</text>
-<text class="cap" x="372" y="70">Neutral text, then &#x27;Please continue&#x27;.</text>
+<text x="372" y="52">Neutral feed, control</text>
+<text class="cap" x="372" y="70">Neutral feed, then a control screen.</text>
 </g>
-<path class="edge" d="M318,157.5 L356,61.5"/>
-<g id="arm-c_patriotic" data-text="Reads the &#x27;What Makes America Great&#x27; patriotic article.">
+<path class="edge" d="M318,202.5 L356,61.5"/>
+<g id="arm-c2" data-text="Neutral feed, then the Perception gap video.">
 <rect class="arm" x="360" y="105" width="300" height="78" rx="6"/>
-<text x="372" y="127">Patriotic article</text>
-<text class="cap" x="372" y="145">Reads the &#x27;What Makes America Great&#x27;</text>
-<text class="cap" x="372" y="160">patriotic article.</text>
+<text x="372" y="127">Neutral feed, video</text>
+<text class="cap" x="372" y="145">Neutral feed, then the Perception gap</text>
+<text class="cap" x="372" y="160">video.</text>
 </g>
-<path class="edge" d="M318,157.5 L356,144.0"/>
-<g id="arm-c_pgap" data-text="Watches the Perception gap video, then writes about a time they misjudged someone from the other party.">
+<path class="edge" d="M318,202.5 L356,144.0"/>
+<g id="arm-c3" data-text="Hostile elite/media feed, then a control screen.">
 <rect class="arm" x="360" y="195" width="300" height="78" rx="6"/>
-<text x="372" y="217">Perception gap video plus recall</text>
-<text class="cap" x="372" y="235">Watches the Perception gap video, then</text>
-<text class="cap" x="372" y="250">writes about a time they misjudged</text>
+<text x="372" y="217">Hostile feed, control</text>
+<text class="cap" x="372" y="235">Hostile elite/media feed, then a control</text>
+<text class="cap" x="372" y="250">screen.</text>
 </g>
-<path class="edge" d="M318,157.5 L356,234.0"/>
+<path class="edge" d="M318,202.5 L356,234.0"/>
+<g id="arm-c4" data-text="Hostile feed, then the Perception gap video.">
+<rect class="arm" x="360" y="285" width="300" height="78" rx="6"/>
+<text x="372" y="307">Hostile feed, video</text>
+<text class="cap" x="372" y="325">Hostile feed, then the Perception gap</text>
+<text class="cap" x="372" y="340">video.</text>
+</g>
+<path class="edge" d="M318,202.5 L356,324.0"/>
 <g>
-<rect class="box" x="700" y="97.5" width="240" height="120" rx="6"/>
-<text class="kicker" x="712" y="119.5">Primary outcome</text>
-<text x="712" y="137.5">Support for undemocratic</text>
-<text x="712" y="155.5">practices (mean of four</text>
-<text x="712" y="173.5">items), with the</text>
-<text x="712" y="191.5">thermometer gap as the</text>
+<rect class="box" x="700" y="151.5" width="240" height="102" rx="6"/>
+<text class="kicker" x="712" y="173.5">Primary outcome</text>
+<text x="712" y="191.5">Affective polarization: in-</text>
+<text x="712" y="209.5">party minus out-party</text>
+<text x="712" y="227.5">feeling thermometer.</text>
 </g>
-<path class="edge" d="M660,157.5 L696,157.5"/></svg>
+<path class="edge" d="M660,202.5 L696,202.5"/></svg>

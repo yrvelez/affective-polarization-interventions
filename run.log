@@ -1,34 +1,32 @@
 [filedrawer] stage ingest
 [filedrawer] stage pii
-[filedrawer] PII scan (header + first row only): flagged 1 column(s): RecordedDate [known_identifier_column]. Action: dropped 1, kept by whitelist 0.
+[filedrawer] PII scan (header + first 5 rows): flagged 3 column(s): RecordedDate [known_identifier_column], dem_intervention [value_pattern:free_text], rep_intervention [value_pattern:free_text]. Action: dropped 3, kept by whitelist 0.
 [filedrawer] stage tidy
 [filedrawer] stage pap
 [filedrawer] pap: loaded author-supplied /Users/yamil/Projects/filedrawer/affective_polarization/pap_labeled.json (papreader agent skipped)
-[filedrawer] cleared 22 file(s) from the previous run
+[filedrawer] cleared 16 file(s) from the previous run
 [filedrawer] stage clean
-[filedrawer] wrote data/clean.csv: 4547 rows, 79 columns
+[filedrawer] wrote data/clean.csv: 4485 rows, 78 columns
 [filedrawer] stage registered
-[filedrawer] H1: post_ap ~ C(arm_code, Treatment(reference='T0')) + pre_ap | 32 arms vs Control, N=3825, HC2 SEs, weights=ipw_weight; 1 arm(s) supported; pooled=-0.819 (SE 0.291, p=0.0049, tau2=0.0000, I2=0.00)
-[filedrawer] H2: post_udp ~ C(arm_code, Treatment(reference='T0')) + pre_udp | 32 arms vs Control, N=3953, HC2 SEs, weights=ipw_weight; 0 arm(s) supported; pooled=-0.015 (SE 0.015, p=0.3087, tau2=0.0000, I2=0.00)
-[filedrawer] wrote results/registered_summary.csv (66 rows)
+[filedrawer] H1: post_ap ~ C(arm_code, Treatment(reference='T0')) + pre_ap + pre_udp | 32 arms vs Control, N=3772, HC2 SEs, weights=ipw_weight; 1 arm(s) supported
+[filedrawer] H2: post_udp ~ C(arm_code, Treatment(reference='T0')) + pre_ap + pre_udp | 32 arms vs Control, N=3814, HC2 SEs, weights=ipw_weight; 1 arm(s) supported
+[filedrawer] wrote results/registered_summary.csv (64 rows)
 [filedrawer] stage tag
 [filedrawer] stage exploratory
-[filedrawer] exploratory: no analyses recorded; removed scripts/04_exploratory.py, results/E1_heterogeneity_partisan.csv
-[filedrawer] tags: H1=unregistered, H2=unregistered
+[filedrawer] tags: H1=registered, H2=registered, E1=exploratory, E2=exploratory, E3=exploratory
 [filedrawer] stage litreview
 [filedrawer] stage write
 [filedrawer] diagram: template (figures/design.svg)
 [filedrawer] stage review
-[filedrawer] review (light,advanced): 25 issue(s); provisional decision: major_revision
+[filedrawer] review (light): 7 issue(s); provisional decision: major_revision
+[filedrawer] stage robustness
 [filedrawer] stage revise
-[filedrawer] revise: 22 change note(s) from the decision letter
-[filedrawer] stage signoff
-[filedrawer] sign-off: major_revision (12/12 claims supported on the revised text)
-[filedrawer] stage extensions
-[filedrawer] research potential: 5 cause(s), 0 debate(s), 4 brief(s)
-[filedrawer] extensions: 3 proposal(s) validated by autoexperiment; dropped: advance_design: Unreachable block End.
+[filedrawer] correction pass 1: 11 note(s) from the writing agent
+[filedrawer] claim re-check: 11/12 claims supported on the corrected text
+[filedrawer] correction pass 2: 1 note(s) from the writing agent
+[filedrawer] claim re-check: 12/12 claims supported on the corrected text
 [filedrawer] stage package
-[filedrawer] done: . (tokens in/out 418465/57822, cost $0.8217)
+[filedrawer] done: . (tokens in/out 239856/16545, cost $0.4676)
 
 Study package written to .
   report: report.md

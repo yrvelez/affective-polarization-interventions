@@ -1,33 +1,33 @@
 {
  "id": "generalizability_conditional",
  "kind": "boundary",
- "title": "Perception gap video across partisanship and sample",
- "rationale": "The Perception gap video was the only arm with p<0.05 (-2.3 points, 95% CI [-4.3, -0.4], p=0.019, uncorrected) in a single Lucid panel with only partisans, and heterogeneity tests were too imprecise to interpret. This design replicates it in two sample sources across Democrats, Republicans and independent leaners with pre-measures.",
- "contribution": "Tests whether the Perception gap video effect on the feeling thermometer and undemocratic-practices support holds across party, partisan strength and sample source.",
+ "title": "Who does the Perception gap video work for?",
+ "rationale": "The Perception gap video lowered affective polarization by 2.3 points (95% CI [-4.3, -0.4], n=641 vs control 229), but exploratory party and interest interactions were null with intervals of about ±7 points. A dedicated, stratified, powered test is needed to learn whether the effect depends on partisanship, political interest or baseline misperception.",
+ "contribution": "Provides a preregistered, powered test of three moderators of the Perception gap video effect on affective polarization.",
  "limitations": [
-  "Second panel may differ in attention and demographics, confounding sample with mode",
-  "Outcomes measured immediately after exposure; durability unknown",
-  "Independent leaners are a heterogeneous group and the in-party/out-party measure depends on leaning",
-  "Subgroup and interaction tests remain underpowered unless the target n is reached"
+  "Interaction power depends on the assumed SE; true heterogeneity may be smaller than detectable.",
+  "Immediate outcomes only; durability is unknown.",
+  "Pre-treatment misperception measurement may itself prime respondents and weaken the treatment.",
+  "Quota panel is not truly probability-based."
  ],
  "design": {
-  "title": "Perception gap video vs control across party and sample",
-  "overview": "Respondents from a Lucid panel and a second panel are stratified by party (Democrat, Republican, independent leaner). After consent and pre-measures, they are randomized to the Perception gap video or a control, then complete the feeling thermometer and undemocratic-practices items. Effects are estimated by party and sample, with interaction tests.",
-  "hypothesis": "The Perception gap video lowers affective polarization relative to control, and the effect does not differ materially by party, partisan strength or sample source.",
-  "primaryOutcome": "Affective polarization: in-party minus out-party feeling thermometer after treatment; secondary: mean support for undemocratic practices.",
-  "comparison": "Perception gap video vs control, with treatment x party and treatment x sample interactions, controlling for pre-treatment measures.",
-  "population": "US adults who identify with or lean toward a party, recruited from Lucid and a second panel, with quotas by party.",
+  "title": "Moderators of the Perception gap video effect",
+  "overview": "US adults from a quota panel, with Lucid as a supplementary source, are stratified by party (Democrat/Republican, leaners included) and political interest (high/low). Respondents complete pre-treatment thermometers and an out-party misperception measure, then are randomized to the Perception gap video or a control. Post-treatment thermometers follow. Three interactions are preregistered: treatment x party, treatment x interest, treatment x baseline misperception.",
+  "hypothesis": "The video effect on affective polarization is larger (more negative) for respondents with larger baseline misperception; effects of party and interest are tested as two-sided preregistered interactions.",
+  "primaryOutcome": "Affective polarization: in-party minus out-party feeling thermometer after treatment.",
+  "comparison": "Video vs control, with treatment x party, treatment x political interest and treatment x baseline misperception interactions, adjusted for pre-treatment polarization.",
+  "population": "US adults identifying as Democrat or Republican (including leaners), recruited from a quota panel plus Lucid, with quotas on party and political interest.",
   "conditions": [
    {
     "id": "c_control",
     "title": "Control",
-    "description": "Pure control: participants see 'Please continue'.",
+    "description": "Pure control: Please continue.",
     "nodeId": "arm_control"
    },
    {
     "id": "c_video",
     "title": "Perception gap video",
-    "description": "Participants watch the Perception gap video with misperception data.",
+    "description": "The Perception gap video with misperception data, as in the source study.",
     "nodeId": "arm_video"
    }
   ],
@@ -39,18 +39,18 @@
      {
       "id": "q_consent",
       "type": "MC",
-      "text": "You are invited to take part in a research study on political attitudes. Participation is voluntary and you may stop at any time. Do you consent to participate?",
+      "text": "You are invited to take part in a research study on political attitudes. It takes about 10 minutes and participation is voluntary. Do you consent to participate?",
       "tag": "consent",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "c1",
+        "id": "yes",
         "text": "I consent",
         "recode": "1"
        },
        {
-        "id": "c2",
+        "id": "no",
         "text": "I do not consent",
         "recode": "0"
        }
@@ -65,29 +65,7 @@
     "title": "Pre-treatment",
     "questions": [
      {
-      "id": "q_sample",
-      "type": "MC",
-      "text": "Which panel are you recruited from?",
-      "tag": "sample_source",
-      "multiple": false,
-      "required": true,
-      "choices": [
-       {
-        "id": "s1",
-        "text": "Lucid",
-        "recode": "1"
-       },
-       {
-        "id": "s2",
-        "text": "Second panel",
-        "recode": "2"
-       }
-      ],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_pid",
+      "id": "q_pid3",
       "type": "MC",
       "text": "Generally speaking, do you usually think of yourself as a Republican, a Democrat, an Independent, or something else?",
       "tag": "pid3",
@@ -95,31 +73,31 @@
       "required": true,
       "choices": [
        {
-        "id": "p1",
+        "id": "rep",
         "text": "Republican",
         "recode": "1"
        },
        {
-        "id": "p2",
+        "id": "dem",
         "text": "Democrat",
         "recode": "2"
        },
        {
-        "id": "p3",
+        "id": "ind",
         "text": "Independent",
         "recode": "3"
        },
        {
-        "id": "p4",
+        "id": "oth",
         "text": "Something else",
         "recode": "4"
        }
       ],
       "rows": [],
-      "sourceQuestionId": ""
+      "sourceQuestionId": "QID7"
      },
      {
-      "id": "q_lean",
+      "id": "q_pidlean",
       "type": "MC",
       "text": "Do you think of yourself as closer to the Republican Party or to the Democratic Party?",
       "tag": "pidlean",
@@ -127,17 +105,17 @@
       "required": true,
       "choices": [
        {
-        "id": "l1",
+        "id": "r",
         "text": "Closer to the Republican Party",
         "recode": "1"
        },
        {
-        "id": "l2",
+        "id": "d",
         "text": "Closer to the Democratic Party",
         "recode": "2"
        },
        {
-        "id": "l3",
+        "id": "n",
         "text": "Neither",
         "recode": "3"
        }
@@ -146,94 +124,74 @@
       "sourceQuestionId": "QID10"
      },
      {
-      "id": "q_strength",
+      "id": "q_interest",
       "type": "MC",
-      "text": "How strongly do you identify with that party?",
-      "tag": "pid_strength",
+      "text": "Generally, how interested are you in politics?",
+      "tag": "interest",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "t1",
-        "text": "Very strongly",
+        "id": "i1",
+        "text": "Extremely interested",
+        "recode": "5"
+       },
+       {
+        "id": "i2",
+        "text": "Very interested",
+        "recode": "4"
+       },
+       {
+        "id": "i3",
+        "text": "Somewhat interested",
         "recode": "3"
        },
        {
-        "id": "t2",
-        "text": "Somewhat strongly",
+        "id": "i4",
+        "text": "Not very interested",
         "recode": "2"
        },
        {
-        "id": "t3",
-        "text": "Not strongly",
+        "id": "i5",
+        "text": "Not at all interested",
         "recode": "1"
        }
       ],
       "rows": [],
-      "sourceQuestionId": ""
+      "sourceQuestionId": "QID13"
      },
      {
-      "id": "q_preap",
+      "id": "q_pre_ap",
       "type": "Matrix",
-      "text": "Please rate each group on the feeling thermometer, from 0 (cold, unfavorable) to 100 (warm, favorable); 50 means neither warm nor cold.",
+      "text": "Please rate each group on a feeling thermometer from 0 (cold, unfavorable) to 100 (warm, favorable). Choose the point closest to your feeling.",
       "tag": "pre_ap_scores",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "th0",
-        "text": "0",
-        "recode": "0"
-       },
-       {
-        "id": "th1",
-        "text": "10",
+        "id": "t0",
+        "text": "0-20 (very cold)",
         "recode": "10"
        },
        {
-        "id": "th2",
-        "text": "20",
-        "recode": "20"
-       },
-       {
-        "id": "th3",
-        "text": "30",
+        "id": "t1",
+        "text": "21-40",
         "recode": "30"
        },
        {
-        "id": "th4",
-        "text": "40",
-        "recode": "40"
-       },
-       {
-        "id": "th5",
-        "text": "50",
+        "id": "t2",
+        "text": "41-60",
         "recode": "50"
        },
        {
-        "id": "th6",
-        "text": "60",
-        "recode": "60"
-       },
-       {
-        "id": "th7",
-        "text": "70",
+        "id": "t3",
+        "text": "61-80",
         "recode": "70"
        },
        {
-        "id": "th8",
-        "text": "80",
-        "recode": "80"
-       },
-       {
-        "id": "th9",
-        "text": "90",
+        "id": "t4",
+        "text": "81-100 (very warm)",
         "recode": "90"
-       },
-       {
-        "id": "th10",
-        "text": "100",
-        "recode": "100"
        }
       ],
       "rows": [
@@ -249,68 +207,46 @@
       "sourceQuestionId": "QID11"
      },
      {
-      "id": "q_preudp",
+      "id": "q_misperc",
       "type": "Matrix",
-      "text": "Please indicate your agreement and disagreement with the following statements.",
-      "tag": "pre_udp_scores",
+      "text": "Out of every 100 members of the other party, how many do you think would say that the other side is not just wrong but a threat to the country?",
+      "tag": "pre_misperception",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "a1",
-        "text": "Strongly disagree",
-        "recode": "1"
+        "id": "m0",
+        "text": "0-20",
+        "recode": "10"
        },
        {
-        "id": "a2",
-        "text": "Disagree",
-        "recode": "2"
+        "id": "m1",
+        "text": "21-40",
+        "recode": "30"
        },
        {
-        "id": "a3",
-        "text": "Somewhat disagree",
-        "recode": "3"
+        "id": "m2",
+        "text": "41-60",
+        "recode": "50"
        },
        {
-        "id": "a4",
-        "text": "Neither agree nor disagree",
-        "recode": "4"
+        "id": "m3",
+        "text": "61-80",
+        "recode": "70"
        },
        {
-        "id": "a5",
-        "text": "Somewhat agree",
-        "recode": "5"
-       },
-       {
-        "id": "a6",
-        "text": "Agree",
-        "recode": "6"
-       },
-       {
-        "id": "a7",
-        "text": "Strongly agree",
-        "recode": "7"
+        "id": "m4",
+        "text": "81-100",
+        "recode": "90"
        }
       ],
       "rows": [
        {
         "id": "r1",
-        "text": "My party should reduce the number of polling stations in areas that support the other party."
-       },
-       {
-        "id": "r2",
-        "text": "Governors from my party should ignore unfavorable court rulings by judges appointed by the other party."
-       },
-       {
-        "id": "r3",
-        "text": "Governors from my party should prosecute journalists who accuse politicians from my party of misconduct without revealing sources."
-       },
-       {
-        "id": "r4",
-        "text": "Members of my party should not accept the results of elections if they lose."
+        "text": "Your estimate"
        }
       ],
-      "sourceQuestionId": "QID12"
+      "sourceQuestionId": ""
      }
     ]
    },
@@ -333,12 +269,12 @@
    },
    {
     "id": "b_video",
-    "title": "Perception gap video",
+    "title": "Video",
     "questions": [
      {
       "id": "q_vid",
       "type": "DB",
-      "text": "Please watch this video carefully. {{ed:video1}}",
+      "text": "Please watch the following video carefully. {{ed:video1}}",
       "tag": "video_stim",
       "multiple": false,
       "required": false,
@@ -348,12 +284,23 @@
      },
      {
       "id": "q_manip",
-      "type": "TE",
+      "type": "MC",
       "text": "What did you just see, read, or watch?",
       "tag": "manip_check",
       "multiple": false,
       "required": true,
-      "choices": [],
+      "choices": [
+       {
+        "id": "a",
+        "text": "A video about how we misperceive the other party",
+        "recode": "1"
+       },
+       {
+        "id": "b",
+        "text": "Something else",
+        "recode": "0"
+       }
+      ],
       "rows": [],
       "sourceQuestionId": "QID31"
      }
@@ -364,67 +311,37 @@
     "title": "Post-treatment",
     "questions": [
      {
-      "id": "q_postap",
+      "id": "q_post_ap",
       "type": "Matrix",
-      "text": "Please rate each group on the feeling thermometer, from 0 (cold, unfavorable) to 100 (warm, favorable); 50 means neither warm nor cold.",
+      "text": "Please rate each group on a feeling thermometer from 0 (cold, unfavorable) to 100 (warm, favorable). Choose the point closest to your feeling.",
       "tag": "post_ap_scores",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "ph0",
-        "text": "0",
-        "recode": "0"
-       },
-       {
-        "id": "ph1",
-        "text": "10",
+        "id": "t0",
+        "text": "0-20 (very cold)",
         "recode": "10"
        },
        {
-        "id": "ph2",
-        "text": "20",
-        "recode": "20"
-       },
-       {
-        "id": "ph3",
-        "text": "30",
+        "id": "t1",
+        "text": "21-40",
         "recode": "30"
        },
        {
-        "id": "ph4",
-        "text": "40",
-        "recode": "40"
-       },
-       {
-        "id": "ph5",
-        "text": "50",
+        "id": "t2",
+        "text": "41-60",
         "recode": "50"
        },
        {
-        "id": "ph6",
-        "text": "60",
-        "recode": "60"
-       },
-       {
-        "id": "ph7",
-        "text": "70",
+        "id": "t3",
+        "text": "61-80",
         "recode": "70"
        },
        {
-        "id": "ph8",
-        "text": "80",
-        "recode": "80"
-       },
-       {
-        "id": "ph9",
-        "text": "90",
+        "id": "t4",
+        "text": "81-100 (very warm)",
         "recode": "90"
-       },
-       {
-        "id": "ph10",
-        "text": "100",
-        "recode": "100"
        }
       ],
       "rows": [
@@ -438,70 +355,6 @@
        }
       ],
       "sourceQuestionId": "QID28"
-     },
-     {
-      "id": "q_postudp",
-      "type": "Matrix",
-      "text": "Please indicate your agreement and disagreement with the following statements.",
-      "tag": "post_udp_scores",
-      "multiple": false,
-      "required": true,
-      "choices": [
-       {
-        "id": "b1",
-        "text": "Strongly disagree",
-        "recode": "1"
-       },
-       {
-        "id": "b2",
-        "text": "Disagree",
-        "recode": "2"
-       },
-       {
-        "id": "b3",
-        "text": "Somewhat disagree",
-        "recode": "3"
-       },
-       {
-        "id": "b4",
-        "text": "Neither agree nor disagree",
-        "recode": "4"
-       },
-       {
-        "id": "b5",
-        "text": "Somewhat agree",
-        "recode": "5"
-       },
-       {
-        "id": "b6",
-        "text": "Agree",
-        "recode": "6"
-       },
-       {
-        "id": "b7",
-        "text": "Strongly agree",
-        "recode": "7"
-       }
-      ],
-      "rows": [
-       {
-        "id": "r1",
-        "text": "My party should reduce the number of polling stations in areas that support the other party."
-       },
-       {
-        "id": "r2",
-        "text": "Governors from my party should ignore unfavorable court rulings by judges appointed by the other party."
-       },
-       {
-        "id": "r3",
-        "text": "Governors from my party should prosecute journalists who accuse politicians from my party of misconduct without revealing sources."
-       },
-       {
-        "id": "r4",
-        "text": "Members of my party should not accept the results of elections if they lose."
-       }
-      ],
-      "sourceQuestionId": "QID29"
      }
     ]
    },
@@ -512,8 +365,25 @@
      {
       "id": "q_debrief",
       "type": "DB",
-      "text": "Thank you for participating. This study examined whether information about how Americans perceive the other party changes political attitudes. The video presented data on misperceptions between partisans. If you have questions, contact the research team.",
+      "text": "Thank you. This study examined how information about the other party affects political attitudes. The video described how Americans often overestimate the other party's hostility. Contact the research team with any questions.",
       "tag": "debrief",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_end",
+    "title": "End",
+    "questions": [
+     {
+      "id": "q_end",
+      "type": "DB",
+      "text": "Thank you for your time. You did not consent, so the survey ends here.",
+      "tag": "end_text",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -537,18 +407,31 @@
     "operator": "equals"
    },
    {
-    "id": "n_noconsent",
+    "id": "n_br",
     "type": "branch",
-    "label": "Non-consent",
+    "label": "No consent",
     "children": [
+     "n_endblock",
      "n_end"
     ],
     "blockId": "",
     "field": "",
     "value": "",
     "questionId": "q_consent",
-    "choiceId": "c2",
+    "choiceId": "no",
     "operator": "selected"
+   },
+   {
+    "id": "n_endblock",
+    "type": "block",
+    "label": "End text",
+    "children": [],
+    "blockId": "b_end",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
    },
    {
     "id": "n_end",
@@ -565,7 +448,7 @@
    {
     "id": "n_pre",
     "type": "block",
-    "label": "Pre-treatment",
+    "label": "Pre",
     "children": [],
     "blockId": "b_pre",
     "field": "",
@@ -607,7 +490,7 @@
    {
     "id": "set_control",
     "type": "embedded",
-    "label": "Set condition control",
+    "label": "Set control",
     "children": [],
     "blockId": "",
     "field": "condition",
@@ -647,11 +530,11 @@
    {
     "id": "set_video",
     "type": "embedded",
-    "label": "Set condition video",
+    "label": "Set video",
     "children": [],
     "blockId": "",
     "field": "condition",
-    "value": "perception_gap_video",
+    "value": "video",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
@@ -659,11 +542,11 @@
    {
     "id": "set_video1",
     "type": "embedded",
-    "label": "Set video stimulus",
+    "label": "Video stimulus",
     "children": [],
     "blockId": "",
     "field": "video1",
-    "value": "[VIDEO: Perception gap video showing data on how partisans overestimate the other side's hostility, several minutes long]",
+    "value": "[VIDEO: Perception gap video showing how Democrats and Republicans overestimate each other's hostility, about 6 minutes]",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
@@ -683,7 +566,7 @@
    {
     "id": "n_post",
     "type": "block",
-    "label": "Post-treatment",
+    "label": "Post",
     "children": [],
     "blockId": "b_post",
     "field": "",
@@ -707,22 +590,24 @@
   ],
   "roots": [
    "n_consent",
-   "n_noconsent",
+   "n_br",
    "n_pre",
    "r1",
    "n_post",
    "n_debrief"
   ],
   "assumptions": [
-   "Power target: about 1500 per arm to detect 2.0 points at 80% power; interaction contrasts need roughly 2x the SE of the main effect (observed SE 0.995 at n=641 implies detecting about 2 points in subgroups at around 750 per cell).",
-   "Roughly equal allocation across the two samples, with quotas by party; randomization within sample and party strata",
-   "Second sample is a probability-based or alternative panel; sample source is recorded from panel metadata",
-   "Analyses are pre-registered; ANCOVA with pre-treatment thermometer or UDP; HC2 errors",
-   "Thermometer is collected as an 11-point grid (0 to 100 in steps of 10) because slider items are not available; in-party minus out-party is computed from party identification and leaning"
+   "Power: about 1200 per arm (about 2400 total) to detect a 2.5-point main effect at 80% power; interaction SEs of 3-3.6 at source arm sizes mean interaction MDEs need about 4x the n of the main effect.",
+   "Thermometers are collected as 5 binned points because the schema has no slider type; a slider implementation on the platform is preferable and should replace the bins.",
+   "Quotas: equal numbers of Democrats and Republicans, and high/low interest cells (extremely/very vs lower) approximately balanced.",
+   "Platform: a quota panel (probability-based if available) plus Lucid, with panel source recorded and controlled for.",
+   "Three interactions preregistered with Holm correction; baseline misperception is mean-centered.",
+   "Compensation set at the panel standard for a 10-minute survey."
   ],
   "unresolved": [
-   "Hosting of the Perception gap video file",
-   "Choice of second panel vendor, compensation and IRB number"
+   "The actual Perception gap video file must be supplied and hosted by the research team.",
+   "IRB approval number and compensation details must be supplied by the research team.",
+   "The panel vendor and quota feasibility for 2400 respondents must be confirmed."
   ],
   "evidence": [
    {
@@ -735,9 +620,9 @@
    },
    {
     "id": "e2",
-    "title": "The Limits of Partisan Prejudice",
-    "url": "https://doi.org/10.1086/688223",
-    "claim": "Lelkes & Westwood (2016)",
+    "title": "Pre-registration of the source study",
+    "url": "https://osf.io/k2nwj",
+    "claim": "the registered design and outcomes",
     "excerpt": "",
     "origin": "supplied"
    }

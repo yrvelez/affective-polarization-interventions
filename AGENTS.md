@@ -5,7 +5,7 @@ This repository is a study package from [The File Drawer](https://filedrawer.org
 ## Reanalyzing this study
 
 **Data (public, de-identified; read and analyze them directly):**
-- `data/clean.csv`: the analysis file, after the planned exclusions; 4,547 respondents, one row each.
+- `data/clean.csv`: the analysis file, after the planned exclusions; 4,485 respondents, one row each.
 - `data/raw_tidy.csv`: the de-identified file before exclusions.
 
 **What the columns mean:** `codebook.md` (labels and value labels; `codebook.json` for code). Identifier and free-text columns were removed before release.

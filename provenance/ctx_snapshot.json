@@ -12,7 +12,7 @@
   "branch": "main",
   "package_at_root": true,
   "n_raw": 6086,
-  "n_analysis": 4547
+  "n_analysis": 4485
  },
  "pap_source": "author-supplied pap.json",
  "data_columns": [
@@ -90,6 +90,7 @@
   "post_ap",
   "post_udp",
   "arm",
+  "screener_pass",
   "ipw_weight"
  ],
  "categorical": [
@@ -120,25 +121,34 @@
  "exploratory": [
   {
    "id": "E1",
-   "title": "Completers-only re-fit of planned H1 and H2",
-   "rationale": "Partial completers may differ in attention, so the planned estimates are re-fit on completed surveys to check stability.",
-   "method": "The planned H1 and H2 arm contrasts were re-estimated with the same specification on all respondents and again on only respondents who finished the survey, and the two sets of estimates were compared side by side.",
-   "table": "results/E1_completers_robustness.csv",
+   "title": "Completers-only robustness of planned H1",
+   "rationale": "Partial responses are included in the planned sample, so restricting to fully completed surveys checks whether the planned affective polarization estimates depend on who finished.",
+   "method": "The planned H1 model for each intervention versus the pure control was re-fit on completed responses only and compared side by side with the planned estimates.",
+   "table": "results/E1_completers_only.csv",
    "figure": null,
-   "finding": "Restricting to completers left every arm estimate unchanged (largest absolute change 0.00); H1 had 1 and H2 had 0 of 32 arm contrasts at p<0.05 in both samples, so the planned results are not sensitive to partial completion."
+   "finding": "Re-fitting on 3,900 completers (87% of the sample) gave a median standard-error ratio of 1.00 relative to the planned estimates, so the planned H1 estimates are not sensitive to dropping partial responses."
   },
   {
    "id": "E2",
-   "title": "Arm by Democrat-versus-other heterogeneity on the planned H1 outcome",
-   "rationale": "The pooled planned test may hide opposite responses between Democrats and other respondents, so arm effects are compared across the two groups.",
-   "method": "The planned H1 model was extended with an interaction between each arm and a 0/1 indicator for Democratic partisanship, and the interaction terms were reported per arm.",
-   "table": "results/E2_partisan_heterogeneity.csv",
+   "title": "Heterogeneity of planned H1 by Democratic identification",
+   "rationale": "Partisan identity is central to affective polarization, so the planned H1 effects are checked for differences between Democrats and non-Democrats.",
+   "method": "The planned H1 model was re-fit with an interaction between each intervention and a Democratic-identification indicator, and the interaction terms were tested.",
+   "table": "results/E2_dem_heterogeneity.csv",
    "figure": null,
-   "finding": "Of 32 arm-by-Democrat interaction terms on post_ap, 0 had p<0.05 with no multiplicity correction, so no arm's effect detectably differs between Democrats and other respondents."
+   "finding": "Of 32 arm-by-group interaction tests, 0 were significant at p<0.05."
+  },
+  {
+   "id": "E3",
+   "title": "Heterogeneity of planned H1 by political interest",
+   "rationale": "Political interest may moderate how strongly people engage with the interventions, so planned H1 effects are compared between high- and low-interest respondents.",
+   "method": "The planned H1 model was re-fit with an interaction between each intervention and a high-interest indicator (interest rated 4 or 5), and the interaction terms were tested.",
+   "table": "results/E3_interest_heterogeneity.csv",
+   "figure": null,
+   "finding": "Of 32 arm-by-group interaction tests, 0 were significant at p<0.05."
   }
  ],
  "lit": {
-  "text": "Prior findings on prejudice-reduction interventions bear on H1 and H2 most directly. A large meta-analytic review of 418 experiments finds that these approaches have been evaluated extensively, with meta-analysis used to estimate average effects of different methods (Paluck et al., 2020). Work on partisan prejudice and affective polarization frames the outcome side of such interventions, showing that partisan animus is broad and extends into non-political settings (Lelkes and Westwood, 2016), and that polarization is shaped by local context (Druckman et al., 2020). Evidence on the downstream consequences of affective polarization is limited and largely from the United States, with a multi-country survey experiment examining its effects in nine democracies (Harteveld et al., 2026). Work on who endorses political violence adds a related outcome domain (Armaly and Enders, 2022). The retrieved works do not directly contest the hypotheses, but the evidence base is heterogeneous in what it measures as an outcome. The meta-analytic review pools across many intervention types, so it cannot by itself indicate that any specific intervention moves a specific outcome (Paluck et al., 2020), while the cross-national experiment suggests that effects of polarization may differ outside the United States (Harteveld et al., 2026). The present design, which compares each intervention against a control on separately defined post-treatment outcomes, can speak to whether each intervention shifts each outcome within a single study, but not to the broader question of which mechanism links prejudice to downstream behaviour.",
+  "text": "Prior findings on the study's primary hypothesis come from meta-analytic work on prejudice reduction, which reviews hundreds of experiments to estimate average intervention effects and to ask which approaches work best (Paluck et al., 2020). Work on affective polarization treats it as a distinct construct tied to identity rather than policy disagreement, which helps explain why interventions aimed at out-group attitudes may move it (Mason, 2018), and studies of local context suggest that affective polarization varies across environments in ways that bear on whether effects generalise (Druckman et al., 2020). Taken together, the supporting literature gives reason to expect that some interventions may reduce affective polarization, though it offers no direct estimate for the specific 32 interventions under test. The contesting works frame polarization more pessimistically and, in part, locate its causes in political and structural conditions that individual-level interventions may not reach. McCoy and Somer (2018) argue that severe polarization is driven by system-level dynamics and that its consequences for democracy are serious, which implies that modest interventions may have limited leverage. Lorenz-Spreen et al. (2022) and Persily et al. (2020) disagree about the strength of the link between digital media and democratic outcomes, with the systematic review emphasising that causal evidence is mixed and contested. The study's design, which compares each intervention against a pure control and measures both affective polarization (H1) and support for undemocratic practices (H2), can speak to whether individual-level effects exist at all, but it cannot adjudicate the structural claims about pernicious polarization made in the contesting works.",
   "works": [
    {
     "id": "https://openalex.org/W3085414015",
@@ -155,7 +165,21 @@
     "cited_by": 707,
     "abstract": "The past decade has seen rapid growth in research that evaluates methods for reducing prejudice. This essay reviews 418 experiments reported in 309 manuscripts from 2007 to 2019 to assess which approaches work best and why. Our quantitative assessment uses meta-analysis to estimate average effects. Our qualitative assessment calls attention to landmark studies that are noteworthy for sustained int",
     "stance": "supporting",
-    "query": "affective polarization intervention experiment reduces partisan feeling thermometer gap"
+    "query": "interventions reducing affective polarization feeling thermometer"
+   },
+   {
+    "id": "https://openalex.org/W2798154493",
+    "title": "Ideologues without Issues: The Polarizing Consequences of Ideological Identities",
+    "authors": [
+     "Lilliana Mason"
+    ],
+    "year": 2018,
+    "doi": "10.1093/poq/nfy005",
+    "venue": "Public Opinion Quarterly",
+    "cited_by": 556,
+    "abstract": "Abstract The distinction between a person’s ideological identity and their issue positions has come more clearly into focus in recent research. Scholars have pointed out a significant difference between identity-based and issue-based ideology in the American electorate. However, the affective and social effects of these separate elements of ideology have not been sufficiently explored. Drawing on ",
+    "stance": "supporting",
+    "query": "interventions reducing affective polarization feeling thermometer"
    },
    {
     "id": "https://openalex.org/W3109607089",
@@ -172,101 +196,86 @@
     "cited_by": 470,
     "abstract": "",
     "stance": "supporting",
-    "query": "affective polarization intervention experiment reduces partisan feeling thermometer gap"
+    "query": "interventions reducing affective polarization feeling thermometer"
    },
    {
-    "id": "https://openalex.org/W2561427996",
-    "title": "The Limits of Partisan Prejudice",
+    "id": "https://openalex.org/W2905868634",
+    "title": "Toward a Theory of Pernicious Polarization and How It Harms Democracies: Comparative Evidence and Possible Remedies",
     "authors": [
-     "Yphtach Lelkes",
-     "Sean Jeremy Westwood"
+     "Jennifer McCoy",
+     "Murat Somer"
     ],
-    "year": 2016,
-    "doi": "10.1086/688223",
-    "venue": "The Journal of Politics",
-    "cited_by": 317,
-    "abstract": "Partisanship increasingly factors into the behavior of Americans in both political and nonpolitical situations, yet the bounds of partisan prejudice are largely unknown. In this paper, we systematically evaluate the limits of partisan prejudice using a series of five studies situated within a typology of prejudice. We find that partisan prejudice predicts suppression of hostile rhetoric toward one",
-    "stance": "supporting",
-    "query": "affective polarization intervention experiment reduces partisan feeling thermometer gap"
+    "year": 2018,
+    "doi": "10.1177/0002716218818782",
+    "venue": "The Annals of the American Academy of Political and Social Science",
+    "cited_by": 595,
+    "abstract": "This article compares the dynamics of polarization in the eleven case studies analyzed in this special issue to draw conclusions about antecedents of severe political and societal polarization, the characteristics and mechanisms of such polarization, and consequences of severe polarization for democracy. We find that the emergence of pernicious polarization (when a society is split into mutually d",
+    "stance": "contesting",
+    "query": "null effects of depolarization interventions on partisan affect"
    },
    {
-    "id": "https://openalex.org/W4281967965",
-    "title": "Who Supports Political Violence?",
+    "id": "https://openalex.org/W4308433048",
+    "title": "A systematic review of worldwide causal and correlational evidence on digital media and democracy",
     "authors": [
-     "Miles Armaly",
-     "Adam M Enders"
+     "Philipp Lorenz-Spreen",
+     "Lisa Oswald",
+     "Stephan Lewandowsky",
+     "Ralph Hertwig"
     ],
     "year": 2022,
-    "doi": "10.1017/s1537592722001086",
-    "venue": "Perspectives on Politics",
-    "cited_by": 61,
-    "abstract": "The last few years have witnessed an increase in democratic “backsliding” in the United States—a decline in the quality of democracy, typically accompanied by an influx of non-normative behavior, such as political violence. Despite the real consequences of support for violence, fairly little is known about such an extremist attitude outside studies of terrorism or aggression. Using a unique survey",
-    "stance": "method",
-    "query": "multi-arm survey experiment feeling thermometer affective polarization outcomes"
+    "doi": "10.1038/s41562-022-01460-1",
+    "venue": "Nature Human Behaviour",
+    "cited_by": 346,
+    "abstract": "One of today's most controversial and consequential issues is whether the global uptake of digital media is causally related to a decline in democracy. We conducted a systematic review of causal and correlational evidence (N = 496 articles) on the link between digital media use and different political variables. Some associations, such as increasing political participation and information consumpt",
+    "stance": "contesting",
+    "query": "null effects of depolarization interventions on partisan affect"
    },
    {
-    "id": "https://openalex.org/W4300003029",
-    "title": "The (alleged) consequences of affective polarization: A survey experiment in nine democracies",
+    "id": "https://openalex.org/W4211179769",
+    "title": "Social Media and Democracy",
     "authors": [
-     "Eelco Harteveld",
-     "Lars Erik Berntzen",
-     "Andrej Kokkonen",
-     "Haylee Kelsall"
+     "Nathaniel Persily",
+     "Joshua A. Tucker",
+     "Andrew M. Guess",
+     "Benjamin A. Lyons"
     ],
-    "year": 2026,
-    "doi": "10.1017/s1475676526101273",
-    "venue": "European Journal of Political Research",
-    "cited_by": 18,
-    "abstract": "Abstract Affective polarization (or antipathy between supporters of opposing political camps) is considered a threat to societal cohesion and democratic stability worldwide. However, causal evidence of its impact remains scarce, especially outside the United States. Our study examines the individual-level consequences of affective polarization by manipulating it in a survey experiment in nine coun",
-    "stance": "method",
-    "query": "multi-arm survey experiment feeling thermometer affective polarization outcomes"
-   },
-   {
-    "id": "https://openalex.org/W4384277430",
-    "title": "The state of evidence for social and emotional learning: A contemporary meta-analysis of universal school-based SEL interventions",
-    "authors": [
-     "Christina Cipriano",
-     "Michael J. Strambler",
-     "Lauren Hunter Naples",
-     "Cheyeon Ha"
-    ],
-    "year": 2023,
-    "doi": "10.1111/cdev.13968",
-    "venue": "Child Development",
-    "cited_by": 594,
-    "abstract": "This article provides a systematic review and meta-analysis of the current evidence for universal school-based (USB) social and emotional learning (SEL) interventions for students in kindergarten through 12th grade available from 2008 through 2020. The sample includes 424 studies from 53 countries, reflecting 252 discrete USB SEL interventions, involving 575,361 students. Results endorsed that, co",
-    "stance": "citing",
-    "query": "cites:W3085414015"
+    "year": 2020,
+    "doi": "10.1017/9781108890960",
+    "venue": "Cambridge University Press eBooks",
+    "cited_by": 299,
+    "abstract": "Over the last five years, widespread concern about the effects of social media on democracy has led to an explosion in research from different disciplines and corners of academia. This book is the first of its kind to take stock of this emerging multi-disciplinary field by synthesizing what we know, identifying what we do not know and obstacles to future research, and charting a course for the fut",
+    "stance": "contesting",
+    "query": "null effects of depolarization interventions on partisan affect"
    }
   ],
   "queries": [
-   "affective polarization intervention experiment reduces partisan feeling thermometer gap",
-   "depolarization intervention undemocratic practices support partisans survey experiment",
-   "affective polarization interventions null effects durable persistence decay",
-   "partisan animosity intervention backfire ineffective demand effects",
-   "multi-arm survey experiment feeling thermometer affective polarization outcomes"
+   "interventions reducing affective polarization feeling thermometer",
+   "perspective-getting or contact interventions reduce partisan animosity",
+   "null effects of depolarization interventions on partisan affect",
+   "affective polarization persistent despite interventions and backfire effects of corrective messages",
+   "m"
   ],
   "query_sets": {
    "supporting": [
-    "affective polarization intervention experiment reduces partisan feeling thermometer gap",
-    "depolarization intervention undemocratic practices support partisans survey experiment"
+    "interventions reducing affective polarization feeling thermometer",
+    "perspective-getting or contact interventions reduce partisan animosity"
    ],
    "contesting": [
-    "affective polarization interventions null effects durable persistence decay",
-    "partisan animosity intervention backfire ineffective demand effects"
+    "null effects of depolarization interventions on partisan affect",
+    "affective polarization persistent despite interventions and backfire effects of corrective messages"
    ],
    "method": [
-    "multi-arm survey experiment feeling thermometer affective polarization outcomes"
+    "m"
    ]
   },
-  "debate_hint": "Whether prejudice-reduction interventions produce effects that carry through to downstream political outcomes such as support for violence, and whether such effects generalise beyond the United States.",
+  "debate_hint": "Whether individual-level interventions can measurably reduce affective polarization and support for undemocratic practices, or whether these outcomes are driven by structural conditions that such interventions cannot reach.",
   "degraded": null
  },
  "tags": [
   {
    "analysis_id": "H1",
    "kind": "hypothesis",
-   "tag": "unregistered",
+   "tag": "registered",
    "differences": [],
    "interpretations": [],
    "justification": ""
@@ -274,7 +283,7 @@
   {
    "analysis_id": "H2",
    "kind": "hypothesis",
-   "tag": "unregistered",
+   "tag": "registered",
    "differences": [],
    "interpretations": [],
    "justification": ""
@@ -292,80 +301,95 @@
    "tag": "exploratory",
    "differences": [],
    "justification": "proposed by the exploratory agent; not pre-registered"
+  },
+  {
+   "analysis_id": "E3",
+   "kind": "exploratory",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "proposed by the exploratory agent; not pre-registered"
   }
  ],
  "sections": {
   "takeaways": [
-   "Across 32 student-designed interventions, the pooled effect on affective polarization (feeling thermometer) was −0.8 points (95% CI [−1.4, −0.2], p = 0.005), a small reduction.",
-   "Only the Perception gap video reached nominal significance on affective polarization: −2.3 points (95% CI [−4.3, −0.4], p = 0.019, two-sided, uncorrected). Other arms had similar point estimates with wide intervals.",
-   "Support for undemocratic practices was not distinguishable from control: the pooled estimate was −0.015 (95% CI [−0.044, 0.014]), and no single arm stood out.",
-   "Caveat: the study was not pre-registered, so every test is post hoc. Many arms are small, and the 64 arm-level tests were not corrected for multiplicity."
+   "In this registered experiment, only one of 32 interventions, the Perception gap video, lowered affective polarization relative to control: −2.3 points on the thermometer scale (95% CI [−4.3, −0.4]).",
+   "The McCain defends Obama video raised support for undemocratic practices by 0.17 scale points (95% CI [0.02, 0.33], p = 0.032), the only registered arm with a detectable shift on that outcome.",
+   "The other arms were not distinguishable from control on either affective polarization or support for undemocratic practices; their intervals are wide and do not rule out modest effects.",
+   "Exploratory checks are unreviewed: the completers refit used the same respondents and tests nothing new, and no subgroup interaction by party or political interest was significant.",
+   "Caveat: 64 uncorrected tests with small arms mean the two significant results sit near the threshold and may be chance."
   ],
-  "abstract": "Can short, student-designed interventions reduce affective polarization or support for undemocratic practices? We compared 32 interventions with a pure control condition in an online survey experiment on US adults from the Lucid Theorem panel. The analysis was reconstructed post hoc from a replication script and was not pre-registered, so every test is post hoc. Of 6,086 raw respondents, 4,547 entered the analysis. Pooled across arms, affective polarization after treatment was 0.8 points lower on the feeling thermometer (95% CI [−1.4, −0.2], p = 0.005). The Perception gap video was the only individual arm with an uncorrected p < 0.05, at −2.3 points (95% CI [−4.3, −0.4], p = 0.019); other arms had similar or larger point estimates with wide intervals. Support for undemocratic practices showed no distinguishable pooled change (−0.015, 95% CI [−0.044, 0.014]). Many arms were small, and the 64 arm-level tests were uncorrected, so the single-arm result should be read cautiously.",
-  "design_notes": "The study randomized US adults from the Lucid Theorem online panel to a control condition (\"Please continue\") or one of 32 interventions, such as videos, articles, images and quizzes. A thirty-third arm, a GPT-3 chatbot, was excluded after technical failures. Of 6,086 raw respondents, 4,547 were analyzed. The models drop rows with missing outcomes; the affective polarization model used 3,825 respondents. Arm sizes ranged from about 60 to 660. Nothing was pre-registered; H1 and H2 are post hoc analyses reconstructed from a replication script. Each arm is compared with control, using two-sided tests.",
+  "abstract": "Can brief, student-designed interventions reduce affective polarization? We tested 32 interventions against a pure control in a registered survey experiment on US adults from the Lucid Theorem online panel (6,086 recruited, 4,485 analysed). The primary outcome was affective polarization, measured with feeling thermometers, and the secondary outcome was support for undemocratic practices. The Perception gap video (641 respondents for the primary outcome, 646 for the secondary) lowered affective polarization by 2.3 points relative to control (95% CI [−4.3, −0.4], p = 0.021). The McCain defends Obama video raised support for undemocratic practices by 0.17 scale points (95% CI [0.02, 0.33], p = 0.032). All other interventions were not distinguishable from control on either outcome, and their wide intervals leave modest effects possible. Because 64 tests were run without correction for multiple comparisons, many arms were small, and both significant results are near the threshold, they should be read cautiously and need replication.",
+  "design_notes": "The study was registered on OSF (k2nwj) in November 2022, before the adaptive batches were analysed. Respondents were US adults from the Lucid Theorem online panel. Each of 32 interventions was compared with a pure control that simply said 'Please continue'. The GPT-3 chatbot arm was excluded because of technical failures. Of 6,086 raw responses, 4,485 entered the analysis; the models for affective polarization used 3,772 respondents. The control group had 229 respondents for affective polarization and 234 for support for undemocratic practices. Treatment arms ranged from 56 to 330 people, apart from the Perception gap video at 641 and 646.",
   "results": {
-   "H1": "The Perception gap video, the largest arm (641 respondents in the affective polarization sample; 662 in the undemocratic practices sample), lowered affective polarization by 2.3 points relative to control (95% CI [−4.3, −0.4], two-sided p = 0.019). Pooled across all 32 arms the reduction was 0.8 points (95% CI [−1.4, −0.2], p = 0.005). The other arms were not distinguishable from control; their intervals were wide and mostly spanned zero. The 'What makes an American' video (−2.6, p = 0.059) and the Patriotic article (−2.1, p = 0.100) were suggestive only. With 32 uncorrected tests, one nominal hit at p = 0.019 deserves a hedge.",
-   "H2": "No arm was distinguishable from control on support for undemocratic practices. The pooled estimate was −0.015 (95% CI [−0.044, 0.014], p = 0.309), a small and imprecise difference. The nearest case was the McCain defends Obama video at +0.144 (95% CI [−0.018, 0.306], two-sided p = 0.082), which points toward higher support, not lower. These intervals do not rule out modest effects in either direction."
+   "H1": "The Perception gap video was the one intervention that lowered affective polarization, by 2.3 points on the thermometer scale (95% CI [−4.3, −0.4], two-sided p = 0.021). Control respondents averaged 41.5 and the video group 39.6. All 31 other arms had intervals that included zero, with estimates from −2.38 to +1.36 points. The 'What makes an American' video came closest (−2.4 points, 95% CI [−5.1, 0.4]). Given 32 uncorrected comparisons, the single significant result deserves a hedge.",
+   "H2": "The McCain defends Obama video raised support for undemocratic practices by 0.17 scale points (95% CI [0.02, 0.33], two-sided p = 0.032), which is a worsening on this outcome. The other arms ranged from about −0.15 to +0.16 points relative to control, and none was distinguishable from it. Intervals were generally wide, so modest effects in either direction cannot be excluded. With 32 uncorrected tests and only 86 people in this arm, the result is fragile."
   },
   "exploratory": {
-   "E1": "An unreviewed exploratory completers-only re-fit of the post hoc H1 and H2 models was run. The rows shown are all from the full sample, so they cannot confirm how the completers estimates compare with the main models.",
-   "E2": "An unreviewed exploratory check interacted each arm with being a Democrat. None of the 32 interactions reached p < 0.05, but these tests are imprecise, so differences between Democrats and others cannot be ruled out."
+   "E1": "Exploratory and unreviewed: the completers-only fit used the same 3,772 respondents as the planned models and gave identical estimates and standard errors, so it tests nothing new.",
+   "E2": "Exploratory and unreviewed: none of the 32 arm-by-Democratic-identification interactions was significant at p < 0.05. The intervals are wide, so this cannot rule out differences between Democrats and others.",
+   "E3": "Exploratory and unreviewed: none of the 32 arm-by-political-interest interactions was significant at p < 0.05. The closest, for Shared values exercise, was −6.9 points (95% CI [−14.0, 0.2]). This does not establish that effects are uniform."
   },
-  "limitations": "No part of this study was pre-registered, so every test is post hoc and the choice of analyses could have been shaped by the data. The 64 arm-level tests were not corrected for multiplicity, and the one arm with p < 0.05 could be a chance finding. Several arms had fewer than 80 respondents, giving wide intervals that cannot exclude meaningful effects. About a quarter of raw respondents were not analyzed, and 3,825 entered the polarization model, so attrition could bias estimates if it differed by arm. The sample is an online panel of US adults, and the outcomes were measured right after exposure, so durability is unknown.",
+  "limitations": "Arms are small, mostly 56 to 330 respondents against a control of about 230, so intervals are wide and most estimates are inconclusive rather than evidence of no effect. The 64 primary and secondary tests were not corrected for multiplicity, and the two significant results have p-values near 0.02 and 0.03, so chance findings are plausible. The sample is a US online panel, and attrition (4,485 analysed of 6,086) may differ across arms. Outcomes were measured immediately after exposure, so durability is unknown. Batches were adaptive, which may complicate comparisons across arms. The design cannot speak to structural causes of polarization raised in the wider literature.",
   "revision_notes": [
-   "K1: Abstract now says the Perception gap video was the only arm with an uncorrected p < 0.05, dropped 'clearly differed', and noted other arms had similar or larger point estimates.",
-   "K2: Takeaway now says only the Perception gap video reached nominal significance, not that it alone lowered polarization.",
-   "G1: E1 and E2 text now call H1 and H2 post hoc rather than planned; the figure title is in the skeleton and could not be changed here.",
-   "G2: Pooled estimates with CIs are cited from the Key numbers block (−0.819 [−1.389, −0.249]; −0.015 [−0.044, 0.014]); adding a table row is outside the prose sections.",
-   "G3: H1 note now gives n = 641 for the polarization sample and 662 for the undemocratic practices sample.",
-   "R1: Design notes and abstract describe H1 and H2 as post hoc analyses reconstructed from the replication script; E1 and E2 reworded.",
-   "R2: Pooled figures are taken from the Key numbers block, which gives CIs and p-values.",
-   "R3: Sample sizes by outcome are now stated in the H1 note.",
-   "R4: No change needed.",
-   "F1: E1 reworded to say the completers re-fit is unreviewed and the shown rows (full sample only) cannot confirm the comparison; removed 'unchanged' and 'not sensitive' claims."
-  ]
+   "K1: E1 text now says the completers fit used the same 3,772 respondents with identical results, so it tests no sensitivity; removed 3,900/87%.",
+   "K2: H2 now says other arms ranged from about −0.15 to +0.16.",
+   "G1: E1 rewritten to match the table (same respondents, identical estimates, no sensitivity test); the takeaway was adjusted too.",
+   "G2: H2 range fixed to −0.15 to +0.16.",
+   "G3: Arm sizes are now consistently 56 to 330 in the design notes and limitations; control n of 229 (H1) and 234 (H2) stated.",
+   "G4: Perception gap n stated as 641 (H1) and 646 (H2) in the abstract and design notes.",
+   "R1: Same fix as K1/G1 for E1.",
+   "R2: H1 now says all 31 other arms had CIs including zero, with estimates from −2.38 to +1.36.",
+   "R3: Same fix as K2 for H2.",
+   "R4: Arm-size wording made consistent; control n stated.",
+   "R5: Abstract now gives 641 and 646.",
+   "F1: Removed the 3,900 / 87% / 'not sensitive' claim; the E1 finding and note now say only that the completers fit used the same 3,772 respondents with identical results and tests nothing new."
+  ],
+  "exploratory_findings": {
+   "E1": "The completers-only fit used the same 3,772 respondents as the planned models and gave identical estimates, so it tests nothing new."
+  }
  },
  "extensions": [
   {
    "qsf": "extensions/advance_design.qsf",
    "qsf_errors": [],
    "media": [
-    "pgvideo: video stimulus to supply (Perception gap video showing how partisans overestimate the other party's extrem)",
-    "plvideo: video stimulus to supply (Non-political explainer video on how bees make honey, about 4 minutes)",
-    "pre_ap_scores: set the matrix recode values after import 0-20 (very cold)=10, 21-40=30, 41-60=50, 61-80=70, 81-100 (very warm)=90",
-    "post_ap_scores: set the matrix recode values after import 0-20 (very cold)=10, 21-40=30, 41-60=50, 61-80=70, 81-100 (very warm)=90"
+    "video_pg: video stimulus to supply (Perception gap video showing how Democrats and Republicans overestimate each oth)",
+    "video_nd: video stimulus to supply (Edited version of the Perception gap video with the misperception statistics rem)",
+    "video_pl: video stimulus to supply (Neutral nonpolitical explainer video, about 6 minutes)"
    ],
    "id": "advance_design",
    "kind": "mechanism",
-   "title": "Perception gap correction with a mechanism manipulation and delayed follow-up",
+   "title": "Perception gap video: replication, mechanism and persistence",
    "brief_id": "advance_design",
    "mode": "survey_experiment",
    "debate": "D1",
-   "why": "Fixes the power and design problems by concentrating on the only arm with signal and by isolating its mechanism, adding a delayed outcome to address the immediate-measurement limit.",
+   "why": "Addresses power and design: it gives the one borderline effect a large pre-registered replication, adds a mechanism measure, and adds a delayed follow-up.",
    "power_target": {
-    "n_per_arm": 1100,
-    "mde": 1.7,
-    "basis": "Observed Perception gap video effect of -2.3 points (SE 0.995 at n = 641); sizing to detect about -1.7 at 80% power allows for winner's-curse shrinkage."
+    "n_per_arm": 1000,
+    "mde": 1.4,
+    "basis": "Observed −2.3 points with SE 0.997 at n=641; the true effect is probably smaller than the winning estimate, so size for about 1.4 points (SD about 20 implied by the SEs)."
    },
-   "rationale": "In the source study the Perception gap video was the only arm with p<0.05 on the thermometer (-2.3 points, SE 0.995, n=641), while pooled undemocratic-practices support did not move (-0.015, CI [-0.044, 0.014]) and outcomes were measured immediately. This design tests whether the effect runs through corrected beliefs about the outparty, whether it replicates against a placebo video, and whether it persists and reaches democratic attitudes.",
-   "contribution": "Separates perception-correction from generic video and attention effects, tests mediation via perceived outparty views, and measures persistence and downstream spillover.",
+   "rationale": "In the source study the Perception gap video lowered the thermometer gap by 2.3 points (SE 0.997, n=641, p=0.021), one borderline result among 64 uncorrected tests. This follow-up replicates it at scale, tests whether correcting out-party misperceptions is the channel by comparing the full video with a version lacking the misperception data, and re-measures after about 2 weeks because the source only measured outcomes immediately.",
+   "contribution": "Separates a replicated effect of the perception gap video from placebo and attention effects, tests whether the misperception correction carries it, and shows whether it persists.",
    "addresses": [],
    "validated_by": "autoexperiment",
    "status": "proposed",
    "built_at": null,
    "survey_id": null,
    "survey_url": null,
-   "hypothesis": "The Perception gap video lowers outparty animosity (thermometer gap) more than placebo or control, mediated by reduced perceived outparty extremity; the effect partly persists at follow-up, with smaller or null effects on support for undemocratic practices.",
-   "primary_outcome": "Affective polarization (in-party minus out-party feeling thermometer) immediately and at 2-4 weeks.",
-   "comparison": "Perception gap video vs placebo video; Perception gap video vs statistics-only text; each vs control; mediation via change in perceived outparty views.",
+   "hypothesis": "The full Perception gap video lowers the in-party minus out-party thermometer gap relative to control by about 1.4 points or more. The effect is mediated by reduced misperception of out-party attitudes, so the no-data variant has a smaller effect. Some of the effect remains at about 2 weeks. Undemocratic-practice support does not increase.",
+   "primary_outcome": "Affective polarization (in-party minus out-party thermometer) immediately after exposure, full video versus control.",
+   "comparison": "Primary test: full Perception gap video versus control. Secondary: full video versus no-data variant (the correction), full video versus placebo, mediation by change in perceived out-party attitudes, wave 2 persistence, and support for undemocratic practices.",
    "conditions": [
-    "Control",
     "Perception gap video",
+    "Video without data",
     "Placebo video",
-    "Statistics-only text"
+    "Control"
    ],
    "unresolved": [
-    "The actual video files, wave 2 survey instrument and link, IRB approval number, and compensation must be supplied by the research team."
+    "Video files and the edited no-data version must be produced by the research team.",
+    "IRB approval number and compensation amount.",
+    "Wave 2 invitation mechanics and reminders are handled by the panel."
    ],
    "label": "Design advance",
    "text": "extensions/advance_design.txt",
@@ -375,40 +399,42 @@
    "qsf": "extensions/generalizability_conditional.qsf",
    "qsf_errors": [],
    "media": [
-    "video1: video stimulus to supply (Perception gap video showing data on how partisans overestimate the other side's)",
-    "pre_ap_scores: set the matrix recode values after import 0=0, 10=10, 20=20, 30=30, 40=40, 50=50, 60=60, 70=70, 80=80, 90=90, 100=100",
-    "post_ap_scores: set the matrix recode values after import 0=0, 10=10, 20=20, 30=30, 40=40, 50=50, 60=60, 70=70, 80=80, 90=90, 100=100"
+    "video1: video stimulus to supply (Perception gap video showing how Democrats and Republicans overestimate each oth)",
+    "pre_ap_scores: set the matrix recode values after import 0-20 (very cold)=10, 21-40=30, 41-60=50, 61-80=70, 81-100 (very warm)=90",
+    "pre_misperception: set the matrix recode values after import 0-20=10, 21-40=30, 41-60=50, 61-80=70, 81-100=90",
+    "post_ap_scores: set the matrix recode values after import 0-20 (very cold)=10, 21-40=30, 41-60=50, 61-80=70, 81-100 (very warm)=90"
    ],
    "id": "generalizability_conditional",
    "kind": "boundary",
-   "title": "Perception gap video across partisanship and sample",
+   "title": "Who does the Perception gap video work for?",
    "brief_id": "generalizability_conditional",
    "mode": "survey_experiment",
    "debate": null,
-   "why": "Addresses the sample and framing limits: the original was one Lucid panel, only partisans, with heterogeneity tests too imprecise to interpret.",
+   "why": "Addresses sample and measurement: the exploratory interactions were too noisy (CIs of ±7 points), so a dedicated, powered moderator test is needed.",
    "power_target": {
-    "n_per_arm": 1500,
-    "mde": 2.0,
-    "basis": "Interaction contrasts need roughly 2x the SE of the main effect; observed SE 0.995 at n = 641 implies detecting about 2 points in subgroups at around 750 per cell."
+    "n_per_arm": 1200,
+    "mde": 2.5,
+    "basis": "E2/E3 interaction SEs of 3-3.6 at the arm sizes used; the interaction MDE needs about 4x the n of the main effect."
    },
-   "rationale": "The Perception gap video was the only arm with p<0.05 (-2.3 points, 95% CI [-4.3, -0.4], p=0.019, uncorrected) in a single Lucid panel with only partisans, and heterogeneity tests were too imprecise to interpret. This design replicates it in two sample sources across Democrats, Republicans and independent leaners with pre-measures.",
-   "contribution": "Tests whether the Perception gap video effect on the feeling thermometer and undemocratic-practices support holds across party, partisan strength and sample source.",
+   "rationale": "The Perception gap video lowered affective polarization by 2.3 points (95% CI [-4.3, -0.4], n=641 vs control 229), but exploratory party and interest interactions were null with intervals of about ±7 points. A dedicated, stratified, powered test is needed to learn whether the effect depends on partisanship, political interest or baseline misperception.",
+   "contribution": "Provides a preregistered, powered test of three moderators of the Perception gap video effect on affective polarization.",
    "addresses": [],
    "validated_by": "autoexperiment",
    "status": "proposed",
    "built_at": null,
    "survey_id": null,
    "survey_url": null,
-   "hypothesis": "The Perception gap video lowers affective polarization relative to control, and the effect does not differ materially by party, partisan strength or sample source.",
-   "primary_outcome": "Affective polarization: in-party minus out-party feeling thermometer after treatment; secondary: mean support for undemocratic practices.",
-   "comparison": "Perception gap video vs control, with treatment x party and treatment x sample interactions, controlling for pre-treatment measures.",
+   "hypothesis": "The video effect on affective polarization is larger (more negative) for respondents with larger baseline misperception; effects of party and interest are tested as two-sided preregistered interactions.",
+   "primary_outcome": "Affective polarization: in-party minus out-party feeling thermometer after treatment.",
+   "comparison": "Video vs control, with treatment x party, treatment x political interest and treatment x baseline misperception interactions, adjusted for pre-treatment polarization.",
    "conditions": [
     "Control",
     "Perception gap video"
    ],
    "unresolved": [
-    "Hosting of the Perception gap video file",
-    "Choice of second panel vendor, compensation and IRB number"
+    "The actual Perception gap video file must be supplied and hosted by the research team.",
+    "IRB approval number and compensation details must be supplied by the research team.",
+    "The panel vendor and quota feasibility for 2400 respondents must be confirmed."
    ],
    "label": "Generalizability",
    "text": "extensions/generalizability_conditional.txt",
@@ -418,42 +444,46 @@
    "qsf": "extensions/theoretical_debate.qsf",
    "qsf_errors": [],
    "media": [
-    "pgvideo: video stimulus to supply (Perception gap video showing how each party overestimates the other's extremity,)",
-    "pre_ap_scores: set the matrix recode values after import 0-20 (very cold)=10, 21-40=30, 41-60=50, 61-80=70, 81-100 (very warm)=90",
-    "post_ap_scores: set the matrix recode values after import 0-20 (very cold)=10, 21-40=30, 41-60=50, 61-80=70, 81-100 (very warm)=90"
+    "feed_neutral: image stimulus to supply (a neutral news feed with weather, library opening, recipe and sports posts)",
+    "feed_neutral: image stimulus to supply (a neutral news feed with weather, library opening, recipe and sports posts)",
+    "video_pg: video stimulus to supply (Perception gap video presenting data on how each party misperceives the other, a)",
+    "feed_hostile: image stimulus to supply (a news feed of elite and media posts attacking the other party and headlines abo)",
+    "feed_hostile: image stimulus to supply (a news feed of elite and media posts attacking the other party and headlines abo)",
+    "video_pg: video stimulus to supply (Perception gap video presenting data on how each party misperceives the other, a)",
+    "post_ap_scores: set the matrix recode values after import 0-20 (very cold)=10, 21-40 (cold)=30, 41-60 (neutral)=50, 61-80 (warm)=70, 81-100 (very warm)=90"
    ],
    "id": "theoretical_debate",
    "kind": "alternative",
-   "title": "Affect-to-democratic-attitude transfer test",
+   "title": "Individual message versus structural cue",
    "brief_id": "theoretical_debate",
    "mode": "survey_experiment",
    "debate": "D1",
-   "why": "Addresses the measurement failure: the original had a null on undemocratic-practices support with no way to tell whether affect failed to transfer or the intervention was too weak.",
+   "why": "Addresses framing: it tests whether individual-level correction is overridden by structural cues, instead of assuming either side.",
    "power_target": {
-    "n_per_arm": 900,
-    "mde": 0.09,
-    "basis": "Undemocratic-practices pooled CI [-0.044, 0.014] and arm SEs of 0.05-0.12; 900 per arm detects about 0.09 on that scale."
+    "n_per_arm": 800,
+    "mde": 2.0,
+    "basis": "Interaction contrast; the observed main effect of −2.3 with SE 1.0 at n=641 implies an interaction needs roughly 800 per cell."
    },
-   "rationale": "The source found a pooled thermometer drop of -0.8 (95% CI [-1.4,-0.2]) and a Perception gap video drop of -2.3, but no change in undemocratic-practices support (-0.015, CI [-0.044,0.014]). It cannot tell whether affect fails to transfer or the interventions were too weak. This design uses a strengthened intervention to produce a larger affect shift, then tests whether downstream outcomes move in proportion to it.",
-   "contribution": "Separates failed transfer from weak dosage by testing whether randomized affect shifts predict undemocratic-practices support and a behavioural proxy.",
+   "rationale": "Only the Perception gap video lowered affective polarization (-2.3, 95% CI [-4.3, -0.4], n=641) among 32 arms, and the study cannot test structural causes. This 2x2 crosses the video with a hostile elite/media feed prime to see whether the individual-level correction survives a hostile environment.",
+   "contribution": "Directly tests whether an individual-level perception correction is overridden by structural hostility cues rather than assuming either account.",
    "addresses": [],
    "validated_by": "autoexperiment",
    "status": "proposed",
    "built_at": null,
    "survey_id": null,
    "survey_url": null,
-   "hypothesis": "Transfer: downstream change is proportional to the affect change induced by treatment. Independence: undemocratic-practices support and donation willingness do not change even when affect shifts substantially.",
-   "primary_outcome": "Support for undemocratic practices (mean of four items), with the thermometer gap as the first stage.",
-   "comparison": "Each treatment arm vs control on both outcomes; 2SLS with arm as instrument for post-treatment affective polarization; compare reduced-form effect with the effect predicted from the first stage.",
+   "hypothesis": "If individual interventions have leverage, the video lowers affective polarization under both primes. If the structural account holds, the video effect shrinks or vanishes under the hostile prime (video x prime interaction > 0).",
+   "primary_outcome": "Affective polarization: in-party minus out-party feeling thermometer.",
+   "comparison": "Video vs control within each prime; the video x prime interaction contrast; secondary outcome is support for undemocratic practices.",
    "conditions": [
-    "Control",
-    "Patriotic article",
-    "Perception gap video plus recall"
+    "Neutral feed, control",
+    "Neutral feed, video",
+    "Hostile feed, control",
+    "Hostile feed, video"
    ],
    "unresolved": [
-    "Hosting of the Perception gap video and the Patriotic article text.",
-    "IRB approval number and participant compensation.",
-    "How the bonus donation will be paid out."
+    "Actual feed screenshots and the Perception gap video file must be supplied by the research team.",
+    "IRB approval number and compensation must be supplied."
    ],
    "label": "Theoretical debate",
    "text": "extensions/theoretical_debate.txt",
@@ -462,80 +492,90 @@
  ],
  "sections_draft": {
   "takeaways": [
-   "Across 32 student-designed interventions, the pooled effect on affective polarization (feeling thermometer) was −0.8 points (95% CI [−1.4, −0.2], p = 0.005), a small reduction.",
-   "Only the Perception gap video lowered affective polarization on its own: −2.3 points (95% CI [−4.3, −0.4], p = 0.019, two-sided).",
-   "Support for undemocratic practices was not distinguishable from control: the pooled estimate was −0.015 (95% CI [−0.044, 0.014]), and no single arm stood out.",
-   "Caveat: the study was not pre-registered, so every test is post hoc. Many arms are small, and the 64 arm-level tests were not corrected for multiplicity."
+   "In this registered experiment, only one of 32 interventions, the Perception gap video, lowered affective polarization relative to control: −2.3 points on the thermometer scale (95% CI [−4.3, −0.4]).",
+   "The McCain defends Obama video raised support for undemocratic practices by 0.17 scale points (95% CI [0.02, 0.33], p = 0.032), the only registered arm with a detectable shift on that outcome.",
+   "The other arms were not distinguishable from control on either affective polarization or support for undemocratic practices; their intervals are wide and do not rule out modest effects.",
+   "Exploratory checks on completers and on subgroups (party, political interest) found no significant differences, and they are unreviewed.",
+   "Caveat: 64 uncorrected tests with small arms mean the two significant results sit near the threshold and may be chance."
   ],
-  "abstract": "Can short, student-designed interventions reduce affective polarization or support for undemocratic practices? We compared 32 interventions with a pure control condition in an online survey experiment on US adults from the Lucid Theorem panel. The plan was not pre-registered, so every test is post hoc. Of 6,086 raw respondents, 4,547 entered the analysis. Pooled across arms, affective polarization after treatment was 0.8 points lower on the feeling thermometer (95% CI [−1.4, −0.2], p = 0.005). The Perception gap video was the only individual arm that clearly differed from control, at −2.3 points (95% CI [−4.3, −0.4], p = 0.019). Support for undemocratic practices showed no distinguishable pooled change (−0.015, 95% CI [−0.044, 0.014]). Many arms were small, and no correction was made for the 64 uncorrected arm-level tests, so the single-arm result should be read cautiously.",
-  "design_notes": "The study randomized US adults from the Lucid Theorem online panel to a control condition (\"Please continue\") or one of 32 interventions, such as videos, articles, images and quizzes. A thirty-third arm, a GPT-3 chatbot, was excluded after technical failures. Of 6,086 raw respondents, 4,547 were analyzed. The models drop rows with missing outcomes; the affective polarization model used 3,825 respondents. Arm sizes ranged from about 60 to 660. Nothing was pre-registered; the analysis was reconstructed afterwards from a replication script. Each arm is compared with control, using two-sided tests.",
+  "abstract": "Can brief, student-designed interventions reduce affective polarization? We tested 32 interventions against a pure control in a registered survey experiment on US adults from the Lucid Theorem online panel (6,086 recruited, 4,485 analysed). The primary outcome was affective polarization, measured with feeling thermometers, and the secondary outcome was support for undemocratic practices. The Perception gap video lowered affective polarization by 2.3 points relative to control (95% CI [−4.3, −0.4], p = 0.021). The McCain defends Obama video raised support for undemocratic practices by 0.17 scale points (95% CI [0.02, 0.33], p = 0.032). All other interventions were not distinguishable from control on either outcome, and their wide intervals leave modest effects possible. Because 64 tests were run without correction for multiple comparisons, many arms were small, and both significant results are near the threshold, they should be read cautiously and need replication.",
+  "design_notes": "The study was registered on OSF (k2nwj) in November 2022, before the adaptive batches were analysed. Respondents were US adults from the Lucid Theorem online panel. Each of 32 interventions was compared with a pure control that simply said 'Please continue'. The GPT-3 chatbot arm was excluded because of technical failures. Of 6,086 raw responses, 4,485 entered the analysis; the models for affective polarization used 3,772 respondents. Arms are small, mostly 56 to 330 people, apart from the Perception gap video at about 640. Control group sizes are not shown in the tables printed here.",
   "results": {
-   "H1": "The Perception gap video, the largest arm at 641 respondents, lowered affective polarization by 2.3 points relative to control (95% CI [−4.3, −0.4], two-sided p = 0.019). Pooled across all 32 arms the reduction was 0.8 points (95% CI [−1.4, −0.2], p = 0.005). The other arms were not distinguishable from control; their intervals were wide and mostly spanned zero. The 'What makes an American' video (−2.6, p = 0.059) and the Patriotic article (−2.1, p = 0.100) were suggestive only. With 32 uncorrected tests, one nominal hit at p = 0.019 deserves a hedge.",
-   "H2": "No arm was distinguishable from control on support for undemocratic practices. The pooled estimate was −0.015 (95% CI [−0.044, 0.014], p = 0.309), a small and imprecise difference. The nearest case was the McCain defends Obama video at +0.144 (95% CI [−0.018, 0.306], two-sided p = 0.082), which points toward higher support, not lower. These intervals do not rule out modest effects in either direction."
+   "H1": "The Perception gap video was the one intervention that lowered affective polarization, by 2.3 points on the thermometer scale (95% CI [−4.3, −0.4], two-sided p = 0.021). Control respondents averaged 41.5 and the video group 39.6. The remaining arms for which results are shown had intervals that included zero, with point estimates between about −2.4 and +1.4 points. The 'What makes an American' video came closest (−2.4 points, 95% CI [−5.1, 0.4]). Given 32 uncorrected comparisons, the single significant result deserves a hedge.",
+   "H2": "The McCain defends Obama video raised support for undemocratic practices by 0.17 scale points (95% CI [0.02, 0.33], two-sided p = 0.032), which is a worsening on this outcome. The other arms shown were within about ±0.15 points of control, and none was distinguishable from it. Intervals were generally wide, so modest effects in either direction cannot be excluded. With 32 uncorrected tests and only 86 people in this arm, the result is fragile."
   },
   "exploratory": {
-   "E1": "An unreviewed exploratory re-fit on completers only gave essentially the same arm estimates as the main models. This suggests the results are not sensitive to partial completion, though the check was not reviewed.",
-   "E2": "An unreviewed exploratory check interacted each arm with being a Democrat. None of the 32 interactions reached p < 0.05, but these tests are imprecise, so differences between Democrats and others cannot be ruled out."
+   "E1": "Exploratory and unreviewed: refitting the planned H1 models on completers only gave standard errors essentially identical to the planned ones (median ratio 1.00). This suggests dropping partial responses matters little for the H1 estimates.",
+   "E2": "Exploratory and unreviewed: none of the 32 arm-by-Democratic-identification interactions was significant at p < 0.05. The intervals are wide, so this cannot rule out differences between Democrats and others.",
+   "E3": "Exploratory and unreviewed: none of the 32 arm-by-political-interest interactions was significant at p < 0.05. The closest, for Shared values exercise, was −6.9 points (95% CI [−14.0, 0.2]). This does not establish that effects are uniform."
   },
-  "limitations": "No part of this study was pre-registered, so every test is post hoc and the choice of analyses could have been shaped by the data. The 64 arm-level tests were not corrected for multiplicity, and the single significant arm could be a chance finding. Several arms had fewer than 80 respondents, giving wide intervals that cannot exclude meaningful effects. About a quarter of raw respondents were not analyzed, and 3,825 entered the polarization model, so attrition could bias estimates if it differed by arm. The sample is an online panel of US adults, and the outcomes were measured right after exposure, so durability is unknown."
+  "limitations": "Arms are small, mostly under 200 respondents, so intervals are wide and most estimates are inconclusive rather than evidence of no effect. The 64 primary and secondary tests were not corrected for multiplicity, and the two significant results have p-values near 0.02 and 0.03, so chance findings are plausible. The sample is a US online panel, and attrition (4,485 analysed of 6,086) may differ across arms. Outcomes were measured immediately after exposure, so durability is unknown. Batches were adaptive, which may complicate comparisons across arms. The design cannot speak to structural causes of polarization raised in the wider literature."
  },
  "potential": {
   "got_right": [
-   "Ran 32 interventions against one shared control in a single fielding, so arms are directly comparable and the pooled estimate is not confounded by wave, panel or outcome wording.",
-   "Adjusted for the pre-treatment measure of each outcome (post_ap ~ arm + pre_ap) with HC2 robust SEs, which tightens estimates; the Perception gap video interval is the narrowest at [-4.3, -0.4].",
-   "Reported the whole arm table and hedged the lone p = 0.019 result against 64 uncorrected tests, rather than presenting one arm as a winner.",
-   "Pooled across arms (-0.8 points, 95% CI [-1.4, -0.2]) and found no pooled movement in support for undemocratic practices (-0.015, CI [-0.044, 0.014])."
+   "Pre-registered (OSF k2nwj, before the adaptive batches were analysed), with a pure 'Please continue' control and a common covariate-adjusted model for all 32 arms, so the arms are comparable.",
+   "Two registered outcomes: affective polarization on the thermometer scale and support for undemocratic practices. This showed that an arm can help on one outcome and not the other (Perception gap video −2.3 on affective polarization, −0.006 on undemocratic practices).",
+   "The report hedges honestly: 64 uncorrected tests, two results at p≈0.02 and 0.03, and wide intervals described as inconclusive rather than as null.",
+   "Reports the full arm-by-arm tables with n per arm, so the weakly powered arms are visible."
   ],
   "why_it_did_not_land": [
    {
     "cause": "power",
-    "detail": "Most arms had 48-150 respondents against a control of 229, so arm-level intervals are about 6-8 points wide and cannot exclude effects larger than the pooled -0.8. Only the Perception gap video (n = 641) was estimated with any precision.",
-    "evidence": "Standard errors of 1.3-3.2 on the feeling thermometer for nearly all arms; control n = 229; Cross-partisan dialogue guide CI [-8.0, 4.5]."
-   },
-   {
-    "cause": "design",
-    "detail": "Interventions differ in format, length, topic and target, so 32 arms bundle many features. A null or a hit cannot be tied to a mechanism, and one arm clearing p < 0.05 among 32 tests is about what chance produces.",
-    "evidence": "Perception gap video p = 0.019 uncorrected; next arms are 'What makes an American' video p = 0.059 and Patriotic article p = 0.100."
-   },
-   {
-    "cause": "measurement",
-    "detail": "Outcomes were measured immediately after exposure, with a single thermometer-based measure and one undemocratic-practices scale. Durability and behaviour are unobserved, and immediate shifts may reflect demand.",
-    "evidence": "Limitations: outcomes measured right after exposure; the thermometer gap is the only affect measure."
-   },
-   {
-    "cause": "sample",
-    "detail": "Analysis kept 4,547 of 6,086 respondents, and 3,825 and 3,953 entered the two models. Differential attrition across arms, plus the dropped chatbot arm, could bias the contrasts. Only Democrats and Republicans were retained.",
-    "evidence": "N = 3825 (H1) and N = 3953 (H2) versus 6,086 raw; arm T33 excluded after technical failures."
+    "detail": "Most arms have 56-330 respondents against a control of 229 (affective polarization) or 234 (undemocratic practices). Standard errors of 1.3-3.3 points mean only effects above about 3-5 points are detectable.",
+    "evidence": "H1 table: arm SEs 0.997 (Perception gap video, n=641) to 3.251 (dialogue guide, n=65); the 'What makes an American' video estimate of −2.4 had CI [−5.1, 0.4]."
    },
    {
     "cause": "analysis",
-    "detail": "No pre-registration, so analytic choices (weights, exclusions, pooling) are post hoc, and the robustness checks add little: the completers re-fit showed only full-sample rows and the Democrat-interaction tests are too imprecise to say anything.",
-    "evidence": "Registration status 'none'; E2 interaction SEs of 3-10 points; 0 of 32 interactions at p < 0.05."
+    "detail": "Thirty-two arms were tested on each of two outcomes with no multiplicity correction. The only two hits are near the threshold and would not survive a correction.",
+    "evidence": "Perception gap video p=0.021 and McCain defends Obama video p=0.032, among 64 tests; about 3 false positives are expected at alpha 0.05."
+   },
+   {
+    "cause": "design",
+    "detail": "Single-shot exposure with immediate outcomes, and a cross-arm comparison with a shared small control. The batches were adaptive, which complicates comparisons across arms. Durability and behavioural relevance are untested.",
+    "evidence": "Limitations section; arms ranged from 56 to 641 respondents, and the Perception gap video arm was far larger than the others."
+   },
+   {
+    "cause": "sample",
+    "detail": "Analysis dropped from 6,086 collected to 4,485, and to 3,772 for the affective polarization model. Attrition may differ by arm, and Lucid respondents may be unrepresentative.",
+    "evidence": "N analysed 4,485 of 6,086; H1 model N=3772; H2 model N=3814."
+   },
+   {
+    "cause": "measurement",
+    "detail": "The exploratory checks add nothing. The completers-only fit reproduced the planned estimates exactly, and the subgroup interactions were underpowered.",
+    "evidence": "E1 estimates identical on the same 3,772 respondents; E2 and E3 had 0 of 32 interactions significant, with CIs such as [−14.0, 0.2]."
    }
   ],
   "debates": [
    {
     "id": "D1",
-    "label": "Do prejudice-reduction effects carry through to downstream political outcomes?",
-    "position_a": "Brief interventions can shift intergroup affect, and that shift should extend to political attitudes such as support for undemocratic practices or violence.",
-    "position_b": "Affective shifts are small and local, and may not transfer to democratic attitudes, or to settings beyond the United States.",
-    "what_this_study_says": "Leans to position b, weakly: a small thermometer reduction (-0.8) coexisted with no pooled change in undemocratic-practices support (-0.015). The intervals are wide and the outcomes were measured immediately, so the study cannot settle it.",
+    "label": "Can individual-level interventions move polarization, or is it structural?",
+    "position_a": "Affective polarization is identity-based, so brief interventions that alter perceptions of the out-group can reduce it, and prejudice-reduction experiments show some average effects.",
+    "position_b": "Severe polarization is driven by system-level and media dynamics, so brief individual-level messages have little leverage and may even backfire on democratic attitudes.",
+    "what_this_study_says": "It leans weakly toward the structural side. 30 of 32 arms did nothing detectable on either outcome, and the one affective polarization gain (−2.3) is small and borderline. It cannot rule out modest effects, and it cannot test structural causes directly.",
     "works": [
      {
       "id": "10.1146/annurev-psych-071620-030619",
       "side": "a"
      },
      {
-      "id": "10.1017/s1475676526101273",
+      "id": "10.1093/poq/nfy005",
+      "side": "a"
+     },
+     {
+      "id": "10.1038/s41562-020-01012-5",
+      "side": "neutral"
+     },
+     {
+      "id": "10.1177/0002716218818782",
       "side": "b"
      },
      {
-      "id": "10.1017/s1537592722001086",
-      "side": "neutral"
+      "id": "10.1038/s41562-022-01460-1",
+      "side": "b"
      },
      {
-      "id": "10.1086/688223",
-      "side": "neutral"
+      "id": "10.1017/9781108890960",
+      "side": "b"
      }
     ]
    }
@@ -545,17 +585,17 @@
     "id": "advance_design",
     "kind_legacy": "mechanism",
     "mode": "survey_experiment",
-    "title": "Perception gap correction with a mechanism manipulation and delayed follow-up",
-    "question": "Does correcting misperceptions of the other party reduce affective polarization through changed meta-perceptions, and does the effect persist?",
-    "why_this_fixes_the_failure": "Fixes the power and design problems by concentrating on the only arm with signal and by isolating its mechanism, adding a delayed outcome to address the immediate-measurement limit.",
+    "title": "Perception gap video: replication, mechanism and persistence",
+    "question": "Does the Perception gap video lower affective polarization by correcting misperceptions of the out-party, and does the effect last beyond the session?",
+    "why_this_fixes_the_failure": "Addresses power and design: it gives the one borderline effect a large pre-registered replication, adds a mechanism measure, and adds a delayed follow-up.",
     "debate": "D1",
     "addresses": [],
-    "design_sketch": "Four arms: control, the Perception gap video, a placebo video of the same length and format on a non-political topic, and a perception-gap statistics-only text. Measure perceived out, party gap and the feeling thermometer, plus undemocratic-practices support, immediately and again after 2-4 weeks. Recruit partisan US adults with pre-treatment measures of both outcomes. Mediation is tested via the shift in perceived outparty views.",
+    "design_sketch": "Arms: Perception gap video, a placebo video of matched length, and a control that just says 'Please continue'. Add a variant of the video without the misperception data to isolate the correction. Measure perceived out-party attitudes before and after exposure (mediator), the affective polarization thermometer, and support for undemocratic practices. Re-contact respondents after about 2 weeks. Lucid-style US sample of Democrats and Republicans, with one primary test.",
     "moderator_or_condition": null,
     "power_target": {
-     "n_per_arm": 1100,
-     "mde": 1.7,
-     "basis": "Observed Perception gap video effect of -2.3 points (SE 0.995 at n = 641); sizing to detect about -1.7 at 80% power allows for winner's-curse shrinkage."
+     "n_per_arm": 1000,
+     "mde": 1.4,
+     "basis": "Observed −2.3 points with SE 0.997 at n=641; the true effect is probably smaller than the winning estimate, so size for about 1.4 points (SD about 20 implied by the SEs)."
     },
     "needs_qsf": true
    },
@@ -563,17 +603,17 @@
     "id": "theoretical_debate",
     "kind_legacy": "alternative",
     "mode": "survey_experiment",
-    "title": "Affect-to-democratic-attitude transfer test",
-    "question": "Do thermometer reductions produce changes in support for undemocratic practices, or are the two outcomes independent?",
-    "why_this_fixes_the_failure": "Addresses the measurement failure: the original had a null on undemocratic-practices support with no way to tell whether affect failed to transfer or the intervention was too weak.",
+    "title": "Individual message versus structural cue",
+    "question": "Does the Perception gap video's effect shrink when respondents are primed with a hostile, elite-driven polarization environment?",
+    "why_this_fixes_the_failure": "Addresses framing: it tests whether individual-level correction is overridden by structural cues, instead of assuming either side.",
     "debate": "D1",
     "addresses": [],
-    "design_sketch": "Randomize to the Perception gap video, a Patriotic article, or control. Use a stronger intervention variant (video plus recall task) to produce a larger affect shift. Measure affect, undemocratic-practices support and a behavioural proxy (willingness to donate to a cross-party group). Test whether the affect change predicts downstream change using instrumental or mediation analysis. Positions differ: transfer predicts downstream change proportional to affect change; independence predicts none even with a large affect shift.",
-    "moderator_or_condition": null,
+    "design_sketch": "A 2x2 factorial: Perception gap video versus control, crossed with a prime (a realistic feed of elite and media hostility versus a neutral feed). Outcomes are affective polarization and support for undemocratic practices. If the video effect holds under the hostile prime, individual-level interventions have leverage. If it vanishes, the structural account is supported.",
+    "moderator_or_condition": "Hostile versus neutral information environment",
     "power_target": {
-     "n_per_arm": 900,
-     "mde": 0.09,
-     "basis": "Undemocratic-practices pooled CI [-0.044, 0.014] and arm SEs of 0.05-0.12; 900 per arm detects about 0.09 on that scale."
+     "n_per_arm": 800,
+     "mde": 2.0,
+     "basis": "Interaction contrast; the observed main effect of −2.3 with SE 1.0 at n=641 implies an interaction needs roughly 800 per cell."
     },
     "needs_qsf": true
    },
@@ -581,22 +621,22 @@
     "id": "generalizability_conditional",
     "kind_legacy": "boundary",
     "mode": "survey_experiment",
-    "title": "Perception gap video across partisanship and sample",
-    "question": "Does the Perception gap video effect hold across partisan identity, strength of partisanship and a second sample source?",
-    "why_this_fixes_the_failure": "Addresses the sample and framing limits: the original was one Lucid panel, only partisans, with heterogeneity tests too imprecise to interpret.",
+    "title": "Who does the Perception gap video work for?",
+    "question": "Does the video's effect on affective polarization vary by partisanship, political interest and the size of baseline misperception?",
+    "why_this_fixes_the_failure": "Addresses sample and measurement: the exploratory interactions were too noisy (CIs of ±7 points), so a dedicated, powered moderator test is needed.",
     "debate": null,
     "addresses": [],
-    "design_sketch": "Two-arm design (Perception gap video vs control) fielded in a Lucid and a probability-based or alternative panel, stratified by Democrat, Republican and independent leaners. Outcomes are the feeling thermometer and undemocratic-practices support, with pre-measures. Estimate treatment effects by party and sample and test interactions.",
-    "moderator_or_condition": "Party (Democrat, Republican, independent) and sample source (Lucid vs second panel)",
+    "design_sketch": "Video versus control, with stratified recruitment of Democrats and Republicans, high and low political interest, and a pre-treatment measure of out-party misperception. Pre-register the three interactions. Use a probability-based or quota panel in addition to Lucid.",
+    "moderator_or_condition": "Partisanship, political interest, baseline misperception",
     "power_target": {
-     "n_per_arm": 1500,
-     "mde": 2.0,
-     "basis": "Interaction contrasts need roughly 2x the SE of the main effect; observed SE 0.995 at n = 641 implies detecting about 2 points in subgroups at around 750 per cell."
+     "n_per_arm": 1200,
+     "mde": 2.5,
+     "basis": "E2/E3 interaction SEs of 3-3.6 at the arm sizes used; the interaction MDE needs about 4x the n of the main effect."
     },
     "needs_qsf": true
    }
   ],
-  "verdict": "A follow-up is worth running, but narrowly. The 32-arm screen found a pooled -0.8 point shift, one nominal hit (Perception gap video, -2.3, p = 0.019, uncorrected and post hoc), and nothing on undemocratic practices. Run the Perception gap correction with a mechanism manipulation and delayed follow-up first: it replicates the single signal at adequate power, adds a placebo, and tests persistence. The affect-to-democratic-attitude transfer test and the cross-party, cross-sample test follow once the effect is confirmed.",
+  "verdict": "A follow-up is worth running, but only a narrow one. Of 64 tests, two were barely significant and 30 of 32 arms were inconclusive, so the broad screening design should not be repeated. Run the Perception gap video replication with a mechanism measure and a delayed follow-up first, since it is the only affective polarization result and also the largest arm. The McCain defends Obama video effect on undemocratic practices rests on 86 people and is probably noise. The structural-cue and moderator briefs can follow if the replication holds.",
   "model": "anthropic/claude-sonnet-5.5"
  }
 }

@@ -3,42 +3,43 @@
   "qsf": "extensions/advance_design.qsf",
   "qsf_errors": [],
   "media": [
-   "pgvideo: video stimulus to supply (Perception gap video showing how partisans overestimate the other party's extrem)",
-   "plvideo: video stimulus to supply (Non-political explainer video on how bees make honey, about 4 minutes)",
-   "pre_ap_scores: set the matrix recode values after import 0-20 (very cold)=10, 21-40=30, 41-60=50, 61-80=70, 81-100 (very warm)=90",
-   "post_ap_scores: set the matrix recode values after import 0-20 (very cold)=10, 21-40=30, 41-60=50, 61-80=70, 81-100 (very warm)=90"
+   "video_pg: video stimulus to supply (Perception gap video showing how Democrats and Republicans overestimate each oth)",
+   "video_nd: video stimulus to supply (Edited version of the Perception gap video with the misperception statistics rem)",
+   "video_pl: video stimulus to supply (Neutral nonpolitical explainer video, about 6 minutes)"
   ],
   "id": "advance_design",
   "kind": "mechanism",
-  "title": "Perception gap correction with a mechanism manipulation and delayed follow-up",
+  "title": "Perception gap video: replication, mechanism and persistence",
   "brief_id": "advance_design",
   "mode": "survey_experiment",
   "debate": "D1",
-  "why": "Fixes the power and design problems by concentrating on the only arm with signal and by isolating its mechanism, adding a delayed outcome to address the immediate-measurement limit.",
+  "why": "Addresses power and design: it gives the one borderline effect a large pre-registered replication, adds a mechanism measure, and adds a delayed follow-up.",
   "power_target": {
-   "n_per_arm": 1100,
-   "mde": 1.7,
-   "basis": "Observed Perception gap video effect of -2.3 points (SE 0.995 at n = 641); sizing to detect about -1.7 at 80% power allows for winner's-curse shrinkage."
+   "n_per_arm": 1000,
+   "mde": 1.4,
+   "basis": "Observed −2.3 points with SE 0.997 at n=641; the true effect is probably smaller than the winning estimate, so size for about 1.4 points (SD about 20 implied by the SEs)."
   },
-  "rationale": "In the source study the Perception gap video was the only arm with p<0.05 on the thermometer (-2.3 points, SE 0.995, n=641), while pooled undemocratic-practices support did not move (-0.015, CI [-0.044, 0.014]) and outcomes were measured immediately. This design tests whether the effect runs through corrected beliefs about the outparty, whether it replicates against a placebo video, and whether it persists and reaches democratic attitudes.",
-  "contribution": "Separates perception-correction from generic video and attention effects, tests mediation via perceived outparty views, and measures persistence and downstream spillover.",
+  "rationale": "In the source study the Perception gap video lowered the thermometer gap by 2.3 points (SE 0.997, n=641, p=0.021), one borderline result among 64 uncorrected tests. This follow-up replicates it at scale, tests whether correcting out-party misperceptions is the channel by comparing the full video with a version lacking the misperception data, and re-measures after about 2 weeks because the source only measured outcomes immediately.",
+  "contribution": "Separates a replicated effect of the perception gap video from placebo and attention effects, tests whether the misperception correction carries it, and shows whether it persists.",
   "addresses": [],
   "validated_by": "autoexperiment",
   "status": "proposed",
   "built_at": null,
   "survey_id": null,
   "survey_url": null,
-  "hypothesis": "The Perception gap video lowers outparty animosity (thermometer gap) more than placebo or control, mediated by reduced perceived outparty extremity; the effect partly persists at follow-up, with smaller or null effects on support for undemocratic practices.",
-  "primary_outcome": "Affective polarization (in-party minus out-party feeling thermometer) immediately and at 2-4 weeks.",
-  "comparison": "Perception gap video vs placebo video; Perception gap video vs statistics-only text; each vs control; mediation via change in perceived outparty views.",
+  "hypothesis": "The full Perception gap video lowers the in-party minus out-party thermometer gap relative to control by about 1.4 points or more. The effect is mediated by reduced misperception of out-party attitudes, so the no-data variant has a smaller effect. Some of the effect remains at about 2 weeks. Undemocratic-practice support does not increase.",
+  "primary_outcome": "Affective polarization (in-party minus out-party thermometer) immediately after exposure, full video versus control.",
+  "comparison": "Primary test: full Perception gap video versus control. Secondary: full video versus no-data variant (the correction), full video versus placebo, mediation by change in perceived out-party attitudes, wave 2 persistence, and support for undemocratic practices.",
   "conditions": [
-   "Control",
    "Perception gap video",
+   "Video without data",
    "Placebo video",
-   "Statistics-only text"
+   "Control"
   ],
   "unresolved": [
-   "The actual video files, wave 2 survey instrument and link, IRB approval number, and compensation must be supplied by the research team."
+   "Video files and the edited no-data version must be produced by the research team.",
+   "IRB approval number and compensation amount.",
+   "Wave 2 invitation mechanics and reminders are handled by the panel."
   ],
   "label": "Design advance",
   "text": "extensions/advance_design.txt",
@@ -48,40 +49,42 @@
   "qsf": "extensions/generalizability_conditional.qsf",
   "qsf_errors": [],
   "media": [
-   "video1: video stimulus to supply (Perception gap video showing data on how partisans overestimate the other side's)",
-   "pre_ap_scores: set the matrix recode values after import 0=0, 10=10, 20=20, 30=30, 40=40, 50=50, 60=60, 70=70, 80=80, 90=90, 100=100",
-   "post_ap_scores: set the matrix recode values after import 0=0, 10=10, 20=20, 30=30, 40=40, 50=50, 60=60, 70=70, 80=80, 90=90, 100=100"
+   "video1: video stimulus to supply (Perception gap video showing how Democrats and Republicans overestimate each oth)",
+   "pre_ap_scores: set the matrix recode values after import 0-20 (very cold)=10, 21-40=30, 41-60=50, 61-80=70, 81-100 (very warm)=90",
+   "pre_misperception: set the matrix recode values after import 0-20=10, 21-40=30, 41-60=50, 61-80=70, 81-100=90",
+   "post_ap_scores: set the matrix recode values after import 0-20 (very cold)=10, 21-40=30, 41-60=50, 61-80=70, 81-100 (very warm)=90"
   ],
   "id": "generalizability_conditional",
   "kind": "boundary",
-  "title": "Perception gap video across partisanship and sample",
+  "title": "Who does the Perception gap video work for?",
   "brief_id": "generalizability_conditional",
   "mode": "survey_experiment",
   "debate": null,
-  "why": "Addresses the sample and framing limits: the original was one Lucid panel, only partisans, with heterogeneity tests too imprecise to interpret.",
+  "why": "Addresses sample and measurement: the exploratory interactions were too noisy (CIs of ±7 points), so a dedicated, powered moderator test is needed.",
   "power_target": {
-   "n_per_arm": 1500,
-   "mde": 2.0,
-   "basis": "Interaction contrasts need roughly 2x the SE of the main effect; observed SE 0.995 at n = 641 implies detecting about 2 points in subgroups at around 750 per cell."
+   "n_per_arm": 1200,
+   "mde": 2.5,
+   "basis": "E2/E3 interaction SEs of 3-3.6 at the arm sizes used; the interaction MDE needs about 4x the n of the main effect."
   },
-  "rationale": "The Perception gap video was the only arm with p<0.05 (-2.3 points, 95% CI [-4.3, -0.4], p=0.019, uncorrected) in a single Lucid panel with only partisans, and heterogeneity tests were too imprecise to interpret. This design replicates it in two sample sources across Democrats, Republicans and independent leaners with pre-measures.",
-  "contribution": "Tests whether the Perception gap video effect on the feeling thermometer and undemocratic-practices support holds across party, partisan strength and sample source.",
+  "rationale": "The Perception gap video lowered affective polarization by 2.3 points (95% CI [-4.3, -0.4], n=641 vs control 229), but exploratory party and interest interactions were null with intervals of about ±7 points. A dedicated, stratified, powered test is needed to learn whether the effect depends on partisanship, political interest or baseline misperception.",
+  "contribution": "Provides a preregistered, powered test of three moderators of the Perception gap video effect on affective polarization.",
   "addresses": [],
   "validated_by": "autoexperiment",
   "status": "proposed",
   "built_at": null,
   "survey_id": null,
   "survey_url": null,
-  "hypothesis": "The Perception gap video lowers affective polarization relative to control, and the effect does not differ materially by party, partisan strength or sample source.",
-  "primary_outcome": "Affective polarization: in-party minus out-party feeling thermometer after treatment; secondary: mean support for undemocratic practices.",
-  "comparison": "Perception gap video vs control, with treatment x party and treatment x sample interactions, controlling for pre-treatment measures.",
+  "hypothesis": "The video effect on affective polarization is larger (more negative) for respondents with larger baseline misperception; effects of party and interest are tested as two-sided preregistered interactions.",
+  "primary_outcome": "Affective polarization: in-party minus out-party feeling thermometer after treatment.",
+  "comparison": "Video vs control, with treatment x party, treatment x political interest and treatment x baseline misperception interactions, adjusted for pre-treatment polarization.",
   "conditions": [
    "Control",
    "Perception gap video"
   ],
   "unresolved": [
-   "Hosting of the Perception gap video file",
-   "Choice of second panel vendor, compensation and IRB number"
+   "The actual Perception gap video file must be supplied and hosted by the research team.",
+   "IRB approval number and compensation details must be supplied by the research team.",
+   "The panel vendor and quota feasibility for 2400 respondents must be confirmed."
   ],
   "label": "Generalizability",
   "text": "extensions/generalizability_conditional.txt",
@@ -91,42 +94,46 @@
   "qsf": "extensions/theoretical_debate.qsf",
   "qsf_errors": [],
   "media": [
-   "pgvideo: video stimulus to supply (Perception gap video showing how each party overestimates the other's extremity,)",
-   "pre_ap_scores: set the matrix recode values after import 0-20 (very cold)=10, 21-40=30, 41-60=50, 61-80=70, 81-100 (very warm)=90",
-   "post_ap_scores: set the matrix recode values after import 0-20 (very cold)=10, 21-40=30, 41-60=50, 61-80=70, 81-100 (very warm)=90"
+   "feed_neutral: image stimulus to supply (a neutral news feed with weather, library opening, recipe and sports posts)",
+   "feed_neutral: image stimulus to supply (a neutral news feed with weather, library opening, recipe and sports posts)",
+   "video_pg: video stimulus to supply (Perception gap video presenting data on how each party misperceives the other, a)",
+   "feed_hostile: image stimulus to supply (a news feed of elite and media posts attacking the other party and headlines abo)",
+   "feed_hostile: image stimulus to supply (a news feed of elite and media posts attacking the other party and headlines abo)",
+   "video_pg: video stimulus to supply (Perception gap video presenting data on how each party misperceives the other, a)",
+   "post_ap_scores: set the matrix recode values after import 0-20 (very cold)=10, 21-40 (cold)=30, 41-60 (neutral)=50, 61-80 (warm)=70, 81-100 (very warm)=90"
   ],
   "id": "theoretical_debate",
   "kind": "alternative",
-  "title": "Affect-to-democratic-attitude transfer test",
+  "title": "Individual message versus structural cue",
   "brief_id": "theoretical_debate",
   "mode": "survey_experiment",
   "debate": "D1",
-  "why": "Addresses the measurement failure: the original had a null on undemocratic-practices support with no way to tell whether affect failed to transfer or the intervention was too weak.",
+  "why": "Addresses framing: it tests whether individual-level correction is overridden by structural cues, instead of assuming either side.",
   "power_target": {
-   "n_per_arm": 900,
-   "mde": 0.09,
-   "basis": "Undemocratic-practices pooled CI [-0.044, 0.014] and arm SEs of 0.05-0.12; 900 per arm detects about 0.09 on that scale."
+   "n_per_arm": 800,
+   "mde": 2.0,
+   "basis": "Interaction contrast; the observed main effect of −2.3 with SE 1.0 at n=641 implies an interaction needs roughly 800 per cell."
   },
-  "rationale": "The source found a pooled thermometer drop of -0.8 (95% CI [-1.4,-0.2]) and a Perception gap video drop of -2.3, but no change in undemocratic-practices support (-0.015, CI [-0.044,0.014]). It cannot tell whether affect fails to transfer or the interventions were too weak. This design uses a strengthened intervention to produce a larger affect shift, then tests whether downstream outcomes move in proportion to it.",
-  "contribution": "Separates failed transfer from weak dosage by testing whether randomized affect shifts predict undemocratic-practices support and a behavioural proxy.",
+  "rationale": "Only the Perception gap video lowered affective polarization (-2.3, 95% CI [-4.3, -0.4], n=641) among 32 arms, and the study cannot test structural causes. This 2x2 crosses the video with a hostile elite/media feed prime to see whether the individual-level correction survives a hostile environment.",
+  "contribution": "Directly tests whether an individual-level perception correction is overridden by structural hostility cues rather than assuming either account.",
   "addresses": [],
   "validated_by": "autoexperiment",
   "status": "proposed",
   "built_at": null,
   "survey_id": null,
   "survey_url": null,
-  "hypothesis": "Transfer: downstream change is proportional to the affect change induced by treatment. Independence: undemocratic-practices support and donation willingness do not change even when affect shifts substantially.",
-  "primary_outcome": "Support for undemocratic practices (mean of four items), with the thermometer gap as the first stage.",
-  "comparison": "Each treatment arm vs control on both outcomes; 2SLS with arm as instrument for post-treatment affective polarization; compare reduced-form effect with the effect predicted from the first stage.",
+  "hypothesis": "If individual interventions have leverage, the video lowers affective polarization under both primes. If the structural account holds, the video effect shrinks or vanishes under the hostile prime (video x prime interaction > 0).",
+  "primary_outcome": "Affective polarization: in-party minus out-party feeling thermometer.",
+  "comparison": "Video vs control within each prime; the video x prime interaction contrast; secondary outcome is support for undemocratic practices.",
   "conditions": [
-   "Control",
-   "Patriotic article",
-   "Perception gap video plus recall"
+   "Neutral feed, control",
+   "Neutral feed, video",
+   "Hostile feed, control",
+   "Hostile feed, video"
   ],
   "unresolved": [
-   "Hosting of the Perception gap video and the Patriotic article text.",
-   "IRB approval number and participant compensation.",
-   "How the bonus donation will be paid out."
+   "Actual feed screenshots and the Perception gap video file must be supplied by the research team.",
+   "IRB approval number and compensation must be supplied."
   ],
   "label": "Theoretical debate",
   "text": "extensions/theoretical_debate.txt",

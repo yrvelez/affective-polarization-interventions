@@ -1,7 +1,6 @@
 {
  "tool_version": "0.1.0",
  "files": [
-  ".gitignore",
   "CITATION.cff",
   "RUN.md",
   "codebook.json",
@@ -32,7 +31,6 @@
   "figures/badges/review.svg",
   "figures/design.svg",
   "figures/design.txt",
-  "figures/registered_effects.png",
   "pap.json",
   "pap.md",
   "provenance/ctx_snapshot.json",
@@ -42,8 +40,9 @@
   "provenance/provenance.json",
   "provenance/script_history/04_exploratory.py.1",
   "report.md",
-  "results/E1_completers_robustness.csv",
-  "results/E2_partisan_heterogeneity.csv",
+  "results/E1_completers_only.csv",
+  "results/E2_dem_heterogeneity.csv",
+  "results/E3_interest_heterogeneity.csv",
   "results/H1.csv",
   "results/H1_arms.csv",
   "results/H2.csv",
