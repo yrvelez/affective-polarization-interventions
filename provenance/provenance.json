@@ -154,7 +154,7 @@
   "2026-10-09T10:16:34Z PII scan (header + first 5 rows): flagged 3 column(s): RecordedDate [known_identifier_column], dem_intervention [value_pattern:free_text], rep_intervention [value_pattern:free_text]. Action: dropped 3, kept by whitelist 0.",
   "2026-10-09T10:16:34Z stage tidy",
   "2026-10-09T10:16:34Z stage pap",
-  "2026-10-09T10:16:34Z pap: loaded author-supplied /Users/yamil/Projects/filedrawer/affective_polarization/pap_labeled.json (papreader agent skipped)",
+  "2026-10-09T10:16:34Z pap: loaded author-supplied pap_labeled.json (papreader agent skipped)",
   "2026-10-09T10:16:34Z cleared 16 file(s) from the previous run",
   "2026-10-09T10:16:34Z stage clean",
   "2026-10-09T10:16:35Z wrote data/clean.csv: 4485 rows, 78 columns",

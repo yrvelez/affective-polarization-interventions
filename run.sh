@@ -5,7 +5,7 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 : "${OPENROUTER_API_KEY:?set OPENROUTER_API_KEY (bring your own token)}"
-INPUTS="${INPUTS:-$HOME/Projects/filedrawer/affective_polarization}"
+: "${INPUTS:?set INPUTS to the folder holding pipeline_input.csv, the QSF, pap.md and pap_labeled.json}"
 filedrawer run \
   --csv "$INPUTS/pipeline_input.csv" --qsf "$INPUTS/affective_polarization.qsf" \
   --pap "$INPUTS/pap.md" --pap-json "$INPUTS/pap_labeled.json" \
