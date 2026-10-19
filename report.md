@@ -304,9 +304,11 @@ Re-check of the corrected text: No further rewording needed; the previously flag
 
 #### Other review options
 
-- **Coarse**: the open-source coarse-ink reviewer, run on your machine (about $1-2), then imported. `uvx coarse-ink review report.md, then filedrawer review-import . coarse FILE`
-- **Refine**: upload the report to refine.ink, then import its review. `filedrawer review-import . refine FILE`
-- **OpenReview or any referee report**: import a review posted on OpenReview, or any other referee report. `filedrawer review-import . openreview FILE`
+- **Coarse**: run the open-source reviewer on your machine (about $1-2, your OpenRouter key): uvx --python 3.12 coarse-ink review report.md, which writes report_review.md. `filedrawer review-import . coarse FILE`
+- **Refine**: upload report.md (or a PDF of it) at refine.ink, wait for the review, and save it (PDF, Markdown or text). `filedrawer review-import . refine FILE`
+- **OpenAIReview**: run ChicagoHAI's open-source reviewer on your machine with your own model key (OpenRouter, OpenAI, Anthropic or Gemini; the cost depends on the model you pick): uvx openaireview review report.md, which writes its comments to review_results/. `filedrawer review-import . openaireview FILE`
+- **Edyth**: open the report in Edyth (the Check with Edyth button on the study's filedrawer.org page): with the code FILEDRAWER the reference check and reading suggestions are free, and an optional deep review is paid from your own Edyth balance; save the Markdown letter it returns. `filedrawer review-import . edyth FILE`
+- **Any other referee report**: save any referee report, from a person or a model (PDF, Markdown or text). `filedrawer review-import . other FILE`
 
 
 <!-- fd:section id=potential -->
